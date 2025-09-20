@@ -1,0 +1,36 @@
+\chapter{Hardness proofs}
+\begin{theorem}
+    The decision version of $T||V,c,w||\sum C_j$ is NP-complete in the class of trees with diameter at most $8$ and in the class of trees with degree at most $16$.
+    \begin{proof}
+        Of course the problem is in NP since given a decision tree $D$ one can in polynomial time check whether all of the requirements are fulfilled.
+
+        To show the hardness we use the fact that $T||E, w||\sum C_j$ is NP-complete in the class of trees with diameter at most $4$ and in the class of trees with degree at most $16$ \cite{Jacobs2010OnTheComplexSearchInTsAvg}. Let $\br{T, w, K}$ be such instance. We create a new instance $\br{T', c, w, K'}$ for $T||V,c,w||\sum C_j$ in the following way. For every $v\in V\br{T}$ we set $c\br{v}=K+1$. We subdivide each edge $e\in E\br{T}$ by adding new vertex $v_e$ with $w\br{v_e}=0$ and $c\br{v_e}=1$. We set $K'=K+w\br{T}\cdot\br{K+1}$. 
+        Assume that we have a decision tree $D$ of cost at most $K$ for the original instance. To obtain a decision tree $D'$ for the second instance we simply replace each query in $D$ by a query to a vertex which subdivided the queried edge. Additionally, below each leaf of $D$ we hang appropriate queries to the left vertices (as $D$ contains a query to every edge of $T$ each vertex is separated, so for every $v\in V\br{T}$ one such additional query is added. This results in a decision tree $D'$ of cost at most $K'=K+w\br{T}\br{K+1}$ as required.
+
+        
+        Observe that in the new instance for every vertex $v\in T$ we have that the cost of searching for $v$ is at least $K+1$ since $c\br{v}=K+1$. Therefore for these vertices, at least $w\br{T}\cdot\br{K+1}$ cost is required assuming that in the query sequence of each such vertex there is only one such costly query, namely query to $v$ itself. Notice that if it was not the case the cost would exceed $K'$ so we conclude that every such $v$ is queried only when the subtree of candidates consists of $v$ as the only vertex. Assume that we have a tree $D$ for the second instance of cost at most $K'$. We show how to obtain a decision tree $D'$ for the original instance. We delete all of the queries to the vertices $v\in V\br
+        T$. We also replace each query to the vertex in a subdivided edge with a query to this edge. As each query to $v\in V\br
+        T$ was a query to a last vertex in the set of candidates we obtain that $D'$ is a valid decision tree for the original instance. Additionally, the cost of $D'$ is at most $K'-w\br{T}\cdot\br{K+1} = K$ as required.
+
+        Note that by subdividing each edge the diameter of the tree doubles and the degree remains unchanged so the claim follows.
+    \end{proof}
+\end{theorem}
+\begin{theorem}
+    The decision version of the Weighted $\alpha$-separator Problem is (weakly) NP-complete even when restricted to stars.
+
+\begin{tcolorbox}[colback=white, title=Decision weighted $\alpha$-separator problem, fonttitle=\bfseries, breakable]
+\paragraph{Input:} Graph $G=\br{V\br{G}, E\br{G}}$, the weight function $w:V\to \mathbb{N}^+$, the cost function $c:V\to \mathbb{N}^+$, a real number $\alpha$ and an integer number $K$.
+\paragraph{Output:} Whether there exists a set $S\subseteq V\br{G}$ such that for every $H\in G-S$: $w\br{H}\leq w\br{G}/\alpha$ and $c\br{S}\leq K$.
+\end{tcolorbox}
+    \begin{proof}
+        Of course the problem is in NP since given a set $S\subseteq V\br{T}$ one can in polynomial time check whether all of the requirements are fulfilled.
+
+        To show the hardness we use the following Partition problem which is known to be weakly NP-complete.
+        \begin{tcolorbox}[colback=white, title=Partition problem, fonttitle=\bfseries, breakable]
+        \paragraph{Input:} A set of integers $A = \brc{a_1,...,a_n}$.
+        \paragraph{Output:} Whether there exists a subset $A'\subseteq A$ such that $\sum_{a\in A'}a=\frac{1}{2}\sum_{a\in A}a$.
+        \end{tcolorbox}
+        Let $A = \brc{a_1,\dots,a_n}$ be an arbitrary Partition instance. To convert it to a corresponding $\alpha$-separator instance we set $K=\frac{1}{2}\sum_{a\in A}a$, $\alpha = 2$ and create the tree $T$ with following vertices: Create a vertex $r$ such that $w\br{r} = 0$ and $c\br{r}=K + 1$. Then for each $a\in A$ create a vertex $v_a$ such that $w\br{v_a}=a$ and $w\br{c_a}=a$ and attach it $r$ by an edge $rv_a$.
+        First of all, observe that $r\notin S$ since it is required that $c\br{S}\leq K$. Notice that as $\sum_{v\in V\br{T}}w\br{w}=K$ if some $v\in S$ then the $c\br{S}$ increases by $a_v$ and if otherwise for the unique $H\in T-S$: $w\br{H}$ increases by $a_v$. Therefore a valid solution for the Partition problem exists iff it is possible to partition the vertices of $T$ into two distinct subsets of which the one not containing $r$ is $S$ such that $c\br{S} = w\br{V\br{T-S}}$. The claim follows.
+    \end{proof}
+\end{theorem}

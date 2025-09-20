@@ -1,0 +1,105 @@
+% mytemplate.sty
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mytemplate}[2025/07/30 Custom Math Template]
+
+% ==================== Pakiety ====================
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{chngcntr}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{wrapfig}
+\usepackage{adjustbox}
+\usepackage{tikz}
+\usepackage{textgreek}
+\usepackage{float}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{geometry}
+\usepackage{lscape}
+\usepackage{appendix}
+\usepackage{etoolbox}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{boxedminipage}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable}
+\usetikzlibrary{shadows}
+
+% ==================== Liczniki i środowiska ====================
+\newcounter{mytheoremcounter}[subsection]
+\renewcommand{\themytheoremcounter}{\thesubsection.\arabic{mytheoremcounter}}
+
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{reptheorem}{Theorem}
+
+\AtBeginEnvironment{theorem}{\refstepcounter{mytheoremcounter}}
+\AtBeginEnvironment{lemma}{\refstepcounter{mytheoremcounter}}
+\AtBeginEnvironment{corollary}{\refstepcounter{mytheoremcounter}}
+\AtBeginEnvironment{definition}{\refstepcounter{mytheoremcounter}}
+
+\makeatletter
+\@addtoreset{mytheoremcounter}{subsection}
+\makeatother
+
+% ==================== Komendy ====================
+\newcommand{\br}[1]{\mathopen{}\left( #1 \right)}
+\newcommand{\brc}[1]{\mathopen{}\left\{ #1 \right\}}
+\newcommand{\spr}[1]{\mathopen{}\left| #1 \right|}
+\newcommand{\fl}[1]{\mathopen{}\left\lfloor #1 \right\rfloor}
+\newcommand{\cl}[1]{\mathopen{}\left\lceil #1 \right\rceil}
+\newcommand{\angl}[1]{\mathopen{}\langle #1 \rangle}
+\newcommand{\e}[1]{\exp\left\{ #1 \right\}}
+
+\newcommand{\ecc}{\operatorname{ecc}}
+\newcommand{\rad}{\operatorname{rad}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\Rim}{\operatorname{Rim}}
+\newcommand{\rim}{\operatorname{rim}}
+\newcommand{\Anc}{\operatorname{Anc}}
+
+\newcommand{\NPcomplete}{\textnormal{$\mathcal{NP}$-Complete}}
+\newcommand{\NPhard}{\textnormal{$\mathcal{NP}$-Hard}}
+\newcommand{\polyAPXcomplete}{\textnormal{Poly-$\mathcal{APX}$-Complete}}
+
+\newcommand{\Cent}{\texttt{Cent}}
+\newcommand{\APP}{\texttt{APP}}
+\newcommand{\OPT}{\texttt{OPT}}
+\newcommand{\COST}{\texttt{COST}}
+\newcommand{\LB}{\mathcal{LB}}
+\newcommand{\HB}{\mathcal{HB}}
+\newcommand{\THB}{\mathcal{THB}}
+\newcommand{\THH}{\texttt{TH}}
+
+\newcommand{\argmin}{\operatorname*{arg\,min}}
+\newcommand{\argmax}{\operatorname*{arg\,max}}
+
+% ============ Pakiety do bibliografii i glosariusza ============
+
+\usepackage[toc]{glossaries}
+\usepackage{glossaries-extra}
+\setglossarystyle{list}
+% ============ Glosariusz ============
+\makeglossaries
+
+\usepackage[intoc]{nomencl} % dodaj wpis do spisu treści
+\makenomenclature
+\renewcommand{\nomname}{List of Symbols}
+
+% ============ Styl chapterów ============
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}

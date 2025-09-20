@@ -1,0 +1,22 @@
+
+\begin{algorithm}[H]
+\caption{The $\br{4+\epsilon}$-approximation algorithm for $T||V,c,w||\sum{C_i}$.}
+\label{createDecisionTree}
+\SetKwFunction{FDecisionTree}{DecisionTree}
+\SetKwFunction{FSeparatorFPTAS}{SeparatorFPTAS}
+\SetKwProg{Fn}{Procedure}{:}{}
+\Fn{\FDecisionTree{$T, c, w,  \epsilon$}}{
+$S_T\gets$ \FSeparatorFPTAS$\br{T, c, w, \alpha=2, \delta = \frac{\epsilon}{4+\epsilon}}$
+
+Build an arbitrary decision tree $D_T$ on vertices of $S_T$.
+
+    \ForEach{$H\in T-S$}
+    {
+        $D_H\gets $\FDecisionTree{$H, c, w, \epsilon$}
+
+        Hang $D_H$ below the last query consistent with $H$ in $D_T$.
+    }   
+    \Return $D$
+    
+}
+\end{algorithm}

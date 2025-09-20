@@ -1,0 +1,51 @@
+
+\begin{algorithm}[H]
+\caption{Main recursive procedure ($k$ is a global parameter)}
+\label{createDecisionTree}
+\SetKwFunction{FDecisionTree}{DecisionTree}
+\SetKwFunction{FExact}{Exact}
+\SetKwProg{Fn}{Procedure}{:}{}
+\Fn{\FDecisionTree{$\mathcal{T}$}}{
+    \If{$n\br{\mathcal{T}}\leq k$}{
+    $D\gets$\FExact{$\mathcal{T}$}\;
+    
+    \Return $D$
+    }
+    $\mathcal{X}\gets\emptyset$\;
+    
+    $F\gets\brc{\mathcal{T}}$\;
+    
+    \For{$i\in 1,...,k$ } 
+        {
+        $H\gets\argmax_{H\in F}\brc{n\br{H}}$\;
+        
+        Let $x$ be the centroid of $H$.\;
+        
+        Add $x$ to $X$.\;
+        
+        Add $H-x$ to $F$\;
+        }
+    $\mathcal{Z}\gets\mathcal{Y}\gets\mathcal{X}\cup \brc{v\in \mathcal{T}\angl{\mathcal{X}}|\deg_{\mathcal{T}\angl{\mathcal{X}}}\br{v}\geq3}$\;
+    \tcp{Branching vertices in $\mathcal{T}\angl{X}$.}
+
+    \ForEach{$u,v\in \mathcal{Y},\mathcal{P}_{\mathcal{T}}\br{u, v}\neq\emptyset,\mathcal{P}_{\mathcal{T}}\br{u, v}\cap \mathcal{Y}=\emptyset$}
+    {
+        Add $\argmin_{z\in \mathcal{P}_{\mathcal{T}}\br{u, v}}\brc{c\br{z}}$ to $\mathcal{Z}$.\; 
+        \tcp{Lightest vertex on path $P_\mathcal{T}\br{u,v}$.}
+    }
+    
+    $\mathcal{T}_{\mathcal{Z}}=\br{\mathcal{Z}, \brc{uv|\mathcal{P}_{\mathcal{T}}\br{u, v}\cap \mathcal{Z}=\emptyset}}$\;
+    
+    $D\gets D_{\mathcal{Z}}\gets $\FExact{$\mathcal{T}_{\mathcal{Z}}$}\;
+
+    \ForEach{$H\in \mathcal{T}-\mathcal{Z}$}
+    {
+        $D_H\gets$\FDecisionTree{$H$}\;
+        
+        Hang $D_H$ in $D$ below the last query to a vertex $v \in N_{\mathcal{T}}\br{H}$\;
+    }
+        
+    \Return $D$
+    
+}
+\end{algorithm}

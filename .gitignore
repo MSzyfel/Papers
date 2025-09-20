@@ -1,0 +1,26 @@
+# Pliki pomocnicze LaTeX
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.log
+*.run.xml
+*.toc
+*.lof
+*.lot
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Pliki tymczasowe edytorów
+*~
+*.swp
+*.DS_Store
+
+# Foldery robocze
+_build/
+
+#other
+
+*.zip

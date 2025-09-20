@@ -1,0 +1,44 @@
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \centering
+        \tikz[rounded corners, <-, >=stealth % <--- strzałki w górę
+]
+\graph [
+  layered layout,
+  grow'=up, % <--- kluczowy element
+  polyline layer edge routing,
+  sibling distance=13mm,
+  level distance=15mm
+] {
+  a <- { b, c, g };
+  c <- i;
+  b <- { d, e, f };
+  d <- h;
+  e <- h;
+  f <- i;
+  h <- m;
+  g <- {j,k,l};
+  j <- m;
+  k <- m;
+};
+        \caption[Sample poset]{}
+        \label{poset}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \tikz [tree layout, grow=-90,
+               sibling distance=15mm, level distance=12mm]
+            \graph {
+            ""[as=$b$] -> {
+            ""[as=$e$] -> {""[as=$m$], ""[as=$f$] -> {""[as=$d$], ""[as=$i$]}}, ""[as=$g$] -> {""[as=$c$], ""[as=$j$] -> ""[as=$k$] -> ""[as=$l$]}}
+            };
+        \caption[Decision tree for a poset]{}
+        \label{fig:dt_p}
+    \end{minipage}
+    \caption[Poset and a decision tree for it]{Sample poset $\mathcal{P}$ (Figure \ref{poset}) and a decision tree for it (Figure \ref{fig:dt_p}).}
+    \label{fig:sample_decision_tree_for_poset}
+\end{figure}

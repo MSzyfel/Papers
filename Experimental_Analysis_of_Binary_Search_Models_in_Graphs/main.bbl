@@ -1,0 +1,2512 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{anyt/global//global/global/global}
+    \entry{toptrees}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=fa897130aaba3865010d5db920146a69}{%
+           family={Alstrup},
+           familyi={A\bibinitperiod},
+           given={Stephen},
+           giveni={S\bibinitperiod}}}%
+        {{hash=5ef988b66ee622a15f50641b757c54e2}{%
+           family={Holm},
+           familyi={H\bibinitperiod},
+           given={Jacob},
+           giveni={J\bibinitperiod}}}%
+        {{hash=d01952dba9774e65aa3e922f33da0196}{%
+           family={Lichtenberg},
+           familyi={L\bibinitperiod},
+           given={Kristian\bibnamedelima De},
+           giveni={K\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=da8de8904d487b343a6b7f3a39674fb6}{%
+           family={Thorup},
+           familyi={T\bibinitperiod},
+           given={Mikkel},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{c45dae5eb7a9e9435f9996b00099c472}
+      \strng{fullhash}{814875c73ebba13c0f14c26c3045d2e8}
+      \strng{fullhashraw}{814875c73ebba13c0f14c26c3045d2e8}
+      \strng{bibnamehash}{c45dae5eb7a9e9435f9996b00099c472}
+      \strng{authorbibnamehash}{c45dae5eb7a9e9435f9996b00099c472}
+      \strng{authornamehash}{c45dae5eb7a9e9435f9996b00099c472}
+      \strng{authorfullhash}{814875c73ebba13c0f14c26c3045d2e8}
+      \strng{authorfullhashraw}{814875c73ebba13c0f14c26c3045d2e8}
+      \field{labelalpha}{Als+05}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We design top trees as a new simpler interface for data structures maintaining information in a fully dynamic forest. We demonstrate how easy and versatile they are to use on a host of different applications. For example, we show how to maintain the diameter, center, and median of each tree in the forest. The forest can be updated by insertion and deletion of edges and by changes to vertex and edge weights. Each update is supported in O(log n) time, where n is the size of the tree(s) involved in the update. Also, we show how to support nearest common ancestor queries and level ancestor queries with respect to arbitrary roots in O(log n) time. Finally, with marked and unmarked vertices, we show how to compute distances to a nearest marked vertex. The latter has applications to approximate nearest marked vertex in general graphs, and thereby to static optimization problems over shortest path metrics.Technically speaking, top trees are easily implemented either with Frederickson's [1997a] topology trees or with Sleator and Tarjan's [1983] dynamic trees. However, we claim that the interface is simpler for many applications, and indeed our new bounds are quadratic improvements over previous bounds where they exist.}
+      \field{issn}{1549-6325}
+      \field{journaltitle}{ACM Trans. Algorithms}
+      \field{month}{10}
+      \field{number}{2}
+      \field{title}{Maintaining information in fully dynamic trees with top trees}
+      \field{volume}{1}
+      \field{year}{2005}
+      \field{pages}{243\bibrangedash 264}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1145/1103963.1103966
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/1103963.1103966
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/1103963.1103966
+      \endverb
+      \keyw{Fully dynamic forest}
+    \endentry
+    \entry{Angelidakis2018ShortestPQ}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=a56b6c9091857f08c634a3d63f7cd253}{%
+           family={Angelidakis},
+           familyi={A\bibinitperiod},
+           given={Haris},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{a56b6c9091857f08c634a3d63f7cd253}
+      \strng{fullhash}{a56b6c9091857f08c634a3d63f7cd253}
+      \strng{fullhashraw}{a56b6c9091857f08c634a3d63f7cd253}
+      \strng{bibnamehash}{a56b6c9091857f08c634a3d63f7cd253}
+      \strng{authorbibnamehash}{a56b6c9091857f08c634a3d63f7cd253}
+      \strng{authornamehash}{a56b6c9091857f08c634a3d63f7cd253}
+      \strng{authorfullhash}{a56b6c9091857f08c634a3d63f7cd253}
+      \strng{authorfullhashraw}{a56b6c9091857f08c634a3d63f7cd253}
+      \field{labelalpha}{Ang18}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ArXiv}
+      \field{title}{Shortest path queries, graph partitioning and covering problems in worst and beyond worst case settings}
+      \field{volume}{abs/1807.09389}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://api.semanticscholar.org/CorpusID:51718679
+      \endverb
+      \verb{url}
+      \verb https://api.semanticscholar.org/CorpusID:51718679
+      \endverb
+    \endentry
+    \entry{QuerySelection}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=6bc89fe50850f379bbcbcda53276242b}{%
+           family={Bellala},
+           familyi={B\bibinitperiod},
+           given={Gowtham},
+           giveni={G\bibinitperiod}}}%
+        {{hash=2043c23e21d163c8c3814d8500835d36}{%
+           family={Bhavnani},
+           familyi={B\bibinitperiod},
+           given={Suresh\bibnamedelima K.},
+           giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=8878b441e17b0bd2870c3fcc2797dc3c}{%
+           family={Scott},
+           familyi={S\bibinitperiod},
+           given={Clayton},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{785eec97c37667d40c3d0916b19292f7}
+      \strng{fullhash}{785eec97c37667d40c3d0916b19292f7}
+      \strng{fullhashraw}{785eec97c37667d40c3d0916b19292f7}
+      \strng{bibnamehash}{785eec97c37667d40c3d0916b19292f7}
+      \strng{authorbibnamehash}{785eec97c37667d40c3d0916b19292f7}
+      \strng{authornamehash}{785eec97c37667d40c3d0916b19292f7}
+      \strng{authorfullhash}{785eec97c37667d40c3d0916b19292f7}
+      \strng{authorfullhashraw}{785eec97c37667d40c3d0916b19292f7}
+      \field{labelalpha}{BBS12}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Information Theory}
+      \field{number}{1}
+      \field{title}{Group-Based Active Query Selection for Rapid Diagnosis in Time-Critical Situations}
+      \field{volume}{58}
+      \field{year}{2012}
+      \field{pages}{459\bibrangedash 478}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1109/TIT.2011.2169296
+      \endverb
+      \keyw{Object recognition;Decision trees;Noise;Chemicals;Toxic chemicals;Channel coding;Active learning;decision trees;generalized binary search;persistent noise;Shannon-Fano coding;submodularity}
+    \endentry
+    \entry{BOROWIECKI2023113682}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=057de6a6fb4f3238b73a79ca2b115250}{%
+           family={Borowiecki},
+           familyi={B\bibinitperiod},
+           given={Piotr},
+           giveni={P\bibinitperiod}}}%
+        {{hash=8bb9b541a3f0f1799216e0007c13e4fc}{%
+           family={Dereniowski},
+           familyi={D\bibinitperiod},
+           given={Dariusz},
+           giveni={D\bibinitperiod}}}%
+        {{hash=eabaa4183dd64844c9cb18acf6f4a075}{%
+           family={Osula},
+           familyi={O\bibinitperiod},
+           given={Dorota},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{d81cedba13805dec7011ad625cacbf5b}
+      \strng{fullhash}{d81cedba13805dec7011ad625cacbf5b}
+      \strng{fullhashraw}{d81cedba13805dec7011ad625cacbf5b}
+      \strng{bibnamehash}{d81cedba13805dec7011ad625cacbf5b}
+      \strng{authorbibnamehash}{d81cedba13805dec7011ad625cacbf5b}
+      \strng{authornamehash}{d81cedba13805dec7011ad625cacbf5b}
+      \strng{authorfullhash}{d81cedba13805dec7011ad625cacbf5b}
+      \strng{authorfullhashraw}{d81cedba13805dec7011ad625cacbf5b}
+      \field{labelalpha}{BDO23}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The tree-depth problem can be seen as finding an elimination tree of minimum height for a given input graph G. We introduce a bicriteria generalization in which additionally the width of the elimination tree needs to be bounded by some input integer b. We are interested in the case when G is the line graph of a tree, proving that the problem is NP-hard and obtaining a polynomial-time additive 2b-approximation algorithm. This particular class of graphs received significant attention in the past, mainly due to a number of potential applications, e.g. in parallel assembly of modular products, or parallel query processing in relational databases, as well as purely combinatorial applications including searching in tree-like partial orders (which in turn generalizes binary search on sorted data).}
+      \field{issn}{0304-3975}
+      \field{journaltitle}{Theoretical Computer Science}
+      \field{title}{The complexity of bicriteria tree-depth}
+      \field{volume}{947}
+      \field{year}{2023}
+      \field{pages}{113682}
+      \range{pages}{1}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.tcs.2022.12.032
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0304397522007666
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0304397522007666
+      \endverb
+      \keyw{Elimination tree,Graph algorithms,Graph ranking,Parallel assembly,Parallel processing,Tree-depth}
+    \endentry
+    \entry{Fast_app_centroid_trees}{unknown}{}{}
+      \name{author}{4}{}{%
+        {{hash=d8624fb0a2f53482acba4de44c2f70f4}{%
+           family={Berendsohn},
+           familyi={B\bibinitperiod},
+           given={Benjamin},
+           giveni={B\bibinitperiod}}}%
+        {{hash=b7959adefa5aa083482cccce3e66e077}{%
+           family={Golinsky},
+           familyi={G\bibinitperiod},
+           given={Ishay},
+           giveni={I\bibinitperiod}}}%
+        {{hash=74fc28f5c63cf11e0fa303a99e5e55a5}{%
+           family={Kaplan},
+           familyi={K\bibinitperiod},
+           given={Haim},
+           giveni={H\bibinitperiod}}}%
+        {{hash=a5074553023604d01f97062ca4e39fe8}{%
+           family={Kozma},
+           familyi={K\bibinitperiod},
+           given={László},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{8288135fd130df002da9413b943b2852}
+      \strng{fullhash}{79b558aabb921a1e527f039aa9a58c8a}
+      \strng{fullhashraw}{79b558aabb921a1e527f039aa9a58c8a}
+      \strng{bibnamehash}{8288135fd130df002da9413b943b2852}
+      \strng{authorbibnamehash}{8288135fd130df002da9413b943b2852}
+      \strng{authornamehash}{8288135fd130df002da9413b943b2852}
+      \strng{authorfullhash}{79b558aabb921a1e527f039aa9a58c8a}
+      \strng{authorfullhashraw}{79b558aabb921a1e527f039aa9a58c8a}
+      \field{labelalpha}{Ber+22}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{09}
+      \field{title}{Fast approximation of search trees on trees with centroid trees}
+      \field{year}{2022}
+      \verb{doi}
+      \verb 10.48550/arXiv.2209.08024
+      \endverb
+    \endentry
+    \entry{SplayTonT}{inbook}{}{}
+      \name{author}{2}{}{%
+        {{hash=d8624fb0a2f53482acba4de44c2f70f4}{%
+           family={Berendsohn},
+           familyi={B\bibinitperiod},
+           given={Benjamin},
+           giveni={B\bibinitperiod}}}%
+        {{hash=a5074553023604d01f97062ca4e39fe8}{%
+           family={Kozma},
+           familyi={K\bibinitperiod},
+           given={László},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{196a3411886366d452802c33e299ebf7}
+      \strng{fullhash}{196a3411886366d452802c33e299ebf7}
+      \strng{fullhashraw}{196a3411886366d452802c33e299ebf7}
+      \strng{bibnamehash}{196a3411886366d452802c33e299ebf7}
+      \strng{authorbibnamehash}{196a3411886366d452802c33e299ebf7}
+      \strng{authornamehash}{196a3411886366d452802c33e299ebf7}
+      \strng{authorfullhash}{196a3411886366d452802c33e299ebf7}
+      \strng{authorfullhashraw}{196a3411886366d452802c33e299ebf7}
+      \field{labelalpha}{BK22}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-1-61197-707-3}
+      \field{month}{01}
+      \field{title}{Splay trees on trees}
+      \field{year}{2022}
+      \field{pages}{1875\bibrangedash 1900}
+      \range{pages}{26}
+      \verb{doi}
+      \verb 10.1137/1.9781611977073.75
+      \endverb
+    \endentry
+    \entry{kseparator}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=ab6c5a4cdcd71002394f75c81ea07210}{%
+           family={Ben-Ameur},
+           familyi={B\bibinithyphendelim A\bibinitperiod},
+           given={Walid},
+           giveni={W\bibinitperiod}}}%
+        {{hash=bac407b2b663988a2b4d55c4e584c90f}{%
+           family={Mohamed},
+           familyi={M\bibinitperiod},
+           given={Mohamed\bibnamedelimb S.\bibnamedelimi A.},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=4c29f758c31f1f5325ad871c8e679010}{%
+           family={Neto},
+           familyi={N\bibinitperiod},
+           given={José},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Hangzhou, China}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{30a141ddacab2501865632ffd8c830fd}
+      \strng{fullhash}{30a141ddacab2501865632ffd8c830fd}
+      \strng{fullhashraw}{30a141ddacab2501865632ffd8c830fd}
+      \strng{bibnamehash}{30a141ddacab2501865632ffd8c830fd}
+      \strng{authorbibnamehash}{30a141ddacab2501865632ffd8c830fd}
+      \strng{authornamehash}{30a141ddacab2501865632ffd8c830fd}
+      \strng{authorfullhash}{30a141ddacab2501865632ffd8c830fd}
+      \strng{authorfullhashraw}{30a141ddacab2501865632ffd8c830fd}
+      \field{labelalpha}{BMN13}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{COCOON '13 : 19th International Computing \& Combinatorics Conference}}
+      \field{month}{6}
+      \field{title}{{The k-separator problem}}
+      \field{volume}{7936}
+      \field{year}{2013}
+      \field{pages}{337\bibrangedash 348}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1007/978-3-642-38768-5\_31
+      \endverb
+      \verb{urlraw}
+      \verb https://hal.science/hal-00843860
+      \endverb
+      \verb{url}
+      \verb https://hal.science/hal-00843860
+      \endverb
+      \keyw{Graph partitioning ; Complexity theory ; Optimization ; Approximation algorithms ; Communication networks}
+    \endentry
+    \entry{RankingsofGraphs}{article}{}{}
+      \name{author}{7}{}{%
+        {{hash=85d4ff4ae6234ff61c5dfd4020e20bbb}{%
+           family={Bodlaender},
+           familyi={B\bibinitperiod},
+           given={Hans\bibnamedelima L.},
+           giveni={H\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=6d6678afae27315f134949b038e80510}{%
+           family={Deogun},
+           familyi={D\bibinitperiod},
+           given={Jitender\bibnamedelima S.},
+           giveni={J\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=b1f3ccb7c28e47308a3a22420635dc84}{%
+           family={Jansen},
+           familyi={J\bibinitperiod},
+           given={Klaus},
+           giveni={K\bibinitperiod}}}%
+        {{hash=b5d02debb74d639c0166107608b473fa}{%
+           family={Kloks},
+           familyi={K\bibinitperiod},
+           given={Ton},
+           giveni={T\bibinitperiod}}}%
+        {{hash=5b3562b0f32fd18e197e049545720176}{%
+           family={Kratsch},
+           familyi={K\bibinitperiod},
+           given={Dieter},
+           giveni={D\bibinitperiod}}}%
+        {{hash=133396be31f93a72d34e147d8ce579b2}{%
+           family={Müller},
+           familyi={M\bibinitperiod},
+           given={Haiko},
+           giveni={H\bibinitperiod}}}%
+        {{hash=36ce0718292cd832c56a611b5fa14cd5}{%
+           family={Tuza},
+           familyi={T\bibinitperiod},
+           given={Zsolt},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{5974e0e0de574a1d16b3620925f5cb77}
+      \strng{fullhash}{24ab686c3611c5d58d07d60f5339fef5}
+      \strng{fullhashraw}{24ab686c3611c5d58d07d60f5339fef5}
+      \strng{bibnamehash}{5974e0e0de574a1d16b3620925f5cb77}
+      \strng{authorbibnamehash}{5974e0e0de574a1d16b3620925f5cb77}
+      \strng{authornamehash}{5974e0e0de574a1d16b3620925f5cb77}
+      \strng{authorfullhash}{24ab686c3611c5d58d07d60f5339fef5}
+      \strng{authorfullhashraw}{24ab686c3611c5d58d07d60f5339fef5}
+      \field{labelalpha}{Bod+98}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A vertex (edge) coloring \$\phi:V\rightarrow \{1,2,\ldots ,t\}\$ (\$\phi':E\rightarrow \{1,2,\ldots,\$ \$t\}\$) of a graph G=(V,E) is a vertex (edge) t-ranking if, for any two vertices (edges) of the same color, every path between them contains a vertex (edge) of larger color. The {\em vertex ranking number} \$\chi\_{r}(G)\$ ({\em edge ranking number} \$\chi\_{r}'(G)\$) is the smallest value of t such that G has a vertex (edge) t-ranking. In this paper we study the algorithmic complexity of the {\sc Vertex Ranking} and {\sc Edge Ranking} problems. It is shown that \$\chi\_{r}(G)\$ can be computed in polynomial time when restricted to graphs with treewidth at most k for any fixed k. We characterize the graphs where the vertex ranking number \$\chi\_{r}\$ and the chromatic number \$\chi\$ coincide on all induced subgraphs, show that \$\chi\_{r}(G)=\chi (G)\$ implies \$\chi (G)=\omega (G)\$ (largest clique size), and give a formula for \$\chi\_{r}'(K\_n)\$.}
+      \field{journaltitle}{SIAM Journal on Discrete Mathematics}
+      \field{number}{1}
+      \field{title}{Rankings of Graphs}
+      \field{volume}{11}
+      \field{year}{1998}
+      \field{pages}{168\bibrangedash 181}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1137/S0895480195282550
+      \endverb
+      \verb{eprint}
+      \verb https://doi.org/10.1137/S0895480195282550
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1137/S0895480195282550
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1137/S0895480195282550
+      \endverb
+    \endentry
+    \entry{Approximatehierarchicalclusteringviasparsestcutandspreadingmetrics}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=e1b3700a6d5248ffa34baab20bc00fa5}{%
+           family={Charikar},
+           familyi={C\bibinitperiod},
+           given={Moses},
+           giveni={M\bibinitperiod}}}%
+        {{hash=04622d86a5e3c06f34ffc92e4d70233a}{%
+           family={Chatziafratis},
+           familyi={C\bibinitperiod},
+           given={Vaggos},
+           giveni={V\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Barcelona, Spain}%
+      }
+      \list{publisher}{2}{%
+        {Society for Industrial}%
+        {Applied Mathematics}%
+      }
+      \strng{namehash}{a90c79eef1e8fe0e4b2f6ed28ee1d362}
+      \strng{fullhash}{a90c79eef1e8fe0e4b2f6ed28ee1d362}
+      \strng{fullhashraw}{a90c79eef1e8fe0e4b2f6ed28ee1d362}
+      \strng{bibnamehash}{a90c79eef1e8fe0e4b2f6ed28ee1d362}
+      \strng{authorbibnamehash}{a90c79eef1e8fe0e4b2f6ed28ee1d362}
+      \strng{authornamehash}{a90c79eef1e8fe0e4b2f6ed28ee1d362}
+      \strng{authorfullhash}{a90c79eef1e8fe0e4b2f6ed28ee1d362}
+      \strng{authorfullhashraw}{a90c79eef1e8fe0e4b2f6ed28ee1d362}
+      \field{labelalpha}{CC17}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Dasgupta recently introduced a cost function for the hierarchical clustering of a set of points given pairwise similarities between them. He showed that this function is NP-hard to optimize, but a top-down recursive partitioning heuristic based on an αn-approximation algorithm for uniform sparsest cut gives an approximation of O(αn log n) (the current best algorithm has [EQUATION]. We show that the aforementioned sparsest cut heuristic in fact obtains an O(αn)-approximation. The algorithm also applies to a generalized cost function studied by Dasgupta. Moreover, we obtain a strong inapproximability result, showing that the Hierarchical Clustering objective is hard to approximate to within any constant factor assuming the Small-Set Expansion (SSE) Hypothesis. Finally, we discuss approximation algorithms based on convex relaxations. We present a spreading metric SDP relaxation for the problem and show that it has integrality gap at most [EQUATION]. The advantage of the SDP relative to the sparsest cut heuristic is that it provides an explicit lower bound on the optimal solution and could potentially yield an even better approximation for hierarchical clustering. In fact our analysis of this SDP served as the inspiration for our improved analysis of the sparsest cut heuristic. We also show that a spreading metric LP relaxation gives an O(log n)-approximation.}
+      \field{booktitle}{Proceedings of the Twenty-Eighth Annual ACM-SIAM Symposium on Discrete Algorithms}
+      \field{series}{SODA '17}
+      \field{title}{Approximate hierarchical clustering via sparsest cut and spreading metrics}
+      \field{year}{2017}
+      \field{pages}{841\bibrangedash 854}
+      \range{pages}{14}
+    \endentry
+    \entry{Cicalese2012BinIdentPForWTs}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=eb5d610745839a3a27ec15056cd09637}{%
+           family={Cicalese},
+           familyi={C\bibinitperiod},
+           given={Ferdinando},
+           giveni={F\bibinitperiod}}}%
+        {{hash=baaed13f3196c520b40539abea8e2855}{%
+           family={Jacobs},
+           familyi={J\bibinitperiod},
+           given={Tobias},
+           giveni={T\bibinitperiod}}}%
+        {{hash=c03b4d208d79418b725c02fdd2658b5c}{%
+           family={Laber},
+           familyi={L\bibinitperiod},
+           given={Eduardo},
+           giveni={E\bibinitperiod}}}%
+        {{hash=b0cdb3cc3db344cf97d1b56e868780c5}{%
+           family={Valentim},
+           familyi={V\bibinitperiod},
+           given={Caio},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{3d6e78963616fdd24054bcb31655831d}
+      \strng{fullhash}{31f21a8beef78aac904288683a6d5540}
+      \strng{fullhashraw}{31f21a8beef78aac904288683a6d5540}
+      \strng{bibnamehash}{3d6e78963616fdd24054bcb31655831d}
+      \strng{authorbibnamehash}{3d6e78963616fdd24054bcb31655831d}
+      \strng{authornamehash}{3d6e78963616fdd24054bcb31655831d}
+      \strng{authorfullhash}{31f21a8beef78aac904288683a6d5540}
+      \strng{authorfullhashraw}{31f21a8beef78aac904288683a6d5540}
+      \field{extraname}{1}
+      \field{labelalpha}{Cic+12}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The Binary Identification Problem for weighted trees asks for the minimum cost strategy (decision tree) for identifying a vertex in an edge weighted tree via testing edges. Each edge has assigned a different cost, to be paid for testing it. Testing an edge e reveals in which component of T−e lies the vertex to be identified. We give a complete characterization of the computational complexity of this problem with respect to both tree diameter and degree. In particular, we show that it is strongly NP-hard to compute a minimum cost decision tree for weighted trees of diameter at least 6, and for trees having degree three or more. For trees of diameter five or less, we give a polynomial time algorithm. Moreover, for the degree 2 case, we significantly improve the straightforward O(n3) dynamic programming approach, and provide an O(n2) time algorithm. Finally, this work contains the first approximate decision tree construction algorithm that breaks the barrier of factor logn.}
+      \field{issn}{0304-3975}
+      \field{journaltitle}{Theoretical Computer Science}
+      \field{title}{The binary identification problem for weighted trees}
+      \field{volume}{459}
+      \field{year}{2012}
+      \field{pages}{100\bibrangedash 112}
+      \range{pages}{13}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.tcs.2012.06.023
+      \endverb
+    \endentry
+    \entry{Cicalese2014ImprovedApproxAvgTs}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=eb5d610745839a3a27ec15056cd09637}{%
+           family={Cicalese},
+           familyi={C\bibinitperiod},
+           given={Ferdinando},
+           giveni={F\bibinitperiod}}}%
+        {{hash=baaed13f3196c520b40539abea8e2855}{%
+           family={Jacobs},
+           familyi={J\bibinitperiod},
+           given={Tobias},
+           giveni={T\bibinitperiod}}}%
+        {{hash=c03b4d208d79418b725c02fdd2658b5c}{%
+           family={Laber},
+           familyi={L\bibinitperiod},
+           given={Eduardo},
+           giveni={E\bibinitperiod}}}%
+        {{hash=577bf5cb243084faffc7cb60c3d1e2c3}{%
+           family={Molinaro},
+           familyi={M\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{3d6e78963616fdd24054bcb31655831d}
+      \strng{fullhash}{e242a72b11f5964eee671928d0cbc082}
+      \strng{fullhashraw}{e242a72b11f5964eee671928d0cbc082}
+      \strng{bibnamehash}{3d6e78963616fdd24054bcb31655831d}
+      \strng{authorbibnamehash}{3d6e78963616fdd24054bcb31655831d}
+      \strng{authornamehash}{3d6e78963616fdd24054bcb31655831d}
+      \strng{authorfullhash}{e242a72b11f5964eee671928d0cbc082}
+      \strng{authorfullhashraw}{e242a72b11f5964eee671928d0cbc082}
+      \field{extraname}{2}
+      \field{labelalpha}{Cic+14}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Algorithmica}
+      \field{month}{04}
+      \field{title}{Improved Approximation Algorithms for the Average-Case Tree Searching Problem}
+      \field{volume}{68}
+      \field{year}{2014}
+      \verb{doi}
+      \verb 10.1007/s00453-012-9715-6
+      \endverb
+    \endentry
+    \entry{Cicalese2016OnTSPwNonUniCost}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=eb5d610745839a3a27ec15056cd09637}{%
+           family={Cicalese},
+           familyi={C\bibinitperiod},
+           given={Ferdinando},
+           giveni={F\bibinitperiod}}}%
+        {{hash=fc77c5414ea7cb228b94c35b7841265c}{%
+           family={Keszegh},
+           familyi={K\bibinitperiod},
+           given={Balázs},
+           giveni={B\bibinitperiod}}}%
+        {{hash=8d96d13eb7fa9f65194d3642f3c9ea59}{%
+           family={Lidický},
+           familyi={L\bibinitperiod},
+           given={Bernard},
+           giveni={B\bibinitperiod}}}%
+        {{hash=822094f57ba0c6db15450b5e396f1cfa}{%
+           family={Pálvölgyi},
+           familyi={P\bibinitperiod},
+           given={Dömötör},
+           giveni={D\bibinitperiod}}}%
+        {{hash=4bbffedf8591a0cf9c7514eebc84d8f4}{%
+           family={Valla},
+           familyi={V\bibinitperiod},
+           given={Tomáš},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{3d6e78963616fdd24054bcb31655831d}
+      \strng{fullhash}{4a7a66f4f4aa60b21ca19b5fc7a7060d}
+      \strng{fullhashraw}{4a7a66f4f4aa60b21ca19b5fc7a7060d}
+      \strng{bibnamehash}{3d6e78963616fdd24054bcb31655831d}
+      \strng{authorbibnamehash}{3d6e78963616fdd24054bcb31655831d}
+      \strng{authornamehash}{3d6e78963616fdd24054bcb31655831d}
+      \strng{authorfullhash}{4a7a66f4f4aa60b21ca19b5fc7a7060d}
+      \strng{authorfullhashraw}{4a7a66f4f4aa60b21ca19b5fc7a7060d}
+      \field{extraname}{3}
+      \field{labelalpha}{Cic+16}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Searching in partially ordered structures has been considered in the context of information retrieval and efficient tree-like indices, as well as in hierarchy based knowledge representation. In this paper we focus on tree-like partial orders and consider the problem of identifying an initially unknown vertex in a tree by asking edge queries: an edge query e returns the component of T−e containing the vertex sought for, while incurring some known cost c(e). The Tree Search Problem with Non-Uniform Cost is the following: given a tree T on n vertices, each edge having an associated cost, construct a strategy that minimizes the total cost of the identification in the worst case. Finding the strategy guaranteeing the minimum possible cost is an NP-complete problem already for input trees of degree 3 or diameter 6. The best known approximation guarantee was an O(log⁡n/log⁡log⁡log⁡n)-approximation algorithm of Cicalese et al. (2012) [4]. We improve upon the above results both from the algorithmic and the computational complexity point of view: We provide a novel algorithm that provides an O(log⁡nlog⁡log⁡n)-approximation of the cost of the optimal strategy. In addition, we show that finding an optimal strategy is NP-hard even when the input tree is a spider of diameter 6, i.e., at most one vertex has degree larger than 2.}
+      \field{issn}{0304-3975}
+      \field{journaltitle}{Theoretical Computer Science}
+      \field{title}{On the tree search problem with non-uniform costs}
+      \field{volume}{647}
+      \field{year}{2016}
+      \field{pages}{22\bibrangedash 32}
+      \range{pages}{11}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.tcs.2016.07.019
+      \endverb
+      \keyw{Tree search problem,Approximation algorithm}
+    \endentry
+    \entry{Diagnosisdetermination}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=eb5d610745839a3a27ec15056cd09637}{%
+           family={Cicalese},
+           familyi={C\bibinitperiod},
+           given={Ferdinando},
+           giveni={F\bibinitperiod}}}%
+        {{hash=c03b4d208d79418b725c02fdd2658b5c}{%
+           family={Laber},
+           familyi={L\bibinitperiod},
+           given={Eduardo},
+           giveni={E\bibinitperiod}}}%
+        {{hash=138518011eb212949eea2c4ff578e192}{%
+           family={Saettler},
+           familyi={S\bibinitperiod},
+           given={Aline\bibnamedelima Medeiros},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Beijing, China}%
+      }
+      \list{publisher}{1}{%
+        {JMLR.org}%
+      }
+      \strng{namehash}{585d635def8ac0bac85c534ea67cd390}
+      \strng{fullhash}{585d635def8ac0bac85c534ea67cd390}
+      \strng{fullhashraw}{585d635def8ac0bac85c534ea67cd390}
+      \strng{bibnamehash}{585d635def8ac0bac85c534ea67cd390}
+      \strng{authorbibnamehash}{585d635def8ac0bac85c534ea67cd390}
+      \strng{authornamehash}{585d635def8ac0bac85c534ea67cd390}
+      \strng{authorfullhash}{585d635def8ac0bac85c534ea67cd390}
+      \strng{authorfullhashraw}{585d635def8ac0bac85c534ea67cd390}
+      \field{labelalpha}{CLS14}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In several applications of automatic diagnosis and active learning a central problem is the evaluation of a discrete function by adaptively querying the values of its variables until the values read uniquely determine the value of the function. In general reading the value of a variable is done at the expense of some cost (computational or possibly a fee to pay the corresponding experiment). The goal is to design a strategy for evaluating the function incurring little cost (in the worst case or in expectation according to a prior distribution on the possible variables' assignments).Our algorithm builds a strategy (decision tree) which attains a logarithmic approximation simultaneously for the expected and worst cost spent. This is best possible since, under standard complexity assumption, no algorithm can guarantee o(log n) approximation.}
+      \field{booktitle}{Proceedings of the 31st International Conference on International Conference on Machine Learning - Volume 32}
+      \field{series}{ICML'14}
+      \field{title}{Diagnosis determination: decision trees optimizing simultaneously worst and expected testing cost}
+      \field{year}{2014}
+      \field{pages}{I–414–I\bibrangedash 422}
+      \range{pages}{-1}
+    \endentry
+    \entry{Analysisofgreedyactivelearningstrategy}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=d98b5fd15360757d9d9f94eec243d6cb}{%
+           family={Dasgupta},
+           familyi={D\bibinitperiod},
+           given={Sanjoy},
+           giveni={S\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=20fa267703581448e664d2bbb15d58b3}{%
+           family={Saul},
+           familyi={S\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+        {{hash=8f15e7a6ffa7fe4cb35f0d02469cc135}{%
+           family={Weiss},
+           familyi={W\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=bbfb0f3936c83b7b099561e6f0e32ef3}{%
+           family={Bottou},
+           familyi={B\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{d98b5fd15360757d9d9f94eec243d6cb}
+      \strng{fullhash}{d98b5fd15360757d9d9f94eec243d6cb}
+      \strng{fullhashraw}{d98b5fd15360757d9d9f94eec243d6cb}
+      \strng{bibnamehash}{d98b5fd15360757d9d9f94eec243d6cb}
+      \strng{authorbibnamehash}{d98b5fd15360757d9d9f94eec243d6cb}
+      \strng{authornamehash}{d98b5fd15360757d9d9f94eec243d6cb}
+      \strng{authorfullhash}{d98b5fd15360757d9d9f94eec243d6cb}
+      \strng{authorfullhashraw}{d98b5fd15360757d9d9f94eec243d6cb}
+      \strng{editorbibnamehash}{f94738b3407d0b041f35b789dd5e227e}
+      \strng{editornamehash}{f94738b3407d0b041f35b789dd5e227e}
+      \strng{editorfullhash}{f94738b3407d0b041f35b789dd5e227e}
+      \strng{editorfullhashraw}{f94738b3407d0b041f35b789dd5e227e}
+      \field{labelalpha}{Das04}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in Neural Information Processing Systems}
+      \field{title}{Analysis of a greedy active learning strategy}
+      \field{volume}{17}
+      \field{year}{2004}
+      \verb{urlraw}
+      \verb https://proceedings.neurips.cc/paper_files/paper/2004/file/c61fbef63df5ff317aecdc3670094472-Paper.pdf
+      \endverb
+      \verb{url}
+      \verb https://proceedings.neurips.cc/paper_files/paper/2004/file/c61fbef63df5ff317aecdc3670094472-Paper.pdf
+      \endverb
+    \endentry
+    \entry{dereniowski2017ApproxSsForGeneralBSinWTs}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=8bb9b541a3f0f1799216e0007c13e4fc}{%
+           family={Dereniowski},
+           familyi={D\bibinitperiod},
+           given={Dariusz},
+           giveni={D\bibinitperiod}}}%
+        {{hash=09f43fb8928bb2ff23644aedb51fc235}{%
+           family={Kosowski},
+           familyi={K\bibinitperiod},
+           given={Adrian},
+           giveni={A\bibinitperiod}}}%
+        {{hash=4540541686bff6d2fd882d52867f6495}{%
+           family={Uznanski},
+           familyi={U\bibinitperiod},
+           given={Przemyslaw},
+           giveni={P\bibinitperiod}}}%
+        {{hash=549f3190b15eb5adc7554a0c2d6022f9}{%
+           family={Zou},
+           familyi={Z\bibinitperiod},
+           given={Mengchuan},
+           giveni={M\bibinitperiod}}}%
+      }
+      \name{editor}{4}{}{%
+        {{hash=c973eee1c87594fdb0d9772b9070f256}{%
+           family={Chatzigiannakis},
+           familyi={C\bibinitperiod},
+           given={Ioannis},
+           giveni={I\bibinitperiod}}}%
+        {{hash=82a47611accc6ebb689ddd28fb6dbf1b}{%
+           family={Indyk},
+           familyi={I\bibinitperiod},
+           given={Piotr},
+           giveni={P\bibinitperiod}}}%
+        {{hash=06b0d2204e3c0bd58a7482152b266209}{%
+           family={Kuhn},
+           familyi={K\bibinitperiod},
+           given={Fabian},
+           giveni={F\bibinitperiod}}}%
+        {{hash=db564692156cdf5bee9e275afe74f3d5}{%
+           family={Muscholl},
+           familyi={M\bibinitperiod},
+           given={Anca},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Dagstuhl, Germany}%
+      }
+      \list{publisher}{1}{%
+        {Schloss Dagstuhl -- Leibniz-Zentrum für Informatik}%
+      }
+      \strng{namehash}{fd5a3261abe0fe7a8db7f2e833a41896}
+      \strng{fullhash}{0f458311038c65fb649218166c85fe59}
+      \strng{fullhashraw}{0f458311038c65fb649218166c85fe59}
+      \strng{bibnamehash}{fd5a3261abe0fe7a8db7f2e833a41896}
+      \strng{authorbibnamehash}{fd5a3261abe0fe7a8db7f2e833a41896}
+      \strng{authornamehash}{fd5a3261abe0fe7a8db7f2e833a41896}
+      \strng{authorfullhash}{0f458311038c65fb649218166c85fe59}
+      \strng{authorfullhashraw}{0f458311038c65fb649218166c85fe59}
+      \strng{editorbibnamehash}{e3d31a097de0e90f91fce5ac9fbdf7c6}
+      \strng{editornamehash}{e3d31a097de0e90f91fce5ac9fbdf7c6}
+      \strng{editorfullhash}{56f424df431b3cf1c971b9b26a179ef7}
+      \strng{editorfullhashraw}{56f424df431b3cf1c971b9b26a179ef7}
+      \field{labelalpha}{Der+17}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{annotation}{Keywords: Approximation Algorithm, Adaptive Algorithm, Graph Search, Binary Search, Vertex Ranking, Trees}
+      \field{booktitle}{44th International Colloquium on Automata, Languages, and Programming (ICALP 2017)}
+      \field{isbn}{978-3-95977-041-5}
+      \field{issn}{1868-8969}
+      \field{series}{Leibniz International Proceedings in Informatics (LIPIcs)}
+      \field{title}{{Approximation Strategies for Generalized Binary Search in Weighted Trees}}
+      \field{volume}{80}
+      \field{year}{2017}
+      \field{pages}{84:1\bibrangedash 84:14}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.4230/LIPIcs.ICALP.2017.84
+      \endverb
+    \endentry
+    \entry{Dereniowski2009ERankOfWTs}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=8bb9b541a3f0f1799216e0007c13e4fc}{%
+           family={Dereniowski},
+           familyi={D\bibinitperiod},
+           given={Dariusz},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{8bb9b541a3f0f1799216e0007c13e4fc}
+      \strng{fullhash}{8bb9b541a3f0f1799216e0007c13e4fc}
+      \strng{fullhashraw}{8bb9b541a3f0f1799216e0007c13e4fc}
+      \strng{bibnamehash}{8bb9b541a3f0f1799216e0007c13e4fc}
+      \strng{authorbibnamehash}{8bb9b541a3f0f1799216e0007c13e4fc}
+      \strng{authornamehash}{8bb9b541a3f0f1799216e0007c13e4fc}
+      \strng{authorfullhash}{8bb9b541a3f0f1799216e0007c13e4fc}
+      \strng{authorfullhashraw}{8bb9b541a3f0f1799216e0007c13e4fc}
+      \field{extraname}{1}
+      \field{labelalpha}{Der06}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In this paper we consider the edge ranking problem of weighted trees. We prove that a special instance of this problem, namely edge ranking of multitrees is NP-hard already for multitrees with diameter at most 10. Note that the same problem but for trees is linearly solvable. We give an O(logn)-approximation polynomial time algorithm for edge ranking of weighted trees.}
+      \field{issn}{0166-218X}
+      \field{journaltitle}{Discrete Applied Mathematics}
+      \field{number}{8}
+      \field{title}{Edge ranking of weighted trees}
+      \field{volume}{154}
+      \field{year}{2006}
+      \field{pages}{1198\bibrangedash 1209}
+      \range{pages}{12}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.dam.2005.11.005
+      \endverb
+      \keyw{Approximation,Edge ranking,Multigraph,NP-completeness,Polynomial algorithm}
+    \endentry
+    \entry{DereniowskiERAndSInPOSets}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=8bb9b541a3f0f1799216e0007c13e4fc}{%
+           family={Dereniowski},
+           familyi={D\bibinitperiod},
+           given={Dariusz},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{8bb9b541a3f0f1799216e0007c13e4fc}
+      \strng{fullhash}{8bb9b541a3f0f1799216e0007c13e4fc}
+      \strng{fullhashraw}{8bb9b541a3f0f1799216e0007c13e4fc}
+      \strng{bibnamehash}{8bb9b541a3f0f1799216e0007c13e4fc}
+      \strng{authorbibnamehash}{8bb9b541a3f0f1799216e0007c13e4fc}
+      \strng{authornamehash}{8bb9b541a3f0f1799216e0007c13e4fc}
+      \strng{authorfullhash}{8bb9b541a3f0f1799216e0007c13e4fc}
+      \strng{authorfullhashraw}{8bb9b541a3f0f1799216e0007c13e4fc}
+      \field{extraname}{2}
+      \field{labelalpha}{Der08}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We consider a problem of searching an element in a partially ordered set (poset). The goal is to find a search strategy which minimizes the number of comparisons. Ben-Asher, Farchi and Newman considered a special case where the partial order has the maximum element and the Hasse diagram is a tree (tree-like posets) and they gave an O(n4log3n)-time algorithm for finding an optimal search strategy for such a partial order. We show that this problem is equivalent to finding edge ranking of a simple tree corresponding to the Hasse diagram, which implies the existence of a linear-time algorithm for this problem. Then we study a more general problem, namely searching in any partial order with maximum element. We prove that such a generalization is hard, and we give an O(lognlog(logn))-approximate polynomial-time algorithm for this problem.}
+      \field{issn}{0166-218X}
+      \field{journaltitle}{Discrete Applied Mathematics}
+      \field{note}{Fifth International Conference on Graphs and Optimization}
+      \field{number}{13}
+      \field{title}{Edge ranking and searching in partial orders}
+      \field{volume}{156}
+      \field{year}{2008}
+      \field{pages}{2493\bibrangedash 2500}
+      \range{pages}{8}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.dam.2008.03.007
+      \endverb
+      \keyw{Dag,Edge ranking,Graph searching,Poset,Spanning tree}
+    \endentry
+    \entry{Dereniowski2023Edge}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=8bb9b541a3f0f1799216e0007c13e4fc}{%
+           family={Dereniowski},
+           familyi={D\bibinitperiod},
+           given={Dariusz},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b01a7e32583b87703e94843500c3e380}{%
+           family={Gordinowicz},
+           familyi={G\bibinitperiod},
+           given={Przemysław},
+           giveni={P\bibinitperiod}}}%
+        {{hash=4ff824868a3899e22ca11f57a07c286f}{%
+           family={Prałat},
+           familyi={P\bibinitperiod},
+           given={Paweł},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{28fca135f5b2e92648e8798ffe58772c}
+      \strng{fullhash}{28fca135f5b2e92648e8798ffe58772c}
+      \strng{fullhashraw}{28fca135f5b2e92648e8798ffe58772c}
+      \strng{bibnamehash}{28fca135f5b2e92648e8798ffe58772c}
+      \strng{authorbibnamehash}{28fca135f5b2e92648e8798ffe58772c}
+      \strng{authornamehash}{28fca135f5b2e92648e8798ffe58772c}
+      \strng{authorfullhash}{28fca135f5b2e92648e8798ffe58772c}
+      \strng{authorfullhashraw}{28fca135f5b2e92648e8798ffe58772c}
+      \field{labelalpha}{DGP23}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Electronic Journal of Combinatorics}
+      \field{number}{2}
+      \field{title}{Edge and Pair Queries—Random Graphs and Complexity}
+      \field{volume}{30}
+      \field{year}{2023}
+      \verb{doi}
+      \verb 10.37236/11159
+      \endverb
+      \verb{urlraw}
+      \verb https://www.combinatorics.org/ojs/index.php/eljc/article/view/v30i2p34
+      \endverb
+      \verb{url}
+      \verb https://www.combinatorics.org/ojs/index.php/eljc/article/view/v30i2p34
+      \endverb
+    \endentry
+    \entry{Dereniowski2024OnMG}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=8bb9b541a3f0f1799216e0007c13e4fc}{%
+           family={Dereniowski},
+           familyi={D\bibinitperiod},
+           given={Dariusz},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b01a7e32583b87703e94843500c3e380}{%
+           family={Gordinowicz},
+           familyi={G\bibinitperiod},
+           given={Przemysław},
+           giveni={P\bibinitperiod}}}%
+        {{hash=385388c69d7c9482cb0aca0df17d85e4}{%
+           family={Wr'obel},
+           familyi={W\bibinitperiod},
+           given={Karolina},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{ff9e95851e70de850b89dc6379f28151}
+      \strng{fullhash}{ff9e95851e70de850b89dc6379f28151}
+      \strng{fullhashraw}{ff9e95851e70de850b89dc6379f28151}
+      \strng{bibnamehash}{ff9e95851e70de850b89dc6379f28151}
+      \strng{authorbibnamehash}{ff9e95851e70de850b89dc6379f28151}
+      \strng{authornamehash}{ff9e95851e70de850b89dc6379f28151}
+      \strng{authorfullhash}{ff9e95851e70de850b89dc6379f28151}
+      \strng{authorfullhashraw}{ff9e95851e70de850b89dc6379f28151}
+      \field{labelalpha}{DGW24}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ArXiv}
+      \field{title}{On multidimensional generalization of binary search}
+      \field{volume}{abs/2404.13193}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://api.semanticscholar.org/CorpusID:269293685
+      \endverb
+      \verb{url}
+      \verb https://api.semanticscholar.org/CorpusID:269293685
+      \endverb
+    \endentry
+    \entry{DereniowskiEfPQProcByGRank}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=8bb9b541a3f0f1799216e0007c13e4fc}{%
+           family={Dereniowski},
+           familyi={D\bibinitperiod},
+           given={Dariusz},
+           giveni={D\bibinitperiod}}}%
+        {{hash=f1bacdb62c2f9268c93be3b003a9d856}{%
+           family={Kubale},
+           familyi={K\bibinitperiod},
+           given={Marek},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{aa560c7707f5d3ae2f7287537cd3e1fa}
+      \strng{fullhash}{aa560c7707f5d3ae2f7287537cd3e1fa}
+      \strng{fullhashraw}{aa560c7707f5d3ae2f7287537cd3e1fa}
+      \strng{bibnamehash}{aa560c7707f5d3ae2f7287537cd3e1fa}
+      \strng{authorbibnamehash}{aa560c7707f5d3ae2f7287537cd3e1fa}
+      \strng{authornamehash}{aa560c7707f5d3ae2f7287537cd3e1fa}
+      \strng{authorfullhash}{aa560c7707f5d3ae2f7287537cd3e1fa}
+      \strng{authorfullhashraw}{aa560c7707f5d3ae2f7287537cd3e1fa}
+      \field{labelalpha}{DK06}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Fundam. Inform.}
+      \field{month}{02}
+      \field{title}{Efficient Parallel Query Processing by Graph Ranking}
+      \field{volume}{69}
+      \field{year}{2006}
+      \field{pages}{273\bibrangedash 285}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.3233/FUN-2006-69302
+      \endverb
+    \endentry
+    \entry{EfficientNoisyBinarySearch}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=8bb9b541a3f0f1799216e0007c13e4fc}{%
+           family={Dereniowski},
+           familyi={D\bibinitperiod},
+           given={Dariusz},
+           giveni={D\bibinitperiod}}}%
+        {{hash=5f35abdc64233fc94bdd35ae9cbebc2d}{%
+           family={{Ł}ukasiewicz},
+           familyi={Ł\bibinitperiod},
+           given={Aleksander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=f7e97477a2b3fa9aac23fef4a22d6032}{%
+           family={Uznański},
+           familyi={U\bibinitperiod},
+           given={Przemys{ł}aw},
+           giveni={P\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=20b6ad07aadd55d6d4ef61a12de6eb2e}{%
+           family={Flocchini},
+           familyi={F\bibinitperiod},
+           given={Paola},
+           giveni={P\bibinitperiod}}}%
+        {{hash=a7d2811728fc8827f5751755b9e9b160}{%
+           family={Moura},
+           familyi={M\bibinitperiod},
+           given={Lucia},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{4cca1c5dd990ec40b0b8bb3dad94a729}
+      \strng{fullhash}{4cca1c5dd990ec40b0b8bb3dad94a729}
+      \strng{fullhashraw}{4cca1c5dd990ec40b0b8bb3dad94a729}
+      \strng{bibnamehash}{4cca1c5dd990ec40b0b8bb3dad94a729}
+      \strng{authorbibnamehash}{4cca1c5dd990ec40b0b8bb3dad94a729}
+      \strng{authornamehash}{4cca1c5dd990ec40b0b8bb3dad94a729}
+      \strng{authorfullhash}{4cca1c5dd990ec40b0b8bb3dad94a729}
+      \strng{authorfullhashraw}{4cca1c5dd990ec40b0b8bb3dad94a729}
+      \strng{editorbibnamehash}{0be3db31388a53182a81f6baf285b187}
+      \strng{editornamehash}{0be3db31388a53182a81f6baf285b187}
+      \strng{editorfullhash}{0be3db31388a53182a81f6baf285b187}
+      \strng{editorfullhashraw}{0be3db31388a53182a81f6baf285b187}
+      \field{extraname}{1}
+      \field{labelalpha}{DŁU21}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Consider a generalization of the classical binary search problem in linearly sorted data to the graph-theoretic setting. The goal is to design an adaptive query algorithm, called a strategy, that identifies an initially unknown target vertex in a graph by asking queries. Each query is conducted as follows: the strategy selects a vertex q and receives a reply v: if q is the target, then {\$}{\$}v=q{\$}{\$}v=q, and if q is not the target, then v is a neighbor of q that lies on a shortest path to the target. Furthermore, there is a noise parameter {\$}{\$}0{\backslash}le p<{\backslash}frac{\{}1{\}}{\{}2{\}}{\$}{\$}0≤p<12which means that each reply can be incorrect with probability p. The optimization criterion to be minimized is the overall number of queries asked by the strategy, called the query complexity. The query complexity is well understood to be {\$}{\$}{\backslash}mathcal {\{}O{\}}({\backslash}varepsilon ^{\{}-2{\}}{\backslash}log n){\$}{\$}O($\epsilon$-2logn)for general graphs, where n is the order of the graph and {\$}{\$}{\backslash}varepsilon ={\backslash}frac{\{}1{\}}{\{}2{\}}{\backslash},-{\backslash},p{\$}{\$}$\epsilon$=12-p. However, implementing such a strategy is computationally expensive, with each query requiring possibly {\$}{\$}{\backslash}mathcal {\{}O{\}}(n^2){\$}{\$}O(n2)operations.}
+      \field{booktitle}{Combinatorial Algorithms}
+      \field{isbn}{978-3-030-79987-8}
+      \field{title}{An Efficient Noisy Binary Search in Graphs via Median Approximation}
+      \field{year}{2021}
+      \field{pages}{265\bibrangedash 281}
+      \range{pages}{17}
+    \endentry
+    \entry{noisyBSSFC}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=8bb9b541a3f0f1799216e0007c13e4fc}{%
+           family={Dereniowski},
+           familyi={D\bibinitperiod},
+           given={Dariusz},
+           giveni={D\bibinitperiod}}}%
+        {{hash=5f35abdc64233fc94bdd35ae9cbebc2d}{%
+           family={{Ł}ukasiewicz},
+           familyi={Ł\bibinitperiod},
+           given={Aleksander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=f7e97477a2b3fa9aac23fef4a22d6032}{%
+           family={Uznański},
+           familyi={U\bibinitperiod},
+           given={Przemys{ł}aw},
+           giveni={P\bibinitperiod}}}%
+      }
+      \name{editor}{4}{}{%
+        {{hash=a87a624a08324ccca7e16f7c79b7d787}{%
+           family={Beyersdorff},
+           familyi={B\bibinitperiod},
+           given={Olaf},
+           giveni={O\bibinitperiod}}}%
+        {{hash=1ab5cb4c1773d12f499567e578046996}{%
+           family={Pilipczuk},
+           familyi={P\bibinitperiod},
+           given={Micha{ł}},
+           giveni={M\bibinitperiod}}}%
+        {{hash=ef94d1382f9757fa872afd205b71b3e7}{%
+           family={Pimentel},
+           familyi={P\bibinitperiod},
+           given={Elaine},
+           giveni={E\bibinitperiod}}}%
+        {{hash=fdc265035f5c2a851bc0dc704d0a94c2}{%
+           family={Thắng},
+           familyi={T\bibinitperiod},
+           given={Nguyễn\bibnamedelima Kim},
+           giveni={N\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Dagstuhl, Germany}%
+      }
+      \list{publisher}{1}{%
+        {Schloss Dagstuhl -- Leibniz-Zentrum für Informatik}%
+      }
+      \strng{namehash}{4cca1c5dd990ec40b0b8bb3dad94a729}
+      \strng{fullhash}{4cca1c5dd990ec40b0b8bb3dad94a729}
+      \strng{fullhashraw}{4cca1c5dd990ec40b0b8bb3dad94a729}
+      \strng{bibnamehash}{4cca1c5dd990ec40b0b8bb3dad94a729}
+      \strng{authorbibnamehash}{4cca1c5dd990ec40b0b8bb3dad94a729}
+      \strng{authornamehash}{4cca1c5dd990ec40b0b8bb3dad94a729}
+      \strng{authorfullhash}{4cca1c5dd990ec40b0b8bb3dad94a729}
+      \strng{authorfullhashraw}{4cca1c5dd990ec40b0b8bb3dad94a729}
+      \strng{editorbibnamehash}{0fa3dc039a320c9a63a5397bed6496ce}
+      \strng{editornamehash}{0fa3dc039a320c9a63a5397bed6496ce}
+      \strng{editorfullhash}{2d55bfe1c3e8b9f6380e90a025a93c6c}
+      \strng{editorfullhashraw}{2d55bfe1c3e8b9f6380e90a025a93c6c}
+      \field{extraname}{2}
+      \field{labelalpha}{DŁU25}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{annotation}{Keywords: Graph Algorithms, Noisy Binary Search, Query Complexity, Reliability}
+      \field{booktitle}{42nd International Symposium on Theoretical Aspects of Computer Science (STACS 2025)}
+      \field{isbn}{978-3-95977-365-2}
+      \field{issn}{1868-8969}
+      \field{series}{Leibniz International Proceedings in Informatics (LIPIcs)}
+      \field{title}{{Noisy (Binary) Searching: Simple, Fast and Correct}}
+      \field{volume}{327}
+      \field{year}{2025}
+      \field{pages}{29:1\bibrangedash 29:18}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.4230/LIPIcs.STACS.2025.29
+      \endverb
+      \verb{urlraw}
+      \verb https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.STACS.2025.29
+      \endverb
+      \verb{url}
+      \verb https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.STACS.2025.29
+      \endverb
+    \endentry
+    \entry{Deligkas2019BsInGsRev}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=d4de6e57bf8a3790aa7d9e7780a0bec4}{%
+           family={Deligkas},
+           familyi={D\bibinitperiod},
+           given={Argyrios},
+           giveni={A\bibinitperiod}}}%
+        {{hash=9c55f280ca6e8f2c213c1e39040a2168}{%
+           family={Mertzios},
+           familyi={M\bibinitperiod},
+           given={George\bibnamedelima B.},
+           giveni={G\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=c4296491852f37edf0749e69549f8d93}{%
+           family={Spirakis},
+           familyi={S\bibinitperiod},
+           given={Paul\bibnamedelima G.},
+           giveni={P\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \strng{namehash}{95b06471c7362b2ad622c5f6ba8695cc}
+      \strng{fullhash}{95b06471c7362b2ad622c5f6ba8695cc}
+      \strng{fullhashraw}{95b06471c7362b2ad622c5f6ba8695cc}
+      \strng{bibnamehash}{95b06471c7362b2ad622c5f6ba8695cc}
+      \strng{authorbibnamehash}{95b06471c7362b2ad622c5f6ba8695cc}
+      \strng{authornamehash}{95b06471c7362b2ad622c5f6ba8695cc}
+      \strng{authorfullhash}{95b06471c7362b2ad622c5f6ba8695cc}
+      \strng{authorfullhashraw}{95b06471c7362b2ad622c5f6ba8695cc}
+      \field{labelalpha}{DMS19}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In the classical binary search in a path the aim is to detect an unknown target by asking as few queries as possible, where each query reveals the direction to the target. This binary search algorithm has been recently extended by Emamjomeh-Zadeh et al. (in: Proceedings of the 48th annual ACM SIGACT symposium on theory of computing, STOC 2016, Cambridge, pp. 519–532, 2016) to the problem of detecting a target in an arbitrary graph. Similarly to the classical case in the path, the algorithm of Emamjomeh-Zadeh et al. maintains a candidates’ set for the target, while each query asks an appropriately chosen vertex—the “median”—which minimises a potential $\varPhi$ among the vertices of the candidates’ set. In this paper we address three open questions posed by Emamjomeh-Zadeh et al., namely (a) detecting a target when the query response is a direction to an approximately shortest path to the target, (b) detecting a target when querying a vertex that is an approximate median of the current candidates’ set (instead of an exact one), and (c) detecting multiple targets, for which to the best of our knowledge no progress has been made so far. We resolve questions (a) and (b) by providing appropriate upper and lower bounds, as well as a new potential $\varGamma$ that guarantees efficient target detection even by querying an approximate median each time. With respect to (c), we initiate a systematic study for detecting two targets in graphs and we identify sufficient conditions on the queries that allow for strong (linear) lower bounds and strong (polylogarithmic) upper bounds for the number of queries. All of our positive results can be derived using our new potential $\varGamma$ that allows querying approximate medians.}
+      \field{issn}{1432-0541}
+      \field{journaltitle}{Algorithmica}
+      \field{month}{5}
+      \field{number}{5}
+      \field{title}{Binary Search in Graphs Revisited}
+      \field{volume}{81}
+      \field{year}{2019}
+      \field{pages}{1757\bibrangedash 1780}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1007/s00453-018-0501-y
+      \endverb
+    \endentry
+    \entry{DereniowskiVxRankOfChGsAndWTs}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=8bb9b541a3f0f1799216e0007c13e4fc}{%
+           family={Dereniowski},
+           familyi={D\bibinitperiod},
+           given={Dariusz},
+           giveni={D\bibinitperiod}}}%
+        {{hash=50cace57ba01d90f23b088d1949545bf}{%
+           family={Nadolski},
+           familyi={N\bibinitperiod},
+           given={Adam},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{d94025cf7e44c24135182acb2e79778d}
+      \strng{fullhash}{d94025cf7e44c24135182acb2e79778d}
+      \strng{fullhashraw}{d94025cf7e44c24135182acb2e79778d}
+      \strng{bibnamehash}{d94025cf7e44c24135182acb2e79778d}
+      \strng{authorbibnamehash}{d94025cf7e44c24135182acb2e79778d}
+      \strng{authornamehash}{d94025cf7e44c24135182acb2e79778d}
+      \strng{authorfullhash}{d94025cf7e44c24135182acb2e79778d}
+      \strng{authorfullhashraw}{d94025cf7e44c24135182acb2e79778d}
+      \field{labelalpha}{DN06}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In this paper we consider the vertex ranking problem of weighted trees. We show that this problem is strongly NP-hard. We also give a polynomial-time reduction from the problem of vertex ranking of weighted trees to the vertex ranking of (simple) chordal graphs, which proves that the latter problem is NP-hard. In this way we solve an open problem of Aspvall and Heggernes. We use this reduction and the algorithm of Bodlaender et al.'s for vertex ranking of partial k-trees to give an exact polynomial-time algorithm for vertex ranking of a tree with bounded and integer valued weight functions. This algorithm serves as a procedure in designing a PTAS for weighted vertex ranking problem of trees with bounded weight functions.}
+      \field{issn}{0020-0190}
+      \field{journaltitle}{Information Processing Letters}
+      \field{number}{3}
+      \field{title}{Vertex rankings of chordal graphs and weighted trees}
+      \field{volume}{98}
+      \field{year}{2006}
+      \field{pages}{96\bibrangedash 100}
+      \range{pages}{5}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.ipl.2005.12.006
+      \endverb
+      \keyw{Chordal graph,Computational complexity,Graph algorithms,Vertex ranking}
+    \endentry
+    \entry{dereniowski2022CFApproxAlgForBSInTsWithMonoQTimes}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=8bb9b541a3f0f1799216e0007c13e4fc}{%
+           family={Dereniowski},
+           familyi={D\bibinitperiod},
+           given={Dariusz},
+           giveni={D\bibinitperiod}}}%
+        {{hash=c89227120440ee9f95580431d6c66f23}{%
+           family={Wrosz},
+           familyi={W\bibinitperiod},
+           given={Izajasz},
+           giveni={I\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=bc1ac5443283d9c1021f64467bd1ad77}{%
+           family={Szeider},
+           familyi={S\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=6ecfff9759e226a5e49d674f7c5332a9}{%
+           family={Ganian},
+           familyi={G\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+        {{hash=8b75accb7828bac3d5aa4bb89fbd6ff0}{%
+           family={Silva},
+           familyi={S\bibinitperiod},
+           given={Alexandra},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Dagstuhl, Germany}%
+      }
+      \list{publisher}{1}{%
+        {Schloss Dagstuhl -- Leibniz-Zentrum für Informatik}%
+      }
+      \strng{namehash}{098a737dae9a9ad742bf3044720b61c8}
+      \strng{fullhash}{098a737dae9a9ad742bf3044720b61c8}
+      \strng{fullhashraw}{098a737dae9a9ad742bf3044720b61c8}
+      \strng{bibnamehash}{098a737dae9a9ad742bf3044720b61c8}
+      \strng{authorbibnamehash}{098a737dae9a9ad742bf3044720b61c8}
+      \strng{authornamehash}{098a737dae9a9ad742bf3044720b61c8}
+      \strng{authorfullhash}{098a737dae9a9ad742bf3044720b61c8}
+      \strng{authorfullhashraw}{098a737dae9a9ad742bf3044720b61c8}
+      \strng{editorbibnamehash}{79109637fc709ab49e449e3e6fdfc5b8}
+      \strng{editornamehash}{79109637fc709ab49e449e3e6fdfc5b8}
+      \strng{editorfullhash}{79109637fc709ab49e449e3e6fdfc5b8}
+      \strng{editorfullhashraw}{79109637fc709ab49e449e3e6fdfc5b8}
+      \field{extraname}{1}
+      \field{labelalpha}{DW22}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{annotation}{Keywords: binary search, graph search, approximation algorithm, query complexity}
+      \field{booktitle}{47th International Symposium on Mathematical Foundations of Computer Science (MFCS 2022)}
+      \field{isbn}{978-3-95977-256-3}
+      \field{issn}{1868-8969}
+      \field{series}{Leibniz International Proceedings in Informatics (LIPIcs)}
+      \field{title}{{Constant-Factor Approximation Algorithm for Binary Search in Trees with Monotonic Query Times}}
+      \field{volume}{241}
+      \field{year}{2022}
+      \field{pages}{42:1\bibrangedash 42:15}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.4230/LIPIcs.MFCS.2022.42
+      \endverb
+    \endentry
+    \entry{dereniowski2024SInTsMonoQTs}{misc}{}{}
+      \name{author}{2}{}{%
+        {{hash=8bb9b541a3f0f1799216e0007c13e4fc}{%
+           family={Dereniowski},
+           familyi={D\bibinitperiod},
+           given={Dariusz},
+           giveni={D\bibinitperiod}}}%
+        {{hash=c89227120440ee9f95580431d6c66f23}{%
+           family={Wrosz},
+           familyi={W\bibinitperiod},
+           given={Izajasz},
+           giveni={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{098a737dae9a9ad742bf3044720b61c8}
+      \strng{fullhash}{098a737dae9a9ad742bf3044720b61c8}
+      \strng{fullhashraw}{098a737dae9a9ad742bf3044720b61c8}
+      \strng{bibnamehash}{098a737dae9a9ad742bf3044720b61c8}
+      \strng{authorbibnamehash}{098a737dae9a9ad742bf3044720b61c8}
+      \strng{authornamehash}{098a737dae9a9ad742bf3044720b61c8}
+      \strng{authorfullhash}{098a737dae9a9ad742bf3044720b61c8}
+      \strng{authorfullhashraw}{098a737dae9a9ad742bf3044720b61c8}
+      \field{extraname}{2}
+      \field{labelalpha}{DW24}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.DS}
+      \field{eprinttype}{arXiv}
+      \field{title}{Searching in trees with monotonic query times}
+      \field{year}{2024}
+      \verb{eprint}
+      \verb 2401.13747
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2401.13747
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2401.13747
+      \endverb
+    \endentry
+    \entry{Emamjomeh2016DetAndProbBSinGs}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=7d11c23fa3370fef9bb97700ffcd06bd}{%
+           family={Emamjomeh-Zadeh},
+           familyi={E\bibinithyphendelim Z\bibinitperiod},
+           given={Ehsan},
+           giveni={E\bibinitperiod}}}%
+        {{hash=548c8439009be7e3768757c6ff4fc6d3}{%
+           family={Kempe},
+           familyi={K\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=aa762ff0fd590a31433a7243111356db}{%
+           family={Singhal},
+           familyi={S\bibinitperiod},
+           given={Vikrant},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{e5878cb30d85e4cac4f6db9a7e20f84f}
+      \strng{fullhash}{e5878cb30d85e4cac4f6db9a7e20f84f}
+      \strng{fullhashraw}{e5878cb30d85e4cac4f6db9a7e20f84f}
+      \strng{bibnamehash}{e5878cb30d85e4cac4f6db9a7e20f84f}
+      \strng{authorbibnamehash}{e5878cb30d85e4cac4f6db9a7e20f84f}
+      \strng{authornamehash}{e5878cb30d85e4cac4f6db9a7e20f84f}
+      \strng{authorfullhash}{e5878cb30d85e4cac4f6db9a7e20f84f}
+      \strng{authorfullhashraw}{e5878cb30d85e4cac4f6db9a7e20f84f}
+      \field{labelalpha}{EKS16}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{06}
+      \field{title}{Deterministic and probabilistic binary search in graphs}
+      \field{year}{2016}
+      \field{pages}{519\bibrangedash 532}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1145/2897518.2897656
+      \endverb
+    \endentry
+    \entry{Improvedapproximationalgorithmsvertexseparators}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=b1684193b9de8503418fa549b5fe487c}{%
+           family={Feige},
+           familyi={F\bibinitperiod},
+           given={Uriel},
+           giveni={U\bibinitperiod}}}%
+        {{hash=79b32f14d02efefe5a896fd564c804c0}{%
+           family={Hajiaghayi},
+           familyi={H\bibinitperiod},
+           given={MohammadTaghi},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c37ecfce077c1c984e1675095240d5b3}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={James\bibnamedelima R.},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Baltimore, MD, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{8998847f18e845078f0eea1672ca1c69}
+      \strng{fullhash}{8998847f18e845078f0eea1672ca1c69}
+      \strng{fullhashraw}{8998847f18e845078f0eea1672ca1c69}
+      \strng{bibnamehash}{8998847f18e845078f0eea1672ca1c69}
+      \strng{authorbibnamehash}{8998847f18e845078f0eea1672ca1c69}
+      \strng{authornamehash}{8998847f18e845078f0eea1672ca1c69}
+      \strng{authorfullhash}{8998847f18e845078f0eea1672ca1c69}
+      \strng{authorfullhashraw}{8998847f18e845078f0eea1672ca1c69}
+      \field{labelalpha}{FHL05}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We develop the algorithmic theory of vertex separators, and its relation to the embeddings of certain metric spaces. Unlike in the edge case, we show that embeddings into L1 (and even Euclidean embeddings) are insufficient, but that the additional structure provided by many embedding theorems does suffice for our purposes.We obtain an O(√log n) approximation for min-ratio vertex cuts in general graphs, based on a new semidefinite relaxation of the problem, and a tight analysis of the integrality gap which is shown to be Θ(√log n). We also prove various approximate max-flow/min-vertex-cut theorems, which in particular give a constant-factor approximation for min-ratio vertex cuts in any excluded-minor family of graphs. Previously, this was known only for planar graphs, and for general excluded-minor families the best-known ratio was O(log n).These results have a number of applications. We exhibit an O(√log n) pseudo-approximation for finding balanced vertex separators in general graphs. In fact, we achieve an approximation ratio of O(√log opt) where opt is the size of an optimal separator, improving over the previous best bound of O(log opt). Likewise, we obtain improved approximation ratios for treewidth: In any graph of treewidth k, we show how to find a tree decomposition of width at most O(k √log k), whereas previous algorithms yielded O(k log k). For graphs excluding a fixed graph as a minor (which includes, e.g., bounded genus graphs), we give a constant-factor approximation for the treewidth; this can be used to obtain the first polynomial-time approximation schemes for problems like minimum feedback vertex set and minimum connected dominating set in such graphs.}
+      \field{booktitle}{Proceedings of the Thirty-Seventh Annual ACM Symposium on Theory of Computing}
+      \field{isbn}{1581139608}
+      \field{series}{STOC '05}
+      \field{title}{Improved approximation algorithms for minimum-weight vertex separators}
+      \field{year}{2005}
+      \field{pages}{563\bibrangedash 572}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1145/1060590.1060674
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/1060590.1060674
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/1060590.1060674
+      \endverb
+      \keyw{vertex separators,treewidth,semidefinite programming,metric embeddings,approximation algorithms}
+    \endentry
+    \entry{GIANNOPOULOU20122089}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=2d204834ac1b21da39a8591fc0ecd792}{%
+           family={Giannopoulou},
+           familyi={G\bibinitperiod},
+           given={Archontia\bibnamedelima C.},
+           giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=5988329ca7729901f648d77b97e58c6e}{%
+           family={Hunter},
+           familyi={H\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod}}}%
+        {{hash=f524e7d2a1db2bf0aa08c0ae5b4c800b}{%
+           family={Thilikos},
+           familyi={T\bibinitperiod},
+           given={Dimitrios\bibnamedelima M.},
+           giveni={D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{c45989d4d37e8dea4a00c2264804a970}
+      \strng{fullhash}{c45989d4d37e8dea4a00c2264804a970}
+      \strng{fullhashraw}{c45989d4d37e8dea4a00c2264804a970}
+      \strng{bibnamehash}{c45989d4d37e8dea4a00c2264804a970}
+      \strng{authorbibnamehash}{c45989d4d37e8dea4a00c2264804a970}
+      \strng{authornamehash}{c45989d4d37e8dea4a00c2264804a970}
+      \strng{authorfullhash}{c45989d4d37e8dea4a00c2264804a970}
+      \strng{authorfullhashraw}{c45989d4d37e8dea4a00c2264804a970}
+      \field{labelalpha}{GHT12}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We introduce a variant of the classic node search game called LIFO-search where searchers are assigned different numbers. The additional rule is that a searcher can be removed only if no searchers of lower rank are in the graph at that moment. We show that all common variations of the game require the same number of searchers. We then introduce the notion of (directed) shelters in (di)graphs and prove a min–max theorem implying their equivalence to the cycle-rank/tree-depth parameter in (di)graphs. As (directed) shelters provide escape strategies for the fugitive, this implies that the LIFO-search game is monotone and that the LIFO-search parameter is equivalent to the one of cycle-rank/tree-depth in (di)graphs.}
+      \field{issn}{0166-218X}
+      \field{journaltitle}{Discrete Applied Mathematics}
+      \field{number}{15}
+      \field{title}{LIFO-search: A min–max theorem and a searching game for cycle-rank and tree-depth}
+      \field{volume}{160}
+      \field{year}{2012}
+      \field{pages}{2089\bibrangedash 2097}
+      \range{pages}{9}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.dam.2012.03.015
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0166218X12001199
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0166218X12001199
+      \endverb
+      \keyw{Graph parameters,Graph searching,Pursuit–evasion games,Cycle-rank,Tree-depth,Obstructions,Min–max theorem}
+    \endentry
+    \entry{NearoptimalBayesianactivelearning}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=299065af672db40823b358aab4a8ea22}{%
+           family={Golovin},
+           familyi={G\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=112eb0b147c4a7f674d015a86e5dea70}{%
+           family={Krause},
+           familyi={K\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+        {{hash=22e957efcf13e1bf0527513759b1cfcf}{%
+           family={Ray},
+           familyi={R\bibinitperiod},
+           given={Debajyoti},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Vancouver, British Columbia, Canada}%
+      }
+      \list{publisher}{1}{%
+        {Curran Associates Inc.}%
+      }
+      \strng{namehash}{b8c5ea9ce7dc1571966814d875232265}
+      \strng{fullhash}{b8c5ea9ce7dc1571966814d875232265}
+      \strng{fullhashraw}{b8c5ea9ce7dc1571966814d875232265}
+      \strng{bibnamehash}{b8c5ea9ce7dc1571966814d875232265}
+      \strng{authorbibnamehash}{b8c5ea9ce7dc1571966814d875232265}
+      \strng{authornamehash}{b8c5ea9ce7dc1571966814d875232265}
+      \strng{authorfullhash}{b8c5ea9ce7dc1571966814d875232265}
+      \strng{authorfullhashraw}{b8c5ea9ce7dc1571966814d875232265}
+      \field{labelalpha}{GKR10}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We tackle the fundamental problem of Bayesian active learning with noise, where we need to adaptively select from a number of expensive tests in order to identify an unknown hypothesis sampled from a known prior distribution. In the case of noise-free observations, a greedy algorithm called generalized binary search (GBS) is known to perform near-optimally. We show that if the observations are noisy, perhaps surprisingly, GBS can perform very poorly. We develop EC2, a novel, greedy active learning algorithm and prove that it is competitive with the optimal policy, thus obtaining the first competitiveness guarantees for Bayesian active learning with noisy observations. Our bounds rely on a recently discovered diminishing returns property called adaptive submodularity, generalizing the classical notion of submodular set functions to adaptive policies. Our results hold even if the tests have non-uniform cost and their noise is correlated. We also propose EFFECX-TIVE, a particularly fast approximation of EC2, and evaluate it on a Bayesian experimental design problem involving human subjects, intended to tease apart competing economic theories of how people make decisions under uncertainty.}
+      \field{booktitle}{Proceedings of the 24th International Conference on Neural Information Processing Systems - Volume 1}
+      \field{series}{NIPS'10}
+      \field{title}{Near-optimal Bayesian active learning with noisy observations}
+      \field{year}{2010}
+      \field{pages}{766\bibrangedash 774}
+      \range{pages}{9}
+    \endentry
+    \entry{GuptasApproxAlgsForOptDTsAndAdaptTSPPs}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=5986a2ed6c50067dd6fc98838b12178a}{%
+           family={Gupta},
+           familyi={G\bibinitperiod},
+           given={Anupam},
+           giveni={A\bibinitperiod}}}%
+        {{hash=1e14ab93f9aa4822cef9350e1e796b1e}{%
+           family={Nagarajan},
+           familyi={N\bibinitperiod},
+           given={Viswanath},
+           giveni={V\bibinitperiod}}}%
+        {{hash=6c06426f10eb237c91b9e29d1601fe79}{%
+           family={Ravi},
+           familyi={R\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+      }
+      \name{editor}{5}{}{%
+        {{hash=f4721a56c3b94b002e7ef8e0ef2b89fa}{%
+           family={Abramsky},
+           familyi={A\bibinitperiod},
+           given={Samson},
+           giveni={S\bibinitperiod}}}%
+        {{hash=6e38cb4019b05cd114848ff41314ea2c}{%
+           family={Gavoille},
+           familyi={G\bibinitperiod},
+           given={Cyril},
+           giveni={C\bibinitperiod}}}%
+        {{hash=fb3f314b8151bdf2c44844b77c28e773}{%
+           family={Kirchner},
+           familyi={K\bibinitperiod},
+           given={Claude},
+           giveni={C\bibinitperiod}}}%
+        {{hash=0f20cc96d640e7e3901a52f40d65eee3}{%
+           family={Meyer\bibnamedelimb auf\bibnamedelimb der\bibnamedelima Heide},
+           familyi={M\bibinitperiod\bibinitdelim a\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim H\bibinitperiod},
+           given={Friedhelm},
+           giveni={F\bibinitperiod}}}%
+        {{hash=c4296491852f37edf0749e69549f8d93}{%
+           family={Spirakis},
+           familyi={S\bibinitperiod},
+           given={Paul\bibnamedelima G.},
+           giveni={P\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{a5d865a0f68f051a00a0b488c31a79e4}
+      \strng{fullhash}{a5d865a0f68f051a00a0b488c31a79e4}
+      \strng{fullhashraw}{a5d865a0f68f051a00a0b488c31a79e4}
+      \strng{bibnamehash}{a5d865a0f68f051a00a0b488c31a79e4}
+      \strng{authorbibnamehash}{a5d865a0f68f051a00a0b488c31a79e4}
+      \strng{authornamehash}{a5d865a0f68f051a00a0b488c31a79e4}
+      \strng{authorfullhash}{a5d865a0f68f051a00a0b488c31a79e4}
+      \strng{authorfullhashraw}{a5d865a0f68f051a00a0b488c31a79e4}
+      \strng{editorbibnamehash}{d8bd77fe10bf40874a3818a06030a225}
+      \strng{editornamehash}{d8bd77fe10bf40874a3818a06030a225}
+      \strng{editorfullhash}{9509a4e0cef7d91e2b608ac7fa38b08b}
+      \strng{editorfullhashraw}{9509a4e0cef7d91e2b608ac7fa38b08b}
+      \field{labelalpha}{GNR10}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We consider the problem of constructing optimal decision trees: given a collection of tests which can disambiguate between a set of m possible diseases, each test having a cost, and the a-priori likelihood of the patient having any particular disease, what is a good adaptive strategy to perform these tests to minimize the expected cost to identify the disease? We settle the approximability of this problem by giving a tight O(logm)-approximation algorithm.}
+      \field{booktitle}{Automata, Languages and Programming}
+      \field{isbn}{978-3-642-14165-2}
+      \field{title}{Approximation Algorithms for Optimal Decision Trees and Adaptive TSP Problems}
+      \field{year}{2010}
+      \field{pages}{690\bibrangedash 701}
+      \range{pages}{12}
+    \endentry
+    \entry{BoundsonMultiprocessingTimingAnomalies}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=d62582a3fb2e5bc4d43c31c9b961f0ca}{%
+           family={Graham},
+           familyi={G\bibinitperiod},
+           given={R.\bibnamedelimi L.},
+           giveni={R\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \strng{namehash}{d62582a3fb2e5bc4d43c31c9b961f0ca}
+      \strng{fullhash}{d62582a3fb2e5bc4d43c31c9b961f0ca}
+      \strng{fullhashraw}{d62582a3fb2e5bc4d43c31c9b961f0ca}
+      \strng{bibnamehash}{d62582a3fb2e5bc4d43c31c9b961f0ca}
+      \strng{authorbibnamehash}{d62582a3fb2e5bc4d43c31c9b961f0ca}
+      \strng{authornamehash}{d62582a3fb2e5bc4d43c31c9b961f0ca}
+      \strng{authorfullhash}{d62582a3fb2e5bc4d43c31c9b961f0ca}
+      \strng{authorfullhashraw}{d62582a3fb2e5bc4d43c31c9b961f0ca}
+      \field{labelalpha}{Gra69}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{SIAM Journal on Applied Mathematics}
+      \field{number}{2}
+      \field{title}{Bounds on Multiprocessing Timing Anomalies}
+      \field{volume}{17}
+      \field{year}{1969}
+      \field{pages}{416\bibrangedash 429}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1137/0117039
+      \endverb
+      \verb{eprint}
+      \verb https://doi.org/10.1137/0117039
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1137/0117039
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1137/0117039
+      \endverb
+    \endentry
+    \entry{OnDasHC}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{hash=ab90df6390f16451316891aba12bd2db}{%
+           family={H{ø}gemo},
+           familyi={H\bibinitperiod},
+           given={Svein},
+           giveni={S\bibinitperiod}}}%
+        {{hash=61cb4379b8499438d9cb6b9389e9b3ca}{%
+           family={Bergougnoux},
+           familyi={B\bibinitperiod},
+           given={Benjamin},
+           giveni={B\bibinitperiod}}}%
+        {{hash=392b457d9bac1ed69366176e7857d7e9}{%
+           family={Brandes},
+           familyi={B\bibinitperiod},
+           given={Ulrik},
+           giveni={U\bibinitperiod}}}%
+        {{hash=27b57da5c1e6f6e165ba96b7a5d7b544}{%
+           family={Paul},
+           familyi={P\bibinitperiod},
+           given={Christophe},
+           giveni={C\bibinitperiod}}}%
+        {{hash=5c8a2d9a4affe9f73ae0964adfe7396e}{%
+           family={Telle},
+           familyi={T\bibinitperiod},
+           given={Jan\bibnamedelima Arne},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=625e858a5acb44c5fea94e84a54b0ef7}{%
+           family={Bampis},
+           familyi={B\bibinitperiod},
+           given={Evripidis},
+           giveni={E\bibinitperiod}}}%
+        {{hash=30102b346e9b2450a05dd575806625d2}{%
+           family={Pagourtzis},
+           familyi={P\bibinitperiod},
+           given={Aris},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{60943c90f4854307392361dfdc8a3e46}
+      \strng{fullhash}{3294d333c3b7df222b261ef48e6ae803}
+      \strng{fullhashraw}{3294d333c3b7df222b261ef48e6ae803}
+      \strng{bibnamehash}{60943c90f4854307392361dfdc8a3e46}
+      \strng{authorbibnamehash}{60943c90f4854307392361dfdc8a3e46}
+      \strng{authornamehash}{60943c90f4854307392361dfdc8a3e46}
+      \strng{authorfullhash}{3294d333c3b7df222b261ef48e6ae803}
+      \strng{authorfullhashraw}{3294d333c3b7df222b261ef48e6ae803}
+      \strng{editorbibnamehash}{39c260e41459c8ab2ed25b07cc991931}
+      \strng{editornamehash}{39c260e41459c8ab2ed25b07cc991931}
+      \strng{editorfullhash}{39c260e41459c8ab2ed25b07cc991931}
+      \strng{editorfullhashraw}{39c260e41459c8ab2ed25b07cc991931}
+      \field{labelalpha}{Høg+21}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The minimum height of vertex and edge partition trees are well-studied graph parameters known as, for instance, vertex and edge ranking number. While they are NP-hard to determine in general, linear-time algorithms exist for trees. Motivated by a correspondence with Dasgupta's objective for hierarchical clustering we consider the total rather than maximum depth of vertices as an alternative objective for minimization. For vertex partition trees this leads to a new parameter with a natural interpretation as a measure of robustness against vertex removal.}
+      \field{booktitle}{Fundamentals of Computation Theory}
+      \field{isbn}{978-3-030-86593-1}
+      \field{title}{On Dasgupta's Hierarchical Clustering Objective and Its Relation to Other Graph Parameters}
+      \field{year}{2021}
+      \field{pages}{287\bibrangedash 300}
+      \range{pages}{14}
+    \endentry
+    \entry{Hgemo2024TightAB}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=ab90df6390f16451316891aba12bd2db}{%
+           family={H{ø}gemo},
+           familyi={H\bibinitperiod},
+           given={Svein},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{ab90df6390f16451316891aba12bd2db}
+      \strng{fullhash}{ab90df6390f16451316891aba12bd2db}
+      \strng{fullhashraw}{ab90df6390f16451316891aba12bd2db}
+      \strng{bibnamehash}{ab90df6390f16451316891aba12bd2db}
+      \strng{authorbibnamehash}{ab90df6390f16451316891aba12bd2db}
+      \strng{authornamehash}{ab90df6390f16451316891aba12bd2db}
+      \strng{authorfullhash}{ab90df6390f16451316891aba12bd2db}
+      \strng{authorfullhashraw}{ab90df6390f16451316891aba12bd2db}
+      \field{labelalpha}{Høg24}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ArXiv}
+      \field{title}{Tight Approximation Bounds on a Simple Algorithm for Minimum Average Search Time in Trees}
+      \field{volume}{abs/2402.05560}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://api.semanticscholar.org/CorpusID:267547530
+      \endverb
+      \verb{url}
+      \verb https://api.semanticscholar.org/CorpusID:267547530
+      \endverb
+    \endentry
+    \entry{Jacobs2010OnTheComplexSearchInTsAvg}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=baaed13f3196c520b40539abea8e2855}{%
+           family={Jacobs},
+           familyi={J\bibinitperiod},
+           given={Tobias},
+           giveni={T\bibinitperiod}}}%
+        {{hash=eb5d610745839a3a27ec15056cd09637}{%
+           family={Cicalese},
+           familyi={C\bibinitperiod},
+           given={Ferdinando},
+           giveni={F\bibinitperiod}}}%
+        {{hash=c03b4d208d79418b725c02fdd2658b5c}{%
+           family={Laber},
+           familyi={L\bibinitperiod},
+           given={Eduardo},
+           giveni={E\bibinitperiod}}}%
+        {{hash=577bf5cb243084faffc7cb60c3d1e2c3}{%
+           family={Molinaro},
+           familyi={M\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod}}}%
+      }
+      \name{editor}{5}{}{%
+        {{hash=f4721a56c3b94b002e7ef8e0ef2b89fa}{%
+           family={Abramsky},
+           familyi={A\bibinitperiod},
+           given={Samson},
+           giveni={S\bibinitperiod}}}%
+        {{hash=6e38cb4019b05cd114848ff41314ea2c}{%
+           family={Gavoille},
+           familyi={G\bibinitperiod},
+           given={Cyril},
+           giveni={C\bibinitperiod}}}%
+        {{hash=fb3f314b8151bdf2c44844b77c28e773}{%
+           family={Kirchner},
+           familyi={K\bibinitperiod},
+           given={Claude},
+           giveni={C\bibinitperiod}}}%
+        {{hash=8440dbc02f0bdef37888b3fa8e79ae87}{%
+           family={Heide},
+           familyi={H\bibinitperiod},
+           given={Friedhelm\bibnamedelima Meyer},
+           giveni={F\bibinitperiod\bibinitdelim M\bibinitperiod},
+           prefix={auf\bibnamedelima der},
+           prefixi={a\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+        {{hash=c4296491852f37edf0749e69549f8d93}{%
+           family={Spirakis},
+           familyi={S\bibinitperiod},
+           given={Paul\bibnamedelima G.},
+           giveni={P\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{1cad7417b1d6f3cfa11441b387bd2f34}
+      \strng{fullhash}{1a67ef4752a949085f94859a47cad7ab}
+      \strng{fullhashraw}{1a67ef4752a949085f94859a47cad7ab}
+      \strng{bibnamehash}{1cad7417b1d6f3cfa11441b387bd2f34}
+      \strng{authorbibnamehash}{1cad7417b1d6f3cfa11441b387bd2f34}
+      \strng{authornamehash}{1cad7417b1d6f3cfa11441b387bd2f34}
+      \strng{authorfullhash}{1a67ef4752a949085f94859a47cad7ab}
+      \strng{authorfullhashraw}{1a67ef4752a949085f94859a47cad7ab}
+      \strng{editorbibnamehash}{d8bd77fe10bf40874a3818a06030a225}
+      \strng{editornamehash}{d8bd77fe10bf40874a3818a06030a225}
+      \strng{editorfullhash}{1b17156b01e26f4fc058486756bb70c6}
+      \strng{editorfullhashraw}{1b17156b01e26f4fc058486756bb70c6}
+      \field{labelalpha}{Jac+10}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The well known binary search method can be described as the process of identifying some marked node from a line graph $T$ by successively querying edges. An edge query $e$ asks in which of the two subpaths induced by $T \setminus e$ the marked node lies. This procedure can be naturally generalized to the case where $T = (V,E)$ is a tree instead of a line. The problem of determining a tree search strategy minimizing the number of queries in the worst case is solvable in linear time [Onak et al. FOCS'06, Mozes et al. SODA'08].}
+      \field{booktitle}{Automata, Languages and Programming}
+      \field{isbn}{978-3-642-14165-2}
+      \field{title}{On the Complexity of Searching in Trees: Average-Case Minimization}
+      \field{year}{2010}
+      \field{pages}{527\bibrangedash 539}
+      \range{pages}{13}
+    \endentry
+    \entry{Jordan1869}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=4753aa856b798daf46b31ebe11a7a537}{%
+           family={Jordan},
+           familyi={J\bibinitperiod},
+           given={Camille},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {fre}%
+      }
+      \strng{namehash}{4753aa856b798daf46b31ebe11a7a537}
+      \strng{fullhash}{4753aa856b798daf46b31ebe11a7a537}
+      \strng{fullhashraw}{4753aa856b798daf46b31ebe11a7a537}
+      \strng{bibnamehash}{4753aa856b798daf46b31ebe11a7a537}
+      \strng{authorbibnamehash}{4753aa856b798daf46b31ebe11a7a537}
+      \strng{authornamehash}{4753aa856b798daf46b31ebe11a7a537}
+      \strng{authorfullhash}{4753aa856b798daf46b31ebe11a7a537}
+      \strng{authorfullhashraw}{4753aa856b798daf46b31ebe11a7a537}
+      \field{labelalpha}{Jor69}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal für die reine und angewandte Mathematik}
+      \field{title}{Sur les assemblages de lignes.}
+      \field{volume}{70}
+      \field{year}{1869}
+      \field{pages}{185\bibrangedash 190}
+      \range{pages}{6}
+      \verb{urlraw}
+      \verb http://eudml.org/doc/148084
+      \endverb
+      \verb{url}
+      \verb http://eudml.org/doc/148084
+      \endverb
+      \keyw{straight lines,symmetry,self similarity}
+    \endentry
+    \entry{KATCHALSKI1995141}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=03202cd0c59b1aa2414824a9b2b23e15}{%
+           family={Katchalski},
+           familyi={K\bibinitperiod},
+           given={Meir},
+           giveni={M\bibinitperiod}}}%
+        {{hash=8a166129662d8164376850180debaf35}{%
+           family={McCuaig},
+           familyi={M\bibinitperiod},
+           given={William},
+           giveni={W\bibinitperiod}}}%
+        {{hash=3b9058ccd67ca2395300b44c09e92b42}{%
+           family={Seager},
+           familyi={S\bibinitperiod},
+           given={Suzanne},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{b138f7e303ddcd89104e131a1d392acc}
+      \strng{fullhash}{b138f7e303ddcd89104e131a1d392acc}
+      \strng{fullhashraw}{b138f7e303ddcd89104e131a1d392acc}
+      \strng{bibnamehash}{b138f7e303ddcd89104e131a1d392acc}
+      \strng{authorbibnamehash}{b138f7e303ddcd89104e131a1d392acc}
+      \strng{authornamehash}{b138f7e303ddcd89104e131a1d392acc}
+      \strng{authorfullhash}{b138f7e303ddcd89104e131a1d392acc}
+      \strng{authorfullhashraw}{b138f7e303ddcd89104e131a1d392acc}
+      \field{labelalpha}{KMS95}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Let k be a positive integer. An ordered k-colouring of a graph G is a function c from V(G) into {1,…,k} such that for every pair of distinct vertices x and y and for every (x, y)-path P, if c(x) = c(y), then there exists an internal vertex z of P such that c(x) < c(z). We prove some theorems on ordered colourings of trees and planar graphs, and examine the relationship between connectivity and ordered colourings. Let A be a set of graphs which is ordered by subgraphs and closed under subgraphs. We characterize when A is a well-quasi-order. A generalization of ordered colourings is given.}
+      \field{issn}{0012-365X}
+      \field{journaltitle}{Discrete Mathematics}
+      \field{number}{1}
+      \field{title}{Ordered colourings}
+      \field{volume}{142}
+      \field{year}{1995}
+      \field{pages}{141\bibrangedash 154}
+      \range{pages}{14}
+      \verb{doi}
+      \verb https://doi.org/10.1016/0012-365X(93)E0216-Q
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/0012365X93E0216Q
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/0012365X93E0216Q
+      \endverb
+    \endentry
+    \entry{Knuth1973}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=1dd533466eb3313074d496394d319407}{%
+           family={Knuth},
+           familyi={K\bibinitperiod},
+           given={Donald},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Addison-Wesley}%
+      }
+      \strng{namehash}{1dd533466eb3313074d496394d319407}
+      \strng{fullhash}{1dd533466eb3313074d496394d319407}
+      \strng{fullhashraw}{1dd533466eb3313074d496394d319407}
+      \strng{bibnamehash}{1dd533466eb3313074d496394d319407}
+      \strng{authorbibnamehash}{1dd533466eb3313074d496394d319407}
+      \strng{authornamehash}{1dd533466eb3313074d496394d319407}
+      \strng{authorfullhash}{1dd533466eb3313074d496394d319407}
+      \strng{authorfullhashraw}{1dd533466eb3313074d496394d319407}
+      \field{labelalpha}{Knu73}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Art Of Computer Programming, vol. 3: Sorting And Searching}
+      \field{year}{1973}
+      \field{pages}{391\bibrangedash 392}
+      \range{pages}{2}
+      \keyw{publikationen puma}
+    \endentry
+    \entry{OnanOptimalSplitTreeProblem}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=aa976c59c588e6d392e96b8a984d3b68}{%
+           family={Kosaraju},
+           familyi={K\bibinitperiod},
+           given={S.\bibnamedelimi Rao},
+           giveni={S\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=ba7ee025cf72fa76ad5047623ce28da1}{%
+           family={Przytycka},
+           familyi={P\bibinitperiod},
+           given={Teresa\bibnamedelima M.},
+           giveni={T\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=50d170b28c97ac928a57d4503c9c3d01}{%
+           family={Borgstrom},
+           familyi={B\bibinitperiod},
+           given={Ryan},
+           giveni={R\bibinitperiod}}}%
+      }
+      \name{editor}{4}{}{%
+        {{hash=79492b3b4704b729b7c5bb0a9b87345c}{%
+           family={Dehne},
+           familyi={D\bibinitperiod},
+           given={Frank},
+           giveni={F\bibinitperiod}}}%
+        {{hash=60e6ebfd58ae1b67c030be2e0ecb6f57}{%
+           family={Sack},
+           familyi={S\bibinitperiod},
+           given={Jörg-Rüdiger},
+           giveni={J\bibinithyphendelim R\bibinitperiod}}}%
+        {{hash=31ec1fef089575af9737775d2e0d4cd6}{%
+           family={Gupta},
+           familyi={G\bibinitperiod},
+           given={Arvind},
+           giveni={A\bibinitperiod}}}%
+        {{hash=73002fbcaa8fe0ee76011401f23f2ab3}{%
+           family={Tamassia},
+           familyi={T\bibinitperiod},
+           given={Roberto},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{7f73355e49a7364853024e0640ba535a}
+      \strng{fullhash}{7f73355e49a7364853024e0640ba535a}
+      \strng{fullhashraw}{7f73355e49a7364853024e0640ba535a}
+      \strng{bibnamehash}{7f73355e49a7364853024e0640ba535a}
+      \strng{authorbibnamehash}{7f73355e49a7364853024e0640ba535a}
+      \strng{authornamehash}{7f73355e49a7364853024e0640ba535a}
+      \strng{authorfullhash}{7f73355e49a7364853024e0640ba535a}
+      \strng{authorfullhashraw}{7f73355e49a7364853024e0640ba535a}
+      \strng{editorbibnamehash}{df68388be0efe79552235de9f2859f85}
+      \strng{editornamehash}{df68388be0efe79552235de9f2859f85}
+      \strng{editorfullhash}{6a463776a77b50c4329164164fd3351a}
+      \strng{editorfullhashraw}{6a463776a77b50c4329164164fd3351a}
+      \field{labelalpha}{KPB99}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We introduce and study a problem that we refer to as the optimal split tree problem. The problem generalizes a number of problems including two classical tree construction problems including the Huffman tree problem and the optimal alphabetic tree. We show that the general split tree problem is NP-complete and analyze a greedy algorithm for its solution. We show that a simple modification of the greedy algorithm guarantees O(log n) approximation ratio. We construct an example for which this algorithm achieves $\Omega${\$}{\$}{\backslash}Omega {\backslash}left( {\{}{\backslash}frac{\{}{\{}{\backslash}log n{\}}{\}}{\{}{\{}{\backslash}log {\backslash}log n{\}}{\}}{\}} {\backslash}right){\$}{\$}approximation ratio. We show that if all weights are equal and the optimal split tree is of depth O(log n), then the greedy algorithm guarantees O{\$}{\$}{\backslash}Omega {\backslash}left( {\{}{\backslash}frac{\{}{\{}{\backslash}log n{\}}{\}}{\{}{\{}{\backslash}log {\backslash}log n{\}}{\}}{\}} {\backslash}right){\$}{\$}approximation ratio. We also extend our approximation algorithm to the construction of a search tree for partially ordered sets.}
+      \field{booktitle}{Algorithms and Data Structures}
+      \field{isbn}{978-3-540-48447-9}
+      \field{title}{On an Optimal Split Tree Problem}
+      \field{year}{1999}
+      \field{pages}{157\bibrangedash 168}
+      \range{pages}{12}
+    \endentry
+    \entry{Karbasi2013Constrained}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=00e3629d6179e65e4d89d9b7763254d4}{%
+           family={Karbasi},
+           familyi={K\bibinitperiod},
+           given={Amin},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2c86bc63bf74d8e4c305d0fa72b9657d}{%
+           family={Zadimoghaddam},
+           familyi={Z\bibinitperiod},
+           given={Morteza},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Schloss Dagstuhl--Leibniz-Zentrum für Informatik}%
+      }
+      \strng{namehash}{bd535f39e5cf23ac53d930805a0d4ac3}
+      \strng{fullhash}{bd535f39e5cf23ac53d930805a0d4ac3}
+      \strng{fullhashraw}{bd535f39e5cf23ac53d930805a0d4ac3}
+      \strng{bibnamehash}{bd535f39e5cf23ac53d930805a0d4ac3}
+      \strng{authorbibnamehash}{bd535f39e5cf23ac53d930805a0d4ac3}
+      \strng{authornamehash}{bd535f39e5cf23ac53d930805a0d4ac3}
+      \strng{authorfullhash}{bd535f39e5cf23ac53d930805a0d4ac3}
+      \strng{authorfullhashraw}{bd535f39e5cf23ac53d930805a0d4ac3}
+      \field{labelalpha}{KZ13}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{30th International Symposium on Theoretical Aspects of Computer Science (STACS)}
+      \field{series}{Leibniz International Proceedings in Informatics (LIPIcs)}
+      \field{title}{Constrained Binary Identification Problems}
+      \field{volume}{20}
+      \field{year}{2013}
+      \field{pages}{550\bibrangedash 561}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.4230/LIPIcs.STACS.2013.550
+      \endverb
+      \verb{urlraw}
+      \verb https://drops.dagstuhl.de/opus/volltexte/2013/3942
+      \endverb
+      \verb{url}
+      \verb https://drops.dagstuhl.de/opus/volltexte/2013/3942
+      \endverb
+    \endentry
+    \entry{Binpackingwithrestrictedpiecesizes}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=d866e0911bcf95f8f05a5238181d61d6}{%
+           family={Leung},
+           familyi={L\bibinitperiod},
+           given={Joseph\bibnamedelima Y-T.},
+           giveni={J\bibinitperiod\bibinitdelim Y\bibinithyphendelim T\bibinitperiod}}}%
+      }
+      \strng{namehash}{d866e0911bcf95f8f05a5238181d61d6}
+      \strng{fullhash}{d866e0911bcf95f8f05a5238181d61d6}
+      \strng{fullhashraw}{d866e0911bcf95f8f05a5238181d61d6}
+      \strng{bibnamehash}{d866e0911bcf95f8f05a5238181d61d6}
+      \strng{authorbibnamehash}{d866e0911bcf95f8f05a5238181d61d6}
+      \strng{authornamehash}{d866e0911bcf95f8f05a5238181d61d6}
+      \strng{authorfullhash}{d866e0911bcf95f8f05a5238181d61d6}
+      \strng{authorfullhashraw}{d866e0911bcf95f8f05a5238181d61d6}
+      \field{labelalpha}{Leu89}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Coffman et al. have recently shown that a large number of bin-packing problems can be solved in polynomial time if the piece sizes are drawn from the power set of an arbitrary positive integer q (i.e., the piece sizes are drawn from the set {1, q, q2, q3,…}). In this article we show that these problems remain NP-hard if the piece sizes are drawn from the power set of an arbitrary positive rational number r. We also show that the running time of the ϵ-approximation scheme recently proposed by Hochbaum and Shmoys for the multiprocessor scheduling problem can be reduced from O((n/ϵ)exp(1/ϵF)2) time to O(n/ϵ)exp((1/ϵ)log(1/ϵ)) time.}
+      \field{issn}{0020-0190}
+      \field{journaltitle}{Information Processing Letters}
+      \field{number}{3}
+      \field{title}{Bin packing with restricted piece sizes}
+      \field{volume}{31}
+      \field{year}{1989}
+      \field{pages}{145\bibrangedash 149}
+      \range{pages}{5}
+      \verb{doi}
+      \verb https://doi.org/10.1016/0020-0190(89)90223-8
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/0020019089902238
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/0020019089902238
+      \endverb
+      \keyw{Bin-packing problems,strongly NP-hard,ϵ-approximation algorithms,ϵ-approximation scheme,multiprocessor scheduling}
+    \endentry
+    \entry{ATightAnalysisofGreedy}{inbook}{}{}
+      \name{author}{3}{}{%
+        {{hash=c55186b489556bc688364af067ba156c}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Ray},
+           giveni={R\bibinitperiod}}}%
+        {{hash=86c032bbc45c3b616f0a1170befc0e82}{%
+           family={Liang},
+           familyi={L\bibinitperiod},
+           given={Percy},
+           giveni={P\bibinitperiod}}}%
+        {{hash=460ee14575a524105899b7d9f4784d30}{%
+           family={Mussmann},
+           familyi={M\bibinitperiod},
+           given={Stephen},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{47ba3ede2bf8b54511e82adbf4ccda06}
+      \strng{fullhash}{47ba3ede2bf8b54511e82adbf4ccda06}
+      \strng{fullhashraw}{47ba3ede2bf8b54511e82adbf4ccda06}
+      \strng{bibnamehash}{47ba3ede2bf8b54511e82adbf4ccda06}
+      \strng{authorbibnamehash}{47ba3ede2bf8b54511e82adbf4ccda06}
+      \strng{authornamehash}{47ba3ede2bf8b54511e82adbf4ccda06}
+      \strng{authorfullhash}{47ba3ede2bf8b54511e82adbf4ccda06}
+      \strng{authorfullhashraw}{47ba3ede2bf8b54511e82adbf4ccda06}
+      \field{labelalpha}{LLM}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Decision Tree is a classic formulation of active learning: given n hypotheses with nonnegative weights summing to 1 and a set of tests that each partition the hypotheses, output a decision tree using the provided tests that uniquely identifies each hypothesis and has minimum (weighted) average depth. Previous works showed that the greedy algorithm achieves a O(log n) approximation ratio for this problem and it is NP-hard beat a O(log n) approximation, settling the complexity of the problem. However, for Uniform Decision Tree, i.e. Decision Tree with uniform weights, the story is more subtle. The greedy algorithm's O(log n) approximation ratio was the best known, but the largest approximation ratio known to be NP-hard is 4 – ε. We prove that the greedy algorithm gives a approximation for Uniform Decision Tree, where COPT is the cost of the optimal tree and show this is best possible for the greedy algorithm. As a corollary, we resolve a conjecture of Kosaraju, Przytycka, and Borgstrom [20]. Our results also hold for instances of DecisioN Tree whose weights are not too far from uniform. Leveraging this result, for all α ϵ (0, 1), we exhibit a approximation algorithm to Uniform Decision Tree running in subexponential time . As a corollary, achieving any super-constant approximation ratio on Uniform Decision Tree is not NP-hard, assuming the Exponential Time Hypothesis. This work therefore adds approximating Uniform Decision Tree to a small list of natural problems that have subexponential time algorithms but no known polynomial time algorithms. Like the analysis of the greedy algorithm, our analysis of the subexponential time algorithm gives similar approximation guarantees even for slightly nonuniform weights. A key technical contribution of our work is showing a connection between greedy algorithms for Uniform Decision Tree and for Min Sum Set Cover.}
+      \field{booktitle}{Proceedings of the 2020 ACM-SIAM Symposium on Discrete Algorithms (SODA)}
+      \field{title}{A Tight Analysis of Greedy Yields Subexponential Time Approximation for Uniform Decision Tree}
+      \field{pages}{102\bibrangedash 121}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1137/1.9781611975994.7
+      \endverb
+      \verb{eprint}
+      \verb https://epubs.siam.org/doi/pdf/10.1137/1.9781611975994.7
+      \endverb
+      \verb{urlraw}
+      \verb https://epubs.siam.org/doi/abs/10.1137/1.9781611975994.7
+      \endverb
+      \verb{url}
+      \verb https://epubs.siam.org/doi/abs/10.1137/1.9781611975994.7
+      \endverb
+    \endentry
+    \entry{LABER2004209}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=448170d81530bea671b639d822051221}{%
+           family={Laber},
+           familyi={L\bibinitperiod},
+           given={Eduardo\bibnamedelima S.},
+           giveni={E\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=f6de30a886a2909a550be8b5316e607f}{%
+           family={Nogueira},
+           familyi={N\bibinitperiod},
+           given={Loana\bibnamedelima Tito},
+           giveni={L\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \strng{namehash}{87dc7070d0b011cf45630d9e937dcc0f}
+      \strng{fullhash}{87dc7070d0b011cf45630d9e937dcc0f}
+      \strng{fullhashraw}{87dc7070d0b011cf45630d9e937dcc0f}
+      \strng{bibnamehash}{87dc7070d0b011cf45630d9e937dcc0f}
+      \strng{authorbibnamehash}{87dc7070d0b011cf45630d9e937dcc0f}
+      \strng{authornamehash}{87dc7070d0b011cf45630d9e937dcc0f}
+      \strng{authorfullhash}{87dc7070d0b011cf45630d9e937dcc0f}
+      \strng{authorfullhashraw}{87dc7070d0b011cf45630d9e937dcc0f}
+      \field{labelalpha}{LN04}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Given a set of objects O and a set of tests T, the abstract decision tree problem (DTP) is to construct a tree with minimum height that completely identifies the objects of O, by using the tests of T. No algorithm with a good approximation ratio is known to solve this problem. We give a theoretical support for this fact by showing that DTP does not admit an o(log n)-approximation algorithm unless P=NP.}
+      \field{issn}{0166-218X}
+      \field{journaltitle}{Discrete Applied Mathematics}
+      \field{note}{Discrete Mathematics and Data Mining}
+      \field{number}{1}
+      \field{title}{On the hardness of the minimum height decision tree problem}
+      \field{volume}{144}
+      \field{year}{2004}
+      \field{pages}{209\bibrangedash 212}
+      \range{pages}{4}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.dam.2004.06.002
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0166218X04001787
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0166218X04001787
+      \endverb
+      \keyw{Algorithmical approximation,Computational complexity,Decision trees}
+    \endentry
+    \entry{Lam1998ERankOfGsIsH}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=d73a4f6294ac1dea98a0e3163d47574a}{%
+           family={Lam},
+           familyi={L\bibinitperiod},
+           given={Tak\bibnamedelima Wah},
+           giveni={T\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=94ddb6b009fdcb2469e2a29783ac7a63}{%
+           family={Yue},
+           familyi={Y\bibinitperiod},
+           given={Fung\bibnamedelima Ling},
+           giveni={F\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \strng{namehash}{fb7badbe63d0ffecfffea8127b1f5ebb}
+      \strng{fullhash}{fb7badbe63d0ffecfffea8127b1f5ebb}
+      \strng{fullhashraw}{fb7badbe63d0ffecfffea8127b1f5ebb}
+      \strng{bibnamehash}{fb7badbe63d0ffecfffea8127b1f5ebb}
+      \strng{authorbibnamehash}{fb7badbe63d0ffecfffea8127b1f5ebb}
+      \strng{authornamehash}{fb7badbe63d0ffecfffea8127b1f5ebb}
+      \strng{authorfullhash}{fb7badbe63d0ffecfffea8127b1f5ebb}
+      \strng{authorfullhashraw}{fb7badbe63d0ffecfffea8127b1f5ebb}
+      \field{labelalpha}{LY98}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{An edge ranking of a graph is a restricted coloring of the edges with integers. It requires that every path between two edges with the same label i contains an intermediate edge with label j > i. An edge ranking is optimal if it uses the least number of distinct labels among all possible edge rankings. Recent research has revealed that the problem of finding an optimal edge ranking when restricted to trees admits a polynomial-time solution, yet the complexity of the problem for general graphs has remained open in the literature. In this paper, we prove that finding an optimal edge ranking of a graph is NP-hard. Also, we show that even finding a reasonably small edge ranking is infeasible in some cases.}
+      \field{issn}{0166-218X}
+      \field{journaltitle}{Discrete Applied Mathematics}
+      \field{number}{1}
+      \field{title}{Edge ranking of graphs is hard}
+      \field{volume}{85}
+      \field{year}{1998}
+      \field{pages}{71\bibrangedash 86}
+      \range{pages}{16}
+      \verb{doi}
+      \verb https://doi.org/10.1016/S0166-218X(98)00029-8
+      \endverb
+      \keyw{NP-completeness,Graph labeling algorithms,Edge ranking,Computational complexity,Approximability}
+    \endentry
+    \entry{NESETRIL20061022}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=6aa15b331e7116166c27b5898ff32854}{%
+           family={Nešetřil},
+           familyi={N\bibinitperiod},
+           given={Jaroslav},
+           giveni={J\bibinitperiod}}}%
+        {{hash=dc44b19991f2a6d8e51bba9dd8274e48}{%
+           family={{Ossona de Mendez}},
+           familyi={O\bibinitperiod},
+           given={Patrice},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{12b6b701f7b166c6277d2d13e98af094}
+      \strng{fullhash}{12b6b701f7b166c6277d2d13e98af094}
+      \strng{fullhashraw}{12b6b701f7b166c6277d2d13e98af094}
+      \strng{bibnamehash}{12b6b701f7b166c6277d2d13e98af094}
+      \strng{authorbibnamehash}{12b6b701f7b166c6277d2d13e98af094}
+      \strng{authornamehash}{12b6b701f7b166c6277d2d13e98af094}
+      \strng{authorfullhash}{12b6b701f7b166c6277d2d13e98af094}
+      \strng{authorfullhashraw}{12b6b701f7b166c6277d2d13e98af094}
+      \field{labelalpha}{NO06}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We define the notions tree-depth and upper chromatic number of a graph and show their relevance to local–global problems for graph partitions. In particular we show that the upper chromatic number coincides with the maximal function which can be locally demanded in a bounded coloring of any proper minor closed class of graphs. The rich interplay of these notions is applied to a solution of bounds of proper minor closed classes satisfying local conditions. In particular, we prove the following result: For every graph M and a finite set F of connected graphs there exists a (universal) graph U=U(M,F)∈Forbh(F) such that any graph G∈Forbh(F) which does not have M as a minor satisfies G⟶U (i.e. is homomorphic to U). This solves the main open problem of restricted dualities for minor closed classes and as an application it yields the bounded chromatic number of exact odd powers of any graph in an arbitrary proper minor closed class. We also generalize the decomposition theorem of DeVos et al. [M. DeVos, G. Ding, B. Oporowski, D.P. Sanders, B. Reed, P. Seymour, D. Vertigan, Excluding any graph as a minor allows a low tree-width 2-coloring, J. Combin. Theory Ser. B 91 (2004) 25–41].}
+      \field{issn}{0195-6698}
+      \field{journaltitle}{European Journal of Combinatorics}
+      \field{number}{6}
+      \field{title}{Tree-depth, subgraph coloring and homomorphism bounds}
+      \field{volume}{27}
+      \field{year}{2006}
+      \field{pages}{1022\bibrangedash 1041}
+      \range{pages}{20}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.ejc.2005.01.010
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0195669805000570
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0195669805000570
+      \endverb
+    \endentry
+    \entry{OnakParys2006GenOfBSSInTsAndFLikePosets}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=1f65acb3611c87d8dc593d1c054eb716}{%
+           family={Onak},
+           familyi={O\bibinitperiod},
+           given={Krzysztof},
+           giveni={K\bibinitperiod}}}%
+        {{hash=f7213e8f75dbc8e88e04b571961d7461}{%
+           family={Parys},
+           familyi={P\bibinitperiod},
+           given={Pawel},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{7313044896bd3ea7d5ade6d256797cf1}
+      \strng{fullhash}{7313044896bd3ea7d5ade6d256797cf1}
+      \strng{fullhashraw}{7313044896bd3ea7d5ade6d256797cf1}
+      \strng{bibnamehash}{7313044896bd3ea7d5ade6d256797cf1}
+      \strng{authorbibnamehash}{7313044896bd3ea7d5ade6d256797cf1}
+      \strng{authornamehash}{7313044896bd3ea7d5ade6d256797cf1}
+      \strng{authorfullhash}{7313044896bd3ea7d5ade6d256797cf1}
+      \strng{authorfullhashraw}{7313044896bd3ea7d5ade6d256797cf1}
+      \field{labelalpha}{OP06}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2006 47th Annual IEEE Symposium on Foundations of Computer Science (FOCS'06)}
+      \field{title}{Generalization of Binary Search: Searching in Trees and Forest-Like Partial Orders}
+      \field{year}{2006}
+      \field{pages}{379\bibrangedash 388}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1109/FOCS.2006.32
+      \endverb
+      \keyw{File systems;File servers;Decision trees;Upper bound;Approximation algorithms;Computer science;Books;Testing}
+    \endentry
+    \entry{Pothen1988OptimalEliminationTrees}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=62b3bab4bd35abc88588eab9242d55dc}{%
+           family={Pothen},
+           familyi={P\bibinitperiod},
+           given={Alex},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Pennsylvania State University, Department of Computer Science}%
+      }
+      \strng{namehash}{62b3bab4bd35abc88588eab9242d55dc}
+      \strng{fullhash}{62b3bab4bd35abc88588eab9242d55dc}
+      \strng{fullhashraw}{62b3bab4bd35abc88588eab9242d55dc}
+      \strng{bibnamehash}{62b3bab4bd35abc88588eab9242d55dc}
+      \strng{authorbibnamehash}{62b3bab4bd35abc88588eab9242d55dc}
+      \strng{authornamehash}{62b3bab4bd35abc88588eab9242d55dc}
+      \strng{authorfullhash}{62b3bab4bd35abc88588eab9242d55dc}
+      \strng{authorfullhashraw}{62b3bab4bd35abc88588eab9242d55dc}
+      \field{labelalpha}{Pot88}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{4}
+      \field{note}{Penn State University CS‑88‑16}
+      \field{number}{CS‑88‑16}
+      \field{title}{The Complexity of Optimal Elimination Trees}
+      \field{type}{Technical Report}
+      \field{year}{1988}
+    \endentry
+    \entry{AlgorithmsforSchedulingIndependentTasks}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=afcc510216a9826d2d4569f9475adce8}{%
+           family={Sahni},
+           familyi={S\bibinitperiod},
+           given={Sartaj\bibnamedelima K.},
+           giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{afcc510216a9826d2d4569f9475adce8}
+      \strng{fullhash}{afcc510216a9826d2d4569f9475adce8}
+      \strng{fullhashraw}{afcc510216a9826d2d4569f9475adce8}
+      \strng{bibnamehash}{afcc510216a9826d2d4569f9475adce8}
+      \strng{authorbibnamehash}{afcc510216a9826d2d4569f9475adce8}
+      \strng{authornamehash}{afcc510216a9826d2d4569f9475adce8}
+      \strng{authorfullhash}{afcc510216a9826d2d4569f9475adce8}
+      \strng{authorfullhashraw}{afcc510216a9826d2d4569f9475adce8}
+      \field{labelalpha}{Sah76}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The following job sequencing problems are studied: (i) single processor job sequencing with deadlines, (ii) job sequencing on m-identical processors to minimize finish time and related problems, (iii) job sequencing on 2-identical processors to minimize weighted mean flow time.Dynamic programming type algorithms are presented to obtain optimal solutions to these problems, and three general techniques are presented to obtain approximate solutions for optimization problems solvable in this way. The techniques are applied to the problems above to obtain polynomial time algorithms that generate “good” approximate solutions.}
+      \field{issn}{0004-5411}
+      \field{journaltitle}{J. ACM}
+      \field{month}{1}
+      \field{number}{1}
+      \field{title}{Algorithms for Scheduling Independent Tasks}
+      \field{volume}{23}
+      \field{year}{1976}
+      \field{pages}{116\bibrangedash 127}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1145/321921.321934
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/321921.321934
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/321921.321934
+      \endverb
+    \endentry
+    \entry{Schaffer1989OptNodeRankOfTsInLinTime}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=7bc2b2aac9d2b739e535b53bf42f2146}{%
+           family={Schäffer},
+           familyi={S\bibinitperiod},
+           given={Alejandro\bibnamedelima A.},
+           giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{7bc2b2aac9d2b739e535b53bf42f2146}
+      \strng{fullhash}{7bc2b2aac9d2b739e535b53bf42f2146}
+      \strng{fullhashraw}{7bc2b2aac9d2b739e535b53bf42f2146}
+      \strng{bibnamehash}{7bc2b2aac9d2b739e535b53bf42f2146}
+      \strng{authorbibnamehash}{7bc2b2aac9d2b739e535b53bf42f2146}
+      \strng{authornamehash}{7bc2b2aac9d2b739e535b53bf42f2146}
+      \strng{authorfullhash}{7bc2b2aac9d2b739e535b53bf42f2146}
+      \strng{authorfullhashraw}{7bc2b2aac9d2b739e535b53bf42f2146}
+      \field{labelalpha}{Sch89}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Iyer, Ratliff, and Vijayan [Inform. Process. Lett. 28 (1988) 225–229] defines a ranking of an unrooted tree to be any mapping from the nodes of the tree to the set {1,2,…} such that if two distinct nodes v, w have the same rank, then there exists a node x on the path between v and w such that the rank of x is greater than the rank of v and w. They also define a ranking to be optimal if the largest rank assigned to some node is as small as possible among all rankings. They give an O(n log n) time algorithm to find an optimal ranking of an n-node tree. This note describes an O(n) time algorithm to find an optimal ranking of a tree.}
+      \field{issn}{0020-0190}
+      \field{journaltitle}{Information Processing Letters}
+      \field{number}{2}
+      \field{title}{Optimal node ranking of trees in linear time}
+      \field{volume}{33}
+      \field{year}{1989}
+      \field{pages}{91\bibrangedash 96}
+      \range{pages}{6}
+      \verb{doi}
+      \verb https://doi.org/10.1016/0020-0190(89)90161-0
+      \endverb
+      \keyw{Tree,ranking,separator,algorithm}
+    \endentry
+    \entry{Tradingoff}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=3b87565d1fda34aa13b95142585ed059}{%
+           family={Saettler},
+           familyi={S\bibinitperiod},
+           given={Aline},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c03b4d208d79418b725c02fdd2658b5c}{%
+           family={Laber},
+           familyi={L\bibinitperiod},
+           given={Eduardo},
+           giveni={E\bibinitperiod}}}%
+        {{hash=eb5d610745839a3a27ec15056cd09637}{%
+           family={Cicalese},
+           familyi={C\bibinitperiod},
+           given={Ferdinando},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{95e71e5e0565e88efed2a9ec88369bee}
+      \strng{fullhash}{95e71e5e0565e88efed2a9ec88369bee}
+      \strng{fullhashraw}{95e71e5e0565e88efed2a9ec88369bee}
+      \strng{bibnamehash}{95e71e5e0565e88efed2a9ec88369bee}
+      \strng{authorbibnamehash}{95e71e5e0565e88efed2a9ec88369bee}
+      \strng{authornamehash}{95e71e5e0565e88efed2a9ec88369bee}
+      \strng{authorfullhash}{95e71e5e0565e88efed2a9ec88369bee}
+      \strng{authorfullhashraw}{95e71e5e0565e88efed2a9ec88369bee}
+      \field{labelalpha}{SLC14}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{06}
+      \field{title}{Trading off Worst and Expected Cost in Decision Tree Problems and a Value Dependent Model}
+      \field{year}{2014}
+    \endentry
+    \entry{EffDPusingQI}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=d26de1cd5cefa44096e8d57d2fe58843}{%
+           family={Yao},
+           familyi={Y\bibinitperiod},
+           given={F.\bibnamedelimi Frances},
+           giveni={F\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Los Angeles, California, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{d26de1cd5cefa44096e8d57d2fe58843}
+      \strng{fullhash}{d26de1cd5cefa44096e8d57d2fe58843}
+      \strng{fullhashraw}{d26de1cd5cefa44096e8d57d2fe58843}
+      \strng{bibnamehash}{d26de1cd5cefa44096e8d57d2fe58843}
+      \strng{authorbibnamehash}{d26de1cd5cefa44096e8d57d2fe58843}
+      \strng{authornamehash}{d26de1cd5cefa44096e8d57d2fe58843}
+      \strng{authorfullhash}{d26de1cd5cefa44096e8d57d2fe58843}
+      \strng{authorfullhashraw}{d26de1cd5cefa44096e8d57d2fe58843}
+      \field{labelalpha}{Yao80}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Dynamic programming is one of several widely used problem-solving techniques in computer science and operation research. In applying this technique, one always seeks to find speed-up by taking advantage of special properties of the problem at hand. However, in the current state of art, ad hoc approaches for speeding up seem to be characteristic; few general criteria are known. In this paper we give a quadrangle inequality condition for rendering speed-up. This condition is easily checked, and can be applied to several apparently different problems. For example, it follows immediately from our general condition that the construction of optimal binary search trees may be speeded up from O(n3) steps to O(n2), a result that was first obtained by Knuth using a different and rather complicated argument.}
+      \field{booktitle}{Proceedings of the Twelfth Annual ACM Symposium on Theory of Computing}
+      \field{isbn}{0897910176}
+      \field{series}{STOC '80}
+      \field{title}{Efficient dynamic programming using quadrangle inequalities}
+      \field{year}{1980}
+      \field{pages}{429\bibrangedash 435}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1145/800141.804691
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/800141.804691
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/800141.804691
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

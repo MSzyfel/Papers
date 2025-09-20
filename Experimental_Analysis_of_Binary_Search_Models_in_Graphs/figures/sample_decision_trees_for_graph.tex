@@ -1,0 +1,51 @@
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \tikz [node distance = 16mm, rotate=-90]
+        \graph [spring layout]
+{
+  a -- { b, c, d, e};
+  b -- {c};
+  e -- {j, h};
+  d -- {i, f};
+  j -- {g[> orient=right]};
+  i -- {j, e, k};
+  g -- {l};
+  h --  a;
+  l -- {k};
+};
+        \caption[Sample graph]{}
+        \label{fig:graph}
+    \end{minipage}
+    \begin{minipage}{0.34\textwidth}
+        \centering
+        \tikz [tree layout, grow=-90,
+               sibling distance=11mm, level distance=14.5mm,]
+          \graph {
+            ""[as=$e$] ->
+            ""[as=$i$] -> { ""[as=$a$] -> { ""[as=$c$] -> ""[as=$b$],  ""[as=$h$],""[as=$f$] -> ""[as=$d$]}, ""[as=$g$] -> {""[as=$j$], ""[as=$k$] -> ""[as=$l$]}}
+          };
+        \caption[Vertex decision tree for a graph]{}
+        \label{fig:dt_g_v}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \tikz [tree layout, grow=-90,
+               sibling distance=10, 
+               level distance=8mm]
+            \graph {
+            ""[as=$ef$] -> 
+            ""[as=$ei$] -> 
+            ""[as=$ad$] -> {
+                ""[as=$ae$] -> ""[as=$ac$] -> ""[as=$ah$] -> {""[as=$eh$], ""[as=$ab$] -> ""[as=$bc$]},
+                ""[as=$ij$] -> ""[as=$ik$] -> {""[as=$di$] -> ""[as=$df$], ""[as=$kl$] -> ""[as=$gl$] -> ""[as=$gj$]}
+              }
+            };
+    \caption[Edge decision tree for a graph]{}
+    \label{fig:dt_g_e}
+    \end{minipage}
+        \caption[Graph and decision trees for it]{Sample input graph $G$ (Figure \ref{fig:graph}) and two decision trees for $G$: one for the Vertex Tree Graph Problem (Figure \ref{fig:dt_g_v}) and one for the Edge Graph Search Problem (Figure \ref{fig:dt_g_e}).}                  \label{fig:sample_decision_trees_for_graph}
+\end{figure}

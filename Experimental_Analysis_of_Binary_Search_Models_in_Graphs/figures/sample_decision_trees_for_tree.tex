@@ -1,0 +1,45 @@
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.34\textwidth}
+        \centering
+        \tikz [tree layout, grow=-65,
+               sibling distance=11mm, level distance=13mm,]
+          \graph {
+    ""[as=$a$] -- {
+        ""[as=$b$] -- ""[as=$c$] -- {
+            ""[as=$d$] -- ""[as=$e$],
+            ""[as=$f$] -- { ""[as=$g$], ""[as=$h$], ""[as=$i$] }
+        },
+        ""[as=$j$] -- ""[as=$k$] -- { ""[as=$l$], ""[as=$m$] }
+    }
+};
+    \caption[Sample tree]{}
+    \label{fig:tree}
+    \end{minipage}
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \tikz [tree layout, grow=-90,
+               sibling distance=12mm, level distance=14mm,]
+          \graph {
+            ""[as=$c$] -> { ""[as=$j$] -> { ""[as=$a$] -> ""[as=$b$],  ""[as=$l$] -> {""[as=$k$] -> ""[as=$m$]}}, ""[as=$h$] -> {""[as=$f$] -> {""[as=$g$], ""[as=$i$]}},  ""[as=$d$] -> ""[as=$e$]}
+          };
+    \caption[Vertex decision tree for a tree]{}
+    \label{fig:dt_t_v}
+    \end{minipage}
+    \begin{minipage}{0.32\textwidth}
+        \centering
+        \tikz [tree layout, grow=-90,
+               sibling distance=12mm, level distance=14mm,]
+            \graph {
+              ""[as=$aj$] -> {
+                ""[as=$cf$] -> {""[as=$cd$] -> {""[as=$bc$], ""[as=$de$]},  ""[as=$fg$] -> ""[as=$fh$] -> ""[as=$fi$]]},
+                ""[as=$km$] -> ""[as=$jk$] -> ""[as=$kl$]
+              }
+            };
+        \caption[Edge decision tree for a tree]{}
+        \label{fig:dt_t_e}
+    \end{minipage}
+        \caption[Tree and decision trees for it]{Sample input tree $T$ (Figure \ref{fig:tree}) and two decision trees for $T$: one for the Vertex Tree Search Problem (Figure \ref{fig:dt_t_v}) and one for the Edge Tree Search Problem (Figure \ref{fig:dt_t_e}).}
+        \label{fig:sample_decision_trees_for_tree}
+\end{figure}

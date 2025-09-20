@@ -1,0 +1,49 @@
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+ & $q_1$ & $q_2$ & $q_3$ & $q_4$ & $q_5$ & $q_6$ & $q_7$ & $q_8$ & $q_9$\\
+\hline
+$a$ & 1 & 2 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+\hline
+$b$ & 1 & 1 & 1 & 1 & 2 & 2 & 1 & 1 & 1 \\
+\hline
+$c$ & 1 & 3 & 1 & 1 & 3 & 3 & 1 & 2 & 1 \\
+\hline
+$d$ & 1 & 3 & 2 & 1 & 3 & 1 & 1 & 2 & 1 \\
+\hline
+$e$ & 2 & 1 & 2 & 2 & 1 & 2 & 1 & 2 & 1 \\
+\hline
+$f$ & 2 & 2 & 2 & 1 & 1 & 1 & 1 & 2 & 1 \\
+\hline
+$g$ & 2 & 1 & 2 & 1 & 1 & 2 & 2 & 2 & 1 \\
+\hline
+$h$ & 2 & 1 & 2 & 3 & 2 & 3 & 1 & 2 & 1 \\
+\hline
+$i$ & 2 & 1 & 2 & 1 & 2 & 3 & 1 & 2 & 2 \\
+\hline
+$j$ & 2 & 1 & 2 & 1 & 2 & 2 & 2 & 2 & 2 \\
+\hline
+$k$ & 2 & 1 & 2 & 4 & 2 & 2 & 2 & 2 & 2 \\
+\hline
+\end{tabular}
+        \caption[Sample Binary Identification Problem instance]{}
+        \label{bip}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \tikz [tree layout, grow=-90,
+               sibling distance=14mm, level distance=9.5mm]
+            \graph {
+            ""[as=$q_8$] -> {""[as=$q_6$], ""[as=$q_9$] -> {""[as=$q_1$] -> {""[as=$q_3$], ""[as=$q_5$] -> {""[as=$q_2$] -> ""[as=$q_7$]}},""[as=$q_6$] -> {""[as=$q_4$]}}}
+            };
+        \caption[Decision tree for Binary Identification Problem instance]{}
+        \label{fig:dt_bip}
+    \end{minipage}
+    \caption[Sample Binary Identification Problem instance and Decision Tree for it]{Sample Binary Identification Problem instance (Figure \ref{bip}) and a decision tree for it (Figure \ref{fig:dt_bip}).}
+    \label{fig:sample_decision_tree_binary_identification_problem}
+\end{figure}

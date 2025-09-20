@@ -1,0 +1,53 @@
+\documentclass[10pt]{report}
+
+\usepackage{template}
+\usepackage[backend=biber,style=alphabetic]{biblatex}
+\addbibresource{bibliography.bib}
+
+\input{glossary}
+\input{nomenclature}   
+
+% Custom title page commands
+\newcommand{\supervisor}{prof. dr. hab. inż. Dariusz Dereniowski}
+\newcommand{\university}{Faculty of Electronics, Telecommunications and Informatics\\Gdańsk University of Technology, Poland}
+\newcommand{\theauthor}{Michał Szyfelbein}
+\newcommand{\thetitle}{Experimental Analysis of Binary Search Models in Graphs}
+\begin{document}
+\usetikzlibrary {graphs,graphdrawing} \usegdlibrary {trees, layered, force}
+
+\begin{titlepage}
+    \centering
+    \vspace*{2.5cm}
+    {\Large\MakeUppercase{\university} \par}
+    \vspace{3cm}
+    {\Huge\bfseries\thetitle\par}
+    \vspace{3cm}
+    {\LARGE\theauthor \par}
+    \vspace{1.5cm}
+    {\large Supervisor: \supervisor \par}
+    \vfill
+    {\large \today}
+\end{titlepage}
+
+\include{chapters/abstract}
+
+\singlespacing
+\printnomenclature[0.5\textwidth]
+\onehalfspacing
+
+\printglossaries
+
+\tableofcontents
+\listoffigures
+\listoftables
+\include{chapters/introduction}
+\include{chapters/notions_and_definitions}
+\include{chapters/theoretical_analysis}
+\include{chapters/experimental_results}
+\include{chapters/conclusions}
+\appendix
+\include{appendix/figures}
+
+\printbibliography
+\include{appendix/appendix}
+\end{document}
