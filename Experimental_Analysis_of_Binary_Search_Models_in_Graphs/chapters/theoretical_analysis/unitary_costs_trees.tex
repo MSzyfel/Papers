@@ -1,0 +1,101 @@
+\section{Unitary costs, trees}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\subsection{Worst case}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\subsection{Average case, non-uniform weights}
+The problem of average case searching is also solvable in polynomial time assuming all of the weight are uniform. However the procedure is the same as for the weighted case and only the running time differ. Hence we combine these results in one section. Note that it is yet unknown whether the same holds for the weighted version of the problem and the fastest known algorithm runs in pseudopolynomial time. Using this one may also obtain a FPTAS using a standard rounding trick. Before that, however we show that a simple greedy heuristics achieves a 2-approximation for $T|V,w|\sum C_j$.
+\paragraph{A warm up: greedy achieves 2-approximation for $T|V,w|\sum C_j$}
+The weight centroid is a vertex $c\in T$ such that for every $H\in T-c$ we have that $w\br{h}\leq \frac{w\br{T}}{2}$. The existence of the (unweighted) centroid has been known since 19th century \cite{Jordan1869}. The proof of the existence of the weight centroid i straightforward and can be summarized as follows: pick any vertex $v\in T$ and if its not a weight centroid move to the neighbor $v'$ of $v$ such that the $H\in T-v$ such that $v'\in H$ has weight $w\br{H}>\frac{w\br{T}}{2}$. It is easily observable that the algorithm always succeeds and visits each vertex at most once. The greedy algorithm is as follows: pick the centroid $c$ of $T$ as the root of the decision tree for $T$ and proceed recursively in $T-c$. The following analysis of greedy is due to \cite{Fast_app_centroid_trees}.
+
+\begin{theorem}
+    Let $D_c$ be the cost of the greedy solution. Then $\COST_{D_c}\br{T}\leq 2\OPT\br{T}-w\br{T}$.
+    \begin{proof}
+        We start with the following lemma:
+        \begin{lemma}\label{lemma:avg_lb_centroid}
+            Let $D$ be any decision tree for $T$ and let $c$ be the centroid of $T$. Then:
+            $$
+            \OPT\br{T}\geq \frac{w\br{T}}{2}+\frac{w\br{c}}{2}+\sum_{H\in T-c}\OPT\br{H}
+            $$
+            \begin{proof}
+                Let $r=r\br{D}$. There are two cases:
+                \begin{enumerate}
+                    \item $r=c$. In such case the cost of the solution is trivially lower bounded by:
+                    $$
+                    \COST_{D}\br{T}\geq w\br{T}+\sum_{H\in T-r}\OPT\br{H}\geq \frac{w\br{T}}{2}+\frac{w\br{c}}{2}+\sum_{H\in T-c}\OPT\br{H}
+                    $$
+                    \item $r\neq c$. In such case denote by $H_r$ the connected component of $T-c$ such that $r\in H_r$. We have that the contribution of each $v\in H_r$ is at least $\spr{Q_{D|H_r}\br{v}}$ so the overall contribution of vertices in $H_r$ is at least $\COST_{D|H_r}\br{H_r}$. For every $H\in T-c$ such that $H\neq H_r$ and $v\in H$ we have that $\brc{r}\cup Q_{D|H}\br{v}\subseteq Q_{D}\br{v}$ so we have that the contribution of vertices in $H$ is at least $w\br{H}+\COST_{D|H}\br{H}$. Additionally the contribution of $c$ is at least $w\br{c}$ since query to $r$ precedes the query to $c$. We have that:
+                    \begin{align*}
+                        \COST_D\br{T}&\geq 2w\br{c}+\COST_{D|H_r}\br{H_r}+\sum_{H\in T-c, H\neq H_r}\br{w\br{H}+w\br{c}+\COST_{D|H}\br{H}}\\
+                        &\geq w\br{T}-w\br{H_r}+\sum_{H\in T-c}\OPT_{D|H}\br{H}\\
+                        &\geq \frac{w\br{T}}{2}+w\br{c}+\sum_{H\in T-c}\OPT_{D|H}\br{H}
+                    \end{align*}
+                    where in the last inequality we used the fact that $c$ is a centroid of $T$.
+                \end{enumerate}
+            \end{proof}
+        \end{lemma}
+        The proof is by induction on the size of $T$. When $n\br{T}=1$ we have that $\COST_{D_c}\br{T}=w\br{T}=2\OPT\br{T}-w\br{T}$. Assume therefore that $n\br{T}>1$ and let $c$ be the centroid of $T$. We have that:
+        \begin{align*}
+            \COST_{D_c}\br{T} &= w\br{T}+\sum_{H\in T-c}\COST_{D_c|H}\br{H}\\
+            &\leq w\br{T}+\sum_{H\in T-c}\br{2\cdot\OPT\br{H}-w\br{H}}\\
+            &= w\br{c}+\sum_{H\in T-c}2\cdot\OPT\br{H}\\\
+            &\leq 2\OPT\br{T}-w\br{T}
+        \end{align*}
+        where the first inequality is by the induction hypothesis and the second inequality is by the Lemma \ref{lemma:avg_lb_centroid}.
+    \end{proof}
+\end{theorem}
+\begin{theorem}
+    The greedy decision tree can be found in $O\br{n\log n}$ running time.
+    \begin{proof}
+        We use the data structure called \textit{top trees}. The top trees are used to maintain dynamic forests under
+insertion and deletion of edges. The following theorem is due to \cite{toptrees}:
+    \begin{theorem}
+        We can maintain a forest with positive vertex weights on n vertices
+under the following operations:
+\begin{enumerate}
+    \item Add an edge between two given vertices $u$, $v$ that are not in the same connected component.
+    \item Remove an existing edge.
+    \item Change the weight of a vertex.
+    \item Retrieve a pointer to the tree containing a given vertex.
+    \item Find the centroid of a given tree in the forest.
+\end{enumerate}
+Each operation requires $O\br{\log n}$ time. A forest without edges and with n arbitrarily weighted vertices can be
+initialized in $O\br{n}$ time.
+    \end{theorem}
+        We begin with building the top tree out of $T$. We begin with empty top tree and add each edge one by one. Then we find the centroid of $T$ and remove each edge incident to it. Then we recurse on this new created tree (excluding the subtree consisting of $c$). Since the algorithm finds each vertex once and removes each edge once the total running time is of order $O\br{n\log n}$.
+    \end{proof}
+\end{theorem}
+\paragraph{PTAS for $T|V,w|\sum C_j$}
+\paragraph{FPTAS for $T|V,w|\sum C_j$}
+As it turns out one may employ a different dynamic programming technqieu to obtain an FPTAS for $T|V,w|\sum C_j$. To do so, we firstly design a pseudopolynomial time procedure which then combine with a standard rounding scheme. To do so, we begin with the following bound due to \cite{Fast_app_centroid_trees} (we managed to simplify the proof a bit):
+\begin{theorem}
+    Let $D^*$ be the optimal decision tree for $T|V,w|\sum C_j$. Then we have:
+    $$\COST_{max, D^*}\br{T}\leq \cl{\log_{3/2}w\br{T}}$$
+    \begin{proof}
+        For the sake of the argument we define the following operation. Let $D$ be a decision tree for some tree $T$ and $v\in V\br{T}$. We define $D_v$ to be a decision tree such that $r\br{D}=v$. Additionally, for each $H\in T-v$ we hang $D_{|H}$ below $v$ in $D$. This operation is called a \textit{lifting} of a vertex. Let $x,v\in V\br{T}$ and $H_x\in T-v$ such that $x\in H_x$ if $x\neq v$. We have:
+        $$
+        Q_{D^v}\br{x}=\begin{cases}
+            \brc{v} \text{if } x=v\\
+            \brc{v}\cap \br{Q_{D}\br{x}\cup V\br{H}} \text{otherwise }
+        \end{cases}
+        $$
+        We will show that after each query the size of the candidate subset decreases by a factor of $2/3$. To do so, assume contrary. Let $D$ be a minimum height decision tree for which this is not the case. By doing so we can assume that $r=r\br{D}$ has a child $c$ such that $w\br{D_y}> \frac{2w\br{T}}{3}$. Let $H_r$ denote the set of vertices not in the same component of $T-r$ as $c$ and $H_c$ denote the set of vertices not in the same component of $T-c$ as $r$. We also define $H_{r, c}=V\br{T}-H_r-H_c$. By the assumption $w\br{H_c\cup H_{r, c}}>\frac{2w\br{T}}{3}$ and $w\br{H_r}<\frac{w\br{T}}{3}$. There are two cases:
+        \begin{enumerate}
+            \item $w\br{H_c}>\frac{w\br{T}}{3}$. In such case we augment $D$ by lifting $c$. The query sequences of vertices in $H_c$ decrease by one query, the
+query sequences of vertices in $H_r$ increase by one and query sequences of vertices in $H_{r,c}$ remain unchanged. We have:
+$$
+\COST_{avg, D^v}\br{T}-\COST_{avg, D}\br{T}=w\br{H_r}-w\br{H_c}< 0
+$$
+thus, a contradiction.
+\item $w\br{H_c}\leq \frac{w\br{T}}{3}$. We have that $w\br{H_{r, c}}$ and additionally $H_{r, c}\neq\emptyset$. Let $s\in P\br{r, c}$. In such case we augment $D$ by lifting $s$. The query sequences of vertices in
+$H_{c}$ remain  unchanged, since these vertices gain $t$ and lose $r$ as ancestors. The query sequences of vertices in $H_{r,c}$ are
+decreased by at least one query, since each loses at least one ancestor from ${c, r}$. The query sequences of
+vertices in $H_r$ increase by one, since each of these vertices gains $t$ as ancestor. We have:
+$$
+\COST_{avg, D^v}\br{T}-\COST_{avg, D}\br{T}=w\br{H_r}-w\br{H_{r,c}}< 0
+$$
+again, a contradiction.
+        \end{enumerate}
+As after each query to size of the candidate subset shrinks by the ratio of $2/3$ the claim follows.
+    \end{proof}
+\end{theorem}
+The above bound on the cost allows us to assume that the height of the optimal decision tree is of order of $O\br{l\log w\br{T}}$. We will exploit the fact to build a btoom-up dynamic programming algorithm which for every $v\in V\br{T}$ will enumerate all possible "shapes" of the query sequence toward $v$. As to place the query to $v$ we only need an information about which spots in this query sequences are free and which are not, at most $2^{O\br{\log w\br{T}}}=\text{poly}\br{W}$ options need to be checked. 

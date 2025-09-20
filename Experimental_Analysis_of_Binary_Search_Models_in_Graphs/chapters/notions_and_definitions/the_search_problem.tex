@@ -1,31 +1,3 @@
-\chapter{Notions and Definitions}
-
-\section{Graph theory}
-A \textit{\gls{graph}} is a pair $G=\br{V\br{G}, E\br{G}}$ where $V\br{G}$ is the set of \textit{vertices} and $E\br{E}$ is the set of \textit{edges} which are unordered pairs of vertices. We denote $n\br{G}=\spr{V\br{G}}$ and $m\br{G}=\spr{E\br{G}}$. For $u,v \in V\br{G}$ by $uv$ we denote the edge which connects them. A \textit{subgraph} of a graph $G$ is another graph $G'$ formed from a subset of the vertices and edges of $G$. For any $V'\subseteq V\br{G}$ by $G[V']$ we denote the \textit{subgraph induced} by $V'$ in $G$ (i. e. for every $u,v\in V'$ if $uv\in E\br{G}$, then also $uv\in E\br{G'}$).  Additionally, by $G-V'$ we denote the set of connected components occurring after deleting all vertices in $V'$ from $G$. The set of \textit{neighbors} of $v\in V\br{G}$ will be denoted as $N_G\br{v} = \brc{u\in V\br{G}|uv\in E\br{G}}$ and the set of neighbors of subgraph $G'$ of $G$ as $N_G\br{G'} = \bigcup_{v\in V\br{G'}}N_G\br{v}-V\br{G'}$. By $\deg_{G}\br{v}=\spr{N_G\br{v}}$ we will denote the \textit{degree} of $v$ in $G$. By $\Delta\br{G} = \max_{v\in V\br{G}}\brc{\spr{\deg\br{v}}}$ we denote the degree of $G$.
-
-A \textit{cycle} is a non-empty sequence of vertices in which for every two consecutive vertices $u,v$: $uv \in E\br{G}$ and only the first and last vertices are equal. A \textit{tree} $T$ is a connected graph that contains no cycle. A \textit{forest} is a (not necessarily connected) graph that contains no cycle. A \textit{path} $P$ is a tree such that $\Delta\br{P} = 2$. Let $v\in V\br{T}$. The \textit{outdegree} of $v$ in $T$ will be denoted as $\deg_T^+\br{v}=\spr{\mathcal{C}_T\br{v}}$.
-By $P_{T}\br{u, v}=T\angl{\brc{u,v}}-\brc{u,v}$ we denote a path of vertices between $u$ and $v$ in $T$ (excluding $u$ and $v$). Analogously, for $V_1,V_2\in V\br{T}$ we define $P_{T}\br{V_1, V_2}=T\angl{V_1\cup V_2}-\br{V_1\cup V_2}$.
-For any we denote the minimal connected subtree of $T$ containing all vertices from $V'$ by $T\angl{V'}$.
-
-A partial ordering $\preceq$ is a two-argument relationship which is: reflective ($a\preceq a$), antisymmetric (if $a\preceq b$ and $b \preceq a$ then $a=b$) and transitive (if $a\preceq b$ and $b \preceq c$ then $a\preceq c$).
-A poset is a pair $\mathcal{P}=\br{X, \preceq}$ where $X$ is the set of elements and $\preceq$ is a partial ordering of elements of in $X$. When clear from the context the set $X$ itself is also sometimes called a poset. 
-\section{Optimization algorithms}
-A \textit{minimization problem} is one in which given an input $I$, the set of valid solutions $S$ and a cost function $c:S \to \mathbb{R}^+$ we are required to find a solution $s^*\in S$ such that $c\br{s^*}=\min_{s\in S}\brc{c\br{s}}$. Analogously, a \textit{maximization problem} is one in which we are required to find a solution $s^*\in S$ such that $c\br{s^*}=\max_{s\in S}\brc{c\br{s}}$. For both types of problems we define $\OPT\br{I} = c\br{s^*}$. Given an instance $\br{I, S, c}$ of a minimization problem such that $\spr{I} = n$, an $\alpha\br{n}$-approximation algorithm is an algorithm which always outputs a solution $s$ such that:
-$$
-\frac{c\br{s}}{\OPT\br{I}} \leq \alpha\br{n}
-$$
-Analogously, for a maximization problem such an $\alpha\br{n}$-approximation algorithm is an algorithm which always outputs a solution $s$ such that:
-$$
-\frac{c\br{s}}{\OPT\br{I}} \geq \alpha\br{n}
-$$
-If $\alpha\br{n}=O\br{1}$ we say that the algorithm is a constant factor approximation algorithm for $I$. If $\alpha\br{n}=1$ we say that the algorithm is an exact algorithm for $I$. For a minimization problem if for every $0<\epsilon\leq1$ the algorithm provides a $\br{1+\epsilon}$-approximation (or a $\br{1-\epsilon}$-approximation in case of a maximization problem) and:
-\begin{itemize}
-    \item Runs in time $\text{poly}\br{n/\epsilon}$, then it is called a Fully-Polynomial Time Approximation Scheme (FPTAS).
-    \item Runs in time $f\br{\epsilon}\cdot\text{poly}\br{n}$ for some computable function $f$, then it is called a Efficient-Polynomial Time Approximation Scheme (EPTAS).
-    \item Runs in time $n^{O\br{1/\epsilon}}$, then it is called a Polynomial Time Approximation Scheme (PTAS).
-    \item Runs in time $n^{\text{poly}\br{\log n/\epsilon}}$, then it is called a Quasi-Polynomial Time Approximation Scheme (QPTAS).
-\end{itemize}
-
 \section{The Search Problem}
 
 Below we list the definitions regarding the search problem. We start with definitions of all viable search spaces and query models connected with them. Since the problem has a modular form and one can almost freely swap criteria and constraints, the number of separate variants is very large. Due to this we define all of the possible search spaces, query models and criteria separately and then we formulate the \textit{General Search Problem} based on the chosen variant.

@@ -1,0 +1,65 @@
+\section{The three field notation for the search problem}
+One may see that the multiplicity of variants for the problem have started to be somewhat problematic. Ideally, we would like to introduce some unified way of speaking about the problem to avoid ambiguity. This is problematic because historically, various variants of the problem were often explored independently. To alleviate this inconvenience we introduce the following three field notation resembling the notation commonly used in task scheduling problems. Similarly, our notation will consists of the three following fields: $\alpha, \beta$ and $\gamma$. The $\alpha$ field is the search space environment field resembling the machine environment. The $\beta$ field is the query characteristics which resembles the job characteristics. The $\gamma$ field is the objective function which we are trying to optimize. In order not to confuse these two notations in contrary to single line separator used in scheduling ($\alpha|\beta|\gamma$), we will separate the three fields with doubled lines: $\alpha||\beta||\gamma$. The following table showcases example variants which may be considered:
+
+\begin{table}[ht]
+\centering
+\begin{tabularx}{\textwidth}{|X|X|X|}
+\hline
+\text{$\alpha$ - search space } & \text{$\beta$ - query characteristics } & \text{$\gamma$ - objective value} \\
+\hline
+$P$ - paths
+\newline
+$T$ - trees
+\newline
+$POSET$ - POSETs
+\newline 
+$G$ - graphs
+\newline
+$HT$ - hypertrees
+\newline
+$HG$ - hypergraphs
+\newline
+$S$ - any set of hypothesis
+& 
+$E$ - edge queries
+\newline
+$V$ - vertex queries
+\newline
+$Q$ - any queries
+\newline
+$c$ - cost function on queries
+\newline
+$w$ - weight function on vertices
+\newline
+$d$ - due dates
+\newline
+$\Bar{d}$ - strict deadlines
+\newline
+$r$ - release times
+\newline
+$prec$ - precedences
+& 
+$C_{max}$ - maximum search time
+\newline
+$\sum C_i$ - average search time
+\newline
+$\sum U_i$ - throughtput
+\newline
+$F_{max}$ - maximum flow time
+\newline
+$\sum F_i$ - average flow time
+\newline
+$L_{max}$ - maximum lateness
+\newline
+$\sum L_i$ - average lateness
+\newline
+$T_{max}$ - maximum tardiness
+\newline
+$\sum T_i$ - average tardiness
+\\
+\hline
+\end{tabularx}
+\caption{Sample values for the three field notation for the search problem.}
+\end{table}
+
+The striking resemblance between these two notations suggests that we can view the search problem as a specific form of scheduling, in which the search strategy is the schedule and the queries are the jobs. From the perspective of the researcher however, the search problem is not nearly as explored as the scheduling problems and most of the variants which can be constructed using the table above are not even mentioned in the literature. It also seems, that the search problem is in a sense harder than the usual scheduling. For example, the best algorithm\footnote{This algorithm is obtained by a recursive usage of a QPTAS obtained via a non-trivial dynamic programming procedure. For details see: [insert ref here].} known for the NP-hard variant $T||V, c||C_{max}$ achieves an $O\br{\sqrt{\log n}}$-approximation \cite{dereniowski2017ApproxSsForGeneralBSinWTs}. A somewhat similar scheduling problem $P||C_{max}$ has a simple $\frac{4}{3}$-approximation algorithm based on sorting the jobs according to their costs \cite{BoundsonMultiprocessingTimingAnomalies}, admits a PTAS for an unbounded number of machines \cite{Binpackingwithrestrictedpiecesizes} and if the number of machines is bounded an FPTAS can be obtained \cite{AlgorithmsforSchedulingIndependentTasks}.

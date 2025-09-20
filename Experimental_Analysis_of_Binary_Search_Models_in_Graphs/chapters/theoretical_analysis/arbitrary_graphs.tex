@@ -1,0 +1,95 @@
+\section{Arbitrary graphs}
+% Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+% \subsection{Unitary costs, Worst case}
+% Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\subsection{Non-unitary costs, average case}
+Below we show how to generalize the approach we used for $T||V,c,w||\sum C_i$. We follow a similar notation as before. By $L_{\OPT}\br{k}$ we will denote the set of all maximal connected subgraphs of weight at most $k$ in $\OPT$. We will call such subgraphs clusters and we call such set the $k$-th \textit{level} of $\OPT$. Observe that as two clusters $H_1, H_2$ may only have a common part when $H_1\subseteq H_2$ or $H_2\subseteq H_1$, by the minimality we have that $H_1 \cap H_2 =\emptyset$. We denote $S_{\OPT}\br{k}=V\br{G}-L_{\OPT}\br{k}$. These are the vertices belonging to the separator at the level $L_{\OPT}\br{k}$. 
+However, in contrast to the analysis for $T||V,c,w||\sum C_i$, we will use a connection to a different problem. The (generalized) min-ratio vertex cut is as follows:
+
+\begin{tcolorbox}[colback=white, title= Min-ratio vertex cut, fonttitle=\bfseries, breakable]
+\paragraph{Input:} Graph $G=\br{V\br{G}, E\br{G}}$, the weight function $w:V\to \mathbb{N}^+$ and the cost function $c:V\to \mathbb{N}^+$.
+\paragraph{Output:} A partition $\br{A,S,B}$ of $V\br{G}$ such that there is no $u\in A$ and $v\in B$ such that $uv\in E\br{G}$ which minimizes the ratio:
+$$
+\alpha_{c,w}\br{A,S,B}=\frac{c\br{S}}{w\br{A\cup S}\cdot w\br{B\cup S}}
+$$
+\end{tcolorbox}
+
+Let $\OPT_{c,w}\br{G}$ denote the optimal value of such vertex cut.
+We invoke the following result by \cite{Improvedapproximationalgorithmsvertexseparators} however we do not present their proof if this fact since it is quite involved. However we use the result below as a black box:
+\begin{theorem}
+    Given a graph $G=\br{V\br{G}, E\br{G}}$, the weight function $w:V\to \mathbb{N}^+$ and the cost function $c:V\to\mathbb{N}^+$, there exists a
+polynomial-time algorithm which computes a partition $(A, S, B)$ for which:
+$$
+\alpha_{c,w}\br{A,S,B}=O\br{\sqrt{\log n
+}}\cdot\OPT_{c,w}\br{G}
+$$
+\end{theorem}
+We combine the latter with the following result which combined yield an $O\br{\sqrt{\log n
+}}$-approximation algorithm for $G||V,c,w||\sum C_i$:
+\begin{theorem}
+    Let $f_n$ be the approximation ratio of any (polynomial time) algorithm  for the min-ratio vertex cut. Then, given a graph $G=\br{V\br{G}, E\br{G}}$, the weight function $w:V\to \mathbb{N}^+$, the cost function $c:V\to\mathbb{N}^+$ there exists an $O\br{f_n}$-approximation algorithm for $G||V,c,w||\sum C_i$ running in polynomial time.
+    \begin{proof}
+        \input{pseudocodes/average_case_graphs}
+        As before we have the following property (we omit the proof as it is the same for case of arbitrary graphs):
+        \begin{lemma} $\OPT=\sum_{k=0}^{w\br{G}-1}c\br{S_{\OPT}\br{k}}$
+        \end{lemma}
+        By which follows that:
+            $$
+            2\cdot\OPT= 2\cdot\sum_{k=0}^{w\br{G}-1}c\br{S_{\OPT}\br{k}} \geq \sum_{k=0}^{w\br{G}}c\br{S_{\OPT}\br{\fl{k/2}}}
+            $$
+            
+        Let $\mathcal{G}$ be any cluster for which the procedure was called and let $r_{\mathcal{G}}=w\br{\mathcal{G}}$. Let $0<\beta<1$ be some constant. We have the following upper bound:
+            $$
+           \beta\cdot r_{\mathcal{G}}\cdot c\br{S_{\OPT}\br{\fl{r_{\mathcal{G}}/2}}\cap \mathcal{G}}
+            \leq \sum_{k=\br{1-\beta}r_{\mathcal{G}}+1}^{r_{\mathcal{G}}}c\br{S_{\OPT}\br{\fl{k/2}}\cap \mathcal{G}}
+            $$
+        Denote by $H_1,\dots,H_p$ the connected components of $\mathcal{G}-S_{\OPT}\br{\fl{r_{\mathcal{G}}/2}\cap \mathcal{G}}$. Let $\gamma_j=w\br{H_j}/r_{\mathcal{G}}$ and $s=w\br{S_{\OPT}\br{\fl{r_{\mathcal{G}}/2}\cap \mathcal{G}}}$. We have the following lemma:
+        \begin{lemma}
+            Let $\lambda=6+2\sqrt{5}$. We can partition $H_1,\dots,H_p$ into two sets $A$ and $B$, with $a=w\br{A}$ and $b=w\br{B}$ such that $\br{a+s}\br{b+s}\geq r_{\mathcal{G}}^2/\lambda$.
+            \begin{proof}
+                There are two cases:
+                \begin{enumerate}
+                    \item $s\geq r_{\mathcal{G}}/\sqrt{\lambda}$. In this case we take arbitrary partition $A, B$ of $H_1,\dots,H_p$. We have:
+                    $\br{a+s}\br{b+s}\geq s^2 = r_{\mathcal{G}}^2/\lambda $.
+                    \item $s \leq r_{\mathcal{G}}/\sqrt{\lambda}$.
+                Let $\gamma_A = \sum_{H_j\in A}\gamma_j$ and $\gamma_B = \sum_{H_j\in B}\gamma_j$. We have that $\gamma_A+\gamma_B\geq 1-\frac{1}{\sqrt{\lambda}}=\frac{\sqrt{\lambda}-1}{\sqrt{\lambda}}$. Let $A,B$ be the partition of $H_1,\dots,H_p$ into two subsets both of size at least $\br{\frac{\sqrt{\lambda}-1}{\sqrt{\lambda}}-\frac{1}{2}}\cdot r_{\mathcal{G}}$ (this is always possible as $\frac{\sqrt{\lambda}-1}{\sqrt{\lambda}} > \frac{1}{2}$ and for each $H_j$: $\gamma_j\leq 1/2$). We have:
+                $$
+                \br{a+s}\br{b+s}\geq ab \geq r_{\mathcal{G}}\cdot \br{\frac{\sqrt{\lambda}-1}{\sqrt{\lambda}}-\frac{1}{2}}\cdot\frac{r_{\mathcal{G}}}{2} = \frac{r_{\mathcal{G}}^2}{\lambda}
+                $$
+                (one can easily check that the equality is correct by substituting the value of $\lambda$). 
+                \end{enumerate}
+            \end{proof}
+        \end{lemma}
+        We therefore have the following upper bound on the value of the optimal min-ratio cut:
+                $$\OPT_{c,w}\br{\mathcal{G}}\leq \frac{\lambda\cdot c\br{S_{\OPT}\br{\fl{r_{\mathcal{G}}/2}}\cap \mathcal{G}}}{r_{\mathcal{G}}^2}$$
+        Let $\br{A_{\mathcal{G}},S_{\mathcal{G}}, B_{\mathcal{G}}}$ (with $a_{\mathcal{G}}=w\br{A_{\mathcal{G}}}$, $s_{\mathcal{G}}=w\br{S_{\mathcal{G}}}$, $b_{\mathcal{G}}=w\br{B_{\mathcal{G}}}$ and $a_{\mathcal{G}}\geq b_{\mathcal{G}}$) be the partition returned by the $f_n$-approximate algorithm so:
+        $$
+        \frac{c\br{S_{\mathcal{G}}}}{\br{a_{\mathcal{G}}+s_{\mathcal{G}}}\br{b_{\mathcal{G}}+s_{\mathcal{G}}}}\leq f_n \cdot \frac{\lambda} {r_{\mathcal{G}}^2}\cdot c\br{S_{\OPT}\br{\fl{r_{\mathcal{G}}/2}}\cap \mathcal{G}}
+        $$
+        Let $\beta=\br{b_{\mathcal{G}}+s_{\mathcal{G}}}/r_{\mathcal{G}}$. As $r_{\mathcal{G}}=a_{\mathcal{G}}+ s_{\mathcal{G}}+b_{\mathcal{G}}$ we have that $\br{1-\beta}r_{\mathcal{G}}+1 = a\br{\mathcal{G}}+1$ so we conclude that the contribution of the decision tree $D_{\mathcal{G}}$ is bounded by:
+        \begin{align*}
+        r_{\mathcal{G}}\cdot c\br{S_{\mathcal{G}}} &\leq \lambda \cdot f_n\cdot \frac{\br{a_{\mathcal{G}}+s_{\mathcal{G}}}\br{b_{\mathcal{G}}+s_{\mathcal{G}}}}{a_{\mathcal{G}}+s_{\mathcal{G}}+b_{\mathcal{G}}}\cdot c\br{S_{\OPT}\br{\fl{r_{\mathcal{G}}/2}}\cap \mathcal{G}}\\
+        & \leq 
+        \lambda \cdot f_n\cdot \br{b_{\mathcal{G}}+s_{\mathcal{G}}}\cdot c\br{S_{\OPT}\br{\fl{r_{\mathcal{G}}/2}}\cap \mathcal{G}} \\
+        &\leq 
+        \lambda \cdot f_n\cdot \sum_{k=a_{\mathcal{G}}+1}^{r_{\mathcal{G}}}c\br{S_{\OPT}\br{\fl{k/2}}\cap \mathcal{G}}
+        \end{align*}
+
+        As before, to bound the cost of the whole solution we will firstly show the following lemma. The argument is mostly the same, however there are few differences and we include it for completeness:
+            \begin{lemma}
+            $\sum_{\mathcal{G}}\sum_{k=a_{\mathcal{G}}+1}^{r_{\mathcal{G}}}c\br{S_{\OPT}\br{\fl{k/2}}\cap \mathcal{G}}\leq \sum_{k=0}^{w\br{G}}c\br{S_{\OPT}\br{\fl{k/2}}}$
+            \begin{proof}
+                Fix a value of $\mathcal{G}$ and $k$. Their contribution to the LHS is $c\br{S_{\OPT}\br{\fl{k/2}}\cap \mathcal{G}}$. Consider which clusters for which the algorithm is called contribute such term to the LHS. By definition of $S_{\mathcal{G}}$ we have that $\mathcal{G}$ is the minimal cluster such that $w\br{\mathcal{G}}\geq k\geq a_{\mathcal{G}}+1 >w\br{H}$ for every $H\in \mathcal{G}-S_{\mathcal{G}}$. This means that if for every $H\in \mathcal{G}-S_{\mathcal{G}}$: $w\br{H}<k$ then $\mathcal{G}$ contributes such a term. Using the fact that for every query, the set of possible responses consists of disjoint subgraphs, we conclude for all $H_1, H_2\in \mathcal{G}-S_{\mathcal{G}}$ we have that $H_1\cap H_2=\emptyset$. Therefore also $\br{S_{\OPT}\br{\fl{k/2}}\cap H_1}\cap \br{S_{\OPT}\br{\fl{k/2}}\cap H_2=\emptyset}$ and the claim follows by summing over all $k$.
+            \end{proof}
+            \end{lemma}
+        We are now ready to bound the cost of the solution. Let $D_G$ be the decision tree returned by the procedure.
+        \begin{align*}
+            c\br{D_{G}}&\leq \sum_{\mathcal{G}}r_{\mathcal{G}}\cdot c\br{S_{\mathcal{G}}}\\
+            &\leq \lambda \cdot f_n\cdot \sum_{\mathcal{G}}\sum_{k=a_{\mathcal{G}}+1}^{r_{\mathcal{G}}}c\br{S_{\OPT}\br{\fl{k/2}}\cap \mathcal{G}}\\
+            &\leq
+            \lambda \cdot f_n\cdot\sum_{k=0}^{w\br{G}}c\br{S_{\OPT}\br{\fl{k/2}}} \leq 2\cdot \lambda \cdot f_n\cdot \OPT\br{G} = \br{12+4\sqrt{5}}\cdot f_n \cdot \OPT\br{G}
+        \end{align*}
+        
+    \end{proof}
+    
+\end{theorem}

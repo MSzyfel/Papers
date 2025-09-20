@@ -1,0 +1,124 @@
+\section{Paths}
+In general, all of the variants of the problem dealing with paths are known to be solvable in polynomial time. This is due to the fact that the number of subpaths of a path is of size $\binom{n}{2}=O\br{n^2}$. Such property allows us to construct efficient dynamic programming solutions, which when naively implemented, usually run in time $O\br{n^3}$. The key part of the analysis is often to show how to optimize such solution in order to reduce the factor of $O\br{n}$ thus obtaining $O\br{n^2}$ running time.
+Let $V\br{P}=v_1,\dots,v_n$. In the following considerations by  $\OPT_{sum}\br{i,j}$ we will denote the cost of optimal decision tree for a subpath $v_i,..,v_j$ according to the average case cost and similarly by $\OPT_{max}\br{i,j}$ we will denote the cost of optimal decision tree for a subpath $v_i,..,v_j$ according to the worst case cost. Whenever clear from the context we will drop the subscript and simply write $\OPT\br{i,j}$. For both variants we have that $\OPT=\OPT\br{1,n}$. By a slight abuse of notation we will also use $\OPT\br{i,j}$ to denote the root query of the decision tree whose cost is equal to this value.
+In this section we will be only concerned with the edge query model, as each of the constructed solutions can be easily altered to solve the vertex query version of the problem. The following paragraph introduces us with the general recurrence relationships exploited in the dynamic programming. 
+\paragraph{A warm up: $O\br{n^3}$ algorithm for $P||E,c|| \COST_{max}$ and $P||E,c, w|| \sum C_i$}
+
+First of all, following the definition of $\OPT\br{i,j}$ we get that $\OPT\br{i,i}=0$ for both worst and average case criteria.
+Fix some $i<j$. The two next recurrence relationships stem from a fact that  there must exist some query among edges of $v_i,..v_j$ which is the root of the optimal decision tree. Define $D_{max}$ to be this decision tree (for the worst case cost) and $q_{max}=r\br{D_{max}}$ to be its root query. Let $P_1,P_2\in P-q_{max}$ and let $D_1, D_2\in D-q_{max}$ be the subtrees of $D_{max}$ being decision trees for $P_1$ and $P_2$ accordingly. Let $D_{max}'$ be the costiest of the two and $P_{max}'$ be the according path. We have that: $\OPT_{max}\br{i,j}=\COST_{max}\br{D_{max}}=c\br{q_{max}}+\COST_{max}\br{D_{max}'}$. 
+By the optimality of $\OPT_{max}\br{i,j}$ we immediately obtain that $D_{max}'$ is the optimal decision tree for $P_{max}'$. This results in the following recurrence relationship:
+$$
+\OPT_{max}\br{i,j} = \min_{i\leq k<j}\brc{c\br{v_kv_{k+1}}+\max\brc{\OPT_{max}\br{i, k}, \OPT_{max}\br{k+1, j}}}
+$$
+Similarly, fix again $i<j$ and define $D_{sum}$ to be the optimal decision tree (for the average case cost) for $v_i,\dots,v_j$ and $q_{sum}=r\br{D_{sum}}$ to be its root query. Let $P_1,P_2\in P-q_{sum}$ and $D_1, D_2\in D-q_{sum}$ be the subtrees of $D_{sum}$ begin decision trees for $P_1$ and $P_2$ accordingly. Let $C\br{D_{sum}, x}$ denote the cost of finding $x\in\brc{v_i,\dots,v_j}$ using $D_{sum}$. Let $w\br{i,j}=\sum_{i\leq k\leq j}w\br{v_k}$. We have that:
+$$
+\OPT_{sum}\br{i,j}=\sum_{x\in v_i,\dots,v_j}w\br{x}\cdot \COST_{sum}\br{D_{sum}, x}=w\br{i,j}\cdot c\br{q_{sum}} + \COST_{sum}\br{D_1} + \COST_{sum}\br{D_2}
+$$
+By the optimality of $\OPT_{max}\br{i,j}$ we immediately obtain that $D_1$ is the optimal decision tree for $P_1$ and $D_2$ is the optimal decision tree for $P_2$. This results in the following recurrence relationship:
+$$
+\OPT_{sum}\br{i,j} = \min_{i\leq k<j}\brc{w\br{i,j}\cdot c\br{v_kv_{k+1}}+\OPT_{sum}\br{i, k}+ \OPT_{sum}\br{k+1, j}}
+$$
+
+Both recurrences can be solved using dynamic programming in time $O\br{n^3}$. To see this, recall that there are at most $\binom{n}{2}$ values for all possible choices of values of $i$ and $j$ and each of them requires checking at most $n-1$ choices for the root of the optimal decision tree.
+
+Despite being polynomial, $O\br{n^3}$ is substantial amount of calculation for the practical purposes we are interested in. In subsequent considerations we show how, using clever tricks, lower down the running time of these dynamic programming algorithms in some special cases. 
+\subsection{Average case, non-uniform weights}
+\begin{theorem}
+    There exists an $O\br{n^2}$ algorithm for $P||E, w|\sum C_i$
+    \begin{proof}
+        
+The idea behind the speed-up described below is due to Knuth \cite{Knuth1973} and \cite{EffDPusingQI}. For every $i\leq k< j$ let $\OPT_k\br{i,j} = w\br{i,j} + \OPT\br{i, k} + \OPT\br{k, j}$ be the optimal cost of searching in $v_i,\dots,v_j$ assuming that the edge $v_kv_{k+1}$ is the root of the decision tree. We have that $\OPT\br{i,j}\leq \OPT_k\br{i,j}$. Additionally, define 
+$K\br{i,j} = \max_{i\leq k< j}\brc{k|\OPT_k\br{i,j}=\OPT\br{i,j}}$ to be the largest index such that setting $v_kv_{k+1}$ as the root of the decision tree yields the optimal solution. 
+
+Let $i \leq i' \leq j \leq j'$.
+Observe that the weight function fulfills the following inequalities:
+\begin{enumerate}
+\item Monotocity: $w\br{i',j}\leq w\br{i,j'}$
+\item The quadrangle inequality (QI):
+$
+w\br{i,j} + w\br{i',j'}\leq 
+w\br{i',j} + w\br{i,j'}
+$
+\end{enumerate}
+Using the above fact we will firstly show the following:
+\begin{lemma}
+   The $\OPT$ function satisfies the quadrangle inequality
+   \begin{proof}
+       Let $i \leq i' \leq j \leq j'$. The proof is by induction on $l=j'-i$. Assume by induction that:
+       $$\OPT\br{i,j} + \OPT\br{i',j'}\leq 
+\OPT\br{i',j} + \OPT\br{i,j'}$$
+Whenever $i=i'$ or $j=j'$ the claim follows trivially and therefore is true for $j\leq 1$ so assume otherwise. There are two cases:
+\begin{enumerate}
+   \item $i'=j$.
+   Let $k=K\br{i,j'}$. In this case the inequality reduces to $\OPT\br{i,j} + \OPT\br{j,j'}\leq \OPT\br{i,j'}$. There are two subcases:
+   \begin{enumerate}
+       \item $k\leq j$.
+       We have that:
+       \begin{align*}
+       \OPT\br{i, j} + \OPT\br{j, j'} &\leq \OPT_k\br{i, j} + \OPT\br{j, j'} 
+       \\ 
+       &= 
+       w\br{i, j} + \OPT\br{i, k} + \OPT\br{k+1, j} + \OPT\br{j, j'}
+       \\ 
+       &\leq
+       w\br{i, j'} + \OPT\br{i, k} + \OPT\br{k+1, j'} 
+       \\
+       &=
+       \OPT_k\br{i, j'} \\
+       &= \OPT\br{i, j'}
+       \end{align*}
+       Where the first inequality and the first equality are due to the definition of $\OPT_k$, the second inequality is due to monotonicity of $w$ and the induction hypothesis and the last two equalities are again due to the definition of $\OPT_k$.
+        \item The case when $k\geq j$ is symmetrical.
+   \end{enumerate}
+    \item $i' < j$.
+    Let $y=K\br{i',j}$ and $z=K\br{i,j'}$. There are again two symmetric cases:
+    \begin{enumerate}
+        \item $z\leq y$. We have that:
+        \begin{align*}
+        &\OPT\br{i, j} + \OPT\br{i', j'} \\
+        &\leq \OPT_z\br{i, j} + \OPT_y\br{i', j'} \\
+        &=w\br{i, j} + w\br{i', j'} + \OPT\br{i, z} + \OPT_z\br{z+1, j} + \OPT_y\br{i', y} + \OPT_y\br{y+1, j'} \\
+        &\leq w\br{i', j} + w\br{i, j'} + \OPT\br{i, z} + \OPT_y\br{i', y} + \OPT_z\br{y+1, j} + \OPT_y\br{z+1, j'}\\
+        &= \OPT_y\br{i', j} + \OPT_z\br{i, j'} \\
+        &= \OPT\br{i', j} + \OPT\br{i, j'}
+        \end{align*}
+        Where the first inequality and the first equality are due to the definition of $\OPT_k$, the second inequality is due to QI of $w$ and the induction hypothesis at $z\leq y<j < j'$ and the last two equalities are again due to the definition of $\OPT_k$.
+        \item Also this time the other case when $k\geq j$ is symmetrical.
+    \end{enumerate}
+\end{enumerate} 
+   \end{proof}
+\end{lemma} 
+Having the above lemma we will now prove the following:
+\begin{lemma}
+   $K\br{i,j-1}\leq K\br{i,j}\leq K\br{i +1,j}$
+   \begin{proof}
+   To prove the first inequality $K\br{i,j-1}\leq K\br{i,j}$ we will show that for $i\leq k \leq k' < j$ we have that: $\OPT_{k'}\br{i, j - 1} \leq \OPT_{k}\br{i, j - 1}$ implies that $\OPT_{k'}\br{i, j} \leq \OPT_{k}\br{i, j}$. This condition suffices as whenever $k'=K\br{i, j - 1}$ this means that either $k'=k$ or $k\neq K\br{i, j}$ as choosing $v_{k'}v_{k'+1}$ as the root of the decision tree provides a solution which cannot be worse\footnote{Note that by the definition we require $K\br{i, j}$ to be maximal.}. By using QI at $k\leq k'\leq j -1< j$ we have:
+   $$
+   \OPT\br{k, j-1} + \OPT\br{k', j}\leq \OPT\br{k', j-1} + \OPT\br{k, j}
+   $$
+   By adding $w\br{i,j-1}+w\br{i,j}+\OPT\br{i, k}+\OPT\br{i, k'}$ to both sides we obtain:
+   $$
+   \OPT_k\br{i, j-1} + \OPT_{k'}\br{i, j-1} \leq \OPT_{k'}\br{i, j-1} + \OPT_{k}\br{i, j-1}
+   $$
+   Which implies the claim. 
+   The second inequality $K\br{i,j}\leq K\br{i +1,j}$ follows similarly from the QI at $i < i+1 \leq k \leq k' $.
+   \end{proof}
+\end{lemma}
+ 
+The above lemma allows us to the amount of computation required. The idea is as follows: Before calculating $\OPT\br{i,j}$ we firstly calculate the values of $\OPT\br{i -1,j}$ and $\OPT\br{i,j + 1}$. In doing so we also calculate the indices $K\br{i,j-1}$ and $K\br{i +1,j}$ required to narrow the space of possible choices for value of $K\br{i,j}$. We obtain the following recurrence relationship:
+$$
+\OPT_{sum}\br{i,j} = \min_{K\br{i,j-1}\leq k\leq K\br{i +1,j}}\brc{w\br{i,j}+\OPT_{sum}\br{i, k}+ \OPT_{sum}\br{k+1, j}}
+$$
+It remains to show that the running time can be bounded by $O\br{n^2}$. The amount of computation steps required by the algorithm is equal to:
+\begin{align*}
+\sum_{i=1}^n\sum_{j=i+1}^n\br{K\br{i + 1, j} - K\br{i,j - 1}} &= \sum_{i=1}^n\sum_{j=i}^n\br{K\br{i + 1,j+1} - K\br{i,j}}
+\\
+&=\sum_{i=1}^n\br{K\br{i + 1,n}-K\br{1,i}} = O\br{n^2}
+\end{align*}
+Where the second equality is due to the fact that all of the terms except $K\br{i + 1,n}$ and $K\br{1,i}$ cancel, and the last equality is trivially due to the fact that $K\br{i + 1,n} < n$. This proves the claim.
+    \end{proof}
+\end{theorem}
+\subsection{Non-uniform costs, worst case}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\subsection{Non-uniform costs, Average case, uniform weights}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
