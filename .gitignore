@@ -12,6 +12,12 @@
 *.fls
 *.fdb_latexmk
 *.synctex.gz
+*.nlo
+*.glo
+*.lot
+*.lof
+*.ist
+
 
 # Pliki tymczasowe edytorów
 *~
