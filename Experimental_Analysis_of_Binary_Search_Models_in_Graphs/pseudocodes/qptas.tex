@@ -1,0 +1,36 @@
+
+\begin{algorithm}
+\caption{The QPTAS for $T||V,c,w||C_{max}$.}
+\label{qptas_pseudocode}
+\SetKwProg{Fn}{Procedure}{:}{}
+\Fn{$\FQPTAS\br{T,c,\epsilon}$}{
+    $p\gets\cl{24/\epsilon}$,
+    $c\gets 0$,
+    $D\gets \emptyset$.
+
+    $d\gets p^2\cdot\br{\fl{\log\br{n}}+1}$.
+
+    \Repeat{$D \neq \emptyset$}
+    {
+        $c\gets c+\frac{1}{pn}$.
+
+        \ForEach{$v\in V\br{T}$}{
+            \If{$c\br{v}>pc$}{
+                $c'\br{v}\gets \cl{c\br{v}}_c$.
+            }
+            \Else{
+                $c'\br{v}\gets \cl{c\br{v}}_{\frac{1}{pn}}$.
+            }
+            
+        }
+
+        $T_C\gets T$ with all heavy modules contracted.
+
+        $D_C\gets\FRankingBasedDT\br{T_C}$.
+
+        $D\gets \FBuildDT\br{T, D_C, p, c, d}$.
+    }   
+    \Return $D$.
+    
+}
+\end{algorithm}

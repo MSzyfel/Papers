@@ -1,0 +1,130 @@
+\subsection{QPTAS for the $T||V,c||C_{max}$ problem}
+
+The following algorithh is a simplified version of the QPTAS provided in \cite{dereniowski2017ApproxSsForGeneralBSinWTs}. The core idea of the algorithm is the same, however, our solution uses the language of decision trees instead of the language of sequence assignments, which makes the algorithm more intuitive.
+
+For the rest of the analysis, without loss of the generality, we will assume that $T$ is rooted in a vertex $v$ minimizing $c\br{v}$.  We will also assume that all costs are normalized, so that $\max_{v\in V\br{T}}\brc{c\br{v}}=1$. If not, the costs are scaled by dividing them by $\max_{v\in V\br{T}}\brc{c(v)}$. Note that this operation does not affect the optimality of a strategy or the quality of an approximation.
+\begin{observation}\label{basicBoundsOnCost}
+    Let $T$ be a tree such that $\spr{V\br{T}}> 1$ and $c:V\to \mathbb{R}^+$ be a normalized weight function. Then, $1\leq \OPT(T) \leq \fl{\log n}+1$.
+    \begin{proof}
+        The first inequality is due to the fact that there exists $v\in V\br{T}$, such that $c\br{v}=1$ and for any decision tree $D$ we have $v\in Q_{D}\br{T,v}$. The second inequality is due to the fact that we can always locate the target using $\fl{\log n}+1$ queries \cite{OnakParys2006GenOfBSSInTsAndFLikePosets}.
+    \end{proof}
+\end{observation}
+\subsubsection{Rounding}
+We will use the following rounding schem which will allow us to discretise the space of possible solutions to process it efficiently. Let $p \in\mathbb{N}$, and $c=a/pn$ for some $a\in\mathbb{N}$. Define:
+$$
+c'\br{v}=\begin{cases}
+    \cl{c\br{c}}_c, & \text{if } c\br{v}>pc, \text{ in which case the vertex will be called \textit{heavy}},\\
+    \cl{c\br{c}}_{\frac{1}{pn}}, & \text{otherwise, in which case the vertex will be called \textit{light}}.\\
+\end{cases}
+$$
+
+\begin{lemma}\label{rounded_dt_lemma}
+    $$
+    \OPT\br{T,c'}\leq \br{1+\frac{2}{p}}\cdot \OPT\br{T,c}
+    $$
+    \begin{proof}
+        Let $D^*$ be an optimal strategy for $\br{T,c}$. By definition, we have that for every vertex $v\in V\br{T}$, $c'\br{v}\leq \br{1+\frac{1}{p}}\cdot c\br{v}+\frac{1}{p}n$ and therefore:
+        \begin{align*}
+            \OPT\br{T, c'}&\leq \COST_{D^*}\br{T,c'}=\max_{v\in V\br{T}}\brc{\sum_{q\in Q_{D^*}\br{T,v}}c'\br{q}}
+            \\&
+            \leq \max_{v\in V\br{T}}\brc{\sum_{q\in Q_{D^*}\br{T,v}}\br{\br{1+\frac{1}{p}}\cdot c\br{v}+\frac{1}{pn}}}
+            \\&
+            \leq \frac{1}{p}+\br{1+\frac{1}{p}}\cdot \max_{v\in V\br{T}}\brc{\sum_{q\in Q_{D^*}\br{T,v}}c\br{v} }\leq \br{1+\frac{2}{p}}\OPT\br{T,c}
+        \end{align*}
+
+        where in the third inequality we used the fact that for every $v\in V\br{T}$, $\spr{Q_{D^*}\br{T,v}}\leq n$ and in the last inequality we used Observation \ref{basicBoundsOnCost}.
+    \end{proof}
+\end{lemma}
+
+While calculating the decision tree, we will divide the time into boxes of duration $c$, which will be further subdivided into $a$ identical slots of length $\frac{1}{pn}$. Let $t_q$ denote the start of some query in a decision tree $D$. Note that the numbers $t_v$ provide a complete information about any decision tree, and are an equiavalent representation of any strategy. We will assume that for any heavy vertex $v\in V\br{T}$, $t_v$ is an integer multiple of $c$ and for any light vertex $v\in V\br{T}$, $t_v$ is an integer multiple of $\frac{1}{pn}$. \footnote{Note that by doing so, we allow decision trees to contain idle time intervals, in which no queries are scheduled. However, if this occurs, after obtaining such decision tree, we simply delete the idle times, which results in a valid decision tree} We have the following lemma:
+\begin{lemma}\label{aligned_dts_lemma}
+    There exists a decision tree $D$ for $\br{T,c'}$, such that $\COST_{D}\br{T, c'}\leq \br{1+\frac{3}{p}}\cdot\OPT\br{T, c'}$ and for every vertex $v\in V\br{T}$ we have:
+    \begin{enumerate}
+        \item if $c\br{v}> pc$, then $t_v/c\in\mathbb{N}$ (every heavy query is aligned to a multiple of $c$),
+        \item if $c\br{v}\leq pc$, then $t_vpn\in\mathbb{N}$ (every light query is aligned to a multiple of $\frac{1}{pn}$).
+    \end{enumerate}
+    \begin{proof}
+        Let $D^*$ by any optimal decision tree for $\br{T,c'}$. For any $v\in V\br{T}$, let $t_v^*$ be the start of query to $v$ in $D^*$ and let $t_v'=\br{1+\frac{2}{p}}t_v^*$, thus construction a new decision tree $D'$. Since in this new decision tree $D'$, the ordering of vertices is exactly the same as in $D^*$, for any two consecutive queries $v,u$ in $D'$ we have:
+        $$
+            t_u'-t_v'=\br{1+\frac{2}{p}}\cdot\br{t_u-t_v}\geq \br{1+\frac{2}{p}}\cdot c\br{v}
+        $$
+
+        We now construct $D$ as follows: If $v\in V\br{T}$ is heavy, we assign $t_v=\cl{t_v'}_c$ and $t_v=t_v'$ otherwise. For any two consecutive queries $v,u$ in $D$, such that $v$ is heavy we have:
+        $$
+        t_u-\cl{t_v'}_c>t_u-t_v-c\geq \br{1+\frac{2}{p}}\cdot c\br{v}-c>w\br{v}+c>c'\br{v}
+        $$
+
+        So we conclude that no two queries overlap. To obtain the second part of the claim, we round up the starting time of each query to a light vertex in $D$ to an integer multiple of $\frac{1}{pn}$. We have:
+        \begin{align*}
+            \COST_{D}\br{T,c'}&
+            \leq \max_{v\in V\br{T}}\brc{\sum_{q\in Q_{D^*}\br{T,v}}\br{\br{1+\frac{2}{p}}\cdot c'\br{v}+\frac{1}{pn}}}
+            \\&
+            \leq \frac{1}{p}+\br{1+\frac{2}{p}}\cdot \max_{v\in V\br{T}}\brc{\sum_{q\in Q_{D^*}\br{T,v}}c'\br{v} }\leq \br{1+\frac{3}{p}}\OPT\br{T,c'}
+        \end{align*}
+
+        where in the third inequality we used the fact that for every $v\in V\br{T}$, $\spr{Q_{D}\br{T,v}}\leq n$ and in the last inequality we used Observation \ref{basicBoundsOnCost}.
+    \end{proof}
+\end{lemma}
+
+We will call a decision tree fulfilling above conditions \textit{aligned}. In subsequent considerations, we will focus ourselves of finding such decision trees, whose properties will allow us to devise an efficient dynamic programming procedure finding an optimal, aligned decision tree. 
+
+\subsubsection{Heavy module contraction, up and down responses}
+Since, our decision tree is rooted, we can reasonably talk about up and down responses to a query. An \textit{up} response to a query to $v$ in $T$ occurs when the connected component $\in T-v$, which is the reply happens to contain $r\br{T}$. If this is not the case, then such response is called a \textit{down} response. As it will turns out, a repeating occurance of light queries with down responses will become problematic for our algorithm. To account for this issue we will use the following notions:
+
+We will define a new measure of cost for aligned deision trees called the \textit{aligned cost}. Let $D$ be any aligned strategy for $\br{t,c'}$. For any query $q\in V\br{D}$ and a vertex $v\in V\br{T}$, let the contribution $\kappa_{T,c}\br{q,v}$ be defined as:
+$$
+\kappa_{T,c}\br{q, v}= \begin{cases}
+    0, & \text{if } c\br{v}\leq pc \text{and the response to query $q$ in $T$ towards $v$ is down},\\
+    c\br{q}, & \text{otherwise.}.
+\end{cases}
+$$
+
+Then, the \textit{aligned cost} of $D$ is defined as:
+
+$$
+\COST'_D\br{T,c'}=\max_{v\in V\br{T}}\brc{\sum_{q\in Q_D\br{T,v}}\kappa_{T,c'}\br{q,v}}
+$$
+
+Let $\OPT'\br{T,c'}$ denote the optimal aligned cost among all aligned decision trees for $\br{T,c'}$.
+The above cost, serves as a way to "ignore" all od the costs of light queries with down responses. Since of course, the amount of such queries may be of order $O\br{n}$, the difference between $\COST'_D\br{T,c'}$ and $\COST_D\br{T,c'}$ may grow almost arbitrarily large. However, we will make sure that this does not happen to often, which will give us the desired bound on the cost of the solution.
+
+\input{figures/heavy_module_contraction.tex}
+We define a \textit{heavy module} as $H\subseteq V\br{T}$ such that: $T[H]$ is connected, every $v \in H$ is heavy, i. e., $c\br{v}\geq pc$ and $H$ is maximal - no vertex can be added to it without violating one of its properties. A \textit{contraction} of a heavy module $H$ is an operation which consists of deleting all of the vertices in $H$ from $T$ and connecting every vertex $u$ which was a child of some vertex in $H$ to the parent of $r\br{T\angl{H}}$ if it exists. For example see Figure \ref{exampleHeavymoduleContraction}.
+
+\subsubsection{The main procedure}
+
+We will use the following proposition about the existence of the \FBuildDT procedure:
+\begin{proposition}\label{BuildDTPropodisition}
+     Let $T$ be a tree, $D_C$ a decision tree for $T$ with all heavy groups contracted, $p\in \mathbb{N}$ be a constant, $c'\in \mathbb{R}_{>0}$ be the box size and $d\in \mathbb{N}$ be maximal depth. There exists a \FBuildDT procedure which:
+     \begin{enumerate}
+        \item Either determines that $cd\leq \OPT'\br{T, c'}$ and returns an aligned decision tree $D$, such that:
+        $$
+            \COST_{D}\br{T,c'}=\OPT'\br{T,c'}+\COST_{D_C}\br{T,c'}.
+        $$
+        \item Or determines that $cd > \OPT'\br{T, c'}$ and such decision tree does not exist.
+        \item The procedure runs in $\br{pn}^d$ time.
+     \end{enumerate}
+\end{proposition}
+The proof will be provided in the next section.
+We will now prove the Proposition \ref{QPTAS}.
+
+\input{pseudocodes/qptas.tex}
+
+The Algorithm \ref{qptas_pseudocode} starts by picking $p=\cl{\frac{24}{\epsilon}}$ and assigning $c=0$ and $d=p^2\cdot\br{\fl{\log n}+1}$. At each iteration of the repeat loop, the algorithm picks $c$ to be the next integer multiple of $\frac{1}{pn}$, performs the rounding operation introduced above, creates a decision tree $D_C$ for tree $T$ with all heavy modules contracted and tries to create decision tree $D$, by applying Proposition \ref{BuildDTPropodisition}. Once the \FBuildDt procedure returns a non-empty solution, the \FQPTAS procedure terminates and returns the constructed decision tree $D$. Let $c'$ be the value of $c$ for which $D$ was found. Since we know that $c'\leq \frac{\OPT'\br{T,c'}}{d}=\frac{\OPT'\br{T,c'}}{p^2\cdot\br{\fl{\log n}+1}}$, we have that:
+\begin{align*}
+    \COST_{D}\br{T,c'}&\leq \OPT'\br{T,c'}+pc'\cdot \br{\fl{\log n}+1}\leq \OPT'\br{T,c'}+p\cdot \br{p^2\cdot\br{\fl{\log n}+1}}\cdot \frac{\OPT'\br{T,c'}}{\fl{\log n}+1} \\
+    & \leq \br{1+\frac{1}{p}}\cdot\OPT'\br{T,c'}\leq \br{1+\frac{1}{p}}\cdot\br{1+\frac{2}{p}}\cdot\br{1+\frac{3}{p}}\cdot\OPT\br{T,c}
+    \\&
+    \leq \br{1+\frac{24}{p}}\cdot\OPT\br{T,c} = \br{1+\frac{24}{\cl{\frac{24}{\epsilon}}}}\cdot\OPT\br{T,c}\leq \br{1+\epsilon}\cdot \OPT\br{T,c}
+\end{align*}
+    
+where the second inequality is by applying Corollary \ref{vertexRankingCorollary} and the fourth inequality is by Lemma \ref{rounded_dt_lemma} and Lemma \ref{aligned_dts_lemma}.
+
+We can assume that $c=\text{poly}\br{n}$, since beyond that the problem can be solved to optimality in $O\br{2^nn}$ time. Therefore the running time of the procedure is bounded by:
+$$
+n^{O\br{d}}=n^{O\br{p^2\log n}}=n^{O\br{\log n/\epsilon^2}}.
+$$
+\subsubsection{Dynamic programming procedure for fixed box size}
+
+
+

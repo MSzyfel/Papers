@@ -1,0 +1,94 @@
+\subsection{A warm up: $O\br{\log n/\log\log n}$-approximation algorithm  for $T||V,c||C_{max}$}
+This first algorithm is an adapted and simplified version of the algorithm due to \cite{Cicalese2016OnTSPwNonUniCost} for the edge query model.
+\begin{theorem}
+    There exists a polynomial time, $O\br{\log n/\log\log n}$-approximation algorithm for the $T||V,c||C_{max}$ problem .
+    \begin{proof}
+        
+To construct a decision tree we will use the following exact procedure:
+\begin{lemma}
+    There exists a $O\br{2^nn}$ algorithm for $T||V,c||C_{max}$
+    \begin{proof}
+        The algorithm is a general version of the dynamic programming procedure for paths. We have that:
+        $$
+        \OPT_{max}\br{T} = \min_{v\in V\br{T}}\brc{c\br{v}+\max_{H\in T-v}\brc{\OPT_{max}\br{H}}}
+        $$
+        There are there are at most $O\br{2^n}$ different subtrees of $T$ to be checked. Additionally, and for each $v\in V\br{T}$ there are at most $\deg_T\br{v}$ possible responses to check in the inner $\max$ function. Therefore for each subproblem there are at most
+        $
+        \sum_{v\in V\br{T}}\deg_T\br{v} = 2m = 2n-2
+        $
+        comparison operations to be performed. As at each level of the recursion the algorithm considers all possible choices of the next queried vertex $v$ it returns the optimal decision tree for $T$ and the claim follows.
+    \end{proof}
+\end{lemma}
+\begin{observation}\label{neighborsPathObservation}
+    Let $D$ be a partial decision tree for tree $T$. Let $T'$ be a subtree of $T$. Let $Q$ be a set of all queries to vertices from $N_{T}\br{V\br{T'}}$ in $D$ such that every for every $q\in Q$: $q$ is queried before every vertex in $T'$. Then $D\angl{Q}$ is a path. 
+    \begin{proof}
+        Let $x\in N_{T}\br{V\br{T'}}$. In such case, for every vertex $v\in V\br{T-V\br{T'}-N_{T}\br{V\br{T'}}}$ the answer to a query to $v$ is always towards the same $u\in N_{T}\br{v}$, so until a vertex from $T'$ is queried, no query $q$ can partition vertices from $N_{T}\br{V\br{T'}}$ into disjoint subtrees of candidate vertices except when $q\in N_{T}\br{V\br{T'}}$. After a query to $q$, the only different response is when $x=q$, in which case no further queries are needed, so queries in $Q$ must belong to a path in $D$.
+    \end{proof}
+\end{observation}
+
+
+
+Let $k=2^{\fl{\log\log n}+2}$.
+The basic idea is as follows. The algorithm is recursive. Let $\mathcal{T}$ be the tree currently processed by the algorithm. If $n\br{T}\leq k$ then we use the exponential time algorithm to find the optimal solution in time $2^kk=\text{poly}\br{n}$.
+
+If otherwise, to build a solution (see Algorithm \ref{cicaleseInspired}) we will firstly define a set $\mathcal{X}\subseteq V\br{\mathcal{T}}$ which will be of size at most $k$. We build $\mathcal{X}$ iteratively. Starting with an empty set we pick the centroid $x_1$ of $T$ which we add to $\mathcal{X}$. Then we take the forest $F=T-x$, find the largest $H\in F$, pick its centroid $x_2$ and append it to $\mathcal{X}$. We continue this in $F-H + \br{H-x_2}$ until $\spr{\mathcal{X}}=k$.
+\begin{lemma}\label{lemma:componentSize}
+    For every $H\in \mathcal{T}-\mathcal{X}$ we have that $n\br{H}\leq n\br{\mathcal{T}}/\log\br{n}$.
+    \begin{proof}
+        We prove by induction on $t$ that deleting first $2^t$ centroids from $T$ each connected components $H_t$ has size at most $n\br{H_t}\leq n\br{\mathcal{T}}/2^{t-1}$. For the case when $t=0$ we have that after 1 iteration every $H_1$ has size at most $n\br{T}/2\leq 2\br{n}$ so the base of induction is complete.
+
+        Fix $t>0$ and by assume by the induction hypothesis that after $2^{t-1}$ iterations all
+    \end{proof}
+\end{lemma}
+
+We also define set $\mathcal{Y}\subseteq V\br{\mathcal{T}}$ which consists of vertices in $\mathcal{X}$ and all vertices in $v\in \mathcal{T}\angl{X}$ such that $\deg_{T\angl{\mathcal{X}}}\br{v}\geq 3$.
+Furthermore, we define set $\mathcal{Z}\subseteq V\br{\mathcal{T}}$ as a set consisting of vertices in $\mathcal{Y}$ and for every $u,v\in \mathcal{Y}$ such that $\mathcal{P}_{\mathcal{T}}\br{u, v}\neq\emptyset$ and $\mathcal{P}_{\mathcal{T}}\br{u, v}\cap \mathcal{Y}=\emptyset$ we add to $\mathcal{Z}$ the vertex $\argmin_{z\in \mathcal{P}_{\mathcal{T}}\br{u, v}}\brc{c\br{z}}$ (for example see Figure \ref{exampleTreeWithSetZ}). We then create an auxiliary tree $\mathcal{T}_{\mathcal{Z}}=\br{\mathcal{Z},\brc{uv|\mathcal{P}_{\mathcal{T}}\br{u, v}\cap \mathcal{Z}=\emptyset}}$ (for example see Figure \ref{exampleAuxTreeTZ}). The algorithm builds an optimal decision tree $D_{\mathcal{Z}}$ for $\mathcal{T}_{\mathcal{Z}}$ by applying the exponential time algorithm. Observe, that  $D_{\mathcal{Z}}$ is a  partial decision tree for $\mathcal{T}$, so we get that:
+\begin{observation}\label{observation:CostDZinT}
+    $\COST_{D_{\mathcal{Z}}}\br{\mathcal{T}_{\mathcal{Z}}}=\COST_{D_{\mathcal{Z}}}\br{\mathcal{T}}$.
+\end{observation}
+Then for each $H\in \mathcal{T}-\mathcal{Z}$ we recursively apply the same algorithm to obtain the decision tree $D_H$ and we hang it in $D_\mathcal{Z}$ below the unique last query to vertex in $N_{\mathcal{T}'}\br{H}$ (By Observation \ref{neighborsPathObservation}).
+\input{pseudocodes/cicalese_inspired}
+
+\begin{lemma}\label{lemma:auxTreeSize}
+    Let $\mathcal{T}_{\mathcal{Z}}$ be the auxiliary tree. Then, $\spr{V\br{\mathcal{T}_{\mathcal{Z}}}}\leq 4k-3$.
+    \begin{proof}
+        We firstly show that $\spr{\mathcal{Y}}\leq 2k-1$. We use induction of the centroids in $\mathcal{X}$. For $1\leq i\leq k$ let $x_i$ denote the $i$-th centroid added to $\mathcal{X}$. We will construct a family of sets $\mathcal{X}_1, \mathcal{X}_2,\dots, \mathcal{X}_{\spr{\mathcal{H}}}$ such that for any $1\leq t\leq \spr{\mathcal{X}}$: $\spr{\mathcal{X}_t}=t$ and $\mathcal{X}_{\spr{\mathcal{X}}}=\mathcal{X}$. For each $\mathcal{X}_t$ we will also construct a corresponding set $\mathcal{Y}_t$, ensuring $\mathcal{Y}_{\spr{\mathcal{X}}}=\mathcal{Y}$. We will build the sets $\mathcal{Y}_{t}$ to ensure that $\spr{\mathcal{Y}_t}\leq 2t-1$. 
+        
+        Let $\mathcal{X}_1=\brc{x_1}$, $\mathcal{Y}_1=\brc{x_1}$. This establishes the base case. Assume by induction on $t\geq1$ that $\spr{\mathcal{Y}_t}\leq 2t-1$ for some $t>1$. Let $\mathcal{X}_{t+1} =\mathcal{X}_{t}\cup \brc{x_{t+1}}$ and let $\mathcal{T}_t=\mathcal{T}\angl{\mathcal{X}_{t}}$ If $x_t\in V\br{\mathcal{T}_t}$ then $\mathcal{Y}_{t+1}=\mathcal{Y}_{t}\cup \brc{x_t}$. If otherwise let $y_t \in V\br{\mathcal{T}_t}$ be the unique vertex such that $P\br{x_t, y_t}\cap V\br{\mathcal{T}_t}=\emptyset$. Then $\mathcal{Y}_{t+1}=\mathcal{Y}_{t}\cup \brc{x_t, y_t}$. As by induction $\spr{\mathcal{Y}_{t}}\leq 2t-1$ and we add at most two vertices to it to obtain $\mathcal{Y}_{t+1}$ the induction step is complete.
+        
+        As paths between vertices in $\mathcal{Y}$ form a tree, at most $2k-2$ additional vertices are added to $\mathcal{Y}$ while constructing $\mathcal{Z}$ (at most one for each path) and the lemma follows.
+    \end{proof}
+\end{lemma}
+\begin{lemma}\label{lemma:auxTreeCost}
+    Let $\mathcal{T}_{\mathcal{Z}}$ be the auxiliary tree. Then, $\OPT\br{\mathcal{T}_{\mathcal{Z}}}\leq \OPT\br{\mathcal{T}}$.
+    \begin{proof}
+        Let $D^*$ be the optimal strategy for $\mathcal{T}\angl{\mathcal{Z}}$. We build a new decision tree $D_{\mathcal{Z}}'$ for $\mathcal{T}_{\mathcal{Z}}$ by transforming $D^*$: Let $u,v\in \mathcal{Y}$ such that $\mathcal{P}_{\mathcal{T}}\br{u, v}\neq\emptyset$ and $\mathcal{P}_{\mathcal{T}}\br{u, v}\cap \mathcal{Y}=\emptyset$. Let $q\in V\br{D^*}$ such that $q\in \mathcal{P}_{\mathcal{T}}\br{u, v}$ is the first query among vertices of $\mathcal{P}_{\mathcal{T}}\br{u, v}$. We replace $q$ in $D^*$ by the query to the distinct vertex $v_{u,v}\in \mathcal{P}_{\mathcal{T}}\br{u, v}\cap \mathcal{Z}$ and delete all queries to vertices $\mathcal{P}_{\mathcal{T}}\br{u, v}-v_{u,v}$ from $D^*$. By construction, $D_{\mathcal{Z}}'$ is a valid decision tree for $\mathcal{T}_{\mathcal{Z}}$ and as for every $z\in \mathcal{P}_{\mathcal{T}}\br{u, v}$: $c\br{v_{u,v}}\leq c\br{z}$ such strategy has cost at most $\COST_{D_{\mathcal{Z}}'}\br{\mathcal{T}_{\mathcal{Z}}}\leq \OPT\br{\mathcal{T}\angl{\mathcal{Z}}}$. We get:
+        $$
+        \OPT\br{\mathcal{T}_{\mathcal{Z}}}\leq \COST_{D_{\mathcal{Z}}'}\br{\mathcal{T}_{\mathcal{Z}}}\leq \OPT\br{\mathcal{T}\angl{\mathcal{Z}}}\leq \OPT\br{\mathcal{T}}
+        $$
+
+        where the first inequality is due to the optimality and the last inequality is due to the fact that $\mathcal{T}\angl{\mathcal{Z}}$ is a subtree of $\mathcal{T}$ (by Lemma \ref{lemma:subtreeCost}). The lemma follows.
+    \end{proof}
+\end{lemma}
+\begin{lemma}
+    Let $D_T$ be the solution returned by the algorithm. Then the approximation factor of such solution is bounded by 
+    $
+    \APP_T\br{D_T}\leq \log n/\log\log n
+    $.
+    \begin{proof}
+        Let $\mathcal{T}$ be the tree processed at some level of the recursion and let $D_{\mathcal{T}}$ be the decision tree returned by the algorithm. The proof is by induction on the size of $\mathcal{T}$.  We claim that $\APP_{\mathcal{T}}\br{D_{\mathcal{T}}}\leq \max\brc{1, \log n\br{\mathcal{T}}/\log\log n}$. If $n\br{\mathcal{T}}\leq k$ then $D_{\mathcal{T}}$ is the optimal decision tree for $\mathcal{T}$ which establishes the base case. Let $n\br{\mathcal{T}} > k$ and assume that claim holds for every $t< n\br{\mathcal{T}}$. 
+        By construction, we have that:
+        \begin{align*}
+        \APP_{D_{\mathcal{T}}}\br{\mathcal{T}}&=\frac{\COST_{D_{\mathcal{T}}}\br{\mathcal{T}}}{\OPT\br{\mathcal{T}}}\\
+        &\leq \frac{\COST_{D_{\mathcal{Z}}}\br{\mathcal{T}}+\max_{H\in \mathcal{T}-\mathcal{Z}}\brc{C_{D_H}\br{H}}}{\OPT\br{\mathcal{T}}}\\
+        &\leq 
+        \frac{\COST_{D_{\mathcal{Z}}}\br{\mathcal{T}_{\mathcal{Z}}}}{\OPT\br{\mathcal{T}_{\mathcal{Z}}}}+\max_{H\in \mathcal{T}-\mathcal{Z}}\brc{\frac{C_{D_H}\br{H}}{\OPT\br{H}}}\\
+        &\leq 1+\frac{\log\frac{n\br{\mathcal{T}}}{\log n\br{\mathcal{T}}}}{\log\log n}= \frac{\log n\br{\mathcal{T}}}{\log\log n}
+        \end{align*}
+        where the first inequality is by construction, the second is by usage of Observation \ref{observation:CostDZinT}, Lemma \ref{lemma:auxTreeCost} and Lemma \ref{lemma:subtreeCost} and the last inequality is due to the Lemma \ref{lemma:componentSize} and the induction hypothesis.
+    \end{proof}
+\end{lemma}
+    Using the fact that the call to the exponential time procedure requires $O\br{2^{4k-3}\br{4k-3}}=\text{poly}\br{n}$ time (Due to Lemma \ref{lemma:auxTreeSize}), all other computations require polynomial time, and each $v\in V\br{T}$ belongs to $\mathcal{Z}$ at most once during the execution we get that the overall running time is polynomial in $n$.
+    \end{proof}
+\end{theorem}
+In the above analysis we lose one factor of $\OPT$ per each level of recursion of which there are at most $O\br{\log n/\log\log n}$. Notice however, that we can allow some more loss (i. e. $c\cdot\OPT$) without affecting the asymptotical approximation factor. As it turns out it is possible to obtain a constant factor approximation for this problem in quasipolynomial time. This is the main idea behind the improvement of the approximation factor for this problem as in such case the size of the set $\mathcal{Z}$ may be greater and less recursion levels are needed which directly improves the approximation.

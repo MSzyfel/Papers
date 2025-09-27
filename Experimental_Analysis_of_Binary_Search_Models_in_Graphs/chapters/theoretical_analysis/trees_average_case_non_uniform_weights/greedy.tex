@@ -1,0 +1,60 @@
+\subsection{Greedy achieves 2-approximation for $T|V,w|\sum C_j$}
+The weight centroid is a vertex $c\in T$ such that for every $H\in T-c$ we have that $w\br{h}\leq \frac{w\br{T}}{2}$. The existence of the (unweighted) centroid has been known since 19th century \cite{Jordan1869}. The proof of the existence of the weight centroid i straightforward and can be summarized as follows: pick any vertex $v\in T$ and if its not a weight centroid move to the neighbor $v'$ of $v$ such that the $H\in T-v$ such that $v'\in H$ has weight $w\br{H}>\frac{w\br{T}}{2}$. It is easily observable that the algorithm always succeeds and visits each vertex at most once. The greedy algorithm is as follows: pick the centroid $c$ of $T$ as the root of the decision tree for $T$ and proceed recursively in $T-c$. The following analysis of greedy is due to \cite{Fast_app_centroid_trees}.
+
+\begin{theorem}
+    Let $D_c$ be the greedy decision tree. Then $\COST_{D_c}\br{T}\leq 2\OPT\br{T}-w\br{T}$.
+    \begin{proof}
+        We start with the following lemma:
+        \begin{lemma}\label{lemma:avg_lb_centroid}
+            Let $D$ be any decision tree for $T$ and let $c$ be the centroid of $T$. Then:
+            $$
+            \OPT\br{T}\geq \frac{w\br{T}}{2}+\frac{w\br{c}}{2}+\sum_{H\in T-c}\OPT\br{H}
+            $$
+            \begin{proof}
+                Let $r=r\br{D}$. There are two cases:
+                \begin{enumerate}
+                    \item $r=c$. In such case the cost of the solution is trivially lower bounded by:
+                    $$
+                    \COST_{D}\br{T}\geq w\br{T}+\sum_{H\in T-r}\OPT\br{H}\geq \frac{w\br{T}}{2}+\frac{w\br{c}}{2}+\sum_{H\in T-c}\OPT\br{H}
+                    $$
+                    \item $r\neq c$. In such case denote by $H_r$ the connected component of $T-c$ such that $r\in H_r$. We have that the contribution of each $v\in H_r$ is at least $\spr{Q_{D|H_r}\br{v}}$ so the overall contribution of vertices in $H_r$ is at least $\COST_{D|H_r}\br{H_r}$. For every $H\in T-c$ such that $H\neq H_r$ and $v\in H$ we have that $\brc{r}\cup Q_{D|H}\br{v}\subseteq Q_{D}\br{v}$ so we have that the contribution of vertices in $H$ is at least $w\br{H}+\COST_{D|H}\br{H}$. Additionally the contribution of $c$ is at least $w\br{c}$ since query to $r$ precedes the query to $c$. We have that:
+                    \begin{align*}
+                        \COST_D\br{T}&\geq 2w\br{c}+\COST_{D|H_r}\br{H_r}+\sum_{H\in T-c, H\neq H_r}\br{w\br{H}+w\br{c}+\COST_{D|H}\br{H}}\\
+                        &\geq w\br{T}-w\br{H_r}+\sum_{H\in T-c}\OPT_{D|H}\br{H}\\
+                        &\geq \frac{w\br{T}}{2}+w\br{c}+\sum_{H\in T-c}\OPT_{D|H}\br{H}
+                    \end{align*}
+                    where in the last inequality we used the fact that $c$ is a centroid of $T$.
+                \end{enumerate}
+            \end{proof}
+        \end{lemma}
+        The proof is by induction on the size of $T$. When $n\br{T}=1$ we have that $\COST_{D_c}\br{T}=w\br{T}=2\OPT\br{T}-w\br{T}$. Assume therefore that $n\br{T}>1$ and let $c$ be the centroid of $T$. We have that:
+        \begin{align*}
+            \COST_{D_c}\br{T} &= w\br{T}+\sum_{H\in T-c}\COST_{D_c|H}\br{H}\\
+            &\leq w\br{T}+\sum_{H\in T-c}\br{2\cdot\OPT\br{H}-w\br{H}}\\
+            &= w\br{c}+\sum_{H\in T-c}2\cdot\OPT\br{H}\\\
+            &\leq 2\OPT\br{T}-w\br{T}
+        \end{align*}
+        where the first inequality is by the induction hypothesis and the second inequality is by the Lemma \ref{lemma:avg_lb_centroid}.
+    \end{proof}
+\end{theorem}
+\begin{theorem}
+    The greedy decision tree can be found in $O\br{n\log n}$ running time.
+    \begin{proof}
+        We use the data structure called \textit{top trees}. The top trees are used to maintain dynamic forests under
+insertion and deletion of edges. The following theorem is due to \cite{toptrees}:
+    \begin{theorem}
+        We can maintain a forest with positive vertex weights on n vertices
+under the following operations:
+\begin{enumerate}
+    \item Add an edge between two given vertices $u$, $v$ that are not in the same connected component.
+    \item Remove an existing edge.
+    \item Change the weight of a vertex.
+    \item Retrieve a pointer to the tree containing a given vertex.
+    \item Find the centroid of a given tree in the forest.
+\end{enumerate}
+Each operation requires $O\br{\log n}$ time. A forest without edges and with n arbitrarily weighted vertices can be
+initialized in $O\br{n}$ time.
+    \end{theorem}
+        We begin with building the top tree out of $T$. We begin with empty top tree and add each edge one by one. Then we find the centroid of $T$ and remove each edge incident to it. Then we recurse on this new created tree (excluding the subtree consisting of $c$). Since the algorithm finds each vertex once and removes each edge once the total running time is of order $O\br{n\log n}$.
+    \end{proof}
+\end{theorem}

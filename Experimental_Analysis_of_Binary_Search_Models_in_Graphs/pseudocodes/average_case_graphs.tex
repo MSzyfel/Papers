@@ -1,22 +1,21 @@
 
-\begin{algorithm}[H]
-\caption{The $f_n$-approximation algorithm for $G||V,c,w||\sum{C_i}$.}
+\begin{algorithm}
+\caption{The $f_n$-approximation algorithm for $G||V,c,w||\sum C_i$.}
 \label{createDecisionTree}
 \SetKwFunction{FDecisionTree}{DecisionTree}
-\SetKwFunction{FAlgorithmMinCut}{AlgorithmMinCut}
 \SetKwProg{Fn}{Procedure}{:}{}
-\Fn{\FDecisionTree{$G,c,w$}}{
-$S_G\gets$ \FAlgorithmMinCut$\br{G, c, w}$
+\Fn{$\FDecisionTree\br{G,c,w}$}{
+$A_G,S_G, B_G\gets\FAlgorithmMinCut\br{G, c, w}$.
 
-Build an arbitrary decision tree $D_G$ on vertices of $S_G$.
+$D_G\gets$ arbitrary partial decision tree for $G$, built from vertices of $S_G$.
 
-    \ForEach{$H\in G-S$}
+    \ForEach{$H\in G-S_G$}
     {
-        $D_H\gets $\FDecisionTree{$H, c, w$}
+        $D_H\gets \FDecisionTree\br{H, c, w}$.
 
-        Hang $D_H$ below the last query consistent with $H$ in $D_G$.
+        Hang $D_H$ in $D_G$ below the last query to $v\in N_G\br{H}$.
     }   
-    \Return $D$
+    \Return $D_G$.
     
 }
 \end{algorithm}

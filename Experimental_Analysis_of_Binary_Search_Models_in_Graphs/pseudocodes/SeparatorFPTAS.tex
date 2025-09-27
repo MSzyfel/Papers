@@ -1,0 +1,20 @@
+
+\begin{algorithm}
+\caption{The bicriteria FPTAS for the Weighted $\alpha$-separator Problem}
+\label{createDecisionTree}
+\SetKwFunction{FDecisionTree}{DecisionTree}
+\SetKwProg{Fn}{Procedure}{:}{}
+\Fn{$\FSeparatorFPTAS\br{T, c, w, \alpha, \delta}$}{
+$K\gets\frac{\delta\cdot w\br{T}}{n\cdot \alpha}$.
+
+\ForEach{ $v\in V\br{T}$}
+{$w'\br{v} \gets \fl{\frac{w\br{v}}{K}}$.}
+
+$\alpha'\gets\frac{\alpha\cdot K\cdot w'\br{T}}{w\br
+T}$.
+
+$S'\gets\FSeparator\br{T, c, w', \alpha'}$.
+
+\Return $S'$.
+}
+\end{algorithm}

@@ -1,0 +1,260 @@
+
+\SetKwFunction{FCreateDecisionTree}{CreateDecisionTree}
+
+\subsection{$O\br{\log\log n}$-approximation algorithm parametrized by the $k$-up-modularity of the cost function}
+\subsubsection{$k$-up-modularity}\label{kUpModularity}
+The main algorithmic difficulty in dealing with the problem arises when the values of the cost function vary drastically. We would like to measure this "irregularity" in a quantifiable way. To do so, we introduce the notion of $k$-up-modularity.
+\input{figures/k_up_modularity.tex}
+
+Let $t\in\mathbb{R}_{\geq0}$. We define a \textit{heavy module} with respect to $t$ as $H\subseteq V\br{T}$ such that, $T[H]$ is connected, for every $v \in H$, $c\br{v} > t$, and $H$ is maximal - no vertex can be added to it without violating one of its properties. We then define the \textit{heavy module set} with respect to $t$ in $\br{T,c}$ as:
+$$
+\mathcal{H}_{T,c}\br{t}=\brc{H\subseteq V\br{T}\mid H \text{ is a heavy module w.r.t. } t},
+$$
+
+Let $k\br{T,c, t} = \spr{\mathcal{H}_{T,c}\br{t}}$ be the size of the heavy module set, and finally let $k\br{T,c}= \max_{s\in\mathbb{R}_{\geq 0}}\brc{k\br{T,c, t}}$. We say that a function $c$ is $k$\textit{-up-modular} in $T$ when $k\geq k\br{T,c}$. Whenever clear from the context, we will use $k\br{T,c}$, $k\br{T}$, or $k$ to denote the lowest value such that $c$ is $k$-up-modular in $T$. To illustrate the notion of $k$-up-modularity, see Figure \ref{kUpModularityExample}.
+
+The concept of $k$-up-modularity is a direct generalization of the notion of up-monotonicity of the cost function introduced in \cite{dereniowski2022CFApproxAlgForBSInTsWithMonoQTimes} (as monotonicity) and in \cite{dereniowski2024SInTsMonoQTs} (as up-monotonicity). Let $z=\argmax_{v\in V\br{T}}\brc{c\br{v}}$. A function $c$ is \textit{up-monotonic} in $T$ if for every $v,u\in V\br{T}$, whenever $v$ lies on the path between $z$ and $u$, we have $c\br{v}\geq c\br{u}$. 
+
+It is easy to see that 1-up-modularity is equivalent to up-monotonicity. Observe that if $c$ is up-monotonic in $T$, then for every $t\in\mathbb{R}_{\geq 0}$, $T[V\br{T}-\brc{v\in V\br{T}\mid c\br{v}\leq t}]$ is connected and forms a single heavy module. Conversely, let $r=\argmax_{v\in V\br{T}}\brc{c\br{v}}$ and $u$ be any other vertex. If $c$ is 1-up-modular in $T$, then there is no vertex $v$ on the path between $r$ and $u$ such that $c\br{v}<c\br{u}$. Otherwise, for any $t\in \br{c\br{v},c\br{u}}$, $v$ does not belong to any heavy module, but $u$ and $r$ do. Since $v$ lies between them, $\spr{\mathcal{H}_{T,c}\br{t}}>1$, a contradiction.
+
+
+\section{The parametrized $O\br{\log\log n}$-approx. solution}\label{parametrizedSolution}
+\subsubsection{Cost levels}\label{costLevels}
+The main idea of the algorithm is to partition vertices into intervals called \textit{cost levels} and process them in a top-down manner. At each level of the recursion, the algorithm schedules all necessary queries to vertices belonging to the given cost level. The rest of the decision tree is then built recursively. We consider the following intervals\footnote{We present the intervals in the ascending order in which a complete solution for each of them is obtained. However, since the procedure is recursive, the order in which the recursive calls are made is reverse.}:
+
+\begin{enumerate}
+    \item Firstly, an interval $\left( 0,{1}/{\log n}\right]$.
+    \item Then, each subsequent interval $\mathcal{I}'=\left(a',b'\right]$ starts at the left endpoint of the previous interval $\mathcal{I}=\left(a,b\right]$, that is, $a'=b$, and ends with $b'=\min\brc{2b, 1}$. 
+    
+    This results in the following sequence of intervals, which partitions the interval $\left(0,1\right]$:
+    
+    $$\left( 0,{1}/{\log n}\right],\left({1}/{\log n},{2}/{\log n}\right], \left({2}/{\log n},{4}/{\log n}\right],\dots, \left({2^{\cl{\log\log n}-1}}/{\log n},1\right].$$
+\end{enumerate}
+
+We will ensure that when we call our procedure with parameters $\br{T, c, \left({2^{\cl{\log\log n}-1}}/{\log n},1\right]}$, the returned decision tree will be a valid decision tree for $T$.
+
+We are now ready to introduce the notions of heavy and light vertices (and queries to them). We say that a vertex $v$ (or a query to it) is \textit{heavy} with respect to the interval $\mathcal{I}=\left(a,b\right]$ when $c\br{v}>a$. Otherwise, i.e., if $c\br{v}\leq a$, the vertex (and the query to it) is \textit{light} with respect to $\mathcal{I}$. Note that each heavy vertex belongs to some heavy module. Whenever clear from the context, we will omit the phrase "with respect to" and simply call the vertices and queries heavy and light.
+
+
+\subsubsection{The main recursive procedure}\label{mainRecursiveProcedure}
+
+We are ready to present the main recursive procedure. To avoid ambiguity, let $\mathcal{T}$ be the subtree of $T$ processed at some level of the recursion. Alongside $\mathcal{T}$ and a cost function $c$, the algorithm takes as input an interval $\left(a,b\right]$, such that for every $v\in V\br{\mathcal{T}}$, $c\br{v}\leq b$ and $2a\geq b$. 
+The basic steps of the Algorithm \ref{createDecisionTree} are as follows: 
+\begin{enumerate}
+    \item If every vertex is heavy, return a decision tree built by calling the \FRankingBasedDT procedure for $\mathcal{T}$.
+    \item Otherwise, find a set $\mathcal{Z}$, such that each connected component of $\mathcal{T}'\in \mathcal{T}-\mathcal{Z}$ contains at most one heavy module.
+    \item Create an auxiliary tree $T_{\mathcal{Z}}$ using the vertices of $\mathcal{Z}$ and create a new decision tree $D_{\mathcal{Z}}$ for $T_{\mathcal{Z}}$, using the QPTAS from \cite{dereniowski2017ApproxSsForGeneralBSinWTs}.
+    \item For each $\mathcal{T}'\in \mathcal{T}-\mathcal{Z}$, build a decision tree $D_H$, by calling the \FRankingBasedDT procedure for $\mathcal{T}'\angl{H}$. Then, hang $D_H$ below the last query to $v\in N_{\mathcal{T}}\br{\mathcal{T}'}$ in $D_{\mathcal{Z}}$.
+    \item For each $L\in\mathcal{T}'-H$, build a decision tree recursively. Then, hang $D_L$ below the last query to a vertex $v \in N_{\mathcal{T'}}\br{L}$ in $D_{\mathcal{Z}}$.
+    \item Return the resulting decision tree $D$.
+\end{enumerate}
+
+Before providing a detailed description and analysis of the above procedure, we first present some basic properties necessary for the subsequent considerations. In particular, we will make use of the following well-known lemma \cite{Cicalese2016DecTreesSimEval}:
+\begin{lemma}\label{subtreeOptLemma}
+    Let $T'$ be a subtree of $T$. Then, $\OPT\br{T'}\leq\OPT\br{T}$.
+\end{lemma}
+\input{pseudocodes/create_dt.tex}
+
+For the rest of the analysis, fix $\mathcal{H}=\mathcal{H}_{\mathcal{T},c}\br{a}$ to be the set of heavy modules in $\mathcal{T}$. We have the following observations, which will be useful in the description and analysis of the algorithm:
+
+\begin{observation}\label{heavymodulesetsize}
+Let $\mathcal{H}$ be the set of heavy modules in $T$. Then, $\spr{\mathcal{H}}\leq k\br{T}$.
+\begin{proof}
+    Since $\mathcal{H}=\mathcal{H}_{\mathcal{T},c}\br{a}$, we have $\spr{\mathcal{H}}=k\br{\mathcal{T}, c, a}\leq \max_{t\in \mathbb{R}_{\geq 0}}k\br{T, c, t} = k\br{T, c}$.
+\end{proof}
+\end{observation}
+
+\begin{observation}\label{subtreeKUpModularity}
+    Let $T'$ be a subtree of $T$. Then, $k\br{T'}\leq k\br{T}$.
+    \begin{proof}
+        Fix any $t\in \mathbb{R}_{\geq 0}$ and let $H\in \mathcal{H}_{T, c}\br{t}$. We show that each such $H$ contributes at most 1 to $k\br{T', c, t}$. If $H\cap V\br{T'} = \emptyset$, then $H$ contributes 0. Otherwise, $H\cap V\br{T'}$ forms a connected subtree of $T'$, and thus contributes at most 1. The lemma follows.
+    \end{proof}
+\end{observation}
+
+\begin{observation}\label{subtreePartialDt}
+    Let $T'$ be a subtree of a tree $T$ and let $D'$ be a decision tree for $T'$. Then, $D'$ is a partial decision tree for $T$.
+\end{observation}
+
+\begin{observation}\label{neighborsPathObservation}
+     Let $T'$ be a subtree of a tree $T$ and let $D$ be a partial decision tree for $T$ having no queries to vertices of $T'$, but containing at least one query to the vertices of $N_{T}\br{V\br{T'}}$. Let $Q$ denote the set of all such queries to vertices of $N_{T}\br{V\br{T'}}$ in $D$. Then, $D\angl{Q}$ forms a path in $D$.  
+    \begin{proof}
+        Let $q$ be any query in $D$. There are two cases:
+        \begin{enumerate}
+            \item $q\in V\br{T-V\br{T'}-N_{T}\br{V\br{T'}}}$. Then, for every $x\in N_{T}\br{V\br{T'}}$ being the target, $x$ belongs to the same connected component of $T-q$. Thus, no matter which vertex is the target, the answer is always the same. Therefore, $q$ has at most one child $u$ in $D$, such that $V\br{D_u}\cap Q \neq \emptyset$.
+            \item $q\in N_{T}\br{V\br{T'}}$. After a query to $q$, the situation is as in the first case, except when $x=q$. Then, the response is $x$ itself, so no further queries are needed, and again $q$ has at most one child $u$ in $D$, such that $V\br{D_u}\cap Q \neq \emptyset$.
+        \end{enumerate} 
+        
+        Since each $q\in Q$ has at most one child $u$ in $D$, with $D_u\cup Q\neq\emptyset$, $D\angl{Q}$ forms a path and the claim follows.
+    \end{proof}
+\end{observation}
+
+\subsubsection{Base of the recursion}
+We begin the description of our algorithm with the recursion base, which occurs whenever $b\leq{1}/{\log n}$ or for every $v\in V\br{\mathcal{T}}$, $c\br{v}>a$, i.e., every vertex is heavy. In such a situation, a solution is built by disregarding the costs of vertices and constructing a decision tree using the vertex ranking of $\mathcal{T}$. 
+
+\begin{lemma}\label{baseOfRecursion}
+    Let $D$ be a decision tree built, by calling \FRankingBasedDT$\br{\mathcal{T}}$ in line \ref{basecaseDT} of the \FCreateDecisionTree procedure. Then,  
+$$
+\COST_{D}\br{\mathcal{T}}\leq 2\cdot\OPT\br{T}.
+$$
+\begin{proof}
+    There are two cases:
+    \begin{enumerate}
+        \item If $b\leq \frac{1}{\log n}$, then:
+$$
+\COST_{D}\br{\mathcal{T}}\leq\frac{\fl{\log n}+1}{\log n}\leq \frac{\log n+1}{\log n}\leq2\leq 2\cdot \OPT(\mathcal{T})\leq 2\cdot\OPT(T),
+$$
+
+where the first inequality is due to Corollary \ref{vertexRankingCorollary}, the fourth inequality follows from Observation \ref{basicBoundsOnCost}, and the last inequality is due to Observation \ref{subtreeOptLemma}.
+
+        \item If for every $v\in V\br{\mathcal{T}}$, we have $c\br{v}> a$, then, define $c'\br{v}=a$ for all $v\in V\br{\mathcal{T}}$ (note that any value could be chosen here, since we treat each query as unitary). As $2c'\br{v} = 2a\geq b \geq c\br{v}$, we obtain $2\cdot \COST_D\br{\mathcal{T}, c'}\geq \COST_D\br{\mathcal{T}, c}$. Additionally, using the fact that $c'\br{v} \leq c\br{v}$, we have $\OPT\br{\mathcal{T}, c'}\leq \OPT\br{\mathcal{T}, c}$. Therefore:
+$$
+\COST_D\br{\mathcal{T}, c}\leq 2\cdot \COST_D\br{\mathcal{T}, c'}=2\cdot \OPT\br{\mathcal{T}, c'}\leq 2\cdot\OPT\br{\mathcal{T}, c}\leq 2\cdot\OPT\br{T, c},
+$$
+
+where the equality is due to Corollary \ref{vertexRankingCorollary} and the last inequality is due to Observation \ref{subtreeOptLemma}. The lemma follows.
+    \end{enumerate}
+\end{proof}
+\end{lemma}
+
+\input{figures/aux_tree}
+
+\subsubsection{Construction of the Auxiliary Tree}\label{auxTreeConstruction}
+
+To obtain the solution for the non-base case of our algorithm, we first construct the so-called \textit{auxiliary tree}. To do so, we begin by defining a set $\mathcal{X}\subseteq V\br{\mathcal{T}}$. For every heavy module $H\in\mathcal{H}$, we pick an arbitrary $v\in H$ and add it to $\mathcal{X}$. We also define a set 
+$\mathcal{Y}=\mathcal{X}\cup\brc{v\in V\br{\mathcal{T}\angl{\mathcal{X}}} | \deg_{\mathcal{T}\angl{\mathcal{X}}}\br{v}\geq 3}$, by extending $\mathcal{X}$ to contain all vertices with degree at least $3$ in $T\angl{\mathcal{X}}$. Furthermore, we define a set $\mathcal{Z}\subseteq V\br{\mathcal{T}}$ consisting of the vertices in $\mathcal{Y}$ and, for every $u,v\in \mathcal{Y}$, such that $\mathcal{P}_{\mathcal{T}}\br{u, v}\neq\emptyset$ and $\mathcal{P}_{\mathcal{T}}\br{u, v}\cap \mathcal{Y}=\emptyset$, we add to $\mathcal{Z}$ the lightest vertex between them, i. e., 
+$v_{u,v} = \argmin_{z\in \mathcal{P}_{\mathcal{T}}\br{u, v}}\brc{c\br{z}}$.
+To see an example of construction of the sets $\mathcal{X}, \mathcal{Y}, \mathcal{Z}$, see Figure \ref{exampleTreeWithSetZ}. 
+
+We then create the auxiliary tree 
+$\mathcal{T}_{\mathcal{Z}}=\br{\mathcal{Z},\brc{uv | \mathcal{P}_{\mathcal{T}}\br{u, v}\cap \mathcal{Z}=\emptyset}}$ 
+(for an example, see Figure \ref{exampleAuxTreeTZ}). Our algorithm starts by building a decision tree $D_{\mathcal{Z}}$ for $\mathcal{T}_{\mathcal{Z}}$, by taking $\epsilon=1$ and applying the QPTAS from Theorem \ref{QPTAS}. Observe that, since $D_{\mathcal{Z}}$ is a partial decision tree for $\mathcal{T}$ and corresponding vertices in $\mathcal{T}$ and $\mathcal{T}_{\mathcal{Z}}$ have the same costs, we have that:
+
+
+\begin{observation}\label{CostDZinTObservation}
+    $\COST_{D_{\mathcal{Z}}}\br{\mathcal{T}_{\mathcal{Z}}}=\COST_{D_{\mathcal{Z}}}\br{\mathcal{T}}$.
+\end{observation}
+
+
+Let $D = D_{\mathcal{Z}}$. For each connected component $\mathcal{T}'\in \mathcal{T}-\mathcal{Z}$, we build a new decision tree as follows: By the construction of $\mathcal{Z}$, all heavy vertices in $V\br{\mathcal{T}'}$ form a single heavy module $H\subseteq V\br{\mathcal{T}'}$. We create a new decision tree $D_H$ for $\mathcal{T}'\angl{H}$, by calling the \FRankingBasedDT procedure with argument $\mathcal{T}'\angl{H}$ and we hang $D_{H}$ in $D$ below the unique last query to a vertex in $N_\mathcal{T}\br{\mathcal{T}'}$ (which is possible due to Observation \ref{neighborsPathObservation}). As, by Observation \ref{subtreePartialDt}, $D_H$ is a partial decision tree for $\mathcal{T}'$, it follows that $D$ is also a partial decision tree for $\mathcal{T}$. 
+
+Now notice that for each $L\in \mathcal{T}'-H$, there is no $v\in V\br{L}$, such that $c\br{v}>a$. This allows us to create a decision tree $D_L$ recursively, by calling the \FCreateDecisionTree procedure with arguments $L$, $c$ and $\left(a/2,a\right]$. Next, we hang $D_L$ in $D$ below the unique last query to a vertex in $N_{\mathcal{T}'}\br{L}$ (again, using Observation \ref{neighborsPathObservation}). Since after all such operations, every vertex $v\in V\br{\mathcal{T}}$ also belongs to $D$, we obtain a valid decision tree $D$ for $\mathcal{T}$. To see example structure of such solution, see Figure \ref{structure_of_dt}.
+
+
+\subsubsection{Analysis of the algorithm}\begin{lemma}\label{auxTreeSizeLemma}
+    Let $\mathcal{T}_{\mathcal{Z}}$ be the auxiliary tree. Then, $\spr{V\br{\mathcal{T}_{\mathcal{Z}}}}\leq 4k-3$.
+    \begin{proof}
+        First, we show that $\spr{\mathcal{Y}}\leq 2k-1$. We use induction on the elements of $\mathcal{H}$. We construct a family of sets $\mathcal{H}_1, \mathcal{H}_2, \dots, \mathcal{H}_{\spr{\mathcal{H}}}$, such that for every integer $1\leq h \leq \spr{\mathcal{H}}$, $\spr{\mathcal{H}_h}=h$ and $\mathcal{H}_{\spr{\mathcal{H}}} = \mathcal{H}$. For each $\mathcal{H}_h$, we also construct a corresponding set $\mathcal{Y}_h$, eventually ensuring that $\mathcal{Y}_{\spr{\mathcal{H}}}=\mathcal{Y}$.
+        
+        Let $\mathcal{H}_1=\emptyset$, $\mathcal{Y}_1=\emptyset$. Pick any heavy module $H\subseteq V\br{\mathcal{T}}$ and add it to $\mathcal{H}_1$. Add the unique vertex $v$, such that $v\in H\cap\mathcal{X}$ to $\mathcal{Y}_1$, so that $\spr{\mathcal{Y}_1}=1$. Assume by induction that for some $h\geq 1$, $\spr{\mathcal{Y}_h}\leq 2h-1$.  
+        Two heavy modules $H_1,H_2\subseteq V\br{\mathcal{T}}$ will be called  \textit{neighbors} if for every $H_3\subseteq V\br{\mathcal{T}}$ with $H_3\neq H_1,H_2$, we have $\mathcal{P}_{\mathcal{T}}\br{H_1,H_2}\cap H_3 = \emptyset$. Pick $H\in\mathcal{H}$, such that $H\notin \mathcal{H}_h$ to be a heavy module that is a neighbor of some member of $\mathcal{H}_h$. We define $\mathcal{H}_{h+1}=\mathcal{H}_h\cup\brc{H}$. 
+        Let $z$ be the unique vertex, such that $v\in H\cap\mathcal{X}$, and let $\mathcal{Y}_{h+1}=\mathcal{Y}_h \cup \brc{z}$. Define $\mathcal{T}_{h+1} = \mathcal{T}\angl{\brc{v\in \mathcal{Y}_{h+1} | \mathcal{P}_\mathcal{T}\br{v,z} \cap \mathcal{Y}_{h+1} = \emptyset}}$. Note that $\mathcal{T}_{h+1}$ is a spider (a tree with at most one vertex of degree above 2). Add to $\mathcal{Y}_{h+1}$ the unique vertex $v\in V\br{\mathcal{T}_{h+1}}$, such that $\deg_{\mathcal{T}_{h+1}}\br{v}\geq 3$, if it exists. Clearly, $\spr{\mathcal{Y}_{h+1}} \leq 2h+1$, completing the induction.  
+
+        By construction, $\mathcal{H}_{\spr{\mathcal{H}}}=\mathcal{H}$ and $\mathcal{Y}_{\spr{\mathcal{H}}}=\mathcal{Y}$, so $\spr{\mathcal{Y}} \leq 2\cdot \spr{\mathcal{H}} - 1 \leq 2k-1$ where the last inequality is by Observation \ref{heavymodulesetsize}. As paths between vertices in $\mathcal{Y}$ form a tree when contracted, at most $2k-2$ additional vertices are added while constructing $\mathcal{Z}$ (at most one per path). The lemma follows.
+    \end{proof}
+\end{lemma}
+
+
+\begin{lemma}\label{auxTreeCostLemma}
+    Let $\mathcal{T}_{\mathcal{Z}}$ be the auxiliary tree. Then, $\OPT\br{\mathcal{T}_{\mathcal{Z}}}\leq \OPT\br{\mathcal{T}}$.
+    \begin{proof}
+        Let $D^*$ be the decision tree for $\mathcal{T}\angl{\mathcal{Z}}$. We build a new decision tree $D_{\mathcal{Z}}'$ for $\mathcal{T}_{\mathcal{Z}}$ by transforming $D^*$ as follows: 
+        
+        Let $u,v\in \mathcal{Y}$, such that $\mathcal{P}_{\mathcal{T}}\br{u, v}\neq\emptyset$ and $\mathcal{P}_{\mathcal{T}}\br{u, v}\cap \mathcal{Y}=\emptyset$. Let $q\in V\br{D^*}$ be the first query to a vertex among $\mathcal{P}_{\mathcal{T}}\br{u, v}$. Recall that we picked $v_{u,v}=\argmin_{z\in \mathcal{P}_{\mathcal{T}}\br{u, v}}\brc{c\br{z}}$, so $c\br{v_{u,v}}\leq c\br{q}$. 
+        We replace $q$ in $D^*$ with the query to $v_{u,v}$ and delete all queries to vertices in $\mathcal{P}_{\mathcal{T}}\br{u, v}-v_{u,v}$. By construction, $D_{\mathcal{Z}}'$ is a valid decision tree for $\mathcal{T}_{\mathcal{Z}}$, and by choosing $v_{u,v}$ to minimize $c$, we did not increase the cost, so we have that: 
+        $$
+        \COST_{D_{\mathcal{Z}}'}\br{\mathcal{T}_{\mathcal{Z}}} \leq \OPT\br{\mathcal{T}\angl{\mathcal{Z}}}.
+        $$
+        
+        Therefore, we have:
+        $$
+        \OPT\br{\mathcal{T}_{\mathcal{Z}}}\leq \COST_{D_{\mathcal{Z}}'}\br{\mathcal{T}_{\mathcal{Z}}}\leq \OPT\br{\mathcal{T}\angl{\mathcal{Z}}}\leq \OPT\br{\mathcal{T}},
+        $$
+        
+        where the first inequality is due to the definition of optimality and the last inequality follows by Lemma \ref{subtreeOptLemma}.
+    \end{proof}
+\end{lemma}
+
+\begin{lemma}\label{heavygroupcostlemma}
+    Let $H$ be the unique heavy module of $\mathcal{T}'\in \mathcal{T}-\mathcal{Z}$. Then, the decision tree $D_H$ is of cost at most:
+    $$\COST_{D_H}\br{\mathcal{T}'\angl{H}}\leq 2\cdot\OPT\br{\mathcal{T}}.$$
+    \begin{proof}
+        
+    For every $v\in H$ let $c'\br{v}=a$. We have $2 c'\br{v}\geq b c'\br{v}/a =  b \geq c\br{v}$ so we get that $2\cdot\COST_{D_H}\br{\mathcal{T}'\angl{H}, c'}\geq \COST_{D_H}\br{\mathcal{T}'\angl{H}, c}$. Additionally, using the fact that $c'\br{v} \leq c\br{v}$ we have that $\OPT\br{\mathcal{T}'\angl{H}, c'}\leq \OPT\br{\mathcal{T}'\angl{H}, c}$. Hence:
+    
+    \begin{align*}
+        \COST_{D_H}\br{\mathcal{T}'\angl{H}, c}&\leq 2\cdot\COST_{D_H}\br{\mathcal{T}'\angl{H}, c'}=2\cdot\OPT\br{\mathcal{T}'\angl{H}, c'} \\
+        &\leq
+        2\cdot\OPT\br{\mathcal{T}'\angl{H}, c}\leq 2\cdot\OPT\br{\mathcal{T}, c}
+    \end{align*}
+    
+        
+    where the equality is by the Corollary \ref{vertexRankingCorollary} and the last inequality is due to the fact that $\mathcal{T}'\angl{H}$ is a subtree of $\mathcal{T}'$, which is a subtree of $\mathcal{T}$ (Lemma \ref{subtreeOptLemma}).
+    \end{proof}
+\end{lemma}
+
+\subsubsection{The main result}
+
+Let $d$ be the remaining depth of the recursion call performed in Line~\ref{recursion} of the algorithm, i.e., the number of recursive steps from the current call to the base case (for the base case, this value is equal to $d=0$). We show that at each level of the recursion we pay $O\br{\OPT\br{T}}$, so the approximation ratio of the algorithm is bounded by $O\br{d}$:
+\begin{lemma}\label{costofthesolution}
+$\COST_D\br{\mathcal{T}}\leq\br{4 d+2}\cdot\OPT\br{T}$.
+    \begin{proof}
+        
+    Let $Q_D\br{\mathcal{T},x}$ be the sequence of queries performed in order to find $x\in V\br{\mathcal{T}}$. By construction of the Algorithm \ref{createDecisionTree}, $Q_D\br{\mathcal{T},x}$ consists of at most three distinct subsequences of queries (see Figure \ref{structure_of_dt}):
+    \begin{enumerate}
+        \item Firstly, there is a sequence of queries belonging to $Q_{D_{\mathcal{Z}}}\br{\mathcal{T}_{\mathcal{Z}},x}$.
+        \item If $x\notin \mathcal{Z}$, then, there is a sequence of queries belonging to $Q_{D_{H}}\br{\mathcal{T}'\angl{H},x}$ for a unique heavy group $H\subseteq V\br{\mathcal{T}'}$ of $\mathcal{T}'\in\mathcal{T}-\mathcal{Z}$, such that $x\in \mathcal{T}'$.
+        \item At last, if $x\notin H$, there is a sequence of queries belonging to $Q_{D_{L}}\br{L,x}$ for $L\in \mathcal{T}'-H$, such that $x\in V\br{L}$. 
+    \end{enumerate}  
+
+    Note that it sometimes may happen that some of the above sequences are empty.
+    
+    We prove by induction that $\COST_{D}\br{\mathcal{T}}\leq \br{4d +2}\cdot \OPT\br{T}$. When $d=0$ (the base case), the induction hypothesis is true, due to the Lemma \ref{baseOfRecursion}. For $d>0$, assume by induction that the cost of the decision tree  built for each $L$, is at most $\COST_{D_L}\br{L}\leq \br{4\br{d-1} +2}\cdot \OPT\br{T}$. We have:
+        \begin{align*}
+        \COST_D\br{\mathcal{T}}
+        &\leq
+        \COST_{D_{\mathcal{Z}}}\br{\mathcal{T}}+\max_{\mathcal{T}'\in \mathcal{T}-\mathcal{Z}}\brc{\COST_{D_H}\br{\mathcal{T}'\angl{H}}+\max_{L\in \mathcal{T}'-H}\brc{\COST_{D_L}\br{L}}}
+         \\ 
+        &\leq
+        \COST_{D_{\mathcal{Z}}}\br{\mathcal{T}_{\mathcal{Z}}}+\max_{\mathcal{T}'\in \mathcal{T}-\mathcal{Z}}\brc{2\cdot\OPT\br{\mathcal{T}}+\br{4\br{d-1} +2}\cdot \OPT\br{T}}
+        \\ 
+        &\leq 
+        2\cdot\OPT\br{\mathcal{T}_{\mathcal{Z}}}+2\cdot\OPT\br{T}+ \br{4\br{d-1} +2}\cdot \OPT\br{T} 
+        \\
+        &
+        \leq 
+        2\cdot\OPT\br{\mathcal{T}}+4d\cdot \OPT\br{T} = \br{4d+2}\cdot \OPT\br{T}
+        \end{align*}
+        
+        where the first inequality is due to the construction of the decision tree returned by the Algorithm \ref{createDecisionTree}, the second inequality is by Observation \ref{CostDZinTObservation}, Observation \ref{heavygroupcostlemma} and by the induction hypothesis, the third inequality is due to Theorem \ref{QPTAS} and using the fact that $\mathcal{T}$ is a subtree of $T$ (Lemma \ref{subtreeOptLemma}) and the last inequality is due to Lemma \ref{auxTreeCostLemma}.
+        
+    \end{proof}
+\end{lemma}
+
+We are now ready to prove our main theorem: 
+\begin{theorem}
+\label{parametrizedAlgorithm}
+    There exists an $O\br{\log\log n}$-approximation algorithm for the Tree Search Problem running in $k^{O\br{\log k}}\cdot\text{poly}\br{n}$ time.
+    \begin{proof}
+        Let $D = \FCreateDecisionTree\br{T, \left({2^{\cl{\log\log n}-1}}/{\log n},1\right]}$. Since there are at most $\cl{\log\log n}+1$ intervals processed, the depth of the recursion is bounded by 
+        $
+        d \leq \cl{\log\log n} \leq \log\log n + 1
+        $.
+        Hence, using Lemma \ref{costofthesolution} we get that:
+        $$
+        \COST_{D}\br{T} \leq (4 \cdot \log\log n + 6) \cdot \OPT\br{T} = O\br{\log\log n \cdot \OPT\br{T}}.
+        $$
+
+        By Observation \ref{subtreeKUpModularity}, for every subtree $\mathcal{T}$ of $T$, processed at some level of the recursion, we have $k\br{\mathcal{T}} \leq k\br{T}$. Using Lemma \ref{auxTreeSizeLemma}, at each such level the call to the QPTAS from Theorem \ref{QPTAS} (line \ref{QPTAScall} of the \textsc{CreateDecisionTree}) runs in time bounded by: 
+        $$
+        k\br{\mathcal{T}}^{O\br{\log (4 \cdot k\br{\mathcal{T}})}} = k\br{T}^{O\br{\log k\br{T}}}.
+        $$
+        
+        Since $d = O(\text{poly}(n))$ and all other computation can be performed in polynomial time, the overall running time is bounded by 
+        $
+        k^{O\br{\log k}} \cdot \text{poly}\br{n}
+        $,
+        as required.
+    \end{proof}
+\end{theorem}
+
+

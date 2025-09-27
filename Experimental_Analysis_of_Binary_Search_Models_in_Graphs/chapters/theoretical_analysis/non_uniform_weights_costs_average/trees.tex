@@ -1,0 +1,175 @@
+\subsection{$T||V,c,w||\sum C_j$}\label{serachingInTs}
+
+In this section, we present a $\br{4+\epsilon}$-approximation algorithm 
+for the case where the input graph is a tree. 
+To achieve this, we establish a connection between searching in trees and 
+the Weighted $\alpha$-Separator Problem. 
+This connection provides a lower-bounding scheme for our recursive algorithm, 
+which at each level of recursion, constructs a decision tree using the 
+$\alpha$-separator obtained by the following procedure:
+
+\begin{theorem}\label{bicriteriaFPTAS}
+    Let $S$ be an optimal weighted $\alpha$-separator for $\br{T,c,w,\alpha}$. For any $\delta>0$ there exists an algorithm \FSeparatorFPTAS, which returns a separator $S'$, such that:
+    \begin{enumerate}
+        \item $c\br{S'}\leq c\br{S}$.
+        \item $w\br{H}\leq \frac{\br{1+\delta}\cdot w\br{T}}{\alpha}$ for every $H\in T-S'$.
+        \item The algorithm runs in $O\br{n^3/\delta^2}$ time.
+    \end{enumerate}
+\begin{proof}
+We devise a dynamic programming procedure similar to the one in \cite{kseparator} and combine it with a rounding trick to obtain a bi-criteria FPTAS.
+Note that the authors considered only the case in which all weights are uniform. However, we generalize their algorithm to arbitrary integer weights and introduce an additional case that 
+was previously lacking\footnote{Probably due to an oversight.}.
+
+\begin{theorem}\label{separator}
+    Let $T$ be a tree. 
+    There exists an optimal algorithm for the Weighted $\alpha$-Separator Problem running in 
+    $O\br{n\cdot \br{w\br{T}/\alpha}^2}$ time.
+
+\begin{proof}
+    Assume that the input tree is rooted at an arbitrary vertex $r\br{T}$. Let $k=\fl{w\br{T}/\alpha}$. We want to find a separator $S$ such that for every $H\in T-S$, $w\br{H}\leq k$.
+    Let $C_{v}$ denote the cost of the optimal separator $S_v$ in $T_v$ with this property. 
+    Define $C_{v}^{in}$ as the cost of the optimal separator for $T_v$, 
+    under the condition that $v \in S_v$. 
+    We immediately have:
+    $$
+    C_{v}^{in} = c\br{v}+\sum_{c\in \mathcal{C}_{T,v}}C_{c}.
+    $$
+    
+    Assume that $v \notin S_v$. 
+    Let $H_v \in T_v - S_v$ be the component containing $v$. 
+    For every integer $0 \leq w \leq k$, let $C_v^{out}\br{w}$ be the cost of the optimal separator for $T_v$, 
+    such that $v \notin S_v$ and $w\br{H_v} = w$. 
+    Then:
+    $$
+    C_v = \min \brc{C_{v}^{in}, \min_{0 \leq w \leq k} C_v^{out}\br{w}}.
+    $$
+    
+    For any vertex $v \in V\br{T}$ and any integer $1 \leq i \leq \deg_{T,v}^+$, 
+    let $S_{v,i}$ be the optimal separator for $T_{v,i}$ and $H_{v,i} \in T_{v,i} - S_{v,i}$ be the component containing $v$.
+    For any integer $0 \leq w \leq k$, let $C_{v,i}^{out}\br{w}$ be the cost of an optimal separator for $T_{v,i}$, 
+    such that $v \notin S_{v,i}$ and $w\br{H_{v,i}} = w$. 
+    Then
+    $$
+    C_{v}^{out}\br{w} = C_{v,\deg_{T,v}^+}^{out}\br{w}.
+    $$
+    
+    For $i = 1$ we have:
+    $$
+    C_{v,1}^{out}\br{w} =
+    \begin{cases}
+        \infty, & \text{if } w < w\br{v},\\
+        \min \brc{C_{c_1}^{in},C_{c_1}^{out}\br{0}}, & \text{if } w = w\br{v},\\
+        C_{c_1}^{out}\br{w - w\br{v}}, & \text{if } w > w\br{v}.
+    \end{cases}
+    $$
+    
+    For $i > 1$:
+    $$
+    C_{v,i}^{out}\br{w} = 
+    \min \brc{
+        C_{v,i-1}^{out}\br{w} + C_{c_i}^{in}, 
+        \min_{0 \leq j \leq w} \brc{ C_{v,i-1}^{out}\br{w-j} + C_{c_i}^{out}\br{j} }
+    }.
+    $$
+    
+    In the above, the first term of the outer minimum corresponds to the case $c_i \in S_{v,i}$, 
+    so $H_{v,i} = H_{v,i-1}$. 
+    The second term considers the alternative, checking all possible partitions of 
+    the weight between $H_{v,i-1}$ and $H_{c_i}$.
+
+    These relationships suffice to compute $C_{r\br{T}}$, the cost of the optimal separator $S$ for $T$. 
+    Computation is performed in a bottom-up, left-to-right manner, starting from the leaves. 
+    For a leaf $v$, we have $C_v^{in} = c\br{v}$ and:
+    $$C_v^{out}\br{w} = \begin{cases}
+        0, & \text{if } w = w\br{v}\leq k,\\
+        \infty, & \text{otherwise.}
+    \end{cases}$$ 
+
+    Since each of the $C_v^{in}$ subproblems requires $O\br{\deg_{T,v}^+}$ computational steps we get that they require $O\br{n}$ running time. As there are $O\br{n\cdot k} = O\br{n \cdot w\br{T}/\alpha}$ remaining subproblems and each requires 
+    at most $O\br{k}=O\br{w\br{T}/\alpha}$ computational steps, the running time is $O\br{n \cdot \br{w\br{T}/\alpha}^2}$.
+\end{proof}
+\end{theorem}
+
+
+Note that, the running time of the above procedure depends on $w\br{T}$ which may not be polynomial. 
+To alleviate this difficulty, we slightly relax the condition on the size of components 
+in $T-S$ using a controlled parameter $\delta$. 
+Based on this relaxation, we show how to construct a bicriteria FPTAS for the problem. Let $\delta>0$ be any fixed constant and let $\FSeparator$ be the dynamic programming procedure from Theorem \ref{separator}.
+        The algorithm is as follows:
+        \input{pseudocodes/SeparatorFPTAS.tex}
+        \begin{lemma}
+            Let $S$ be the optimal separator for the $\br{T, c, w, \alpha}$ instance. We have that $c\br{S'}\leq c\br{S}$.
+            \begin{proof}
+                We prove that $S$ is a valid separator for the $\br{T, c, w', \alpha'}$ instance, so that $c\br{S'}\leq c\br{S}$.
+                To simplify the analysis, we will define the auxiliary instance: For every $v\in V\br
+                {T}$, let $w''\br{v} = K\cdot\fl{\frac{w\br{v}}{K}} $. Additionally, let $ \alpha'' =\frac{\alpha \cdot w''\br{T}}{w\br{T}}$.
+                
+                In this new instance, for $v\in V\br{T}$ we have $w''\br{v}\leq w\br{v}$, so for every $H\in T-S$, 
+                $$w''\br{H}\leq w\br{H}\leq w\br{T}/\alpha= w''\br{T}/\alpha''$$
+                
+                where the second inequality is by the definition of the $\alpha$-separator and the equality is by the definition of $\alpha''$.
+                
+                We conclude that $S$ is an $\alpha''$-separator for the auxiliary instance $\br{T, c, w'', \alpha''}$. Now notice that the $\br{T, c, w', \alpha'}$ instance has all of its weights scaled by a constant value of $K$, relatively to $\br{T, c, w'', \alpha''}$ and $\alpha' = \alpha''$. As multiplying weights by a constant does not influence the validity of a solution, $S$ is an $\alpha'$-separator for $\br{T, w', c, \alpha'}$ and the claim follows.
+            \end{proof}
+        \end{lemma}
+        \begin{lemma}
+            For every $H\in T-S'$, we have that $w\br{H}\leq\frac{\br{1+\delta}\cdot w\br{T}}{\alpha}$.
+        
+            \begin{proof}
+                By definition $ \frac{w\br{v}}{K}\leq w'\br{v}+1$ and therefore, also $w\br{v}\leq K\cdot w'\br{v}+K$. We have:
+                \begin{align*}
+                \sum_{v\in H}w\br{v}&\leq K\cdot\sum_{v\in H}w'\br{v}+K\cdot n\leq \frac{K\cdot w'\br{T}}{\alpha'}+K\cdot n \\
+                &= \frac{w\br{T}}{\alpha} + \frac{\delta \cdot w\br{T}}{\alpha}=\frac{\br{1+\delta}\cdot w\br{T}}{\alpha}
+                \end{align*}
+                
+                where the second inequality is due to the fact that $S'$ is a $\alpha'$-separator for $\br{T, c, w', \alpha'}$ instance and the first equality is by the definition of $\alpha'$ and $K$.
+            \end{proof}
+        \end{lemma}
+            
+        Combining the two above lemmas with the fact that $\frac{w'\br{T}}{\alpha'}=\frac{w\br{T}}{K\cdot \alpha}=n/\delta$ we have that the algorithm runs in time $O\br{n^3/\delta^2}$ as required.
+\end{proof}
+\end{theorem}
+\subsubsection{How to search in trees}\label{HowToSearchInTs}
+Below, we show how to use the $\FSeparatorFPTAS$ procedure to construct a solution 
+for $T||V,c,w||\sum C_i$. 
+At each level of the recursion, the algorithm greedily finds an (almost) optimal 
+weighted $\alpha$-separator of $T$, denoted $S_T$, and then builds an arbitrary 
+decision tree $D_T$ using the vertices in $S_T$ (which can be done in $O\br{n^2}$ time). 
+
+Next, for each $H \in T-S_T$, the procedure is called recursively, and each resulting 
+decision tree $D_H$ is attached below the appropriate query in $D_T$. The resulting decision tree is then returned by the procedure.
+    \begin{theorem}
+        For any $\epsilon>0$, there exists $\br{4+\epsilon}$-approximation algorithm for $T||V,c,w||\sum C_i$ running in time $O\br{n^4/\epsilon^2}$.
+        \begin{proof}
+            The procedure is as follows: 
+            \input{pseudocodes/average_case_trees.tex}
+            \input{figures/average_case_structure.tex}
+        
+            Let $\mathcal{T}$ be a subtree of $T$ for which the procedure was called and let $S_{\mathcal{T}}^*=S_{\fl{w\br{\mathcal{T}}/2}}^*\cap\mathcal{T}$. By Theorem \ref{bicriteriaFPTAS}, we have that $c\br{S_{\mathcal{T}}}\leq c\br{S_{\mathcal{T}}^*}$. Using $\beta=\frac{1-\delta}{2}$ and applying Lemma \ref{splitting} we have that the contribution of the decision tree $D_{\mathcal{T}}$ is bounded by:
+            \begin{align*}
+                w\br{\mathcal{T}}\cdot c\br{S_{\mathcal{T}}}
+                &\leq w\br{\mathcal{T}}\cdot c\br{S_{\mathcal{T}}^*}\leq \frac{2}{1-\delta}\cdot \sum_{k=\frac{1+\delta}{2}\cdot w\br{\mathcal{T}}+1}^{w\br{\mathcal{T}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{T}}.
+            \end{align*}
+            
+            To bound the cost of the whole solution we will firstly show the following lemma which is necessary to proceed:
+            \begin{lemma}\label{up_trees}
+            $$\sum_{\mathcal{T}}\sum_{k=\frac{1+\delta}{2}\cdot w\br{\mathcal{T}}+1}^{w\br{\mathcal{T}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{T}}\leq \sum_{k=0}^{w\br{T}}c\br{S_{\fl{k/2}}^*}.$$
+            \end{lemma}
+            \begin{proof}
+                Fix a value of $\mathcal{T}$ and $k$. Their contribution to the cost is $c\br{S_{\fl{k/2}}^*\cap \mathcal{T}}$. Consider which candidate subtrees contribute such a term. As $S_{\mathcal{T}}$ is a weighted $\frac{2}{1+\delta}$-separator, we have that $\mathcal{T}$ is the minimal candidate subtree, such that $w\br{\mathcal{T}}\geq k\geq \frac{\br{1+\delta}\cdot w\br{\mathcal{T}}}{2}+1 >w\br{H}$, for every $H\in \mathcal{T}-S_{\mathcal{T}}$. This means that if for every $H\in \mathcal{T}-S_{\mathcal{T}}$, $w\br{H}<k$, then $\mathcal{T}$ contributes such a term. Since for all $H_1, H_2\in \mathcal{T}-S_{\mathcal{T}}$ we have that $H_1\cap H_2=\emptyset$, $\br{S_{\fl{k/2}}^*\cap H_1}\cup \br{S_{\fl{k/2}}^*\cap H_2}=\emptyset$, the claim follows by summing over all values of $k$.
+            \end{proof}
+            
+        We are now ready to bound the cost of the solution. Let $D$ be the decision tree returned by the procedure. Using the fact that by definition $\frac{4}{1-\delta}=4+\epsilon$, we have:
+        \begin{align*}
+            $\COST_{D}\br{T} &\leq \sum_{\mathcal{T}} w\br{\mathcal{T}}\cdot c\br{S_\mathcal{T}}
+            \leq \frac{2}{1-\delta}\cdot\sum_{\mathcal{T}}\sum_{k=\frac{1+\delta}{2}\cdot w\br{\mathcal{T}}+1}^{w\br{\mathcal{T}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{T}}\\
+            &\leq \frac{2}{1-\delta}\cdot\sum_{k=0}^{w\br{T}}c\br{S_{\fl{k/2}}^*}\leq \frac{4}{1-\delta}\cdot\OPT\br{T} = \br{4+\epsilon}\cdot\OPT\br{T}
+    \end{align*}
+
+    where the third inequality is due to Lemma \ref{up_trees} and the last inequality is by Lemma \ref{lb_opt}.
+
+    
+    As $1/\delta=\frac{4+\epsilon}{\epsilon}=1+4/\epsilon$ and each $v\in V\br T$ belongs to the set $S_{\mathcal{T}}$ exactly once, we have that the overall running time is at most $O\br{n^4/\epsilon^2}$ as required.
+        \end{proof}
+    \end{theorem}
+
