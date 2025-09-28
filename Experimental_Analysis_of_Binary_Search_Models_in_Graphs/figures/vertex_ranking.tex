@@ -1,0 +1,50 @@
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.26\textwidth}
+        \centering
+        \tikz [tree layout, grow=-65,
+               sibling distance=7mm, level distance=11mm,]
+          \graph {
+    ""[as=$a$] -- {
+        ""[as=$b$] -- ""[as=$c$] -- {
+            ""[as=$d$] -- ""[as=$e$],
+            ""[as=$f$] -- { ""[as=$g$], ""[as=$h$], ""[as=$i$] }
+        },
+        ""[as=$j$] -- ""[as=$k$] -- { ""[as=$l$], ""[as=$m$] }
+    }
+};
+    \caption[Sample tree with uniform costs]{}
+    \label{vr_tree}
+    \end{minipage}
+    \begin{minipage}{0.26\textwidth}
+        \centering
+        \tikz [tree layout, grow=-65,
+               sibling distance=7mm, level distance=11mm,]
+          \graph {
+    ""[as=$4$] -- {
+        ""[as=$1$] -- ""[as=$3$] -- {
+            ""[as=$2$] -- ""[as=$1$],
+            ""[as=$2$] -- { ""[as=$1$], ""[as=$1$], ""[as=$1$] }
+        },
+        ""[as=$1$] -- ""[as=$2$] -- { ""[as=$1$], ""[as=$1$] }
+    }
+};
+    \caption[Sample tree with uniform costs]{}
+    \label{vr_ranking}
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \tikz [tree layout, grow=-90,
+               sibling distance=8mm, level distance=15.5mm,]
+            \graph {
+              ""[as=$a$] -> {
+                ""[as=$c$] -> {""[as=$b$], ""[as=$d$] -> {""[as=$e$]}, ""[as=$f$] -> {""[as=$g$], ""[as=$h$], ""[as=$i$]}}, ""[as=$k$]->{""[as=$j$], ""[as=$l$], ""[as=$m$]}
+              }
+            };
+        \caption[Edge decision tree for a tree]{}
+        \label{vr_dt}
+    \end{minipage}
+        \caption[Tree and decision trees for it]{Sample input tree $T$ (Figure \ref{vr_tree}), vertex ranking labeling $l$ of $T$ (Figure \ref{vr_ranking}) and a decision tree $D$ for $T$ built using $l$ (Figure \ref{vr_dt}).}
+        \label{vertex_ranking_figure}
+\end{figure}

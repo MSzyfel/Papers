@@ -1,22 +1,23 @@
 \begin{algorithm}
-\caption{The main recursive procedure}
-\label{createDecisionTree}
+\caption{The main recursive procedure}\label{createDecisionTree}
 \SetKwProg{Fn}{Procedure}{:}{}
 \Fn{$\FCreateDecisionTree\br{\mathcal{T}, c, \left(a,b\right]}$}{
-    \If{$b \leq 1/\log n$ \textbf{or} $\forall v\in\mathcal{T}, c\br{v} > a$ \tcp*{Every $v\in\mathcal{T}$ is heavy}}{
+    \If{\textnormal{$b \leq 1/\log n$ \textbf{or} for every $ v\in V\br{\mathcal{T}}, c\br{v} > a$ }\tcp*{Every $v\in\mathcal{T}$ is heavy}}{
         \Return $\FRankingBasedDT\br{\mathcal{T}}$\label{basecaseDT} \tcp*{Apply Corollary \ref{vertexRankingCorollary}}
     }
     \Else{
         $\mathcal{X}\gets\emptyset$.
 
         \ForEach{$H\in\mathcal{H}_{\mathcal{T}, c}\br{a}$}{
-            Pick arbitrary $v\in H$ and add $v$ to $\mathcal{X}$.
+            Pick arbitrary $v\in H$.
+            
+            $\mathcal{X}\gets\mathcal{X}\cup\brc{v}$.
         }
 
         $\mathcal{Z}\gets\mathcal{Y}\gets\mathcal{X}\cup\brc{v\in V\br{\mathcal{T}\angl{\mathcal{X}}} \mid \deg_{\mathcal{T}\angl{\mathcal{X}}}\br{v}\geq 3}$.
 
-        \ForEach{$u,v\in \mathcal{Y}$ with $\mathcal{P}_{\mathcal{T}}\br{u,v}\neq\emptyset$ and $\mathcal{P}_{\mathcal{T}}\br{u,v}\cap \mathcal{Y}=\emptyset$}{
-            Add $\argmin_{z\in \mathcal{P}_{\mathcal{T}}\br{u, v}} \brc{c\br{z}}$ to $\mathcal{Z}$ \tcp*{Lightest vertex on path}
+        \ForEach{\textnormal{$u,v\in \mathcal{Y}$ with $\mathcal{P}_{\mathcal{T}}\br{u,v}\neq\emptyset$ and $\mathcal{P}_{\mathcal{T}}\br{u,v}\cap \mathcal{Y}=\emptyset$}}{
+            $\mathcal{Z}\gets \mathcal{Z}\cup\brc{\argmin_{z\in \mathcal{P}_{\mathcal{T}}\br{u, v}}\brc{c\br{z}}}$.  \tcp*{Lightest vertex on path}
         }
 
         $\mathcal{T}_{\mathcal{Z}} \gets \br{\mathcal{Z}, \brc{uv \mid \mathcal{P}_{\mathcal{T}}\br{u,v}\cap\mathcal{Z}=\emptyset}}$ \tcp*{Build auxiliary tree}

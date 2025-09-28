@@ -74,15 +74,15 @@ Since, our decision tree is rooted, we can reasonably talk about up and down res
 We will define a new measure of cost for aligned deision trees called the \textit{aligned cost}. Let $D$ be any aligned strategy for $\br{t,c'}$. For any query $q\in V\br{D}$ and a vertex $v\in V\br{T}$, let the contribution $\kappa_{T,c}\br{q,v}$ be defined as:
 $$
 \kappa_{T,c}\br{q, v}= \begin{cases}
-    0, & \text{if } c\br{v}\leq pc \text{and the response to query $q$ in $T$ towards $v$ is down},\\
-    c\br{q}, & \text{otherwise.}.
+    0, & \text{if } c\br{v}\leq pc \text{ and the response to query $q$ in $T$, towards $v$ is down},\\
+    c\br{q}, & \text{otherwise}.
 \end{cases}
 $$
 
 Then, the \textit{aligned cost} of $D$ is defined as:
 
 $$
-\COST'_D\br{T,c'}=\max_{v\in V\br{T}}\brc{\sum_{q\in Q_D\br{T,v}}\kappa_{T,c'}\br{q,v}}
+\COST'_D\br{T,c'}=\max_{v\in V\br{T}}\brc{\sum_{q\in Q_D\br{T,v}}\kappa_{T,c'}\br{q,v}}.
 $$
 
 Let $\OPT'\br{T,c'}$ denote the optimal aligned cost among all aligned decision trees for $\br{T,c'}$.

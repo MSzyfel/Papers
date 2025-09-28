@@ -1,6 +1,5 @@
 \begin{algorithm}
-\caption{The dynamic programming procedure finding $\OPT\br{T_{v,i}, P}$.}
-\label{createDecisionTree}
+\caption{The dynamic programming procedure finding $\OPT\br{T_{v,i}, P}$.}\label{dp_timelines}
 \SetKwFunction{FDPTimelines}{DPTimelines}
 \SetKwFunction{FDP}{DP}
 \SetKwProg{Fn}{Procedure}{:}{}
@@ -39,7 +38,7 @@
                     $q'_l\gets p_l$.
                 }
 
-                Add $D'_k$ to $\mathcal{D}$.
+                $\mathcal{D}\gets \mathcal{D}\cup\brc{ D'_k}$.
             }
         }
     }
@@ -75,7 +74,7 @@
 
             $D\gets D_1$ and $D_2$ with their left paths aligned. 
 
-            Add $D$ to $\mathcal{D}$.
+            $\mathcal{D}\gets\mathcal{D}\cup\brc{D}$.
         }
     }
     \Return{$\argmin_{D\in \mathcal{D}}\brc{\COST_D\br{T_{v,i}}}$}.

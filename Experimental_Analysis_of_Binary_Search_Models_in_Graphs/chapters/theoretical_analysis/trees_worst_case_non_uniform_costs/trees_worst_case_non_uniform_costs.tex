@@ -1,19 +1,20 @@
 \SetKwFunction{FRankingBasedDT}{RankingBasedDT}
 \SetKwFunction{FQPTAS}{QPTAS}
 \SetKwFunction{FBuildDT}{BuildDT}
-
+\newpage
 \section{Trees, worst case, non-uniform costs}
-In this section we will be only concerned with the vertex-query variant of the problem. This is due to the fact that the edge variant is easily reducible to the vertex variant of the problem and this reduction preserves the approximation ratio (note that this reduces the problem to the version in which the last query may be omitted but all of the algorithms can be easily altered to consider this assumption). This is done by subdividing each edge $e$ with a new vertex $v_e$ of cost $c\br{v_e}=c\br{e}$. If we consider the average case criterion then we additionally set $w\br{v_e}=0$. It is immediate that the optimal decision tree for the this vertex query model instance can be used to obtain a decision tree for the original instance. To do so, simply replace each query to vertex $v_e$ with the query corresponding to $e$. 
+% In this section we will be only concerned with the vertex-query variant of the problem. This is due to the fact that the edge variant is easily reducible to the vertex variant of the problem and this reduction preserves the approximation ratio (note that this reduces the problem to the version in which the last query may be omitted but all of the algorithms can be easily altered to consider this assumption). This is done by subdividing each edge $e$ with a new vertex $v_e$ of cost $c\br{v_e}=c\br{e}$. If we consider the average case criterion then we additionally set $w\br{v_e}=0$. It is immediate that the optimal decision tree for the this vertex query model instance can be used to obtain a decision tree for the original instance. To do so, simply replace each query to vertex $v_e$ with the query corresponding to $e$. 
 
 The problem for non-uniform is NP-hard even when restricted to spiders of diameter $6$ and binary trees.
 A simple greedy heuristics which always queries the middle vertex of the graph achieves a $O\br{\log n}$-approximation \cite{Dereniowski2009ERankOfWTs}. However one can obtain better results. 
-We begin with the following simple lemma which will become useful in few arguments:
+We begin with the following simple lemma, which will become useful in few arguments:
 \begin{lemma}\label{lemma:subtreeCost}
     Let $T'$ be a connected subtree of $T$. Then, $\OPT\br{T'}\leq\OPT\br{T}$.
 \end{lemma}
 
 \subsubsection{Vertex ranking}\label{vertexRanking}
-The \textit{vertex ranking} of $T$ is a labeling of vertices $l:V\to \brc{1,2,\dots,\cl{\log n}}$, which satisfies the following condition: for each pair of vertices $u,v\in V\br{T}$, whenever $l\br{u}=l\br{v}$, there exists $z\in \mathcal{P}_T\br{u,v}$ for which $l\br{z}>l\br{v}$. Such a labeling always exists and can be computed in linear time by means of dynamic programming \cite{Schaffer1989OptNodeRankOfTsInLinTime, OnakParys2006GenOfBSSInTsAndFLikePosets, Mozes_Onak2008FindOptTSStartInLinTime}. 
+The \textit{vertex ranking} of $T$ is a labeling of vertices $l:V\to \brc{1,2,\dots,\cl{\log n}+1}$, which satisfies the following condition: for each pair of vertices $u,v\in V\br{T}$, whenever $l\br{u}=l\br{v}$, there exists $z\in \mathcal{P}_T\br{u,v}$ for which $l\br{z}>l\br{v}$. Such a labeling always exists and can be computed in linear time by means of dynamic programming \cite{Schaffer1989OptNodeRankOfTsInLinTime, OnakParys2006GenOfBSSInTsAndFLikePosets, Mozes_Onak2008FindOptTSStartInLinTime}. For a visual example, see Figure \ref{vertex_ranking_figure}
+\input{figures/vertex_ranking.tex}
 
 Having a vertex ranking of $T$, one can easily obtain a decision tree for $T$ using the following procedure:
 \begin{enumerate}

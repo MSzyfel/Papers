@@ -1,7 +1,7 @@
 
 \SetKwFunction{FCreateDecisionTree}{CreateDecisionTree}
 
-\subsection{$O\br{\log\log n}$-approximation algorithm parametrized by the $k$-up-modularity of the cost function}
+\subsection{An $O\br{\log\log n}$-approximation algorithm parametrized by the $k$-up-modularity of the cost function}
 \subsubsection{$k$-up-modularity}\label{kUpModularity}
 The main algorithmic difficulty in dealing with the problem arises when the values of the cost function vary drastically. We would like to measure this "irregularity" in a quantifiable way. To do so, we introduce the notion of $k$-up-modularity.
 \input{figures/k_up_modularity.tex}
@@ -18,7 +18,7 @@ The concept of $k$-up-modularity is a direct generalization of the notion of up-
 It is easy to see that 1-up-modularity is equivalent to up-monotonicity. Observe that if $c$ is up-monotonic in $T$, then for every $t\in\mathbb{R}_{\geq 0}$, $T[V\br{T}-\brc{v\in V\br{T}\mid c\br{v}\leq t}]$ is connected and forms a single heavy module. Conversely, let $r=\argmax_{v\in V\br{T}}\brc{c\br{v}}$ and $u$ be any other vertex. If $c$ is 1-up-modular in $T$, then there is no vertex $v$ on the path between $r$ and $u$ such that $c\br{v}<c\br{u}$. Otherwise, for any $t\in \br{c\br{v},c\br{u}}$, $v$ does not belong to any heavy module, but $u$ and $r$ do. Since $v$ lies between them, $\spr{\mathcal{H}_{T,c}\br{t}}>1$, a contradiction.
 
 
-\section{The parametrized $O\br{\log\log n}$-approx. solution}\label{parametrizedSolution}
+\subsubsection{The parametrized $O\br{\log\log n}$-approx. solution}\label{parametrizedSolution}
 \subsubsection{Cost levels}\label{costLevels}
 The main idea of the algorithm is to partition vertices into intervals called \textit{cost levels} and process them in a top-down manner. At each level of the recursion, the algorithm schedules all necessary queries to vertices belonging to the given cost level. The rest of the decision tree is then built recursively. We consider the following intervals\footnote{We present the intervals in the ascending order in which a complete solution for each of them is obtained. However, since the procedure is recursive, the order in which the recursive calls are made is reverse.}:
 

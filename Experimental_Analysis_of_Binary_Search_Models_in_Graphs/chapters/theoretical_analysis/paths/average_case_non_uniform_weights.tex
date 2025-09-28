@@ -1,30 +1,6 @@
-\section{Paths}
-In general, all of the variants of the problem dealing with paths are known to be solvable in polynomial time. This is due to the fact that the number of subpaths of a path is of size $\binom{n}{2}=O\br{n^2}$. Such property allows us to construct efficient dynamic programming solutions, which when naively implemented, usually run in time $O\br{n^3}$. The key part of the analysis is often to show how to optimize such solution in order to reduce the factor of $O\br{n}$ thus obtaining $O\br{n^2}$ running time.
-Let $V\br{P}=v_1,\dots,v_n$. In the following considerations by  $\OPT_{sum}\br{i,j}$ we will denote the cost of optimal decision tree for a subpath $v_i,..,v_j$ according to the average case cost and similarly by $\OPT_{max}\br{i,j}$ we will denote the cost of optimal decision tree for a subpath $v_i,..,v_j$ according to the worst case cost. Whenever clear from the context we will drop the subscript and simply write $\OPT\br{i,j}$. For both variants we have that $\OPT=\OPT\br{1,n}$. By a slight abuse of notation we will also use $\OPT\br{i,j}$ to denote the root query of the decision tree whose cost is equal to this value.
-In this section we will be only concerned with the edge query model, as each of the constructed solutions can be easily altered to solve the vertex query version of the problem. The following paragraph introduces us with the general recurrence relationships exploited in the dynamic programming. 
-\paragraph{A warm up: $O\br{n^3}$ algorithm for $P||E,c|| \COST_{max}$ and $P||E,c, w|| \sum C_i$}
-
-First of all, following the definition of $\OPT\br{i,j}$ we get that $\OPT\br{i,i}=0$ for both worst and average case criteria.
-Fix some $i<j$. The two next recurrence relationships stem from a fact that  there must exist some query among edges of $v_i,..v_j$ which is the root of the optimal decision tree. Define $D_{max}$ to be this decision tree (for the worst case cost) and $q_{max}=r\br{D_{max}}$ to be its root query. Let $P_1,P_2\in P-q_{max}$ and let $D_1, D_2\in D-q_{max}$ be the subtrees of $D_{max}$ being decision trees for $P_1$ and $P_2$ accordingly. Let $D_{max}'$ be the costiest of the two and $P_{max}'$ be the according path. We have that: $\OPT_{max}\br{i,j}=\COST_{max}\br{D_{max}}=c\br{q_{max}}+\COST_{max}\br{D_{max}'}$. 
-By the optimality of $\OPT_{max}\br{i,j}$ we immediately obtain that $D_{max}'$ is the optimal decision tree for $P_{max}'$. This results in the following recurrence relationship:
-$$
-\OPT_{max}\br{i,j} = \min_{i\leq k<j}\brc{c\br{v_kv_{k+1}}+\max\brc{\OPT_{max}\br{i, k}, \OPT_{max}\br{k+1, j}}}
-$$
-Similarly, fix again $i<j$ and define $D_{sum}$ to be the optimal decision tree (for the average case cost) for $v_i,\dots,v_j$ and $q_{sum}=r\br{D_{sum}}$ to be its root query. Let $P_1,P_2\in P-q_{sum}$ and $D_1, D_2\in D-q_{sum}$ be the subtrees of $D_{sum}$ begin decision trees for $P_1$ and $P_2$ accordingly. Let $C\br{D_{sum}, x}$ denote the cost of finding $x\in\brc{v_i,\dots,v_j}$ using $D_{sum}$. Let $w\br{i,j}=\sum_{i\leq k\leq j}w\br{v_k}$. We have that:
-$$
-\OPT_{sum}\br{i,j}=\sum_{x\in v_i,\dots,v_j}w\br{x}\cdot \COST_{sum}\br{D_{sum}, x}=w\br{i,j}\cdot c\br{q_{sum}} + \COST_{sum}\br{D_1} + \COST_{sum}\br{D_2}
-$$
-By the optimality of $\OPT_{max}\br{i,j}$ we immediately obtain that $D_1$ is the optimal decision tree for $P_1$ and $D_2$ is the optimal decision tree for $P_2$. This results in the following recurrence relationship:
-$$
-\OPT_{sum}\br{i,j} = \min_{i\leq k<j}\brc{w\br{i,j}\cdot c\br{v_kv_{k+1}}+\OPT_{sum}\br{i, k}+ \OPT_{sum}\br{k+1, j}}
-$$
-
-Both recurrences can be solved using dynamic programming in time $O\br{n^3}$. To see this, recall that there are at most $\binom{n}{2}$ values for all possible choices of values of $i$ and $j$ and each of them requires checking at most $n-1$ choices for the root of the optimal decision tree.
-
-Despite being polynomial, $O\br{n^3}$ is substantial amount of calculation for the practical purposes we are interested in. In subsequent considerations we show how, using clever tricks, lower down the running time of these dynamic programming algorithms in some special cases. 
-\subsection{Average case, non-uniform weights}
+\subsection{An $O\br{n^2}$ algorithm for $P||V, w||\sum C_i$.}
 \begin{theorem}
-    There exists an $O\br{n^2}$ algorithm for $P||E, w|\sum C_i$
+    There exists an $O\br{n^2}$ algorithm for $P||V, w||\sum C_i$
     \begin{proof}
         
 The idea behind the speed-up described below is due to Knuth \cite{Knuth1973} and \cite{EffDPusingQI}. For every $i\leq k< j$ let $\OPT_k\br{i,j} = w\br{i,j} + \OPT\br{i, k} + \OPT\br{k, j}$ be the optimal cost of searching in $v_i,\dots,v_j$ assuming that the edge $v_kv_{k+1}$ is the root of the decision tree. We have that $\OPT\br{i,j}\leq \OPT_k\br{i,j}$. Additionally, define 
@@ -118,7 +94,3 @@ It remains to show that the running time can be bounded by $O\br{n^2}$. The amou
 Where the second equality is due to the fact that all of the terms except $K\br{i + 1,n}$ and $K\br{1,i}$ cancel, and the last equality is trivially due to the fact that $K\br{i + 1,n} < n$. This proves the claim.
     \end{proof}
 \end{theorem}
-\subsection{Non-uniform costs, worst case}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-\subsection{Non-uniform costs, Average case, uniform weights}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

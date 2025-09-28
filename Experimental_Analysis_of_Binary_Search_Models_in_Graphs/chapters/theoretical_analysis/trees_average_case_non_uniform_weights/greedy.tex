@@ -1,4 +1,4 @@
-\subsection{Greedy achieves 2-approximation for $T|V,w|\sum C_j$}
+\subsection{Greedy achieves 2-approximation for $T||V,w||\sum C_j$}
 The weight centroid is a vertex $c\in T$ such that for every $H\in T-c$ we have that $w\br{h}\leq \frac{w\br{T}}{2}$. The existence of the (unweighted) centroid has been known since 19th century \cite{Jordan1869}. The proof of the existence of the weight centroid i straightforward and can be summarized as follows: pick any vertex $v\in T$ and if its not a weight centroid move to the neighbor $v'$ of $v$ such that the $H\in T-v$ such that $v'\in H$ has weight $w\br{H}>\frac{w\br{T}}{2}$. It is easily observable that the algorithm always succeeds and visits each vertex at most once. The greedy algorithm is as follows: pick the centroid $c$ of $T$ as the root of the decision tree for $T$ and proceed recursively in $T-c$. The following analysis of greedy is due to \cite{Fast_app_centroid_trees}.
 
 \begin{theorem}

@@ -1,4 +1,4 @@
-\subsection{FPTAS for $T|V,w|\sum C_j$}
+\subsection{FPTAS for $T||V,w||\sum C_j$}
 As it turns out one may employ a different dynamic programming technqieu to obtain an FPTAS for $T|V,w|\sum C_j$. To do so, we firstly design a pseudopolynomial time procedure which then combine with a standard rounding scheme. To do so, we begin with the following bound due to \cite{Fast_app_centroid_trees} (we managed to simplify the proof a bit):
 \begin{theorem}
     Let $D^*$ be the optimal decision tree for $T|V,w|\sum C_j$. Then we have:
@@ -28,7 +28,39 @@ $$
 $$
 again, a contradiction.
         \end{enumerate}
-As after each query to size of the candidate subset shrinks by the ratio of $2/3$ the claim follows.
+As after each query to size of the candidate subset shrinks by the ratio of $2/3$, the claim follows.
     \end{proof}
 \end{theorem}
-The above bound on the cost allows us to assume that the height of the optimal decision tree is of order of $O\br{l\log w\br{T}}$. We will exploit the fact to build a btoom-up dynamic programming algorithm which for every $v\in V\br{T}$ will enumerate all possible "shapes" of the query sequence toward $v$. As to place the query to $v$ we only need an information about which spots in this query sequences are free and which are not, at most $2^{O\br{\log w\br{T}}}=\text{poly}\br{W}$ options need to be checked. 
+
+\begin{theorem}
+Fix $0<\epsilon\leq n$. There exists a $\br{1+\epsilon}$-approximation algorithm for $T||V,w||\sum C_i$ running in $O\br{n\cdot \br{n/\epsilon}^{2\cdot\log_{3/2}\br{2}}\cdot\log\br{n/\epsilon}}$ time. 
+\begin{proof}
+    
+To obtain the FPTAS we combine this bound with a standard rounding trick and the Algorithm \ref{dp_timelines}. The algorithm \ref{fptas} is as follows: Fix $\epsilon>0$ and let $K=\frac{\epsilon\cdot w\br{T}}{n^2}$. For every $v\in V\br{T}$ we define $w'\br{v}=\cl{\frac{w(v)}{K}}$. We set $h = \cl{\log_{3/2}w'\br{T}}$ and initialize $P\angl{p_1,\dots,p_h}$, such that for every $1\leq k\leq h$, $p_h= \textit{unassigned}$. We then call $\FDPTimelines\br{T, w', P, h}
+$ and return the resulting decision tree $D'$.
+\input{pseudocodes/fptas.tex}
+\begin{lemma}
+    $$
+    \COST_{D'}\br{T, w}\leq \br{1+\epsilon}\cdot \OPT\br{T,w}
+    $$
+    \begin{proof}
+        By definition, for every $v\in V\br{T}$, we have $w'\br{v}\leq \frac{w\br{v}}{K}+1$ and therefore $K\cdot w'\br{v}\leq w\br{v}+K$. Let $D^*$ be the optimal solotion for the $\br{T,w}$ instance. We have:
+        \begin{align*}
+        \COST_{D'}\br{T, w}&\leq K\cdot \COST_{D'}\br{T, w'}\leq K\cdot \COST_{D^*}\br{T, w'}
+        \\&\leq
+        \COST_{D^*}\br{T, w}+K\cdot\sum_{v\in V\br{T}}\spr{Q_{D^*}\br{T,v}}
+        \\
+        &\leq 
+        \COST_{D^*}\br{T, w} + K\cdot n^2 = \COST_{D^*}\br{T, w} +\epsilon\cdot w\br{T} \\&\leq
+        \COST_{D^*}\br{T, w}+\epsilon\cdot \COST_{D^*}\br{T, w} = \br{1+\epsilon}\cdot\OPT_{D^*}\br{T, w}
+        \end{align*}
+
+        where the first inequality is by definition of $w'$, the second inequality is by the optimality of $D'$ in $\br{T,w'}$, the fourth inequality is using the fact that $\sum_{v\in V\br{T}}\spr{Q_{D^*}\br{T,v}}$ is trivially upper bounded by $n^2$, the first equality is by definition of $K$, the last inequality is using the fact that $\COST_{D^*}\br{T, w}$ is trivially lower bounded by $w\br{T}$ and the last equality is by the optimality of $D^*$ in $\br{T,w}$. The claim follows.
+    \end{proof}
+\end{lemma}
+
+    We have that $w'\br{T}=\sum_{v\in V\br{T}}\frac{w\br{v}}{K}\leq n^2/\epsilon+n=O\br{n^2/\epsilon}$.
+    Hence, the running time of the procedure is bounded by $O\br{n\cdot 2^{2h}\cdot h}=O\br{n\cdot w'\br{T}^{\log_{3/2}\br{2}}\cdot \log w'\br{T}}=O\br{n\cdot \br{n/\epsilon}^{2\cdot\log_{3/2}\br{2}}\cdot\log\br{n/\epsilon}}$ and the claim follows.
+\end{proof}
+\end{theorem}
+

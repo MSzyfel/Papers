@@ -8,7 +8,7 @@ The algorithm and the proof of its correctness are very intricate and requires u
 \begin{theorem}
     There exists a polynomial time, $O\br{\log n/\log\log n}$-approximation algorithm for the $T||V,c||C_{max}$ problem .
     \begin{proof}
-    We use the same procedure as in the $O\br{\log n/\log\log n}$-approximation algorithm, however we set $k=2^{\fl{\sqrt{\log n}}+2}$ and we swap the exact procedure to the QPTAS with $\epsilon=1$. The analysis of the algorithm is largely the same except the evaluation of the cost of this solution.
+    We use the same procedure as in the $O\br{\log n/\log\log n}$-approximation algorithm, however we set $k=2^{\fl{\sqrt{\log n}}+2}$ and we swap the exact procedure to the QPTAS with $\epsilon=1$. The analysis of the algorithm is largely the same, except while evaluating the cost of the resulting decision tree.
     \begin{lemma}
         Let $D_T$ be the solution returned by the algorithm. Then the approximation factor of such solution is bounded by 
     $
@@ -21,8 +21,9 @@ The algorithm and the proof of its correctness are very intricate and requires u
         \APP_{D_{\mathcal{T}}}\br{\mathcal{T}}&=\frac{\COST_{D_{\mathcal{T}}}\br{\mathcal{T}}}{\OPT\br{\mathcal{T}}}\\
         &\leq \frac{\COST_{D_{\mathcal{Z}}}\br{\mathcal{T}}+\max_{H\in \mathcal{T}-\mathcal{Z}}\brc{C_{D_H}\br{H}}}{\OPT\br{\mathcal{T}}}\\
         &\leq \frac{\COST_{D_{\mathcal{Z}}}\br{\mathcal{T}_{\mathcal{Z}}}}{\OPT\br{\mathcal{T}_{\mathcal{Z}}}}+\max_{H\in \mathcal{T}-\mathcal{Z}}\brc{\frac{C_{D_H}\br{H}}{\OPT\br{H}}}\\
-        &\leq 2+\frac{2\log\frac{n\br{\mathcal{T}}}{\sqrt{\log n}}}{\sqrt{\log n}}= \frac{2\log n\br{\mathcal{T}}}{\sqrt{\log n}}
+        &\leq 2+\frac{2\log\br{\frac{n\br{\mathcal{T}}}{\sqrt{\log n}}}}{\sqrt{\log n}}= \frac{2\log n\br{\mathcal{T}}}{\sqrt{\log n}}
         \end{align*}
+        
         where the first inequality is by construction, the second is by usage of Observation \ref{observation:CostDZinT}, Lemma \ref{lemma:auxTreeCost} and Lemma \ref{lemma:subtreeCost} and the last inequality is due to the Lemma \ref{lemma:componentSize} and the induction hypothesis.
     \end{proof}
 \end{lemma}

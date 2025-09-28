@@ -1,4 +1,5 @@
 
+\SetKwFunction{FDPTimelines}{DPTimelines}
 \begin{figure}[htp]
     \begin{minipage}[t]{0.17\textwidth}
     \centering
@@ -31,7 +32,7 @@
     
     \draw[] (6) to (7);
     \end{tikzpicture}
-    \caption{}\label{timeline}
+    \caption[Timeline $P$]{}\label{timeline}
 \end{minipage}
 \begin{minipage}[t]{0.27\textwidth}
     \centering
@@ -91,7 +92,7 @@
     
     \draw[] (16) to (17);
     \end{tikzpicture}
-    \caption{}\label{bipartition}
+    \caption[Bipartition $\br{I_1, I_2}$]{}\label{bipartition}
 \end{minipage}
 \begin{minipage}[t]{0.37\textwidth}
     \centering
@@ -123,29 +124,29 @@
     
     \draw[] (6) to (7);
 
-    \draw[very thick, fill=white, drop shadow] (-0.8,-1) -- (-1.1,-1.6) -- (-0.5,-1.6) -- cycle;
+    \draw[very thick, fill=gray!20, drop shadow] (-0.8,-1) -- (-1.1,-1.6) -- (-0.5,-1.6) -- cycle;
 
-    \draw[very thick, fill=white, drop shadow] (0.2,-0.9) -- (0.6,-1.7) -- (-0.2,-1.7) -- cycle;
+    \draw[very thick, fill=gray!20, drop shadow] (0.2,-0.9) -- (0.6,-1.7) -- (-0.2,-1.7) -- cycle;
 
 
     \node at (0.85, -1.25) {$\dots$}; 
 
-    \draw[very thick, fill=white, drop shadow] (1.5,-0.8) -- (1,-1.8) -- (2,-1.8) -- cycle;
+    \draw[very thick, fill=gray!20, drop shadow] (1.5,-0.8) -- (1,-1.8) -- (2,-1.8) -- cycle;
 
     \draw[very thick] (1) -- (-0.8,-1);
     \draw[very thick] (1) -- (0.2,-0.9);
     \draw[very thick] (1) -- (1.5,-0.8);
 
-    \draw[very thick, fill=white, drop shadow] (-1.2,-3.3) -- (-1.8,-4.5) -- (-0.6,-4.5) -- cycle;
+    \draw[very thick, fill=gray!20, drop shadow] (-1.2,-3.3) -- (-1.8,-4.5) -- (-0.6,-4.5) -- cycle;
 
-    \draw[very thick, fill=white, drop shadow] (0.4,-3.2) -- (-0.3,-4.6) -- (1.1,-4.6) -- cycle;
+    \draw[very thick, fill=gray!20, drop shadow] (0.4,-3.2) -- (-0.3,-4.6) -- (1.1,-4.6) -- cycle;
 
     \draw[very thick] (4) -- (-1.2,-3.3);
     
     \draw[very thick] (4) -- (0.4,-3.2);
 
     \end{tikzpicture}
-    \caption{}\label{D1}
+    \caption[Decision Tree $D_1$]{}\label{D1}
 \end{minipage}
 \begin{minipage}[t]{0.15\textwidth}
     \centering
@@ -179,7 +180,7 @@
     \draw[] (16) to (17);
 
     \end{tikzpicture}
-    \caption{}\label{P2}
+    \caption[Timeline $P_2$]{}\label{P2}
 \end{minipage}
 
 \begin{minipage}[t]{0.3\textwidth}
@@ -230,7 +231,7 @@
     \draw[very thick] (16) -- (-0.4,-4.3);
 
     \end{tikzpicture}
-    \caption{}\label{D2}
+    \caption[Decision tree $D_2$]{}\label{D2}
 \end{minipage}
 \begin{minipage}[t]{0.3\textwidth}
     \centering
@@ -280,7 +281,7 @@
     \draw[very thick] (16) -- (0.2,-4.3);
 
     \end{tikzpicture}
-    \caption{}\label{rehang}
+    \caption[Rehanging step]{}\label{rehang}
 \end{minipage}
 \begin{minipage}[t]{0.4\textwidth}
     \centering
@@ -312,22 +313,22 @@
     
     \draw[] (6) to (7);
 
-    \draw[very thick, fill=white, drop shadow] (-0.8,-0.5) -- (-1.1,-1.1) -- (-0.5,-1.1) -- cycle;
+    \draw[very thick, fill=gray!20, drop shadow] (-0.8,-0.5) -- (-1.1,-1.1) -- (-0.5,-1.1) -- cycle;
 
-    \draw[very thick, fill=white, drop shadow] (0.2,-0.4) -- (0.6,-1.2) -- (-0.2,-1.2) -- cycle;
+    \draw[very thick, fill=gray!20, drop shadow] (0.2,-0.4) -- (0.6,-1.2) -- (-0.2,-1.2) -- cycle;
 
 
     \node at (0.85, -0.75) {$\dots$}; 
 
-    \draw[very thick, fill=white, drop shadow] (1.5,-0.3) -- (1,-1.3) -- (2,-1.3) -- cycle;
+    \draw[very thick, fill=gray!20, drop shadow] (1.5,-0.3) -- (1,-1.3) -- (2,-1.3) -- cycle;
 
     \draw[very thick] (1) -- (-0.8,-0.5);
     \draw[very thick] (1) -- (0.2,-0.4);
     \draw[very thick] (1) -- (1.5,-0.3);
 
-    \draw[very thick, fill=white, drop shadow] (0.4,-3.3) -- (-0,-4.1) -- (0.8,-4.1) -- cycle;
+    \draw[very thick, fill=gray!20, drop shadow] (0.4,-3.3) -- (-0,-4.1) -- (0.8,-4.1) -- cycle;
 
-    \draw[very thick, fill=white, drop shadow] (1.6,-3.2) -- (1.1,-4.2) -- (2.1,-4.2) -- cycle;
+    \draw[very thick, fill=gray!20, drop shadow] (1.6,-3.2) -- (1.1,-4.2) -- (2.1,-4.2) -- cycle;
 
     \draw[very thick] (4) -- (0.4,-3.3);
     
@@ -358,12 +359,12 @@
 
     \draw[very thick] (15) -- (-0.2,-4.2);
 
-    \draw[very thick, fill=white, drop shadow] (-1,-4.5) -- (-0.75,-5) -- (-1.25,-5) -- cycle;
+    \draw[very thick, fill=white, drop shadow] (-1,-4.3) -- (-0.75,-4.8) -- (-1.25,-4.8) -- cycle;
 
-    \draw[very thick] (16) -- (-1,-4.5);
+    \draw[very thick] (16) -- (-1,-4.3);
 
     \end{tikzpicture}
-    \caption{}\label{D}
+    \caption[Resulting decision tree $D$]{}\label{D}
 \end{minipage}
-\caption{Basic steps of the case when $i>1$. Fig. \ref{timeline}: example timeline $P$. Fig. \ref{bipartition}: bipartition $\br{I_1,I_2}$ of $I$. Fig \ref{D1}: decision tree $D_1$ compatible with timeline $P_1$. Fig \ref{P2}: timeline $P_2$. Fig \ref{D2}: a decision tree $D_2$ compatible with $P_2$. Fig \ref{rehang}: $D_2$ with left child of $q_k$ rehanged to right. Fig \ref{D}: $D_1$ and $D_2$ aligned by their left paths.}
+\caption[Basic steps of \texttt{DPTimelines} procedure]{Basic steps of the case when $i>1$. The black nodes are blocked and white are unassigned. Fig. \ref{timeline}: example timeline $P$. Fig. \ref{bipartition}: timelines $P_1$ and $P_2$ induced by bipartition $\br{I_1,I_2}$ of $I$. Fig \ref{D1}: decision tree $D_1$ compatible with timeline $P_1$. Fig \ref{P2}: timeline $P_2$ after unblocking nodes with indices below $k$. Fig \ref{D2}: a decision tree $D_2$ compatible with $P_2$. Fig \ref{rehang}: $D_2$ with left child of $q_k$ rehanged to right. Fig \ref{D}: $D_1$ and $D_2$ aligned by their left paths.}\label{dp_timelines_figure}
 \end{figure}
