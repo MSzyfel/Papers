@@ -1,6 +1,8 @@
 \section{Many names, one problem}
 
-As mentioned above, the search problem has been continuously rediscovered under various names and definitions. It is usually the case, that each of these definitions is equivalent when the search space is a tree. The following list consists of different formulations under which the problem have been studied in the context of graphs: 
+As mentioned above, the search problem has been continuously rediscovered under various names and definitions. 
+% It is usually the case, that each of these definitions is equivalent when the search space is a tree. 
+The following list consists of different formulations under which the problem have been studied in the context of graphs: 
 \begin{itemize}
     \item Binary Search \cite{OnakParys2006GenOfBSSInTsAndFLikePosets, dereniowski2017ApproxSsForGeneralBSinWTs, Deligkas2019BsInGsRev, Emamjomeh2016DetAndProbBSinGs, dereniowski2022CFApproxAlgForBSInTsWithMonoQTimes, dereniowski2024SInTsMonoQTs, noisyBSSFC, Dereniowski2024OnMG, EfficientNoisyBinarySearch, Dereniowski2023Edge},
     \item Tree Search Problem \cite{Jacobs2010OnTheComplexSearchInTsAvg, Cicalese2014ImprovedApproxAvgTs, Cicalese2016OnTSPwNonUniCost}, 
@@ -24,6 +26,4 @@ Various different problem definitions stem from the learning theory including:
     \item Query Selection \cite{QuerySelection}.
 \end{itemize}
 
-Each of these problems is equivalent when restricted to trees, however for arbitrary graphs/search spaces this might not be the case. For example, in the generalized binary search problem in graphs (by convention) the response to the query to $v$ is the neighbor of $v$ laying on the shortest path towards the target. In contrast, in the Hierarchical Clustering the response to such query is the connected component of $T-v$ containing the target.
- 
-Among ambiguities resulting form the multiplicity of the problem definitions is the interpretation of the notion of weight. When considering the worst case cost, usually the weight is interpreted as the cost of a query. On the other hand, while analyzing the average case cost, the weight is usually the probability that the vertex will be searched for. In such scenario, the cost of the query (if present) is usually called cost. In this work we follow the second convention and we usually denote them as $w(v)$ and $c(v)$ (or $c(e)$ in edge query model) accordingly.
+% Each of these problems is equivalent when restricted to tree. Due to the multiplicity of the problem definitions is the interpretation of the notion of weight. When considering the worst case cost, usually the weight is interpreted as the cost of a query. On the other hand, while analyzing the average case cost, the weight is usually the probability that the vertex will be searched for. In such scenario, the cost of the query (if present) is usually called cost. In this work we follow the second convention and we usually denote them as $w(v)$ and $c(v)$ (or $c(e)$ in edge query model) accordingly.

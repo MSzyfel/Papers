@@ -37,6 +37,9 @@
 \usetikzlibrary{3d, calc}
 \usepackage{tikz-3dplot}
 
+\usepackage{pdfpages}
+
+
 \newcommand{\vertex}[5]{%
   \begin{scope}[canvas is xy plane at z=#3]
     \node[circle, draw=#5, thick, inner sep=1.5pt, transform shape] (#1) at (#2) {#4};
