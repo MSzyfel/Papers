@@ -1,12 +1,12 @@
 
 \begin{algorithm}
-\caption{The \FBuildDT procedure ( $p, k$, and $d$ are global parameters).}\label{qptas_pseudocode}
+\caption{The \FBuildDT procedure ($p, k$, and $d$ are global parameters).}\label{buildDTpseudocode}
 \SetKwProg{Fn}{Procedure}{:}{}
 \Fn{$\FBuildDT\br{T, c, F_C}$}{
     \If{$c\br{r\br{T}}>pc$}{
         $D\gets\br{\brc{r\br{F_C}}, \emptyset}$.
 
-        \ForEach{\textnormal{$\mathcal{T}'\in T-r\br{D}$ and forest $F'_C\in D-r\br{D}$, such that $V\br{F'_C} = V\br{T'}$}}{
+        \ForEach{\textnormal{$T'\in T-r\br{D}$ and forest $F'_C\in D-r\br{D}$, such that $V\br{F'_C} = V\br{T'}$}}{
             $D'\gets\FBuildDT\br{T', c, F'_C}$.
 
             Hang $D'$ in $D$ below $r\br{D}$.
@@ -14,28 +14,32 @@
 
     }
     \Else{
-        $V_L\gets \brc{v\in V\br{T}|c\br{c}\leq pk}$. 
+        $H\gets \brc{v\in V\br{T}|c\br{v} > pk \text{ and for every ancestor $u$ of $v$}, c\br{u}> pk}$.
+
+        $L\gets \brc{v\in V\br{T}|c\br{c}\leq pk}$. 
 
         \ForEach{\textnormal{$v\in V\br{F_C}$ and ancestor $u$ of $v$ in $F_C$}}
         {
             \If{\textnormal{$v$ is an ancestor of $u$ in $T$}}
             {
-                $V_L$\gets $V_L - u$
+                $L$\gets $L - u$
             }
         }
-        $V_M\gets V_L\cup \brc{v\in V\br{T}|c\br{v} > pk \text{ and for every ancestor $u$ of $v$}, c\br{u}> pk}$.
+        
+        $V_M\gets L\cup H$.
 
-        $T_{M}\gets \br{V_M, \brc{uv|u,v\in V_M, \mathcal{P}_{u,v}\cap V_M=\emptyset}}$.
+        $M\gets \br{V_M, \brc{uv|u,v\in V_M, \mathcal{P}_{u,v}\cap V_M=\emptyset}}$.
 
-        $\mathcal{D}\gets$ dictionary, such that for each $v\in V_M$, $\mathcal{D}[v]\gets \emptyset$.
+        $\mathcal{A}\gets$ dictionary, such that for each $v\in V_M$, $\mathcal{A}[v]\gets \emptyset$.
 
         \ForEach{\textnormal{$T'\in T-V_M$ and forest $F'_C\in D-V_M$, such that $V\br{F'_C} = V\br{T'}$}}
         {
             $D'\gets \FBuildDT\br{T',c, D'_C}$.
 
-            $\mathcal{D}[p]\gets \mathcal{D}[p] \cup \brc{D'}$.
+            $\mathcal{A}[p]\gets \mathcal{A}[p] \cup \brc{D'}$.
         }
-        $D\gets \FDPTimelinesCosts\br{T_M, c, \mathcal{D}}$.
+
+        $D\gets \FDPTimelinesCosts\br{M, c}$.
 
     }
     \Return $D$.

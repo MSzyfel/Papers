@@ -1,0 +1,80 @@
+\begin{algorithm}
+\caption{The dynamic programming procedure finding $\OPT'\br{T_{v,i}, P}$ ($k,p,c,n,d$ and $\mathcal{A}$ are global parameters).}\label{dp_timelines_costs}
+\SetKwProg{Fn}{Procedure}{:}{}
+\Fn{\FDPTimelinesCosts{$T_{v,i}, P$}}{
+    \If{$i=0$}{
+        \For{$1\leq b\leq d$}{
+            \For{$0\leq s\leq \br{k/pn \text{\textbf{ if} }c\br{v}>pk \text{\textbf{ else} 0}}$}{
+            $D\gets P$.
+
+            Try putting query to $v$ at the $s$-th slot of $q_b$.
+
+            \If{\textnormal{there are no conflicts in $D$.}}{
+                \For{$D'\in \mathcal{A}[v]$}{
+                    Hang $D'$ below query to $v$ in $D$.
+                }
+                \If{$\COST'_{D}\br{T_{v,i},c,k}>dk$}
+                {
+                    \Return{$\emptyset$}.
+                }
+                \Else{
+                    \Return{$D$}.
+                }
+            }
+            }
+        }
+        \Return{$\emptyset$}.
+    }
+    $\mathcal{D}\gets\emptyset$.
+
+    \If{$i=1$}{
+        \For{$1\leq b\leq d$}{
+            \For{$0\leq s\leq \br{k/pn \text{\textbf{ if} }c\br{v}>pk \text{\textbf{ else} 0}}$}{
+            $D\gets P$.
+
+            Try putting query to $v$ at the $s$-th slot of $q_b$.
+
+            \If{\textnormal{there are no conflicts in $D$.}}{
+                \For{$D'\in \mathcal{A}[v]$}{
+                    Hang $D'$ below query to $v$ in $D$.
+                }
+                \If{$\COST'_{D}\br{T_{v,i},c,k}\leq dk$}
+                {
+                    $P'\gets$ loads of the left path of $D$.
+
+                    $h\gets$ index the last box $q_h$ occupied by the query to $v$.
+
+                    \For{$h\leq j\leq d$}{
+                        $b'_j\gets 0$, $t'_j\gets $ \textbf{False}.
+                    }
+                    $D'\gets \FDPTimelinesCosts\br{T_{c_1},c, P'}$
+
+                    $\mathcal{D}\gets \mathcal{D} \cup \brc{D_1 \text{ and } D_2 \text{ with their left paths aligned}}$.
+                }
+            }
+        }
+        }
+    }
+    \Else{
+        \ForEach{\textnormal{bipartition $\br{P_1, P_2}$ of $P$}}{
+            $D_1\gets \FDPTimelinesCosts\br{T_{v, i-1}, c, P_1}$.
+
+            $h\gets$ index the last box $q_{1,h}$ occupied by the query to $v$.
+
+            \For{$h\leq j\leq d$}{
+                        $b_{2,j}\gets 0$, $t'_{2,j}\gets $ \textbf{False}.
+                    }
+
+            $D_2\gets \FDPTimelinesCosts\br{T_{c_i}, c, P_2}$.
+
+            Rehang left child of $q_{2, k}$ as its right child.
+
+            $D\gets D_1$ and $D_2$ with their left paths aligned. 
+
+            $\mathcal{D}\gets\mathcal{D}\cup\brc{D}$.
+        }
+    }
+    \Return{$\argmin_{D\in \mathcal{D}}\brc{\COST'_D\br{T_{v,i},c, k}}$}.
+    }
+
+\end{algorithm}

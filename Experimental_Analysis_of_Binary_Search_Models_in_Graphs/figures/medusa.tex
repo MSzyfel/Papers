@@ -171,6 +171,13 @@
 \begin{minipage}[t]{0.49\textwidth}
     \centering
     \begin{tikzpicture}[every path/.style={very thick}]
+
+    \draw[dashed, thick, rounded corners = 14.5pt, fill= gray!30]
+        (-1.5,-1)  -- (0.1,0.8) node[left] {$H$} --  (2.1,-3.4) -- (1.25,-3.4) -- (0.1,-1) -- (-0.8,-2.5)-- (-2.7,-2.2) -- cycle;
+
+    \draw[dashed, thick, rounded corners = 14.5pt, fill= gray!5]
+        (-1.8,-2.5) node[left] {$L$} -- (-0.7,-2.7)  -- (0,-1.3) --  (1.2,-3.6) -- (2.2,-3.4) -- (1.7,-2.2) -- (0.97,-0.57)  -- (2,-0.77) -- (4.2,-3.1) -- (1.5,-4.3) -- (-0.8,-4.5)-- (-2.6,-4.4)  -- cycle;
+
     
     \node[text=white, circle, draw, minimum size=0.45cm, inner sep=0pt, fill=black] (1) at (0,0) {$a$};
 
@@ -233,5 +240,5 @@
     \end{tikzpicture}
     \caption[Medusa tree $T_M$]{}\label{medusa_tree}
 \end{minipage}
-\caption[Construction of the medusa tree]{Construction of the medusa tree. Figure \ref{tree_h_root} shows example input tree $T$ with a heavy root. Figure \ref{input_forest} shows example input forest of decision trees for light vertices $F_C$. Figure \ref{medusa_tree} shows the constructed medusa tree $T_M$.}\label{medusa_tree_construction_figure}
+\caption[Construction of the medusa tree]{Construction of the medusa tree. Figure \ref{tree_h_root} shows example input tree $T$ with a heavy root. Figure \ref{input_forest} shows example input forest of decision trees for light vertices $F_C$. Figure \ref{medusa_tree} shows the constructed medusa tree $M$.}\label{medusa_tree_construction_figure}
 \end{figure}
