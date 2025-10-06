@@ -1,0 +1,15 @@
+\beamer@slide {fig:tree}{21}
+\beamer@slide {fig:dt_t_v}{21}
+\beamer@slide {fig:sample_decision_trees_for_tree}{21}
+\beamer@slide {rounded_dt_lemma}{42}
+\beamer@slide {aligned_dts_lemma}{42}
+\beamer@slide {no_children}{64}
+\beamer@slide {one_child}{64}
+\beamer@slide {many_children}{64}
+\beamer@slide {boxline}{68}
+\beamer@slide {bipartition_boxline}{68}
+\beamer@slide {D1_boxline}{68}
+\beamer@slide {B2_boxline}{68}
+\beamer@slide {D2_boxline}{68}
+\beamer@slide {rehang_boxline}{68}
+\beamer@slide {D_boxline}{68}

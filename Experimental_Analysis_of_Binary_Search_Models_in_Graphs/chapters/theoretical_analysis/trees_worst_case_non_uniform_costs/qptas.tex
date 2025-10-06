@@ -1,4 +1,5 @@
 
+\SetKwFunction{FBuildDT}{BuildDT}
 \SetKwFunction{FDPTimelinesCosts}{DPTimelinesCosts}
 \subsection{QPTAS for the $T||V,c||C_{max}$ problem}
 
@@ -73,10 +74,10 @@ We will call a decision tree fulfilling above conditions \textit{aligned}. In su
 \subsubsection{Heavy module contraction, up and down responses}
 Since, our decision tree is rooted, we can reasonably talk about up and down responses to a query. An \textit{up} response to a query to $v$ in $T$ occurs when the connected component $\in T-v$, which is the reply happens to contain $r\br{T}$. If this is not the case, then such response is called a \textit{down} response. As it will turns out, a repeating occurance of light queries with down responses will become problematic for our algorithm. To account for this issue we will use the following notions:
 
-We will define a new measure of cost for aligned deision trees called the \textit{aligned cost}. Let $D$ be any aligned strategy for $\br{t,c'}$. For any query $q\in V\br{D}$ and a vertex $v\in V\br{T}$, let the contribution $\kappa_{T,c,k}\br{q,v}$ be defined as:
+We will define a new measure of cost for aligned decision trees called the \textit{aligned cost}. Let $D$ be any aligned strategy for $\br{t,c'}$. For any  vertex $v\in V\br{T}$ and query $q\in Q_{D}\br{T,v}$ the contribution $\kappa_{T,c,k}\br{q,v}$ of $u$ is defined as:
 $$
 \kappa_{T,c}\br{q, v}= \begin{cases}
-    \fl{c\br{q}}_k, & \text{if } c\br{v}\leq pk \text{ and the response to query $q$ in $T$, towards $v$ is down},\\
+    \fl{t_v+c\br{q}}_k-t_v, & \text{if } c\br{v}\leq pk \text{ and the response to query $q$ in $T$, towards $v$ is down},\\
     c\br{q}, & \text{otherwise}.
 \end{cases}
 $$
@@ -100,7 +101,7 @@ We define a \textit{heavy module} as $H\subseteq V\br{T}$ such that: $T[H]$ is c
 
 We will use the following proposition about the existence of the \FBuildDT procedure:
 \begin{proposition}\label{BuildDTPropodisition}
-     Let $T$ be a tree, $c:V\br{T}\to \mathbb{R}_{>0}$ $D_C$ a decision tree for $T$ with all heavy groups contracted, $p\in \mathbb{N}$ be a constant, $k\in \mathbb{R}_{>0}$ be the box size and $d\in \mathbb{N}$ be maximal depth. There exists a \FBuildDT procedure which:
+     Let $T$ be a tree, $c:V\br{T}\to \mathbb{R}_{>0}$ be an aligned cost function, $F_C$ be a forest of decision trees for $T$ with all heavy groups contracted, $p\in \mathbb{N}$ be a constant, $k\in \mathbb{R}_{>0}$ be the box size and $d\in \mathbb{N}$ be maximal depth. There exists a \FBuildDT procedure which:
      \begin{enumerate}
         \item Either determines that $kd\leq \OPT'\br{T, c',k}$ and returns an aligned decision tree $D$, such that:
         $$
@@ -135,7 +136,7 @@ $$
 We will use the following proposition:
 
 \begin{proposition}\label{DPTimelinesCostsProposition}
-    Let $T$ be a tree, $c$ a cost function, $p\in \mathbb{N}$, $k$ the box size, $n$ the size of the original input tree, $d$ depth and $\mathcal{A}:V\br{T}\to 2^{\mathbb{D}}$ be a dictionary, where $\mathbb{D}$ is a set of all decision trees. There exists an algorithm \FDPTimelinesCosts which calculates an optimal aligned decision tree $D$, such that for every $v\in V\br{T}$, each $D'\in\mathcal{A}[v]$ is hanged below $v$ in $D$, running in $pn^{O\br{d}}$ time.
+    Let $T$ be a tree, $c$ an aligned cost function, $p\in \mathbb{N}$, $k$ the box size, $n$ the size of the original input tree, $d$ depth and $\mathcal{A}:V\br{T}\to 2^{\mathbb{D}}$ be a dictionary, where $\mathbb{D}$ is a set of all decision trees. There exists an algorithm \FDPTimelinesCosts which calculates an optimal aligned decision tree $D$, such that for every $v\in V\br{T}$, each $D'\in\mathcal{A}[v]$ is hanged below $v$ in $D$, running in $pn^{O\br{d}}$ time.
 \end{proposition}
 The prove of the proposition is provided in the next section.
 
@@ -182,31 +183,31 @@ Let $D$ be the decision tree returned by the \FBuildDT procedure. Then, $\COST_D
 
 \input{figures/box_dt.tex}
 
-To devise our dynamic programming procedure, we will need the following generalization of an aligned decision trees. A \textit{boxed decision tree} $D=\br{V\br{D}, E\br{D}, u, l}$ for the tree $T$ is a tuple, in which $V\br{D}$ are the nodes of the decision trees, which we will call \textit{boxes}, $E\br{D}$ are edges of the decision tree, $u:V\br{T}\times V\br{D}\to \brc{0, 1/pn,2/pn,\dots,k}$ is the \textit{usage} function and $l:V\br{D}\to\mathbb{R}_{\geq 0}$ is the \textit{load} function. Based on $u$, for every $q\in V\br{D}$ we will also define the \textit{query assignment} as following: $Q\br{q}=\brc{v\in V\br{T}|u\br{v,q}>0}$, these are the vertices of $T$, such that query to them overlap with the box $q$.
+To devise our dynamic programming procedure, we will need the following generalization of an hierarchical decision trees. A \textit{boxed decision tree} $D=\br{V\br{D}, E\br{D}, u, l}$ for the tree $T$ is a tuple, in which $V\br{D}$ are the nodes of the decision trees, which we will call \textit{boxes}, $E\br{D}$ are edges of the decision tree, $u:V\br{T}\times V\br{D}\to \brc{0, 1/pn,2/pn,\dots,k}$ is the \textit{usage} function and $l:V\br{D}\to\brc{0, 1/pn,2/pn,\dots,k}$ is the \textit{load} function. Based on $u$, for every $b\in V\br{D}$ we will also define the \textit{query assignment} as following: $Q\br{b}=\brc{v\in V\br{T}|u\br{v,b}>0}$, these are the vertices of $T$, such that queries to them overlap with the box $b$.
 
-The boxed decision tree is defined analogously as ordinary decision trees, however, to each query in $q\in V\br{D}$ instead of one vertex of $V\br{T}$, we assign an arbitrary subset of $V\br{T}$, via the query assignment function $Q$. Let $q\in V\br{D}$, and let $T'$ be a candidate subtree of $T$ right before any vertex in $Q\br{q}$ was queried. A box $p$ is a left child of $q$, if either $q$ corresponds to a subtree $T''\in T-Q\br{q}$ such that $r\br{T'}\in V\br{T''}$ or $Q\br{q}\cup Q\br{p}\neq \emptyset$. If otherwise, then $p$ is a right child of $q$.
+The boxed decision tree is defined analogously as ordinary decision tree, however, to each query in $b\in V\br{D}$ instead of one vertex of $V\br{T}$, we assign an arbitrary subset of $V\br{T}$, via the query assignment function $Q$. Let $b\in V\br{D}$, and let $T'$ be a candidate subtree of $T$ right before any vertex in $Q\br{b}$ was queried. A box $p$ is a left child of $b$, if either $b$ corresponds to a subtree $T''\in T-Q\br{b}$ such that $r\br{T'}\in V\br{T''}$ or $Q\br{b}\cup Q\br{p}\neq \emptyset$. If otherwise, then $p$ is a right child of $b$.
 
-We demand that for every $v\in V\br{T}$, all queries $q\in V\br{D}$, such that $v\in Q\br{q}$ form a connected path in $D$, in which every child is a left child. We will also require that: for every $q\in V\br{D}$, $l\br{q}+\sum_{v\in V\br{T}}u\br{v,q}\leq k$ and for every $v\in V\br{T}$ either $\sum_{q\in V\br{D}}\br{v,q}=0$, in which case such query is called \textit{unassigned} or $\sum_{q\in V\br{D}}\br{v,q}=c\br{v}$ and the query is called \textit{assigned}. Since we want the boxed decision tree to also be aligned, we will demand that if for any vertex $v\in V\br{T}$, $c\br{v}>pk$, then for every $q\in V\br{D}$, either $u\br{v,q}=0$ or $u\br{v,q}=k$. 
+We demand that for every $v\in V\br{T}$, all boxes $b\in V\br{D}$, such that $v\in Q\br{b}$ form a connected path in $D$, in which every child is a left child, for any intererior box $b$ of this path, $l\br{b}=0$ and $u\br{v,b}=k$. We will also require that: for every $q\in V\br{D}$, $l\br{b}+\sum_{v\in V\br{T}}u\br{v,b}\leq k$ and for every $v\in V\br{T}$ either $\sum_{b\in V\br{D}}\br{v,b}=0$, in which case such query is called \textit{unassigned} or $\sum_{b\in V\br{D}}\br{v,b}=c\br{v}$ and the query is called \textit{assigned}. Since we want the boxed decision tree to also be aligned, we will demand that if for any vertex $v\in V\br{T}$, $c\br{v}>pk$, then for every $b\in V\br{D}$, either $u\br{v,b}=0$ or $u\br{v,b}=k$. 
 
-When searching in $T$ using a boxed decision tree $D$, we pick the first query to be any $v\in Q\br{r\br{D}}$ and we remove $v$ from every $Q\br{q}$ for any $q\in V\br{D}$. Let $T'$ be the candidate subtree which was the response. Firstly, the query process stops for time $l\br{u}$, Then, if $V\br{T}\cup V\br{T'} = \emptyset$, then we recurse on the child of $r\br{T}$ associated with the response. If otherwise, we recurse on $r\br{D}$. Note, that since we can query vertices of each box in any order, the cost of searching for $v\in V\br{T}$ may very depending on the specifically chosen permutatation of vertices in the box containing the end of query to $v$. However, we will express the aligned cost of $D$ in a different way: 
-$$
-\COST'_D\br{T,c,k}= \max_{q\in V\br{D}, Q\br{q}\neq \emptyset}\brc{k\cdot d\br{q,r\br{D}}+l\br{q}+\sum_{v\in Q\br{q}}u\br{v,q}}
-$$
-
-where $d\br{v,z}$ is a distance function which measures number of edges on path between boxes $v,z \in V\br{D}$, which are not associated with a light down response. Notice that no matter, in which order we query the vertices in boxes od $D$, there always exists a vertex in $V\br{T}$, such that its aligned search time using $D$ is $\COST'_D\br{T,c,k}$. This last observation allows us to assume an atribtrary order of vertices belonging to $Q\br{q}$ for every $q\in V\br{D}$. This crucial relaxation serves as the main idea of our algorithm. For every box $q\in V\br{D}$, let $\mathcal{A}[q]=\bigcup_{v\in Q\br{q}\mathcal{A}[v]}$. We will also demand that, $q$ has each $D'\in \mathcal{A}\br{q}$ hanged as a right child of $q$ in $D$. Note that, such decision subtrees will also be taken into consideration while calculating the cost, so we have that:
-
-$$
-\COST'_D\br{T,c,k}= \max_{q\in V\br{D}, Q\br{q}\neq \emptyset}\brc{k\cdot d\br{q,r\br{D}}+\max\brc{l\br{q}+\sum_{v\in Q\br{q}}u\br{v,q}, \max_{D'\in \mathcal{A}[q]}\brc{\COST'_{D'}\br{T_{D'},c,k}}}}
-$$
-
-where $T_{D'}$ denotes a tree for which $D'$ was built.
-
-We will also define a \textit{boxline} $B$ to be a boxed decision tree consisting of sequence of pairs boxes and additional boolean flags $\angl{\br{b_1, t_1},\br{b_2, t_2},\dots, \br{b_d, t_d}}$, such that for every box $b$ in $P$, $Q\br{b}=\emptyset$. We will build our decision trees around boxlines. Define the \textit{left box-path} $B_D=\angl{{q_1, f_1},\br{q_2, f_2},\dots, \br{q_h, f_h}}$ of $D$ as a sequence of pairs consisiting of consecutive boxes obtained by traversing $D$ starting from root $r\br{D}$, and stepping to the left child until there is none, and boolean values denoting whether there exists a query trascending the current box unto the next one ($f_h$ is always false, however we include it for convenience). We will say that a decision tree $D$ with a left box-path $B_D$ is \textit{box-compatible} with a boxline $B$, such that $h\leq d$, if for every integer $1\leq j \leq h$, $l\br{q_j}\geq l\br{b_j}$ and if $t_j$, then also $f_j$.
+We now define how to search in $T$ using a boxed decision tree $D$. Firstly, the query process stops for time $l\br{u}$. If $Q\br{r\br{D}}\cup V\br{T} = \emptyset$, then we recurse on the appropriate child of $r\br{T}$ (which corresponds to our current candidate subtree). Otherwise, we pick the least costly vertex $v$ in $Q\br{r\br{D}}$, we remove $v$ from $Q\br{q}$ for any $q\in V\br{D}$ and we recurse on the last box which contained a query to $v$ (note that this can also be $r\br{v}$). This is done in order to ensure that the start of the query $t_v$ of each vertex $v$ happens in the box containing it. The aligned cost of seaching using a boxed decision tree is defined analogously as the aligned cost of searching using ordinary decision tree.
 
 \input{pseudocodes/dp_timelines_costs.tex}
 
-We now introduce the subproblems which our dynamic programming solves. A problem $\OPT'\br{T_{v,i},B}$ consists of finding an optimal boxed decision tree for the tree $T_{v,i}$, which is box-compatible with $B$. If no $B$ is given, we assume that $B=\angl{\br{b_1,t_1},\dots, {b_d,t_d}}$, where for every $1\leq j\leq d$, $b_j=0$ and $t_j$ is false.
+Note that any boxed decision tree, can also be transformed to an equivalent aligned decision tree with the same aligned cost of searching. We want our boxed decision trees to also be hierarchical. Since we will build boxed decision trees only for medusa trees constructed in Algorithm \ref{buildDTpseudocode}, to fulfill the hierarchicality, it will suffice to satisfy the following condition. For every box $q\in V\br{D}$, let $\mathcal{A}[q]=\bigcup_{v\in Q\br{q}\mathcal{A}[v]}$. We require that each decision tree $D'\in \mathcal{A}\br{q}$ is hanged as a right child of $q$ in $D$.
+
+We define a \textit{boxline} $B\angl{\br{b_1, \tau_1},\br{b_2, \tau_2},\dots, \br{b_d, \tau_d}}$ to be a sequence of pairs, each consisting of box and additional boolean flag, such that for every box $b$ in $B$, $Q\br{b}=\emptyset$. We will build our decision trees around boxlines. Define the \textit{left box-path} $B_D=\angl{{q_1, f_1},\br{q_2, f_2},\dots, \br{q_h, f_h}}$ of $D$ as a sequence of pairs. Each such pair consisits of the overall loads of consecutive boxes obtained by traversing $D$ starting from root $r\br{D}$, and stepping to the left child until there is none (for each such box $b$ with index $j$, $q_j=l\br{b}+\sum_{v\in Q\br{b}}q\br{v, b}$), and boolean values denoting whether there exists a query trascending the current box unto the next one ($f_h$ is always false, however we include it for convenience). We will say that a decision tree $D$ with a left box-path $B_D$ is \textit{box-compatible} with a boxline $B$, such that $h\leq d$, if for every integer $1\leq j \leq h$, $l\br{q_j}\geq l\br{b_j}$ and if $\tau_j$ implies $f_j$. To build a decision $D$ tree using $B$, we simply create a boxed decision tree $D$ consisiting of path of vertices $\angl{q_1,\dots, q_h}$, such that $l\br{q_j}=l\br{b_j}$ and $Q\br{q_j}\emptyset$.
+
+We will also use the following operations: 
+\begin{enumerate}
+    \item Putting a a query to $v\in V\br{T}$ at slot with index $d$ of a box $b$ of the boxline $B$. Set $\sigma\br{v}=c\br{v}$. To put a query at a slot $s$ of $b$, we set the usage $u\br{v, q}=\min\brc{k-s/pn, \sigma\br{v}}$ and we decrease $\sigma\br{v}$ by $u\br{v, q}$. If $\sigma\br{v}>0$, we recurse on the left child box of $b$ in $B$. If such operation violates the definition of $D$, we mark $D$ as \textit{conflicted}. It should be noted that we will also require that placing a query to $v$ cannot transcendent any box $b_j$, such that $\tau_j$. If this is violated, then the decision tree is also marked as conflicted. 
+    \item Rotation of a decision tree $D$ around a vertex $v\in V\br{T}$: Let $q_h$ be the box containing the end of the query to $v$. Sort vertices whose queries start in $Q\br{q_h}$ according to $c$, create box $q$, move queries from $Q\br{q_h}$ to $Q\br{q}$, so that all queries after $v$ are in $Q\br{q}$, hang $q_h'$ as a right child of $q_h$ and rehang left child of $q_h$ as a left child of $q$.
+    \item Bipartitioning of boxline $B$. A valid bipartition of $B$ consists of two boxlines $B_1$ and $B_2$ obeying the following rules: $\spr{B}=\spr{B_1}=\spr{B_2}$, $l\br{b_{1,j}}+l\br{b_{2,j}} - k = l\br{b_j}$ and $\br{\tau_{1,j}\land \tau_{2,j} \iff \tau_{j}}\land \br{\tau_{1,j}\lor \tau_{2,j}}$.
+\end{enumerate}
+
+We now introduce the subproblems which our dynamic programming solves. A problem $\OPT'\br{T_{v,i},B}$ consists of finding an optimal boxed decision tree for the tree $T_{v,i}$, which is box-compatible with $B$. If no $B$ is given, we assume that $B=\angl{\br{b_1,\tau_1},\dots, {b_d,\tau_d}}$, where for every $1\leq j\leq d$, $b_j=0$ and $\tau_j$ is false.
  The algorithm computes the solutions in a bottom-up, left-to-right manner. If at any point there is no way to create an extended decision tree with given parameters we simply declare such instance \textit{unfeasible}. We will now show how to compute $\OPT\br{T_{v,i}, P}$ efficiently. The Algorithm \ref{dp_timelines_costs} consists of 3 cases:
+ 
+\input{figures/dp_timelines_costs.tex}
 
  %TODO: rewrite this:
  
@@ -220,6 +221,7 @@ We now introduce the subproblems which our dynamic programming solves. A problem
         \item $T_{v,i}$ for $i>1$, we assume that we have already solved all the subproblems of $T_{v,i-1}$ and $T_{c_i}$. Let $I$ be a set of indices of unassigned nodes of $P$, i.e. $I=\brc{l | p_l \text{ is unassigned}}$. Consider any bipartition $\br{I_1, I_2}$ of $I$. We create a timeline $P_1=\angl{p_{1,1},\dots,p_{1,h}}$ from timeline $P$, by blocking all of the nodes in $P$ whose indices do not belong to $I_1$. We now consider an extended decision tree $D_1$ for $\mathcal{P}\br{T_{v,i-1}, P_1}$, with a left path $\angl{q_{1,1},\dots,q_{1,d_1}}$. Let $k$ be the index of query to $v$, such that $q_{1,k}=v$. We construct $P_2=\angl{p_{2,1},\dots, p_{2,h}}$ as follows: for any $1\leq l\leq h$, we set $p_{2,l}$ to be unassigned if $l\in I_k^2$ or $l < k$ and we set $p_{2,l}$ to be blocked otherwise. Let $D_2$ be an optimal extended decision tree for $\mathcal{P}\br{T_{c_i}, P_2}$ and let $\angl{q_{2,1},\dots,q_{2,d_2}}$ be its left path. We proceed as follows. Firstly, we rehang the left child of $q_{2,k}$ in $D_2$ as its unique right child (by construction $q_{2,k}$ is blocked in $D_2$). Then, we build $D$ by aligning $D_1$ and $D_2$ by their left paths: For $1\leq l \leq k$, if $p_l$ is blocked then $q_l$ is blocked. Else, if $p_{1,l}$ is unassigned, then $q_l=q_{1,l}$. Else, if  $p_{2,l}$ is unassigned, then $q_l=q_{2,l}$. For $k<l\leqh$ we set $q_l=q_{1,l}$. Since the unassigned nodes above the $k$-th node of left paths of $D_1$ and $D_2$ have no conflicts and $D_2$ has no vertices in its left path beyond $q_{2,k}$, by construction we obtain a valid extended decision tree $D$. The cost of such solution is $\OPT\br{T_{v,i-1}, P_1}+\OPT\br{T_{c_i}, P_2}$. We then return an optimal extended decision tree $D$, which minimizes the cost. 
         % For a visual example, see \ref{dp_timelines_figure}.
     \end{enumerate}
+
  
 
 

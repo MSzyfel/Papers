@@ -1,13 +1,13 @@
 
 \begin{algorithm}
-\caption{The \FBuildDT procedure ($p, k$, and $d$ are global parameters).}\label{buildDTpseudocode}
+\caption{The \FBuildDT procedure ($c, p, k$, and $d$ are global parameters).}\label{buildDTpseudocode}
 \SetKwProg{Fn}{Procedure}{:}{}
 \Fn{$\FBuildDT\br{T, c, F_C}$}{
     \If{$c\br{r\br{T}}>pc$}{
         $D\gets\br{\brc{r\br{F_C}}, \emptyset}$.
 
-        \ForEach{\textnormal{$T'\in T-r\br{D}$ and forest $F'_C\in D-r\br{D}$, such that $V\br{F'_C} = V\br{T'}$}}{
-            $D'\gets\FBuildDT\br{T', c, F'_C}$.
+        \ForEach{\textnormal{$T'\in T-r\br{D}$ and forest $F'_C\subseteq D-r\br{D}$, s. t. $V\br{F'_C} = V\br{T'_C}$}}{
+            $D'\gets\FBuildDT\br{T', F'_C}$.
 
             Hang $D'$ in $D$ below $r\br{D}$.
         }
@@ -32,11 +32,11 @@
 
         $\mathcal{A}\gets$ dictionary, such that for each $v\in V_M$, $\mathcal{A}[v]\gets \emptyset$.
 
-        \ForEach{\textnormal{$T'\in T-V_M$ and forest $F'_C\in D-V_M$, such that $V\br{F'_C} = V\br{T'}$}}
+        \ForEach{\textnormal{$T'\in T-V_M$ and forest $F'_C\in D-V_M$, s. t. $V\br{F'_C} = V\br{T'_C}$}}
         {
-            $D'\gets \FBuildDT\br{T',c, D'_C}$.
+            $D'\gets \FBuildDT\br{T', D'_C}$.
 
-            $\mathcal{A}[p]\gets \mathcal{A}[p] \cup \brc{D'}$.
+            $\mathcal{A}[p\br{r\br{T'}}]\gets \mathcal{A}[p\br{r\br{T'}}] \cup \brc{D'}$.
         }
 
         $D\gets \FDPTimelinesCosts\br{M, c}$.

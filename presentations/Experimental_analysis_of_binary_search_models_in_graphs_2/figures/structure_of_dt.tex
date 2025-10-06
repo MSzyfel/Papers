@@ -1,0 +1,36 @@
+
+\begin{figure}[htp]
+    \centering
+    \scalebox{1}{
+\begin{minipage}[t]{1\textwidth}
+\centering
+    \begin{tikzpicture}[]
+    \draw[very thick, fill=gray, drop shadow] 
+    (4,-3.4) -- (5.2,-5.8) -- (2.8,-5.8) -- cycle node[right] {$D_{\mathcal{Z}}$}; 
+
+
+    \draw[very thick, fill=gray!20, drop shadow] (2,-6.6) -- (2.9,-8.4) -- (1.1,-8.4) -- cycle node[right] {$D_{H_1}$};
+
+    \draw[very thick, fill=gray!20, drop shadow] (4,-6.5) -- (4.8,-8.1) -- (3.2,-8.1) -- cycle node[right] {$D_{H_2}$};
+    
+    \node at (5.2, -7.3) {$\dots$}; 
+
+    \draw[very thick, fill=gray!20, drop shadow] (6.4,-6.4) -- (5.7,-7.8) -- (7.1,-7.8) -- cycle node[right] {$D_{H_p}$};
+    
+    \draw[very thick] (2.8,-5.8) -- (2,-6.6);
+    \draw[very thick] (4.2,-5.8) -- (4,-6.5);
+    \draw[very thick] (5.2,-5.8) -- (6.4,-6.4);
+
+    \draw [decorate, 
+       decoration = {calligraphic brace, amplitude = 10pt, mirror}, 
+       line width = 1.5pt] 
+      (0.5,-3.25) -- (0.5,-8.45);
+
+    \node at (-0.75, -5.85) {$\COST_{D}\br{T}$};
+        
+    \end{tikzpicture}
+    
+    \caption{Structure of the decision tree $D$}
+\end{minipage}
+    }
+\end{figure}

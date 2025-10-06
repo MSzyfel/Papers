@@ -1,0 +1,104 @@
+
+\begin{frame}{Basic information}
+	\textbf{The aim:} Experimental analysis of selected generalized binary search problems. The aim of the analysis is to verify the hypotheses regarding the effectiveness of search algorithms. 
+    
+    \textbf{Schedule:}
+    \begin{itemize}
+    \pause
+    \item 2024.01 -- 2024.06: Researching and selection of the query model.
+    \item 2024.06 -- 2025.05: Development and formal analysis of the proposed algorithms.
+    \item 2025.06 -- 2025.10: Selection of models and algorithms for comparison, implementation, thesis writing.
+    \item 2025.11 -- 2025.12: execution of experiments, analysis and interpretation of the results, finalization of the thesis.
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{State of the work}
+    \begin{itemize}
+        \item Implementation, about 60\% complete:
+        \begin{itemize}
+        \item Language: \textbf{python},
+        \item Libraries: \textbf{networkx},
+        \item Environment: \textbf{PyCharm},
+        \item Versioning: \textbf{git} + \textbf{github}, \hyperlink{https://github.com/MSzyfel/Binary-Search}{https://github.com/MSzyfel/Binary-Search}.
+        \end{itemize} 
+        \pause
+        \item Thesis, about 80\% complete:
+        \begin{itemize}
+            \item Language: \textbf{LaTeX},
+            \item Environment: \textbf{Visual Studio Code},
+            \item Versioning: \textbf{git} + \textbf{github}, \hyperlink{https://github.com/MSzyfel/Papers}{https://github.com/MSzyfel/Papers}.
+        \end{itemize} 
+        \pause
+        \item What is left: 
+        \begin{itemize}
+            \item Experiments,
+            \item Advanced data generation,
+            \item Optimization,
+            \item Bug fixing,
+            \item Data visualization.
+        \end{itemize} 
+    \end{itemize}
+\end{frame}
+\begin{frame}{Binary Search}
+    \include{figures/binary_search.tex}
+\end{frame}
+
+
+\begin{frame}{Generalized binary search}
+        \begin{definition} A \textbf{searcher} is required to find a hidden \textbf{target} vertex $x$ in a graph $G$. To do so, they iteratively perform \textbf{queries} to an \textbf{oracle}, each about a chosen vertex $v$. After each such call, the oracle responds whether the target was found and if not, the searcher receives as a reply the connected component of $G-v$ containing the target.
+        \end{definition}
+	\pause
+
+	A further generalization is to associate with each vertex a \textbf{cost} function $c:V\br{G}\to \mathbb{R}_{\geq 0}$ representing the time required to query a given vertex. 
+    
+\end{frame}
+\begin{frame}{Example}
+    \input{figures/searching}
+\end{frame}
+
+
+\begin{frame}{Classes of graphs considered}
+	\textbf{There are three main classes of graphs to be considered}:
+	\begin{itemize}
+	\item \textbf{Paths} - equivalent to searching in a sorted array. 
+    \pause
+	\item \textbf{Trees} -  The most extensively studied model. \textbf{Our choice}.
+    \pause
+    \item \textbf{General graphs} - Computationally hardest.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Decision trees}
+        \begin{definition}
+        A decision tree:
+        \begin{itemize}
+            \item $D=(V\br{D}, E\br{D})$, $V\br{D}=V\br{T}$ are vertices and $E\br{D}$ are edges of $D$.
+            \pause
+            \item $Q_D\br{T,x}$ - sequence of queries performed in order to find $x$.
+            \pause
+            \item Cost of $D$ in $\br{T,c}$:
+            $$
+\COST_D\br{T, c} = \max_{x\in V\br{T}} \brc{\sum_{q\in Q_{D}\br{T,x}}c\br{q}}.
+$$
+            \pause
+        \item $\OPT(T, c) = \min_{D} \brc{\COST_D\br{T, w}}$.
+        \end{itemize}
+        \end{definition}
+\end{frame}
+
+\begin{frame}{Example of decision tree}
+    \input{figures/sample_decision_trees_for_tree.tex}
+\end{frame}
+
+\begin{frame}{Problem statement}
+
+    \begin{definition}
+        Given a tree $T$ and weight function $c$, the \textbf{Tree Search Problem} consists of finding a decision tree $D$, such that $\COST_D\br{T,c}=\OPT\br{T,c}$.
+    \end{definition}
+
+    \pause
+
+    Unluckily, the Tree Search Problem is \textbf{strongly NP-Hard} even when restricted to binary trees and spiders of diameter at most 6. However, one can find \textbf{approximate} solutions. 
+
+\end{frame}

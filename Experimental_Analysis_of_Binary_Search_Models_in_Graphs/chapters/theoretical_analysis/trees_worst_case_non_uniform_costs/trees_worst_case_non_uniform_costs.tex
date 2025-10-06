@@ -1,6 +1,5 @@
 \SetKwFunction{FRankingBasedDT}{RankingBasedDT}
 \SetKwFunction{FQPTAS}{QPTAS}
-\SetKwFunction{FBuildDT}{BuildDT}
 \newpage
 \section{Trees, worst case, non-uniform costs}
 % In this section we will be only concerned with the vertex-query variant of the problem. This is due to the fact that the edge variant is easily reducible to the vertex variant of the problem and this reduction preserves the approximation ratio (note that this reduces the problem to the version in which the last query may be omitted but all of the algorithms can be easily altered to consider this assumption). This is done by subdividing each edge $e$ with a new vertex $v_e$ of cost $c\br{v_e}=c\br{e}$. If we consider the average case criterion then we additionally set $w\br{v_e}=0$. It is immediate that the optimal decision tree for the this vertex query model instance can be used to obtain a decision tree for the original instance. To do so, simply replace each query to vertex $v_e$ with the query corresponding to $e$. 
