@@ -1,0 +1,966 @@
+@article{Deligkas2019BsInGsRev,
+  author    = {Argyrios Deligkas and George B. Mertzios and Paul G. Spirakis},
+  title     = {Binary Search in Graphs Revisited},
+  journal   = {Algorithmica},
+  volume    = {81},
+  number    = {5},
+  pages     = {1757--1780},
+  year      = {2019},
+  month     = {May},
+  abstract  = {In the classical binary search in a path the aim is to detect an unknown target by asking as few queries as possible, where each query reveals the direction to the target. This binary search algorithm has been recently extended by Emamjomeh-Zadeh et al. (in: Proceedings of the 48th annual ACM SIGACT symposium on theory of computing, STOC 2016, Cambridge, pp. 519–532, 2016) to the problem of detecting a target in an arbitrary graph. Similarly to the classical case in the path, the algorithm of Emamjomeh-Zadeh et al. maintains a candidates’ set for the target, while each query asks an appropriately chosen vertex—the “median”—which minimises a potential $\varPhi$ among the vertices of the candidates’ set. In this paper we address three open questions posed by Emamjomeh-Zadeh et al., namely (a) detecting a target when the query response is a direction to an approximately shortest path to the target, (b) detecting a target when querying a vertex that is an approximate median of the current candidates’ set (instead of an exact one), and (c) detecting multiple targets, for which to the best of our knowledge no progress has been made so far. We resolve questions (a) and (b) by providing appropriate upper and lower bounds, as well as a new potential $\varGamma$ that guarantees efficient target detection even by querying an approximate median each time. With respect to (c), we initiate a systematic study for detecting two targets in graphs and we identify sufficient conditions on the queries that allow for strong (linear) lower bounds and strong (polylogarithmic) upper bounds for the number of queries. All of our positive results can be derived using our new potential $\varGamma$ that allows querying approximate medians.},
+  issn      = {1432-0541},
+  doi       = {10.1007/s00453-018-0501-y}
+}
+
+@inproceedings{Emamjomeh2016DetAndProbBSinGs,
+author = {Emamjomeh-Zadeh, Ehsan and Kempe, David and Singhal, Vikrant},
+year = {2016},
+month = {06},
+pages = {519-532},
+title = {Deterministic and probabilistic binary search in graphs},
+doi = {10.1145/2897518.2897656}
+}
+@inproceedings{Dasgupta,
+author = {Dasgupta, Sanjoy},
+title = {A cost function for similarity-based hierarchical clustering},
+year = {2016},
+isbn = {9781450341325},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+doi = {10.1145/2897518.2897527},
+abstract = {The development of algorithms for hierarchical clustering has been hampered by a shortage of precise objective functions. To help address this situation, we introduce a simple cost function on hierarchies over a set of points, given pairwise similarities between those points. We show that this criterion behaves sensibly in canonical instances and that it admits a top-down construction procedure with a provably good approximation ratio.},
+booktitle = {Proceedings of the Forty-Eighth Annual ACM Symposium on Theory of Computing},
+pages = {118–127},
+numpages = {10},
+keywords = {approximation algorithm, Hierarchical clustering},
+location = {Cambridge, MA, USA},
+series = {STOC '16}
+}
+
+@InProceedings{Jacobs2010OnTheComplexSearchInTsAvg,
+    author    = {Tobias Jacobs and Ferdinando Cicalese and Eduardo Laber and Marco Molinaro},
+    editor    = {Samson Abramsky and Cyril Gavoille and Claude Kirchner and Friedhelm Meyer auf der Heide and Paul G. Spirakis},
+    title     = {On the Complexity of Searching in Trees: Average-Case Minimization},
+    booktitle = {Automata, Languages and Programming},
+    year      = {2010},
+    publisher = {Springer Berlin Heidelberg},
+    address   = {Berlin, Heidelberg},
+    pages     = {527--539},
+    abstract  = {The well known binary search method can be described as the process of identifying some marked node from a line graph $T$ by successively querying edges. An edge query $e$ asks in which of the two subpaths induced by $T \setminus e$ the marked node lies. This procedure can be naturally generalized to the case where $T = (V,E)$ is a tree instead of a line. The problem of determining a tree search strategy minimizing the number of queries in the worst case is solvable in linear time [Onak et al. FOCS'06, Mozes et al. SODA'08].},
+    isbn      = {978-3-642-14165-2}
+}
+@article{Cicalese2014ImprovedApproxAvgTs,
+author = {Cicalese, Ferdinando and Jacobs, Tobias and Laber, Eduardo and Molinaro, Marco},
+year = {2014},
+month = {04},
+pages = {},
+title = {Improved Approximation Algorithms for the Average-Case Tree Searching Problem},
+volume = {68},
+journal = {Algorithmica},
+doi = {10.1007/s00453-012-9715-6}
+}
+@article{Hgemo2024TightAB,
+  title={Tight Approximation Bounds on a Simple Algorithm for Minimum Average Search Time in Trees},
+  author={Svein H{\o}gemo},
+  journal={ArXiv},
+  year={2024},
+  volume={abs/2402.05560},
+  url={https://api.semanticscholar.org/CorpusID:267547530}
+}
+@inbook{SplayTonT,
+author = {Berendsohn, Benjamin and Kozma, László},
+year = {2022},
+month = {01},
+pages = {1875-1900},
+title = {Splay trees on trees},
+isbn = {978-1-61197-707-3},
+doi = {10.1137/1.9781611977073.75}
+}
+@unknown{Fast_app_centroid_trees,
+author = {Berendsohn, Benjamin and Golinsky, Ishay and Kaplan, Haim and Kozma, László},
+year = {2022},
+month = {09},
+pages = {},
+title = {Fast approximation of search trees on trees with centroid trees},
+doi = {10.48550/arXiv.2209.08024}
+}
+@article{Dereniowski2009ERankOfWTs,
+title = {Edge ranking of weighted trees},
+journal = {Discrete Applied Mathematics},
+volume = {154},
+number = {8},
+pages = {1198-1209},
+year = {2006},
+issn = {0166-218X},
+doi = {https://doi.org/10.1016/j.dam.2005.11.005},
+author = {Dariusz Dereniowski},
+keywords = {Approximation, Edge ranking, Multigraph, NP-completeness, Polynomial algorithm},
+abstract = {In this paper we consider the edge ranking problem of weighted trees. We prove that a special instance of this problem, namely edge ranking of multitrees is NP-hard already for multitrees with diameter at most 10. Note that the same problem but for trees is linearly solvable. We give an O(logn)-approximation polynomial time algorithm for edge ranking of weighted trees.}
+}
+@InProceedings{dereniowski2017ApproxSsForGeneralBSinWTs,
+  author =	{Dereniowski, Dariusz and Kosowski, Adrian and Uznanski, Przemyslaw and Zou, Mengchuan},
+  title =	{{Approximation Strategies for Generalized Binary Search in Weighted Trees}},
+  booktitle =	{44th International Colloquium on Automata, Languages, and Programming (ICALP 2017)},
+  pages =	{84:1--84:14},
+  series =	{Leibniz International Proceedings in Informatics (LIPIcs)},
+  ISBN =	{978-3-95977-041-5},
+  ISSN =	{1868-8969},
+  year =	{2017},
+  volume =	{80},
+  editor =	{Chatzigiannakis, Ioannis and Indyk, Piotr and Kuhn, Fabian and Muscholl, Anca},
+  publisher =	{Schloss Dagstuhl -- Leibniz-Zentrum f{\"u}r Informatik},
+  address =	{Dagstuhl, Germany},
+  URN =		{urn:nbn:de:0030-drops-74507},
+  doi =		{10.4230/LIPIcs.ICALP.2017.84},
+  annote =	{Keywords: Approximation Algorithm, Adaptive Algorithm, Graph Search, Binary Search, Vertex Ranking, Trees}
+}
+@article{Cicalese2012BinIdentPForWTs,
+title = {The binary identification problem for weighted trees},
+journal = {Theoretical Computer Science},
+volume = {459},
+pages = {100-112},
+year = {2012},
+issn = {0304-3975},
+doi = {https://doi.org/10.1016/j.tcs.2012.06.023},
+author = {Ferdinando Cicalese and Tobias Jacobs and Eduardo Laber and Caio Valentim},
+abstract = {The Binary Identification Problem for weighted trees asks for the minimum cost strategy (decision tree) for identifying a vertex in an edge weighted tree via testing edges. Each edge has assigned a different cost, to be paid for testing it. Testing an edge e reveals in which component of T−e lies the vertex to be identified. We give a complete characterization of the computational complexity of this problem with respect to both tree diameter and degree. In particular, we show that it is strongly NP-hard to compute a minimum cost decision tree for weighted trees of diameter at least 6, and for trees having degree three or more. For trees of diameter five or less, we give a polynomial time algorithm. Moreover, for the degree 2 case, we significantly improve the straightforward O(n3) dynamic programming approach, and provide an O(n2) time algorithm. Finally, this work contains the first approximate decision tree construction algorithm that breaks the barrier of factor logn.}
+}
+@article{Cicalese2016OnTSPwNonUniCost,
+title = {On the tree search problem with non-uniform costs},
+journal = {Theoretical Computer Science},
+volume = {647},
+pages = {22-32},
+year = {2016},
+issn = {0304-3975},
+doi = {https://doi.org/10.1016/j.tcs.2016.07.019},
+author = {Ferdinando Cicalese and Balázs Keszegh and Bernard Lidický and Dömötör Pálvölgyi and Tomáš Valla},
+keywords = {Tree search problem, Approximation algorithm},
+abstract = {Searching in partially ordered structures has been considered in the context of information retrieval and efficient tree-like indices, as well as in hierarchy based knowledge representation. In this paper we focus on tree-like partial orders and consider the problem of identifying an initially unknown vertex in a tree by asking edge queries: an edge query e returns the component of T−e containing the vertex sought for, while incurring some known cost c(e). The Tree Search Problem with Non-Uniform Cost is the following: given a tree T on n vertices, each edge having an associated cost, construct a strategy that minimizes the total cost of the identification in the worst case. Finding the strategy guaranteeing the minimum possible cost is an NP-complete problem already for input trees of degree 3 or diameter 6. The best known approximation guarantee was an O(log⁡n/log⁡log⁡log⁡n)-approximation algorithm of Cicalese et al. (2012) [4]. We improve upon the above results both from the algorithmic and the computational complexity point of view: We provide a novel algorithm that provides an O(log⁡nlog⁡log⁡n)-approximation of the cost of the optimal strategy. In addition, we show that finding an optimal strategy is NP-hard even when the input tree is a spider of diameter 6, i.e., at most one vertex has degree larger than 2.}
+}
+@article{Schaffer1989OptNodeRankOfTsInLinTime,
+title = {Optimal node ranking of trees in linear time},
+journal = {Information Processing Letters},
+volume = {33},
+number = {2},
+pages = {91-96},
+year = {1989},
+issn = {0020-0190},
+doi = {https://doi.org/10.1016/0020-0190(89)90161-0},
+author = {Alejandro A. Schäffer},
+keywords = {Tree, ranking, separator, algorithm},
+abstract = {Iyer, Ratliff, and Vijayan [Inform. Process. Lett. 28 (1988) 225–229] defines a ranking of an unrooted tree to be any mapping from the nodes of the tree to the set {1,2,…} such that if two distinct nodes v, w have the same rank, then there exists a node x on the path between v and w such that the rank of x is greater than the rank of v and w. They also define a ranking to be optimal if the largest rank assigned to some node is as small as possible among all rankings. They give an O(n log n) time algorithm to find an optimal ranking of an n-node tree. This note describes an O(n) time algorithm to find an optimal ranking of a tree.}
+}
+@INPROCEEDINGS{OnakParys2006GenOfBSSInTsAndFLikePosets,
+  author={Onak, Krzysztof and Parys, Pawel},
+  booktitle={2006 47th Annual IEEE Symposium on Foundations of Computer Science (FOCS'06)}, 
+  title={Generalization of Binary Search: Searching in Trees and Forest-Like Partial Orders}, 
+  year={2006},
+  volume={},
+  number={},
+  pages={379-388},
+  keywords={File systems;File servers;Decision trees;Upper bound;Approximation algorithms;Computer science;Books;Testing},
+  doi={10.1109/FOCS.2006.32}}
+
+@inproceedings{Mozes_Onak2008FindOptTSStartInLinTime,
+  author       = {Shay Mozes and
+                  Krzysztof Onak and
+                  Oren Weimann},
+  editor       = {Shang{-}Hua Teng},
+  title        = {Finding an optimal tree searching strategy in linear time},
+  booktitle    = {Proceedings of the Nineteenth Annual {ACM-SIAM} Symposium on Discrete
+                  Algorithms, {SODA} 2008, San Francisco, California, USA, January 20-22,
+                  2008},
+  pages        = {1096--1105},
+  publisher    = {{SIAM}},
+  year         = {2008},
+  url          = {http://dl.acm.org/citation.cfm?id=1347082.1347202},
+  timestamp    = {Fri, 07 Dec 2012 17:02:09 +0100},
+  biburl       = {https://dblp.org/rec/conf/soda/MozesOW08.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{Lam1998ERankOfGsIsH,
+title = {Edge ranking of graphs is hard},
+journal = {Discrete Applied Mathematics},
+volume = {85},
+number = {1},
+pages = {71-86},
+year = {1998},
+issn = {0166-218X},
+doi = {https://doi.org/10.1016/S0166-218X(98)00029-8},
+author = {Tak Wah Lam and Fung Ling Yue},
+keywords = {NP-completeness, Graph labeling algorithms, Edge ranking, Computational complexity, Approximability},
+abstract = {An edge ranking of a graph is a restricted coloring of the edges with integers. It requires that every path between two edges with the same label i contains an intermediate edge with label j > i. An edge ranking is optimal if it uses the least number of distinct labels among all possible edge rankings. Recent research has revealed that the problem of finding an optimal edge ranking when restricted to trees admits a polynomial-time solution, yet the complexity of the problem for general graphs has remained open in the literature. In this paper, we prove that finding an optimal edge ranking of a graph is NP-hard. Also, we show that even finding a reasonably small edge ranking is infeasible in some cases.}
+}
+@article{Cicalese2016DecTreesSimEval,
+author = {Cicalese, Ferdinando and Laber, Eduardo and Saettler, Aline},
+year = {2016},
+month = {10},
+pages = {},
+title = {Decision Trees for Function Evaluation: Simultaneous Optimization of Worst and Expected Cost},
+volume = {79},
+journal = {Algorithmica},
+doi = {10.1007/s00453-016-0225-9}
+}
+@InProceedings{dereniowski2022CFApproxAlgForBSInTsWithMonoQTimes,
+  author =	{Dereniowski, Dariusz and Wrosz, Izajasz},
+  title =	{{Constant-Factor Approximation Algorithm for Binary Search in Trees with Monotonic Query Times}},
+  booktitle =	{47th International Symposium on Mathematical Foundations of Computer Science (MFCS 2022)},
+  pages =	{42:1--42:15},
+  series =	{Leibniz International Proceedings in Informatics (LIPIcs)},
+  ISBN =	{978-3-95977-256-3},
+  ISSN =	{1868-8969},
+  year =	{2022},
+  volume =	{241},
+  editor =	{Szeider, Stefan and Ganian, Robert and Silva, Alexandra},
+  publisher =	{Schloss Dagstuhl -- Leibniz-Zentrum f{\"u}r Informatik},
+  address =	{Dagstuhl, Germany},
+  URN =		{urn:nbn:de:0030-drops-168405},
+  doi =		{10.4230/LIPIcs.MFCS.2022.42},
+  annote =	{Keywords: binary search, graph search, approximation algorithm, query complexity}
+}
+@misc{dereniowski2024SInTsMonoQTs,
+      title={Searching in trees with monotonic query times}, 
+      author={Dariusz Dereniowski and Izajasz Wrosz},
+      year={2024},
+      eprint={2401.13747},
+      archivePrefix={arXiv},
+      primaryClass={cs.DS},
+      url={https://arxiv.org/abs/2401.13747}, 
+}
+@article{Angelidakis2018ShortestPQ,
+  title={Shortest path queries, graph partitioning and covering problems in worst and beyond worst case settings},
+  author={Haris Angelidakis},
+  journal={ArXiv},
+  year={2018},
+  volume={abs/1807.09389},
+  url={https://api.semanticscholar.org/CorpusID:51718679}
+}
+@InProceedings{GuptasApproxAlgsForOptDTsAndAdaptTSPPs,
+author="Gupta, Anupam
+and Nagarajan, Viswanath
+and Ravi, R.",
+editor="Abramsky, Samson
+and Gavoille, Cyril
+and Kirchner, Claude
+and Meyer auf der Heide, Friedhelm
+and Spirakis, Paul G.",
+title="Approximation Algorithms for Optimal Decision Trees and Adaptive TSP Problems",
+booktitle="Automata, Languages and Programming",
+year="2010",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="690--701",
+abstract="We consider the problem of constructing optimal decision trees: given a collection of tests which can disambiguate between a set of m possible diseases, each test having a cost, and the a-priori likelihood of the patient having any particular disease, what is a good adaptive strategy to perform these tests to minimize the expected cost to identify the disease? We settle the approximability of this problem by giving a tight O(logm)-approximation algorithm.",
+isbn="978-3-642-14165-2"
+}
+@article{DereniowskiVxRankOfChGsAndWTs,
+title = {Vertex rankings of chordal graphs and weighted trees},
+journal = {Information Processing Letters},
+volume = {98},
+number = {3},
+pages = {96-100},
+year = {2006},
+issn = {0020-0190},
+doi = {https://doi.org/10.1016/j.ipl.2005.12.006},
+author = {Dariusz Dereniowski and Adam Nadolski},
+keywords = {Chordal graph, Computational complexity, Graph algorithms, Vertex ranking},
+abstract = {In this paper we consider the vertex ranking problem of weighted trees. We show that this problem is strongly NP-hard. We also give a polynomial-time reduction from the problem of vertex ranking of weighted trees to the vertex ranking of (simple) chordal graphs, which proves that the latter problem is NP-hard. In this way we solve an open problem of Aspvall and Heggernes. We use this reduction and the algorithm of Bodlaender et al.'s for vertex ranking of partial k-trees to give an exact polynomial-time algorithm for vertex ranking of a tree with bounded and integer valued weight functions. This algorithm serves as a procedure in designing a PTAS for weighted vertex ranking problem of trees with bounded weight functions.}
+}
+@article{LaberOnBSWithNonUniCosts, title={On binary searching with non-uniform costs}, DOI={10.5555/365411.365796}, journal={Symposium on Discrete Algorithms}, publisher={Society for Industrial and Applied Mathematics}, author={Laber, Eduardo Sany and Milidiú, Ruy Luiz and Pessoa, Artur Alves}, year={2001}, month=jan, pages={855–864} }
+@article{MAKINOOnMinERankSTs,
+title = {On Minimum Edge Ranking Spanning Trees},
+journal = {Journal of Algorithms},
+volume = {38},
+number = {2},
+pages = {411-437},
+year = {2001},
+issn = {0196-6774},
+doi = {https://doi.org/10.1006/jagm.2000.1143},
+author = {Kazuhisa Makino and Yushi Uno and Toshihide Ibaraki},
+keywords = {edge ranking, minimum edge ranking spanning tree, approximation algorithm, NP-completeness},
+abstract = {In this paper, we introduce the problem of computing a minimum edge ranking spanning tree (MERST); i.e., find a spanning tree of a given graph G whose edge ranking is minimum. Although the minimum edge ranking of a given tree can be computed in polynomial time, we show that problem MERST is NP-hard. Furthermore, we present an approximation algorithm for MERST, which realizes its worst case performance ratiominΔ*−1logn/Δ*,Δ*−1logΔ*+1−1where n is the number of vertices in G and Δ* is the maximum degree of a spanning tree whose maximum degree is minimum. Although the approximation algorithm is a combination of two existing algorithms for the restricted spanning tree problem and for the minimum edge ranking problem of trees, the analysis is based on novel properties of the edge ranking of trees.}
+}
+@article{LaberFastSInTs,
+author = {Laber, Eduardo and Nogueira, Loana},
+year = {2001},
+month = {04},
+pages = {90-93},
+title = {Fast Searching in Trees},
+volume = {7},
+journal = {Electronic Notes in Discrete Mathematics},
+doi = {10.1016/S1571-0653(04)00232-X}
+}
+@article{DereniowskiEfPQProcByGRank,
+author = {Dereniowski, Dariusz and Kubale, Marek},
+year = {2006},
+month = {02},
+pages = {273-285},
+title = {Efficient Parallel Query Processing by Graph Ranking},
+volume = {69},
+journal = {Fundam. Inform.},
+doi = {10.3233/FUN-2006-69302}
+}
+
+@inproceedings{CarmoSInRandPOSets,
+author = {Carmo, Renato and Donadelli, Jair and Kohayakawa, Yoshiharu and Laber, Eduardo},
+year = {2004},
+month = {06},
+pages = {41-57},
+title = {Searching in Random Partially Ordered Sets},
+volume = {321},
+isbn = {978-3-540-43400-9},
+journal = {Theoretical Computer Science},
+doi = {10.1007/3-540-45995-2_27}
+}
+@article{DereniowskiERAndSInPOSets,
+title = {Edge ranking and searching in partial orders},
+journal = {Discrete Applied Mathematics},
+volume = {156},
+number = {13},
+pages = {2493-2500},
+year = {2008},
+note = {Fifth International Conference on Graphs and Optimization},
+issn = {0166-218X},
+doi = {https://doi.org/10.1016/j.dam.2008.03.007},
+author = {Dariusz Dereniowski},
+keywords = {Dag, Edge ranking, Graph searching, Poset, Spanning tree},
+abstract = {We consider a problem of searching an element in a partially ordered set (poset). The goal is to find a search strategy which minimizes the number of comparisons. Ben-Asher, Farchi and Newman considered a special case where the partial order has the maximum element and the Hasse diagram is a tree (tree-like posets) and they gave an O(n4log3n)-time algorithm for finding an optimal search strategy for such a partial order. We show that this problem is equivalent to finding edge ranking of a simple tree corresponding to the Hasse diagram, which implies the existence of a linear-time algorithm for this problem. Then we study a more general problem, namely searching in any partial order with maximum element. We prove that such a generalization is hard, and we give an O(lognlog(logn))-approximate polynomial-time algorithm for this problem.}
+}
+@book{Knuth1973,
+  added-at = {2016-06-15T15:54:18.000+0200},
+  author = {Knuth, Donald},
+  biburl = {https://www.bibsonomy.org/bibtex/292d514d70188edc70b86721de9ae31ee/ilias_pbm_test},
+  interhash = {132508fb11effd51eb89389b60bfeccc},
+  intrahash = {92d514d70188edc70b86721de9ae31ee},
+  keywords = {publikationen puma},
+  pages = {391-392},
+  publisher = {Addison-Wesley},
+  timestamp = {2016-06-15T15:54:18.000+0200},
+  title = {The Art Of Computer Programming, vol. 3: Sorting And Searching},
+  year = 1973
+}
+@article{GIANNOPOULOU20122089,
+title = {LIFO-search: A min–max theorem and a searching game for cycle-rank and tree-depth},
+journal = {Discrete Applied Mathematics},
+volume = {160},
+number = {15},
+pages = {2089-2097},
+year = {2012},
+issn = {0166-218X},
+doi = {https://doi.org/10.1016/j.dam.2012.03.015},
+url = {https://www.sciencedirect.com/science/article/pii/S0166218X12001199},
+author = {Archontia C. Giannopoulou and Paul Hunter and Dimitrios M. Thilikos},
+keywords = {Graph parameters, Graph searching, Pursuit–evasion games, Cycle-rank, Tree-depth, Obstructions, Min–max theorem},
+abstract = {We introduce a variant of the classic node search game called LIFO-search where searchers are assigned different numbers. The additional rule is that a searcher can be removed only if no searchers of lower rank are in the graph at that moment. We show that all common variations of the game require the same number of searchers. We then introduce the notion of (directed) shelters in (di)graphs and prove a min–max theorem implying their equivalence to the cycle-rank/tree-depth parameter in (di)graphs. As (directed) shelters provide escape strategies for the fugitive, this implies that the LIFO-search game is monotone and that the LIFO-search parameter is equivalent to the one of cycle-rank/tree-depth in (di)graphs.}
+}
+@article{IYER1988225,
+title = {Optimal node ranking of trees},
+journal = {Information Processing Letters},
+volume = {28},
+number = {5},
+pages = {225-229},
+year = {1988},
+issn = {0020-0190},
+doi = {https://doi.org/10.1016/0020-0190(88)90194-9},
+url = {https://www.sciencedirect.com/science/article/pii/0020019088901949},
+author = {Ananth V. Iyer and H.Donald Ratliff and G. Vijayan},
+keywords = {Tree, node separator, rank, algorithm},
+abstract = {We discuss the problem of ranking nodes of a tree, which is a restriction of the general node coloring problem. A tree is said to have rank number k if its vertices can be ranked using the integers 1, 2,…,k such that if two nodes have the same rank i, then there is a node with rank greater than i on the path between the two nodes. The optimal rank number of a tree gives the minimum height of its node separator tree. We present an O(n log n) algorithm for optimal node ranking of trees.}
+}
+@inproceedings{inproceedings,
+author = {Karp, Richard and Kleinberg, Robert},
+year = {2007},
+month = {01},
+pages = {881-890},
+title = {Noisy binary search and its applications},
+journal = {Proceedings of SODA 2007},
+doi = {10.1145/1283383.1283478}
+}
+@article{NESETRIL20061022,
+title = {Tree-depth, subgraph coloring and homomorphism bounds},
+journal = {European Journal of Combinatorics},
+volume = {27},
+number = {6},
+pages = {1022-1041},
+year = {2006},
+issn = {0195-6698},
+doi = {https://doi.org/10.1016/j.ejc.2005.01.010},
+url = {https://www.sciencedirect.com/science/article/pii/S0195669805000570},
+author = {Jaroslav Nešetřil and Patrice {Ossona de Mendez}},
+abstract = {We define the notions tree-depth and upper chromatic number of a graph and show their relevance to local–global problems for graph partitions. In particular we show that the upper chromatic number coincides with the maximal function which can be locally demanded in a bounded coloring of any proper minor closed class of graphs. The rich interplay of these notions is applied to a solution of bounds of proper minor closed classes satisfying local conditions. In particular, we prove the following result: For every graph M and a finite set F of connected graphs there exists a (universal) graph U=U(M,F)∈Forbh(F) such that any graph G∈Forbh(F) which does not have M as a minor satisfies G⟶U (i.e. is homomorphic to U). This solves the main open problem of restricted dualities for minor closed classes and as an application it yields the bounded chromatic number of exact odd powers of any graph in an arbitrary proper minor closed class. We also generalize the decomposition theorem of DeVos et al. [M. DeVos, G. Ding, B. Oporowski, D.P. Sanders, B. Reed, P. Seymour, D. Vertigan, Excluding any graph as a minor allows a low tree-width 2-coloring, J. Combin. Theory Ser. B 91 (2004) 25–41].}
+}
+
+@techreport{Pothen1988OptimalEliminationTrees,
+  author       = {Pothen, Alex},
+  title        = {The Complexity of Optimal Elimination Trees},
+  institution  = {Pennsylvania State University, Department of Computer Science},
+  type         = {Technical Report},
+  number       = {CS‑88‑16},
+  month        = {April},
+  year         = {1988},
+  note         = {Penn State University CS‑88‑16}
+}
+@article{KATCHALSKI1995141,
+title = {Ordered colourings},
+journal = {Discrete Mathematics},
+volume = {142},
+number = {1},
+pages = {141-154},
+year = {1995},
+issn = {0012-365X},
+doi = {https://doi.org/10.1016/0012-365X(93)E0216-Q},
+url = {https://www.sciencedirect.com/science/article/pii/0012365X93E0216Q},
+author = {Meir Katchalski and William McCuaig and Suzanne Seager},
+abstract = {Let k be a positive integer. An ordered k-colouring of a graph G is a function c from V(G) into {1,…,k} such that for every pair of distinct vertices x and y and for every (x, y)-path P, if c(x) = c(y), then there exists an internal vertex z of P such that c(x) < c(z). We prove some theorems on ordered colourings of trees and planar graphs, and examine the relationship between connectivity and ordered colourings. Let A be a set of graphs which is ordered by subgraphs and closed under subgraphs. We characterize when A is a well-quasi-order. A generalization of ordered colourings is given.}
+}
+@InProceedings{OnDasHC,
+author="H{\o}gemo, Svein
+and Bergougnoux, Benjamin
+and Brandes, Ulrik
+and Paul, Christophe
+and Telle, Jan Arne",
+editor="Bampis, Evripidis
+and Pagourtzis, Aris",
+title="On Dasgupta's Hierarchical Clustering Objective and Its Relation to Other Graph Parameters",
+booktitle="Fundamentals of Computation Theory",
+year="2021",
+publisher="Springer International Publishing",
+address="Cham",
+pages="287--300",
+abstract="The minimum height of vertex and edge partition trees are well-studied graph parameters known as, for instance, vertex and edge ranking number. While they are NP-hard to determine in general, linear-time algorithms exist for trees. Motivated by a correspondence with Dasgupta's objective for hierarchical clustering we consider the total rather than maximum depth of vertices as an alternative objective for minimization. For vertex partition trees this leads to a new parameter with a natural interpretation as a measure of robustness against vertex removal.",
+isbn="978-3-030-86593-1"
+}
+
+@inproceedings{Acostfunctionforsimilaritybasedhierarchicalclustering,
+author = {Dasgupta, Sanjoy},
+title = {A cost function for similarity-based hierarchical clustering},
+year = {2016},
+isbn = {9781450341325},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2897518.2897527},
+doi = {10.1145/2897518.2897527},
+abstract = {The development of algorithms for hierarchical clustering has been hampered by a shortage of precise objective functions. To help address this situation, we introduce a simple cost function on hierarchies over a set of points, given pairwise similarities between those points. We show that this criterion behaves sensibly in canonical instances and that it admits a top-down construction procedure with a provably good approximation ratio.},
+booktitle = {Proceedings of the Forty-Eighth Annual ACM Symposium on Theory of Computing},
+pages = {118–127},
+numpages = {10},
+keywords = {Hierarchical clustering, approximation algorithm},
+location = {Cambridge, MA, USA},
+series = {STOC '16}
+}
+
+@inproceedings{Approximatehierarchicalclusteringviasparsestcutandspreadingmetrics,
+author = {Charikar, Moses and Chatziafratis, Vaggos},
+title = {Approximate hierarchical clustering via sparsest cut and spreading metrics},
+year = {2017},
+publisher = {Society for Industrial and Applied Mathematics},
+address = {USA},
+abstract = {Dasgupta recently introduced a cost function for the hierarchical clustering of a set of points given pairwise similarities between them. He showed that this function is NP-hard to optimize, but a top-down recursive partitioning heuristic based on an αn-approximation algorithm for uniform sparsest cut gives an approximation of O(αn log n) (the current best algorithm has [EQUATION]. We show that the aforementioned sparsest cut heuristic in fact obtains an O(αn)-approximation. The algorithm also applies to a generalized cost function studied by Dasgupta. Moreover, we obtain a strong inapproximability result, showing that the Hierarchical Clustering objective is hard to approximate to within any constant factor assuming the Small-Set Expansion (SSE) Hypothesis. Finally, we discuss approximation algorithms based on convex relaxations. We present a spreading metric SDP relaxation for the problem and show that it has integrality gap at most [EQUATION]. The advantage of the SDP relative to the sparsest cut heuristic is that it provides an explicit lower bound on the optimal solution and could potentially yield an even better approximation for hierarchical clustering. In fact our analysis of this SDP served as the inspiration for our improved analysis of the sparsest cut heuristic. We also show that a spreading metric LP relaxation gives an O(log n)-approximation.},
+booktitle = {Proceedings of the Twenty-Eighth Annual ACM-SIAM Symposium on Discrete Algorithms},
+pages = {841–854},
+numpages = {14},
+location = {Barcelona, Spain},
+series = {SODA '17}
+}
+
+@inbook{ATightAnalysisofGreedy,
+author = {Ray Li and Percy Liang and Stephen Mussmann},
+title = {A Tight Analysis of Greedy Yields Subexponential Time Approximation for Uniform Decision Tree},
+booktitle = {Proceedings of the 2020 ACM-SIAM Symposium on Discrete Algorithms (SODA)},
+chapter = {},
+pages = {102-121},
+doi = {10.1137/1.9781611975994.7},
+URL = {https://epubs.siam.org/doi/abs/10.1137/1.9781611975994.7},
+eprint = {https://epubs.siam.org/doi/pdf/10.1137/1.9781611975994.7},
+    abstract = { Decision Tree is a classic formulation of active learning: given n hypotheses with nonnegative weights summing to 1 and a set of tests that each partition the hypotheses, output a decision tree using the provided tests that uniquely identifies each hypothesis and has minimum (weighted) average depth. Previous works showed that the greedy algorithm achieves a O(log n) approximation ratio for this problem and it is NP-hard beat a O(log n) approximation, settling the complexity of the problem. However, for Uniform Decision Tree, i.e. Decision Tree with uniform weights, the story is more subtle. The greedy algorithm's O(log n) approximation ratio was the best known, but the largest approximation ratio known to be NP-hard is 4 – ε. We prove that the greedy algorithm gives a approximation for Uniform Decision Tree, where COPT is the cost of the optimal tree and show this is best possible for the greedy algorithm. As a corollary, we resolve a conjecture of Kosaraju, Przytycka, and Borgstrom [20]. Our results also hold for instances of DecisioN Tree whose weights are not too far from uniform. Leveraging this result, for all α ϵ (0, 1), we exhibit a approximation algorithm to Uniform Decision Tree running in subexponential time . As a corollary, achieving any super-constant approximation ratio on Uniform Decision Tree is not NP-hard, assuming the Exponential Time Hypothesis. This work therefore adds approximating Uniform Decision Tree to a small list of natural problems that have subexponential time algorithms but no known polynomial time algorithms. Like the analysis of the greedy algorithm, our analysis of the subexponential time algorithm gives similar approximation guarantees even for slightly nonuniform weights. A key technical contribution of our work is showing a connection between greedy algorithms for Uniform Decision Tree and for Min Sum Set Cover. }
+}
+@inproceedings{Diagnosisdetermination,
+author = {Cicalese, Ferdinando and Laber, Eduardo and Saettler, Aline Medeiros},
+title = {Diagnosis determination: decision trees optimizing simultaneously worst and expected testing cost},
+year = {2014},
+publisher = {JMLR.org},
+abstract = {In several applications of automatic diagnosis and active learning a central problem is the evaluation of a discrete function by adaptively querying the values of its variables until the values read uniquely determine the value of the function. In general reading the value of a variable is done at the expense of some cost (computational or possibly a fee to pay the corresponding experiment). The goal is to design a strategy for evaluating the function incurring little cost (in the worst case or in expectation according to a prior distribution on the possible variables' assignments).Our algorithm builds a strategy (decision tree) which attains a logarithmic approximation simultaneously for the expected and worst cost spent. This is best possible since, under standard complexity assumption, no algorithm can guarantee o(log n) approximation.},
+booktitle = {Proceedings of the 31st International Conference on International Conference on Machine Learning - Volume 32},
+pages = {I–414–I–422},
+location = {Beijing, China},
+series = {ICML'14}
+}
+
+@inproceedings{NearoptimalBayesianactivelearning,
+author = {Golovin, Daniel and Krause, Andreas and Ray, Debajyoti},
+title = {Near-optimal Bayesian active learning with noisy observations},
+year = {2010},
+publisher = {Curran Associates Inc.},
+address = {Red Hook, NY, USA},
+abstract = {We tackle the fundamental problem of Bayesian active learning with noise, where we need to adaptively select from a number of expensive tests in order to identify an unknown hypothesis sampled from a known prior distribution. In the case of noise-free observations, a greedy algorithm called generalized binary search (GBS) is known to perform near-optimally. We show that if the observations are noisy, perhaps surprisingly, GBS can perform very poorly. We develop EC2, a novel, greedy active learning algorithm and prove that it is competitive with the optimal policy, thus obtaining the first competitiveness guarantees for Bayesian active learning with noisy observations. Our bounds rely on a recently discovered diminishing returns property called adaptive submodularity, generalizing the classical notion of submodular set functions to adaptive policies. Our results hold even if the tests have non-uniform cost and their noise is correlated. We also propose EFFECX-TIVE, a particularly fast approximation of EC2, and evaluate it on a Bayesian experimental design problem involving human subjects, intended to tease apart competing economic theories of how people make decisions under uncertainty.},
+booktitle = {Proceedings of the 24th International Conference on Neural Information Processing Systems - Volume 1},
+pages = {766–774},
+numpages = {9},
+location = {Vancouver, British Columbia, Canada},
+series = {NIPS'10}
+}
+@inproceedings{Analysisofgreedyactivelearningstrategy,
+ author = {Dasgupta, Sanjoy},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {L. Saul and Y. Weiss and L. Bottou},
+ pages = {},
+ publisher = {MIT Press},
+ title = {Analysis of a greedy active learning strategy},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2004/file/c61fbef63df5ff317aecdc3670094472-Paper.pdf},
+ volume = {17},
+ year = {2004}
+}
+
+@InProceedings{OnanOptimalSplitTreeProblem,
+author="Kosaraju, S. Rao
+and Przytycka, Teresa M.
+and Borgstrom, Ryan",
+editor="Dehne, Frank
+and Sack, J{\"o}rg-R{\"u}diger
+and Gupta, Arvind
+and Tamassia, Roberto",
+title="On an Optimal Split Tree Problem",
+booktitle="Algorithms and Data Structures",
+year="1999",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="157--168",
+abstract="We introduce and study a problem that we refer to as the optimal split tree problem. The problem generalizes a number of problems including two classical tree construction problems including the Huffman tree problem and the optimal alphabetic tree. We show that the general split tree problem is NP-complete and analyze a greedy algorithm for its solution. We show that a simple modification of the greedy algorithm guarantees O(log n) approximation ratio. We construct an example for which this algorithm achieves $\Omega${\$}{\$}{\backslash}Omega {\backslash}left( {\{}{\backslash}frac{\{}{\{}{\backslash}log  n{\}}{\}}{\{}{\{}{\backslash}log  {\backslash}log  n{\}}{\}}{\}} {\backslash}right){\$}{\$}approximation ratio. We show that if all weights are equal and the optimal split tree is of depth O(log n), then the greedy algorithm guarantees O{\$}{\$}{\backslash}Omega {\backslash}left( {\{}{\backslash}frac{\{}{\{}{\backslash}log  n{\}}{\}}{\{}{\{}{\backslash}log  {\backslash}log  n{\}}{\}}{\}} {\backslash}right){\$}{\$}approximation ratio. We also extend our approximation algorithm to the construction of a search tree for partially ordered sets.",
+isbn="978-3-540-48447-9"
+}
+
+@ARTICLE{QuerySelection,
+  author={Bellala, Gowtham and Bhavnani, Suresh K. and Scott, Clayton},
+  journal={IEEE Transactions on Information Theory}, 
+  title={Group-Based Active Query Selection for Rapid Diagnosis in Time-Critical Situations}, 
+  year={2012},
+  volume={58},
+  number={1},
+  pages={459-478},
+  keywords={Object recognition;Decision trees;Noise;Chemicals;Toxic chemicals;Channel coding;Active learning;decision trees;generalized binary search;persistent noise;Shannon-Fano coding;submodularity},
+  doi={10.1109/TIT.2011.2169296}}
+
+@InProceedings{noisyBSSFC,
+  author =	{Dereniowski, Dariusz and {\L}ukasiewicz, Aleksander and Uzna\'{n}ski, Przemys{\l}aw},
+  title =	{{Noisy (Binary) Searching: Simple, Fast and Correct}},
+  booktitle =	{42nd International Symposium on Theoretical Aspects of Computer Science (STACS 2025)},
+  pages =	{29:1--29:18},
+  series =	{Leibniz International Proceedings in Informatics (LIPIcs)},
+  ISBN =	{978-3-95977-365-2},
+  ISSN =	{1868-8969},
+  year =	{2025},
+  volume =	{327},
+  editor =	{Beyersdorff, Olaf and Pilipczuk, Micha{\l} and Pimentel, Elaine and Thắng, Nguy\~{ê}n Kim},
+  publisher =	{Schloss Dagstuhl -- Leibniz-Zentrum f{\"u}r Informatik},
+  address =	{Dagstuhl, Germany},
+  URL =		{https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.STACS.2025.29},
+  URN =		{urn:nbn:de:0030-drops-228551},
+  doi =		{10.4230/LIPIcs.STACS.2025.29},
+  annote =	{Keywords: Graph Algorithms, Noisy Binary Search, Query Complexity, Reliability}
+}
+@article{Dereniowski2024OnMG,
+  title={On multidimensional generalization of binary search},
+  author={Dariusz Dereniowski and Przemysław Gordinowicz and Karolina Wr'obel},
+  journal={ArXiv},
+  year={2024},
+  volume={abs/2404.13193},
+  url={https://api.semanticscholar.org/CorpusID:269293685}
+}
+@article{BOROWIECKI2023113682,
+title = {The complexity of bicriteria tree-depth},
+journal = {Theoretical Computer Science},
+volume = {947},
+pages = {113682},
+year = {2023},
+issn = {0304-3975},
+doi = {https://doi.org/10.1016/j.tcs.2022.12.032},
+url = {https://www.sciencedirect.com/science/article/pii/S0304397522007666},
+author = {Piotr Borowiecki and Dariusz Dereniowski and Dorota Osula},
+keywords = {Elimination tree, Graph algorithms, Graph ranking, Parallel assembly, Parallel processing, Tree-depth},
+abstract = {The tree-depth problem can be seen as finding an elimination tree of minimum height for a given input graph G. We introduce a bicriteria generalization in which additionally the width of the elimination tree needs to be bounded by some input integer b. We are interested in the case when G is the line graph of a tree, proving that the problem is NP-hard and obtaining a polynomial-time additive 2b-approximation algorithm. This particular class of graphs received significant attention in the past, mainly due to a number of potential applications, e.g. in parallel assembly of modular products, or parallel query processing in relational databases, as well as purely combinatorial applications including searching in tree-like partial orders (which in turn generalizes binary search on sorted data).}
+}
+
+@article{Dereniowski2023Edge,
+  author    = {Dariusz Dereniowski and Przemysław Gordinowicz and Paweł Prałat},
+  title     = {Edge and Pair Queries—Random Graphs and Complexity},
+  journal   = {The Electronic Journal of Combinatorics},
+  volume    = {30},
+  number    = {2},
+  year      = {2023},
+  article   = {P2.34},
+  doi       = {10.37236/11159},
+  url       = {https://www.combinatorics.org/ojs/index.php/eljc/article/view/v30i2p34}
+}
+
+@InProceedings{EfficientNoisyBinarySearch,
+author="Dereniowski, Dariusz
+and {\L}ukasiewicz, Aleksander
+and Uzna{\'{n}}ski, Przemys{\l}aw",
+editor="Flocchini, Paola
+and Moura, Lucia",
+title="An Efficient Noisy Binary Search in Graphs via Median Approximation",
+booktitle="Combinatorial Algorithms",
+year="2021",
+publisher="Springer International Publishing",
+address="Cham",
+pages="265--281",
+abstract="Consider a generalization of the classical binary search problem in linearly sorted data to the graph-theoretic setting. The goal is to design an adaptive query algorithm, called a strategy, that identifies an initially unknown target vertex in a graph by asking queries. Each query is conducted as follows: the strategy selects a vertex q and receives a reply v: if q is the target, then {\$}{\$}v=q{\$}{\$}v=q, and if q is not the target, then v is a neighbor of q that lies on a shortest path to the target. Furthermore, there is a noise parameter {\$}{\$}0{\backslash}le p<{\backslash}frac{\{}1{\}}{\{}2{\}}{\$}{\$}0≤p<12which means that each reply can be incorrect with probability p. The optimization criterion to be minimized is the overall number of queries asked by the strategy, called the query complexity. The query complexity is well understood to be {\$}{\$}{\backslash}mathcal {\{}O{\}}({\backslash}varepsilon ^{\{}-2{\}}{\backslash}log n){\$}{\$}O($\epsilon$-2logn)for general graphs, where n is the order of the graph and {\$}{\$}{\backslash}varepsilon ={\backslash}frac{\{}1{\}}{\{}2{\}}{\backslash},-{\backslash},p{\$}{\$}$\epsilon$=12-p. However, implementing such a strategy is computationally expensive, with each query requiring possibly {\$}{\$}{\backslash}mathcal {\{}O{\}}(n^2){\$}{\$}O(n2)operations.",
+isbn="978-3-030-79987-8"
+}
+
+@article{LABER2004209,
+title = {On the hardness of the minimum height decision tree problem},
+journal = {Discrete Applied Mathematics},
+volume = {144},
+number = {1},
+pages = {209-212},
+year = {2004},
+note = {Discrete Mathematics and Data Mining},
+issn = {0166-218X},
+doi = {https://doi.org/10.1016/j.dam.2004.06.002},
+url = {https://www.sciencedirect.com/science/article/pii/S0166218X04001787},
+author = {Eduardo S. Laber and Loana Tito Nogueira},
+keywords = {Algorithmical approximation, Computational complexity, Decision trees},
+abstract = {Given a set of objects O and a set of tests T, the abstract decision tree problem (DTP) is to construct a tree with minimum height that completely identifies the objects of O, by using the tests of T. No algorithm with a good approximation ratio is known to solve this problem. We give a theoretical support for this fact by showing that DTP does not admit an o(log n)-approximation algorithm unless P=NP.}
+}
+
+@inproceedings{kseparator,
+  TITLE = {{The k-separator problem}},
+  AUTHOR = {Ben-Ameur, Walid and Mohamed, Mohamed S. A. and Neto, Jos{\'e}},
+  URL = {https://hal.science/hal-00843860},
+  BOOKTITLE = {{COCOON '13 : 19th International Computing \& Combinatorics Conference}},
+  ADDRESS = {Hangzhou, China},
+  HAL_LOCAL_REFERENCE = {13303},
+  PUBLISHER = {{Springer}},
+  VOLUME = {7936},
+  PAGES = {337-348},
+  YEAR = {2013},
+  MONTH = Jun,
+  DOI = {10.1007/978-3-642-38768-5\_31},
+  KEYWORDS = {Graph partitioning ; Complexity theory ; Optimization ; Approximation algorithms ; Communication networks},
+  HAL_ID = {hal-00843860},
+  HAL_VERSION = {v1},
+}
+
+@inproceedings{Improvedapproximationalgorithmsvertexseparators,
+author = {Feige, Uriel and Hajiaghayi, MohammadTaghi and Lee, James R.},
+title = {Improved approximation algorithms for minimum-weight vertex separators},
+year = {2005},
+isbn = {1581139608},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/1060590.1060674},
+doi = {10.1145/1060590.1060674},
+abstract = {We develop the algorithmic theory of vertex separators, and its relation to the embeddings of certain metric spaces. Unlike in the edge case, we show that embeddings into L1 (and even Euclidean embeddings) are insufficient, but that the additional structure provided by many embedding theorems does suffice for our purposes.We obtain an O(√log n) approximation for min-ratio vertex cuts in general graphs, based on a new semidefinite relaxation of the problem, and a tight analysis of the integrality gap which is shown to be Θ(√log n). We also prove various approximate max-flow/min-vertex-cut theorems, which in particular give a constant-factor approximation for min-ratio vertex cuts in any excluded-minor family of graphs. Previously, this was known only for planar graphs, and for general excluded-minor families the best-known ratio was O(log n).These results have a number of applications. We exhibit an O(√log n) pseudo-approximation for finding balanced vertex separators in general graphs. In fact, we achieve an approximation ratio of O(√log opt) where opt is the size of an optimal separator, improving over the previous best bound of O(log opt). Likewise, we obtain improved approximation ratios for treewidth: In any graph of treewidth k, we show how to find a tree decomposition of width at most O(k √log k), whereas previous algorithms yielded O(k log k). For graphs excluding a fixed graph as a minor (which includes, e.g., bounded genus graphs), we give a constant-factor approximation for the treewidth; this can be used to obtain the first polynomial-time approximation schemes for problems like minimum feedback vertex set and minimum connected dominating set in such graphs.},
+booktitle = {Proceedings of the Thirty-Seventh Annual ACM Symposium on Theory of Computing},
+pages = {563–572},
+numpages = {10},
+keywords = {vertex separators, treewidth, semidefinite programming, metric embeddings, approximation algorithms},
+location = {Baltimore, MD, USA},
+series = {STOC '05}
+}
+
+@article{BoundsonMultiprocessingTimingAnomalies,
+author = {Graham, R. L.},
+title = {Bounds on Multiprocessing Timing Anomalies},
+journal = {SIAM Journal on Applied Mathematics},
+volume = {17},
+number = {2},
+pages = {416-429},
+year = {1969},
+doi = {10.1137/0117039},
+URL = {
+        https://doi.org/10.1137/0117039
+},
+eprint = { https://doi.org/10.1137/0117039
+}
+}
+@article{Binpackingwithrestrictedpiecesizes,
+title = {Bin packing with restricted piece sizes},
+journal = {Information Processing Letters},
+volume = {31},
+number = {3},
+pages = {145-149},
+year = {1989},
+issn = {0020-0190},
+doi = {https://doi.org/10.1016/0020-0190(89)90223-8},
+url = {https://www.sciencedirect.com/science/article/pii/0020019089902238},
+author = {Joseph Y-T. Leung},
+keywords = {Bin-packing problems, strongly NP-hard, ϵ-approximation algorithms, ϵ-approximation scheme, multiprocessor scheduling},
+abstract = {Coffman et al. have recently shown that a large number of bin-packing problems can be solved in polynomial time if the piece sizes are drawn from the power set of an arbitrary positive integer q (i.e., the piece sizes are drawn from the set {1, q, q2, q3,…}). In this article we show that these problems remain NP-hard if the piece sizes are drawn from the power set of an arbitrary positive rational number r. We also show that the running time of the ϵ-approximation scheme recently proposed by Hochbaum and Shmoys for the multiprocessor scheduling problem can be reduced from O((n/ϵ)exp(1/ϵF)2) time to O(n/ϵ)exp((1/ϵ)log(1/ϵ)) time.}
+}
+
+@article{AlgorithmsforSchedulingIndependentTasks,
+author = {Sahni, Sartaj K.},
+title = {Algorithms for Scheduling Independent Tasks},
+year = {1976},
+issue_date = {Jan. 1976},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {23},
+number = {1},
+issn = {0004-5411},
+url = {https://doi.org/10.1145/321921.321934},
+doi = {10.1145/321921.321934},
+abstract = {The following job sequencing problems are studied: (i) single processor job sequencing with deadlines, (ii) job sequencing on m-identical processors to minimize finish time and related problems, (iii) job sequencing on 2-identical processors to minimize weighted mean flow time.Dynamic programming type algorithms are presented to obtain optimal solutions to these problems, and three general techniques are presented to obtain approximate solutions for optimization problems solvable in this way. The techniques are applied to the problems above to obtain polynomial time algorithms that generate “good” approximate solutions.},
+journal = {J. ACM},
+month = jan,
+pages = {116–127},
+numpages = {12}
+}
+
+
+
+
+
+
+@article{RankingsofGraphs,
+author = {Bodlaender, Hans L. and Deogun, Jitender S. and Jansen, Klaus and Kloks, Ton and Kratsch, Dieter and M\"{u}ller, Haiko and Tuza, Zsolt},
+title = {Rankings of Graphs},
+journal = {SIAM Journal on Discrete Mathematics},
+volume = {11},
+number = {1},
+pages = {168-181},
+year = {1998},
+doi = {10.1137/S0895480195282550},
+
+URL = { 
+    
+        https://doi.org/10.1137/S0895480195282550
+    
+    
+
+},
+eprint = { 
+    
+        https://doi.org/10.1137/S0895480195282550
+    
+    
+
+}
+,
+    abstract = { A vertex (edge) coloring \$\phi:V\rightarrow \{1,2,\ldots ,t\}\$ (\$\phi':E\rightarrow \{1,2,\ldots,\$ \$t\}\$) of a graph G=(V,E) is a vertex (edge) t-ranking if, for any two vertices (edges) of the same color, every path between them contains a vertex (edge) of larger color. The {\em vertex ranking number} \$\chi\_{r}(G)\$ ({\em edge ranking number} \$\chi\_{r}'(G)\$) is the smallest value of t such that G has a vertex (edge) t-ranking. In this paper we study the algorithmic complexity of the {\sc Vertex Ranking} and {\sc Edge Ranking} problems. It is shown that \$\chi\_{r}(G)\$ can be computed in polynomial time when restricted to graphs with treewidth at most k for any fixed k. We characterize the graphs where the vertex ranking number \$\chi\_{r}\$ and the chromatic number \$\chi\$ coincide on all induced subgraphs, show that \$\chi\_{r}(G)=\chi (G)\$ implies \$\chi (G)=\omega (G)\$ (largest clique size), and give a formula for \$\chi\_{r}'(K\_n)\$. }
+}
+
+@inproceedings{Karbasi2013Constrained,
+  author    = {Amin Karbasi and Morteza Zadimoghaddam},
+  title     = {Constrained Binary Identification Problems},
+  booktitle = {30th International Symposium on Theoretical Aspects of Computer Science (STACS)},
+  series    = {Leibniz International Proceedings in Informatics (LIPIcs)},
+  volume    = {20},
+  pages     = {550--561},
+  publisher = {Schloss Dagstuhl--Leibniz-Zentrum für Informatik},
+  year      = {2013},
+  doi       = {10.4230/LIPIcs.STACS.2013.550},
+  url       = {https://drops.dagstuhl.de/opus/volltexte/2013/3942},
+}
+@article{Tradingoff,
+author = {Saettler, Aline and Laber, Eduardo and Cicalese, Ferdinando},
+year = {2014},
+month = {06},
+pages = {},
+title = {Trading off Worst and Expected Cost in Decision Tree Problems and a Value Dependent Model}
+}
+
+@inproceedings{EffDPusingQI,
+author = {Yao, F. Frances},
+title = {Efficient dynamic programming using quadrangle inequalities},
+year = {1980},
+isbn = {0897910176},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/800141.804691},
+doi = {10.1145/800141.804691},
+abstract = {Dynamic programming is one of several widely used problem-solving techniques in computer science and operation research. In applying this technique, one always seeks to find speed-up by taking advantage of special properties of the problem at hand. However, in the current state of art, ad hoc approaches for speeding up seem to be characteristic; few general criteria are known. In this paper we give a quadrangle inequality condition for rendering speed-up. This condition is easily checked, and can be applied to several apparently different problems. For example, it follows immediately from our general condition that the construction of optimal binary search trees may be speeded up from O(n3) steps to O(n2), a result that was first obtained by Knuth using a different and rather complicated argument.},
+booktitle = {Proceedings of the Twelfth Annual ACM Symposium on Theory of Computing},
+pages = {429–435},
+numpages = {7},
+location = {Los Angeles, California, USA},
+series = {STOC '80}
+}
+
+@article{Jordan1869,
+author = {Jordan, Camille},
+journal = {Journal für die reine und angewandte Mathematik},
+keywords = {straight lines, symmetry, self similarity},
+language = {fre},
+pages = {185-190},
+title = {Sur les assemblages de lignes.},
+url = {http://eudml.org/doc/148084},
+volume = {70},
+year = {1869},
+}
+
+@article{toptrees,
+author = {Alstrup, Stephen and Holm, Jacob and Lichtenberg, Kristian De and Thorup, Mikkel},
+title = {Maintaining information in fully dynamic trees with top trees},
+year = {2005},
+issue_date = {October 2005},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {1},
+number = {2},
+issn = {1549-6325},
+url = {https://doi.org/10.1145/1103963.1103966},
+doi = {10.1145/1103963.1103966},
+abstract = {We design top trees as a new simpler interface for data structures maintaining information in a fully dynamic forest. We demonstrate how easy and versatile they are to use on a host of different applications. For example, we show how to maintain the diameter, center, and median of each tree in the forest. The forest can be updated by insertion and deletion of edges and by changes to vertex and edge weights. Each update is supported in O(log n) time, where n is the size of the tree(s) involved in the update. Also, we show how to support nearest common ancestor queries and level ancestor queries with respect to arbitrary roots in O(log n) time. Finally, with marked and unmarked vertices, we show how to compute distances to a nearest marked vertex. The latter has applications to approximate nearest marked vertex in general graphs, and thereby to static optimization problems over shortest path metrics.Technically speaking, top trees are easily implemented either with Frederickson's [1997a] topology trees or with Sleator and Tarjan's [1983] dynamic trees. However, we claim that the interface is simpler for many applications, and indeed our new bounds are quadratic improvements over previous bounds where they exist.},
+journal = {ACM Trans. Algorithms},
+month = oct,
+pages = {243–264},
+numpages = {22},
+keywords = {Fully dynamic forest}
+}
+
+@misc{szyfelbein2025searchingtreeskupmodularweight,
+      title={Searching in trees with k-up-modular cost functions}, 
+      author={Michał Szyfelbein},
+      year={2025},
+      eprint={2504.17887},
+      archivePrefix={arXiv},
+      primaryClass={cs.DS},
+      url={https://arxiv.org/abs/2504.17887}, 
+}
+
+@article{BODLAENDER1995238,
+title = {Approximating Treewidth, Pathwidth, Frontsize, and Shortest Elimination Tree},
+journal = {Journal of Algorithms},
+volume = {18},
+number = {2},
+pages = {238-255},
+year = {1995},
+issn = {0196-6774},
+doi = {https://doi.org/10.1006/jagm.1995.1009},
+url = {https://www.sciencedirect.com/science/article/pii/S0196677485710097},
+author = {H.L. Bodlaender and J.R. Gilbert and H. Hafsteinsson and T. Kloks},
+abstract = {Various parameters of graphs connected to sparse matrix factorization and other applications can be approximated using an algorithm of Leighton et al. that finds vertex separators of graphs. The approximate values of the parameters, which include minimum front size, treewidth, pathwidth, and minimum elimination tree height, are no more than O(log n) (minimum front size and treewidth) and O(log2n) (pathwidth and minimum elimination tree height) times the optimal values. In addition, we show that unless P = NP there are no absolute approximation algorithms for any of the parameters.}
+}
+
+@phdthesis{Berendsohn2024,
+author = {Berendsohn, Benjamin Aram},
+year = {2024},
+title = {Search trees on graphs},
+type = {Dissertation},
+url = "http://dx.doi.org/10.17169/refubium-45704",
+}
+
+
+
+
+
+
+@article{OptimalSinT,
+author = {Ben-Asher, Yosi and Farchi, Eitan and Newman, Ilan},
+title = {Optimal Search in Trees},
+journal = {SIAM Journal on Computing},
+volume = {28},
+number = {6},
+pages = {2090-2102},
+year = {1999},
+doi = {10.1137/S009753979731858X},
+
+URL = { 
+    
+        https://doi.org/10.1137/S009753979731858X
+    
+    
+
+},
+eprint = { 
+    
+        https://doi.org/10.1137/S009753979731858X
+    
+    
+
+}
+,
+    abstract = { It is well known that the optimal solution for searching in a finite total order set is binary search. In binary search we divide the set into two "halves" by querying the middle element and continue the search on the suitable half. What is the equivalent of binary search when the set P is partially ordered? A query in this case is to a point \$x\in P\$, with two possible answers: "yes" indicates that the required element is "below" x or "no" if the element is not below x. We show that the problem of computing an optimal strategy for search in posets that are tree-like (or forests) is polynomial in the size of the tree and requires at most O(n4 log3n ) steps. Optimal solutions of such search problems are often needed in program testing and debugging, where a given program is represented as a tree and a bug should be found using a minimal set of queries. This type of search is also applicable in searching classified large tree-like databases (e.g., the Internet). }
+}
+
+@InProceedings{Dereniowski2003CholeskyFactofMx,
+author="Dereniowski, Dariusz
+and Kubale, Marek",
+editor="Wyrzykowski, Roman
+and Dongarra, Jack
+and Paprzycki, Marcin
+and Wa{\'{s}}niewski, Jerzy",
+title="Cholesky Factorization of Matrices in Parallel and Ranking of Graphs",
+booktitle="Parallel Processing and Applied Mathematics",
+year="2004",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="985--992",
+abstract="The vertex ranking problem is closely related to the problem of finding the elimination tree of minimum height for a given graph. This implies that the problem has applications in the parallel Cholesky factorization of matrices. We describe the connection between this model of graph coloring and the matrix factorization. We also present a polynomial time algorithm for finding edge ranking of complete bipartite graphs. We use it to design an O(m2{\thinspace}+{\thinspace}d) algorithm for edge ranking of graphs obtained by removing O(log m) edges from a complete bipartite graph, where d is a fixed number. Then we extend our results to complete k-partite graphs for any fixed k>2. In this way we give a new class of matrix factorization instances that can be optimally solved in polynomial time.",
+isbn="978-3-540-24669-5"
+}
+
+@article{OnAGPartWAppVLSI,
+title = {On a graph partition problem with application to VLSI layout},
+journal = {Information Processing Letters},
+volume = {43},
+number = {2},
+pages = {87-94},
+year = {1992},
+issn = {0020-0190},
+doi = {https://doi.org/10.1016/0020-0190(92)90017-P},
+url = {https://www.sciencedirect.com/science/article/pii/002001909290017P},
+author = {Arunabha Sen and Haiyong Deng and Sumanta Guha},
+keywords = {Combinatorial problems, graph partition, permutation graph, circle graph, VLSI layout}
+}
+@article{OnMinERSTs,
+title = {On Minimum Edge Ranking Spanning Trees},
+journal = {Journal of Algorithms},
+volume = {38},
+number = {2},
+pages = {411-437},
+year = {2001},
+issn = {0196-6774},
+doi = {https://doi.org/10.1006/jagm.2000.1143},
+url = {https://www.sciencedirect.com/science/article/pii/S019667740091143X},
+author = {Kazuhisa Makino and Yushi Uno and Toshihide Ibaraki},
+keywords = {edge ranking, minimum edge ranking spanning tree, approximation algorithm, NP-completeness},
+abstract = {In this paper, we introduce the problem of computing a minimum edge ranking spanning tree (MERST); i.e., find a spanning tree of a given graph G whose edge ranking is minimum. Although the minimum edge ranking of a given tree can be computed in polynomial time, we show that problem MERST is NP-hard. Furthermore, we present an approximation algorithm for MERST, which realizes its worst case performance ratiominΔ*−1logn/Δ*,Δ*−1logΔ*+1−1where n is the number of vertices in G and Δ* is the maximum degree of a spanning tree whose maximum degree is minimum. Although the approximation algorithm is a combination of two existing algorithms for the restricted spanning tree problem and for the minimum edge ranking problem of trees, the analysis is based on novel properties of the edge ranking of trees.}
+}
+@InProceedings{MinERSTrofTGs,
+author="Makino, Kazuhisa
+and Uno, Yushi
+and Ibaraki, Toshihide",
+editor="Bose, Prosenjit
+and Morin, Pat",
+title="Minimum Edge Ranking Spanning Trees of Threshold Graphs",
+booktitle="Algorithms and Computation",
+year="2002",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="428--440",
+abstract="Given a graph G, the minimum edge ranking spanning tree problem (MERST) is to find a spanning tree of G whose edge ranking is minimum. However, this problem is known to be NP-hard for general graphs. In this paper, we show that the problem MERST has a polynomial time algorithm for threshold graphs, which have useful applications in practice. The result is also significant in the sense that this is a first non-trivial graph class for which the problem MERST is found to be polynomially solvable.",
+isbn="978-3-540-36136-7"
+}
+
+@techreport{ParAofModPs,
+  author       = {A. V. Iyer and H. D. Ratliff and G. Vijayan},
+  title        = {Parallel Assembly of Modular Products—An Analysis},
+  institution  = {Georgia Institute of Technology},
+  number       = {Tech.\ Report 88-06},
+  year         = {1988},
+  address      = {Atlanta, Georgia}
+}
+@article{HCObjFsandAlgs,
+author = {Cohen-addad, Vincent and Kanade, Varun and Mallmann-trenn, Frederik and Mathieu, Claire},
+title = {Hierarchical Clustering: Objective Functions and Algorithms},
+year = {2019},
+issue_date = {August 2019},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {66},
+number = {4},
+issn = {0004-5411},
+url = {https://doi.org/10.1145/3321386},
+doi = {10.1145/3321386},
+abstract = {Hierarchical clustering is a recursive partitioning of a dataset into clusters at an increasingly finer granularity. Motivated by the fact that most work on hierarchical clustering was based on providing algorithms, rather than optimizing a specific objective, Dasgupta framed similarity-based hierarchical clustering as a combinatorial optimization problem, where a “good” hierarchical clustering is one that minimizes a particular cost function [23]. He showed that this cost function has certain desirable properties: To achieve optimal cost, disconnected components (namely, dissimilar elements) must be separated at higher levels of the hierarchy, and when the similarity between data elements is identical, all clusterings achieve the same cost.We take an axiomatic approach to defining “good” objective functions for both similarity- and dissimilarity-based hierarchical clustering. We characterize a set of admissible objective functions having the property that when the input admits a “natural” ground-truth hierarchical clustering, the ground-truth clustering has an optimal value. We show that this set includes the objective function introduced by Dasgupta.Equipped with a suitable objective function, we analyze the performance of practical algorithms, as well as develop better and faster algorithms for hierarchical clustering. We also initiate a beyond worst-case analysis of the complexity of the problem and design algorithms for this scenario.},
+journal = {J. ACM},
+month = jun,
+articleno = {26},
+numpages = {42},
+keywords = {stochastic block model, PCA, Hierarchical clustering}
+}

@@ -1,0 +1,29 @@
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \tikz [tree layout, grow=-65,
+               sibling distance=11mm, level distance=13mm, scale = 0.6, thick]
+          \graph {
+    ""[as=$a$] -- {
+        ""[as=$b$] -- ""[as=$c$] -- {
+            ""[as=$d$] -- ""[as=$e$],
+            ""[as=$f$] -- { ""[as=$g$], ""[as=$h$], ""[as=$i$] }
+        },
+        ""[as=$j$] -- ""[as=$k$] -- { ""[as=$l$], ""[as=$m$] }
+    }
+};
+    \label{fig:tree}
+    \end{minipage}
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \tikz [tree layout, grow=-90,
+               sibling distance=12mm, level distance=14mm, scale = 0.6, thick]
+          \graph {
+            ""[as=$c$] -> { ""[as=$j$] -> { ""[as=$a$] -> ""[as=$b$],  ""[as=$l$] -> {""[as=$k$] -> ""[as=$m$]}}, ""[as=$h$] -> {""[as=$f$] -> {""[as=$g$], ""[as=$i$]}},  ""[as=$d$] -> ""[as=$e$]}
+          };
+    \label{fig:dt_t_v}
+    \end{minipage}
+        \caption[Tree and decision trees for it]{Sample input tree $T$ and a decision tree for $T$.}\label{fig:sample_decision_trees_for_tree}
+\end{figure}
