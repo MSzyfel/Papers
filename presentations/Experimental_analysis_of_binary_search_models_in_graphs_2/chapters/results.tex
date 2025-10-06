@@ -92,17 +92,13 @@
 \textbf{proc} $\FApproxDT\br{T}$:
 \begin{enumerate}
     \item Set a global parameter $k=2^{\fl{\sqrt{\log n}}+2}$.
-    \pause
-    \item If $n\br{T}\leq k$, return $\FQPTAS\br{ T , \epsilon = 1}$.
-    \pause
-    \item Else, find a set $\mathcal{X}\subseteq V\br{ T }$, such that $\spr{\mathcal{X}}\leq k$ and for every $H\in T - \mathcal{X}$, $n\br{H}\leq n\br{ T }/2^{\sqrt{\log n}}$.
-    \pause
+    \item \textbf{if} $n\br{T}\leq k$ \textbf{then}: \textbf{return} $\FQPTAS\br{ T , \epsilon = 1}$.
+    \item \textbf{else}: find a set $\mathcal{X}\subseteq V\br{ T }$, such that $\spr{\mathcal{X}}\leq k$ and for every $H\in T - \mathcal{X}$, $n\br{H}\leq n\br{ T }/2^{\sqrt{\log n}}$.
     \item $\mathcal{Y}\gets \mathcal{X} \cup $ all branching vertices in $ T \angl{X}$.
-    \item $\mathcal{Z}\gets \mathcal{Y}$ and all lightest vertices on paths between vertices of $Y$.
+    \item $\mathcal{Z}\gets \mathcal{Y} \cup$ all lightest vertices on paths between vertices of $Y$.
     \item $D\gets D_\mathcal{Z}\gets \FQPTAS\br{T_{\mathcal{Z}}, \epsilon = 1}$, where $ T _{\mathcal{Z}}$ is a tree built on $\mathcal{Z}$.
-    \pause
-    \item For every $H\in T - \mathcal{X}$, hang $D_H\gets\FApproxDT\br{H}$ in $D_{\mathcal{Z}}$.
-    \item Return $D$.
+    \item \textbf{for} $H\in T - \mathcal{X}$: hang $D_H\gets\FApproxDT\br{H}$ in $D_{\mathcal{Z}}$.
+    \item \textbf{return} $D$.
 \end{enumerate}
 \end{frame}
 \begin{frame}{Auxiliarry tree structure}
@@ -126,15 +122,15 @@ Since $\COST_{D_\mathcal{Z}}\leq 2\cdot \OPT\br{T}$, we have:
 
 \begin{frame}{Rounding trick}
     \begin{itemize}
-        \item Let $p \in \mathbb{N}$,
+        \item Let $p \in \mathbb{N}$.
         \item Let $k=a/pn$, for some $a\in \mathbb{N}$.
         \pause
         \item We define new cost function $c'$, called \textbf{aligned cost function}:
 
     $$
 c'\br{v}=\begin{cases}
-    \cl{c\br{c}}_k, & \text{if } c\br{v}>pk, \text{ \textit{heavy vertex}},\\
-    \cl{c\br{c}}_{\frac{1}{pn}}, & \text{otherwise, \textit{light vertex}}.\\
+    \cl{c\br{v}}_k, & \text{if } c\br{v}>pk, \text{ \textbf{heavy vertex}},\\
+    \cl{c\br{v}}_{\frac{1}{pn}}, & \text{otherwise, \textbf{light vertex}}.\\
 \end{cases}
 $$
     \end{itemize}
@@ -151,8 +147,8 @@ $$
 \begin{lemma}\label{aligned_dts_lemma}
     There exists a decision tree $D$ for $\br{T,c'}$, such that:
     \begin{enumerate}
-        \item $\COST_{D}\br{T, c'}\leq \br{1+\frac{3}{p}}\cdot\OPT\br{T, c'}$
-        \item Starting point of each heavy query is aligned to a multiple of $c$,
+        \item $\COST_{D}\br{T, c'}\leq \br{1+\frac{3}{p}}\cdot\OPT\br{T, c'}$.
+        \item Starting point of each heavy query is aligned to a multiple of $k$.
         \item Starting point of each light query is aligned to a multiple of $\frac{1}{pn}$.
     \end{enumerate}
 \end{lemma}
@@ -161,14 +157,34 @@ $$
 We call a decision tree fulfiling the requirements 2. and 3. of the above lemma an \textbf{aligned decision tree}.
 \end{frame}
 
+
+\begin{frame}{Directions of the responses}
+    \begin{itemize}
+        \item $x$ - the target.
+        \item $T$ - current candidate subtree.
+        \item $q\in V\br{D}$ next query to be made.
+        \pause
+        \item Let $T'\in T-q$, such that $x\in T'$.
+        \pause
+        \item If $r\br{T}\in V\br{T'}$, then the response is called an \textbf{up} response, the subtree $D_u$ of $D$ associated with $T'$ is called \textbf{left} subtree and $u$ is a \textbf{left} child.
+        \pause
+        \item If otherwise, then the response is called an \textbf{down} response, the subtree $D_u$ of $D$ associated with $T'$ is called \textbf{right} subtree and $u$ is a \textbf{right} child.
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Example}
+    \input{figures/sample_decision_trees_for_tree.tex}
+\end{frame}
+
 \begin{frame}{Aligned cost}
 
-    For any vertex $v\in V\br{T}$ and query $q\in Q_{D}\br{T,v}$ the \textbf{contribution} $\kappa_{T,c,k}\br{q,v}$ of $u$ is defined as:
+    For any vertex $v\in V\br{T}$ and query $q\in Q_{D}\br{T,v}$ the \textbf{contribution} $\kappa_{T,c',k}\br{q,v}$ is defined as:
 
     $$
-\kappa_{T,c}\br{q, v}= \begin{cases}
-    0, & \text{if its a light down response},\\
-    c\br{q}, & \text{otherwise}.
+\kappa_{T,c',k}\br{q, v}= \begin{cases}
+    0, & \text{if $q$ is light and the response is down},\\
+    c'\br{q}, & \text{otherwise}.
 \end{cases}
 $$
 \pause
@@ -178,7 +194,7 @@ $$
 \COST'_D\br{T,c',k}=\max_{v\in V\br{T}}\brc{\sum_{q\in Q_D\br{T,v}}\kappa_{T,c', k}\br{q,v}}.
 $$
 
-Let $\OPT'\br{T,c',k}$ denote the optimal aligned cost.
+$\OPT'\br{T,c',k}$ - the \textbf{optimal aligned cost}.
 \end{frame}
 \begin{frame}{Heavy module contraction}
 \input{figures/heavy_module_contraction.tex}
@@ -186,53 +202,54 @@ Let $\OPT'\br{T,c',k}$ denote the optimal aligned cost.
 
 \begin{frame}{Propositions}
 \begin{block}{Proposition}
-     Let $T$ be a tree, $c'$ an aligned cost function, $p\in \mathbb{N}$, $k$ the box size, $n$ the size of the original input tree, and $d$ be the depth. There exists a \FDPTimelinesCosts procedure which calculates an optimal aligned decision tree $D$, running in $pn^{O\br{d}}$ time.
+     Let $T$ be a tree, $c'$ an aligned cost function, $p\in \mathbb{N}$, $k$ the box size and $d\in \mathbb{N}$~be the depth. There exists a \FDP procedure, which (if it exists) calculates an aligned decision tree $D$ for $\br{T,c'}$ of cost at most $\COST'_D\br{T,c',k}\leq kd$, running in $\br{pn}^{O\br{d}}$ time.
     \end{block}
 \pause 
 \begin{block}{Proposition}
-     Let $T$ be a tree, $c'$ be an aligned cost function, $D_A$ be a decision tree for $T$ and $F_C$ be forest of decision trees for $T$ with all heavy groups contracted, $p\in \mathbb{N}$ be a constant, $k\in \mathbb{R}_{>0}$ be the box size. There exists a polynomial time \FMergeDTs procedure which returns a decision tree of cost at most:
+     Let $T$ be a tree, $c'$ be an aligned cost function, $p\in \mathbb{N}$, $k\in \mathbb{R}_{>0}$ be the box size, $D_A$ be a decision tree for $T$ and $F_C$ be forest of decision trees for $T$ with all heavy modules contracted. There exists a polynomial time \FMergeDTs procedure which returns a decision tree of cost at most:
         $$
-            \COST_{D}\br{T,c',k}=\OPT'\br{T,c',k}+2pk\cdot \COST_{F_C}\br{T,1}.
+            \COST_{D}\br{T,c',k}\leq\COST'_{D_A}\br{T,c',k}+2pk\cdot \COST_{F_C}\br{T,1}.
         $$
     \end{block}
 \end{frame}
 
-\begin{frame}{QPTAS}
+\begin{frame}{\FQPTAS procedure}
 \textbf{proc} $\FQPTAS\br{T, \epsilon}$:
 \begin{enumerate}
-    \item $p\gets \fl{35/\epsilon}$, 
+    \item $p\gets \fl{59/\epsilon}$, 
     \item $d\gets p^2\cdot\br{\fl{\log n}+1}$.
     \item $k\gets 0$.
-    \item Repeat the following steps until a decision tree $D$ is found:
+    \item \textbf{while} $D =\emptyset$:
     \begin{enumerate}
         \item $k\gets k +\frac{1}{pn}$.
-        \item For every $v\in V\br{T}$, if $c\br{v}>pk$, then $c'\br{v}\gets\cl{c\br{v}}_k$, $c'\br{v}\gets\cl{c\br{v}}_{\frac{1}{pn}}$ otherwise.
-        \item $D_A\gets \FDPTimelinesCosts\br{T,c',p,k,n,d}$
-        \item If $D_A\neq\emptyset$:
+        \item \textbf{for} $v\in V\br{T}$: \textbf{if} $c\br{v}>pk$ \textbf{then}: $c'\br{v}\gets\cl{c\br{v}}_k$, \textbf{else}:  $c'\br{v}\gets\cl{c\br{v}}_{\frac{1}{pn}}$.
+        \item $D_A\gets \FDP\br{T,c',p,k,n,d}$.
+        \item \textbf{if} $D_A\neq\emptyset$ \textbf{then}:
         \begin{enumerate}
             \item $T_C\gets T$ with all heavy modules contracted.
         \item $D_C\gets \FRankingBasedDT\br{T_C}$.
         \item $D\gets \FMergeDTs\br{T, D_A, D_C}$.
         \end{enumerate}
     \end{enumerate}
-    \item Return $D$.
+    \item \textbf{return} $D$.
 \end{enumerate}
 \end{frame}
 \begin{frame}{Quality guarantee}
-Let $k'$ be the value of $k$ for which $D$ was found. Since: $k'\leq \frac{\OPT'\br{T,c',k'}}{d}=\frac{\OPT'\br{T,c'}}{p^2\cdot\br{\fl{\log n}+1}}$, we have that:
+Let $k'$ be the value of $k$ for which $D$ was found. Since: $k'\leq \frac{\OPT'\br{T,c',k'}}{d}+\frac{1}{pn}\leq\frac{2\cdot \OPT'\br{T,c'}}{p^2\cdot\br{\fl{\log n}+1}}$, we have that:
+\pause
 \begin{align*}
     \COST_{D}\br{T,c'}&\leq \OPT'\br{T,c'}+2pk'\cdot \br{\fl{\log n}+1}
     \\&\leq 
-    \OPT'\br{T,c'}+2p\cdot \br{\fl{\log n}+1}\cdot \frac{\OPT'\br{T,c'}}{p^2\cdot\br{\fl{\log n}+1}} \\
-    & \leq \br{1+\frac{2}{p}}\cdot\OPT'\br{T,c'} 
+    \OPT'\br{T,c'}+2p\cdot \br{\fl{\log n}+1}\cdot \frac{2\cdot \OPT'\br{T,c'}}{p^2\cdot\br{\fl{\log n}+1}} \\
+    & \leq \br{1+\frac{4}{p}}\cdot\OPT'\br{T,c'} 
     \\&\leq 
-    \br{1+\frac{2}{p}}\cdot\br{1+\frac{2}{p}}\cdot\br{1+\frac{3}{p}}\cdot\OPT\br{T,c}
+    \br{1+\frac{2}{p}}\cdot\br{1+\frac{3}{p}}\cdot\br{1+\frac{4}{p}}\cdot\OPT\br{T,c}
     \\&
-    \leq \br{1+\frac{35}{p}}\cdot\OPT\br{T,c} 
+    \leq \br{1+\frac{59}{p}}\cdot\OPT\br{T,c} 
     = 
-    \br{1+\frac{35}{\cl{\frac{35}{\epsilon}}}}\cdot\OPT\br{T,c}
+    \br{1+\frac{59}{\cl{\frac{59}{\epsilon}}}}\cdot\OPT\br{T,c}
     \\&\leq 
-    \br{1+\epsilon}\cdot \OPT\br{T,c}
+    \br{1+\epsilon}\cdot \OPT\br{T,c}.
 \end{align*}
 \end{frame}
 
@@ -242,30 +259,30 @@ Let $k'$ be the value of $k$ for which $D$ was found. Since: $k'\leq \frac{\OPT'
 \begin{frame}{\FMergeDTs procedure}
 \textbf{proc} $\FMergeDTs\br{T, D_A}$:
 \begin{enumerate}
-    \item If $F_C$ is connected, $r=r\br{F_C}$.
-    \item Else, $r=r\br{D_A}$.
+    \item \textbf{if} $F_C$ is connected \textbf{then}: $r=r\br{F_C}$.
+    \item \textbf{else}: $r=r\br{D_A}$.
     \item $D\gets$ decision tree with root $r$.
-    \item For each $T'\in T-r$:
+    \item \textbf{for} $T'\in T-r$:
     \begin{enumerate}
-        \item Let forest $F'_C$ be $F_C$ restricted to $T'_C$
-        \item Let $D_A'$ be $D$ restricted to $T'$.
-        \item $D'\gets \FMergeDTs\br{T', D_A', F'_C}$
+        \item $F'_C \gets F_C$ restricted to $T'_C$
+        \item $D_A'\gets D$ restricted to $T'$.
+        \item $D'\gets \FMergeDTs\br{T', D_A', F'_C}$.
         \item Hang $D'$ below $r$ in $D$.
     \end{enumerate}  
-    \item Return $D$.
+    \item \textbf{return} $D$.
 \end{enumerate}
 \end{frame}
 \begin{frame}{Boxed decision tree}
     \begin{definition}
         \textbf{Boxed decision tree}:
         \begin{enumerate}
-        \item $D=\br{V\br{D}, E\br{D}, u, l}$, $V\br{D}$ - nodes of $D$, called \textit{boxes}, $E\br{D}$ - edges of $D$, $u:V\br{T}\times V\br{D}\to \brc{0, 1/pn,2/pn,\dots,k}$ - \textit{usage} function and $l:V\br{D}\to\brc{0, 1/pn,2/pn,\dots,k}$ - \textit{load} function.
+        \item $D=\br{V\br{D}, E\br{D}, u, l}$, $V\br{D}$ - nodes of $D$, called \textbf{boxes}, $E\br{D}$ - edges of $D$, $u:V\br{T}\times V\br{D}\to \brc{0, 1/pn,2/pn,\dots,k}$ - \textbf{usage} function and $l:V\br{D}\to\brc{0, 1/pn,2/pn,\dots,k}$ - \textbf{load} function.
         \pause
-        \item For every $b\in V\br{D}$, $Q\br{b}=\brc{v\in V\br{T}|u\br{v,b}>0}$ - \textit{query assignment}, vertices of $T$, such that queries to them overlap with $b$.
+        \item For every $b\in V\br{D}$, $Q\br{b}=\brc{v\in V\br{T}|u\br{v,b}>0}$ - \textbf{query assignment}, vertices of $T$, such that queries to them overlap with $b$.
         \pause
-        \item All boxes containing $v$ form a left path. Additionally, for rach interior box $b$, $l\br{b}=0$ and $u\br{v,b}=k$.
+        \item All boxes containing $v$ form a left path. Additionally, for each interior box $b$ of this path, $l\br{b}=0$ and $u\br{v,b}=k$.
         \pause
-        \item For every $b\in V\br{D}$, $l\br{b}+\sum_{v\in V\br{T}}u\br{v,b}\leq k$ and for every $v\in V\br{T}$, either $\sum_{b\in V\br{D}}\br{v,b}=0$ or $\sum_{b\in V\br{D}}\br{v,b}=c'\br{v}$.
+        \item For every $b\in V\br{D}$, $l\br{b}+\sum_{v\in V\br{T}}u\br{v,b}\leq k$ and for every $v\in V\br{T}$, either $\sum_{b\in V\br{D}}u\br{v,b}=0$ or $\sum_{b\in V\br{D}}u\br{v,b}=c'\br{v}$.
         \pause
         \item Every heavy query is aligned.
         \end{enumerate}  
@@ -282,8 +299,8 @@ Let $k'$ be the value of $k$ for which $D$ was found. Since: $k'\leq \frac{\OPT'
     \begin{definition}
     \textbf{Left box-path} of $D$: 
     \begin{enumerate}
-        \item $B_D=\angl{{q_1, f_1},\br{q_2, f_2},\dots, \br{q_h, f_h}}$, $q_j$ - box $f_j$ - boolean flag, obtained by traversing boxes of $D$ towards left. For each such box $b_j$, $q_j=l\br{b}+\sum_{v\in Q\br{b}}q\br{v, b}$, whereas $f_j$ denotes whether there exists a \textbf{transcending} query in $Q\br{b_j}$, i. e.: $v\in Q\br{b_j}$  such that $v\in Q\br{b_{j+1}}$.
-        \item Decision tree$D$ with a left box-path $B_D$ is \textbf{box-compatible} with boxline $B$ ($h\leq d$), if $l\br{q_j}\geq l\br{b_j}$ and $\tau_j\implies f_j$.
+        \item $B_D=\angl{\br{q_1, f_1},\br{q_2, f_2},\dots, \br{q_h, f_h}}$, $q_j$ - box $f_j$ - boolean flag, obtained by traversing boxes of $D$ towards left. For each such box $b_j$, $q_j=l\br{b}+\sum_{v\in Q\br{b}}q\br{v, b}$, whereas $f_j$ denotes whether there exists a \textbf{transcending} query in $Q\br{b_j}$, i. e.: $v\in Q\br{b_j}$, such that $v\in Q\br{b_{j+1}}$.
+        \item Decision tree $D$ with a left box-path $B_D$ is \textbf{box-compatible} with boxline $B$ ($h\leq d$), if $l\br{q_j}\geq l\br{b_j}$ and $\tau_j\implies f_j$.
     \end{enumerate}  
     \end{definition}
 \end{frame}
@@ -292,15 +309,27 @@ Let $k'$ be the value of $k$ for which $D$ was found. Since: $k'\leq \frac{\OPT'
     \item Puting a query to vertex $v$ at $s$-th slot of a box $b$:
     \begin{enumerate}
         \item $\sigma\br{v}\gets c\br{v}$: 
-        \item While $\sigma\br{v}>0$: 
+        \item \textbf{while} $\sigma\br{v}>0$: 
         \begin{enumerate}
             \item $u\br{v, b}\gets\min\brc{k-s/pn, \sigma\br{v}}$.
             \item $\sigma\br{v}\gets \sigma\br{v}-u\br{v, b}$. 
-            \item$b\gets$ left child of $b$.
+            \item $b\gets$ left child of $b$.
         \end{enumerate}
-    \end{enumerate} If such operation violates the definition of $D$ or query to $v$ transcendents any box $b_j$, such that $\tau_j$. we mark $D$ as \textbf{conflicted}. 
+    \end{enumerate} If such operation violates the definition of $D$ or query to $v$ transcendents any box $b_j$, such that $\tau_j$ we mark $D$ as \textbf{conflicted}. 
     \framebreak
-    \item Bipartitioning of $B$. A bipartition of $B$ consists of $\br{B_1,B_2}$ such that:
+    \item Building a decision tree $D$ based on boxline $B$:
+    \begin{enumerate}
+        \item $D\gets\emptyset$.
+        \item \textbf{for} $1\leq j\leq \spr{B}$:
+        \begin{enumerate}
+            \item Create box $q_j$ in $D$.
+            \item $l\br{j}\gets b_j$.
+            \item $Q\br{q_j}\gets\emptyset$.
+            \item \textbf{if} $j>1$ \textbf{then}: hang $q_j$ as the left child of $q_{j-1}$.
+        \end{enumerate}
+        \item \textbf{return} $D$.
+    \end{enumerate} 
+    \item Bipartitioning of $B$. A bipartition of a boxline $B$ consists of a pair of boxlines $\br{B_1,B_2}$ such that:
     \begin{itemize}
         \item $\spr{B}=\spr{B_1}=\spr{B_2}$.
         \item $l\br{b_{1,j}}+l\br{b_{2,j}} - k = l\br{b_j}$.
@@ -311,78 +340,93 @@ Let $k'$ be the value of $k$ for which $D$ was found. Since: $k'\leq \frac{\OPT'
     \item Rotating a decision tree $D$ around vertex $v$: 
     \begin{enumerate}
         \item $q_h\gets $ the box containing the end of the query to $v$.
-        \item Sort vertices whose queries start in $Q\br{q_h}$ according to $c$.
+        \item Sort vertices whose queries start in $Q\br{q_h}$ according to $c'$.
         \item Create box $q$.
-        \item Move queries from $Q\br{q_h}$ to $Q\br{q}$, so that all queries after $v$ are in $Q\br{q}$,
+        \item Move queries from $Q\br{q_h}$ to $Q\br{q}$, so that all queries after $v$ are in $Q\br{q}$.
         \item Hang $q_h'$ as a right child of $q_h$.
-        \item Rehang left child of $q_h$ as a left child of $q$. 
+        \item Rehang left child of $q_h$ as the left child of $q$. 
+    \end{enumerate}
+    \framebreak
+    \item Aligning $D_1$ and $D_2$ by their left paths to create new decision tree $D$: 
+    \begin{enumerate}
+        \item $D\gets\emptyset$.
+        \item \textbf{for} $1\leq j\leq \spr{B}$:
+        \begin{enumerate}
+            \item Create box $q_j$ in $D$.
+            \item $l\br{j}\gets l\br{q_{1,j}}+ l\br{q_{2,j}}-k$.
+            \item \textbf{for} $v\in V\br{T}$: $u\br{v, q_j}\gets \max\brc{u\br{v, q_{1,j}},u\br{v, q_{2,j}}}$.
+            \item Hang all right children of $q_{1,j}$ and $q_{2,j}$ below $q_j$.
+            \item \textbf{if} $j>1$ \textbf{then}: hang $q_j$ as the left child of $q_{j-1}$.
+        \end{enumerate}
+        \item \textbf{return} $D$.
     \end{enumerate}
 \end{itemize}
 \end{frame}
-\begin{frame}{Cases of DP}
+\begin{frame}{Cases of \FDP}
 \input{figures/cases_of_dp_timelines.tex}
 \end{frame}
 \begin{frame}{No children}
+    \textbf{proc} $\FDPNoChildren\br{T_{v,i},c',B}$:
     \begin{enumerate}
-        \item For $1\leq b\leq d$ and $0\leq s\leq \br{k/pn \text{\textbf{ if} }c\br{v}>pk \text{\textbf{ else} 0}}$:
+        \item \textbf{for} $1\leq b\leq d$ and $0\leq s\leq \br{k/pn \text{\textbf{ if} }c\br{v}>pk \text{\textbf{ else} 0}}$:
         \begin{enumerate}
-            \item $D\gets P$
-            \item Try putting query to $v$ at the $s$-th slot of $q_b$.
-            \item If there are no conflicts in $D$.
+            \item $D\gets$ a decision tree based on $B$.
+            \item Put query to $v$ at the $s$-th slot of $q_b$.
+            \item \textbf{if} $D$ is not conflicted \textbf{then}:
             \begin{enumerate}
-                \item If $\COST'_{D}\br{T_{v,i},c,k}\leq dk$, then return $D$, else return $\emptyset$.
+                \item \textbf{if} $\COST'_{D}\br{T_{v,i},c',k}\leq dk$ \textbf{then}: \textbf{return} $D$, \textbf{else}: \textbf{return} $\emptyset$.
             \end{enumerate}
         \end{enumerate}
-        \item Return $\emptyset$.
+        \item \textbf{return} $\emptyset$.
     \end{enumerate}
 \end{frame}
 \begin{frame}{One child}
+    \textbf{proc} $\FDPOneChild\br{T_{v,i},c',B}$:
     \begin{enumerate}
         \item $\mathcal{D}\gets\emptyset$.
-        \item For $1\leq b\leq d$ and $0\leq s\leq \br{k/pn \text{\textbf{ if} }c\br{v}>pk \text{\textbf{ else} 0}}$:
+        \item \textbf{for} $1\leq b\leq d$ and $0\leq s\leq \br{k/pn \text{\textbf{ if} }c\br{v}>pk \text{\textbf{ else} 0}}$:
         \begin{enumerate}
-            \item $D\gets P$
-            \item Try putting query to $v$ at the $s$-th slot of $q_b$.
-            \item If there are no conflicts in $D$.
+            \item $D\gets $ a decision tree based on $B$.
+            \item Put query to $v$ at the $s$-th slot of $q_b$.
+            \item \textbf{if} $D$ is not conflicted and $\COST'_{D}\br{T_{v,i},c',k}\leq dk$ \textbf{then}:
             \begin{enumerate}
-                \item If $\COST'_{D}\br{T_{v,i},c,k}\leq dk$:
-                \begin{enumerate}
-                    \item $P'\gets$ left box-path of $D$.
+                \item $B'\gets$ left box-path of $D$.
 
-                    \item $h\gets$ index of the last box $q_h$ occupied by the query to $v$.
+                \item $h\gets$ index of the last box $q_h$ occupied by the query to $v$.
 
-                    \item For $h < j\leq d$, $b'_j\gets 0$, $t'_j\gets $ False.
-                    \item $D'\gets \FDPTimelinesCosts\br{T_{c_1},c, P'}$.
+                \item \textbf{for} $h < j\leq d$: $b'_{j}\gets 0$, $t'_{j}\gets $ \textbf{false}.
+                \item $D'\gets \FDP\br{T_{c_1},c', B'}$.
 
-                    \item Put query to $v$ at he $s$-th slot of $q_b$.
+                \item Put query to $v$ at the $s$-th slot of $q_b$.
 
-                    \item Rotate left path of $D'$ around $v$.
+                \item Rotate $D'$ around $v$.
 
-                    \item $\mathcal{D}\gets \mathcal{D} \cup \brc{D \text{ and } D' \text{ with their left paths aligned}}$.
-                \end{enumerate}
+                \item $\mathcal{D}\gets \mathcal{D} \cup \brc{D \text{ and } D' \text{ with their left paths aligned}}$.
             \end{enumerate}
         \end{enumerate}
-        \item Return $\argmin_{D\in \mathcal{D}}\brc{\COST'_D\br{T_{v,i},c, k}}$.
+        \item \textbf{return} $\argmin_{D\in \mathcal{D}}\brc{\COST'_D\br{T_{v,i},c', k}}$.
     \end{enumerate}
 \end{frame}
 \begin{frame}{Many children}
+    \textbf{proc} $\FDPManyChildren\br{T_{v,i},c',B}$:
     \begin{enumerate}
         \item $\mathcal{D}\gets\emptyset$.
-        \item For each bipartition $\br{B_1, B_2}$ of $B$:
+        \item \textbf{for} bipartition $\br{B_1, B_2}$ of $B$:
         \begin{enumerate}
-            \item $D_1\gets \FDPTimelinesCosts\br{T_{v, i-1}, c, P_1}$.
+            \item $D_1\gets \FDP\br{T_{v, i-1}, c', B_1}$.
 
             \item $h\gets$ index the last box $q_{1,h}$ occupied by the query to $v$.
 
-            \item For $h\leq j\leq d$, $b_{2,j}\gets 0$, $t'_{2,j}\gets $ False.
+            \item \textbf{for} $h\leq j\leq d$: $b_{2,j}\gets 0$, $t_{2,j}\gets $ \textbf{false}.
 
-            \item $D_2\gets \FDPTimelinesCosts\br{T_{c_i}, c, P_2}$.
 
-            \item Rotate left path of $D'$ around $v$.
+            \item $D_2\gets \FDP\br{T_{c_i}, c', B_2}$.
+
+            \item Rotate $D_2$ around $v$.
 
             \item $\mathcal{D}\gets\mathcal{D}\cup\brc{D_1 \text{ and } D_2 \text{with their left paths aligned}}$.
         \end{enumerate}
-        \item Return $\argmin_{D\in \mathcal{D}}\brc{\COST'_D\br{T_{v,i},c, k}}$.
+        \item \textbf{return} $\argmin_{D\in \mathcal{D}}\brc{\COST'_D\br{T_{v,i},c', k}}$.
     \end{enumerate}
 \end{frame}
 

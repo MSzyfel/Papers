@@ -8,7 +8,7 @@
     \item 2024.01 -- 2024.06: Researching and selection of the query model.
     \item 2024.06 -- 2025.05: Development and formal analysis of the proposed algorithms.
     \item 2025.06 -- 2025.10: Selection of models and algorithms for comparison, implementation, thesis writing.
-    \item 2025.11 -- 2025.12: execution of experiments, analysis and interpretation of the results, finalization of the thesis.
+    \item 2025.11 -- 2025.12: Execution of experiments, analysis and interpretation of the results, finalization of the thesis.
 
 \end{itemize}
 \end{frame}
@@ -71,18 +71,18 @@
 
 \begin{frame}{Decision trees}
         \begin{definition}
-        A decision tree:
+        \textbf{Decision tree}:
         \begin{itemize}
-            \item $D=(V\br{D}, E\br{D})$, $V\br{D}=V\br{T}$ are vertices and $E\br{D}$ are edges of $D$.
+            \item $D=\br{V\br{D}, E\br{D}}$, $V\br{D}=V\br{T}$ are vertices and $E\br{D}$ are edges of $D$.
             \pause
             \item $Q_D\br{T,x}$ - sequence of queries performed in order to find $x$.
             \pause
-            \item Cost of $D$ in $\br{T,c}$:
+            \item \textbf{Cost} of $D$ in $\br{T,c}$:
             $$
 \COST_D\br{T, c} = \max_{x\in V\br{T}} \brc{\sum_{q\in Q_{D}\br{T,x}}c\br{q}}.
 $$
             \pause
-        \item $\OPT(T, c) = \min_{D} \brc{\COST_D\br{T, w}}$.
+        \item $\OPT\br{T, c} = \min_{D} \brc{\COST_D\br{T, c}}$ - \textbf{optimal cost}.
         \end{itemize}
         \end{definition}
 \end{frame}
