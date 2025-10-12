@@ -1,3 +1,31 @@
 \newpage
+\SetKwFunction{FRankingBasedDT}{RankingBasedDT}
 \section{Trees, Worst Case, Uniform Costs}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+% \subsubsection{Vertex ranking}\label{vertexRanking}
+The \textit{vertex ranking} of $T$ is a labeling of vertices $l:V\to \brc{1,2,\dots,\cl{\log n}+1}$, which satisfies the following condition: for each pair of vertices $u,v\in V\br{T}$, whenever $l\br{u}=l\br{v}$, there exists $z\in \mathcal{P}_T\br{u,v}$ for which $l\br{z}>l\br{v}$. Such a labeling always exists and can be computed in linear time by means of dynamic programming \cite{Schaffer1989OptNodeRankOfTsInLinTime, OnakParys2006GenOfBSSInTsAndFLikePosets, Mozes_Onak2008FindOptTSStartInLinTime}. For a visual example, see Figure \ref{vertex_ranking_figure}
+\input{figures/vertex_ranking.tex}
+
+Having a vertex ranking of $T$, one can easily obtain a decision tree for $T$ using the following procedure:
+\begin{enumerate}
+    \item Let $z\in V\br{T}$ be the unique vertex, such that for every $v\in V\br{T}$, $l\br{z}\geq l\br{v}$.
+    \item Schedule a query to $z$ as the root of the decision tree $D$ for $T$.
+    \item For each $T'\in T-z$, build a decision tree $D_{T'}$ recursively and hang it below the query to $z$ in $D$.
+\end{enumerate} 
+
+When the input tree has uniform costs and the ranking uses the minimal number of labels, the decision tree built in this way is optimal and never uses more than $\fl{\log n} + 1$ queries \cite{OnakParys2006GenOfBSSInTsAndFLikePosets}. Let \FRankingBasedDT be the name of the latter procedure. We have the following corollary:
+  
+\begin{corollary}\label{vertexRankingCorollary}
+    There exists an $O\br{n}$ time procedure \FRankingBasedDT that finds the optimal decision tree for the Tree Search Problem when all costs are uniform. Moreover, the depth of such a decision tree, i.e., the worst-case number of queries, is at most $\fl{\log n} + 1$.
+\end{corollary}
+
+We assume that the input tree is rooted at an atribtarry vertex.
+Below we show how to calculate the optimal vertex ranking of a given tree $T$. For any vertex $v\in V\br{T}$, and any coloring $l$ we define the \textit{visibility sequence} $S\br{v}$ as following: let $l\in \mathbb{N}$. If there exists a vertex $u\in V\br{T}$, such that for every $z\in\mathcal{P}_T\br{u,v}$, $l< l\br{z}$, then $l\in S\br{v}$. We also demand that $S\br{v}$ is sorted decreasingly. If for given label $l$, $l\in S\br{v}$, we say that such label is \texit{visible} from $v$. In order to find the coloring using the minimal amount of colors, we will make use of the standard lexicographic order on visibility sequences. Notice, that for any vertex $v\in V\br{T}$, we have that $\max_{u\in V\br{T}}\brc{l\br{u}}\in S\br{v}$. Therefore, a labeling with the lexycogrophically lowest $S\br{r\br{T}}$ is also an optimal. We focus ourselves on finding such labeling. We devise the following dynamic programming procedure which calculates a labeling of $T$ with a minimal visibility sequence of $r\br{T}$.
+\input{pseudocodes/calculate_ranking.tex}
+
+The following theorem is by \cite{OnakParys2006GenOfBSSInTsAndFLikePosets}:
+\begin{theorem}
+    Let $T$ be a tree. The Algorithm \ref{calculateRanking} can be implemented in $O\br{n}$ time and returns a correct ranking labeling such that $S\br{r\br{T}}$ islexycogrophically optimal.
+\end{theorem}
+

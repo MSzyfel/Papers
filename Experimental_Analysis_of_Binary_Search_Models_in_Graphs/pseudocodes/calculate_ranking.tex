@@ -1,0 +1,23 @@
+
+\SetKwFunction{FCalculateRanking}{CalculateRanking}
+\begin{algorithm}
+\caption{The \FCalculateRanking procedure.}\label{calculateRanking}
+\SetKwProg{Fn}{Procedure}{:}{}
+\Fn{$\FCalculateRanking\br{T}$}{
+    \For{$1\leq j\leq \deg_{r\br{T}}^+$}{   
+        $S\br{c_j}\gets \FCalculateRanking\br{T_{c_j}}$.
+    }
+
+    $m\gets$ maximal value belonging to at least two distinct $S\br{c_j}$.
+
+    $S\br{v}\gets \bigcup_{j=1}^{\deg_{r\br{T}}^+} S\br{c_j}$.
+
+    $l\br{r\br{T}}\gets \argmin_{m < k \leq \log n + 1, k \notin S\br{v}}\brc{k}$.
+
+    Append $l\br{v}$ to $S\br{v}$.
+
+    Remove any $l < l\br{v}$ from $S\br{v}$.
+
+    \Return $S\br{v}$.
+}
+\end{algorithm}

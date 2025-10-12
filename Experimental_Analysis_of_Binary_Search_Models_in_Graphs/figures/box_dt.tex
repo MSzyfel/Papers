@@ -7,11 +7,11 @@
 
     \node[text=white, circle, draw, minimum size=0.45cm, inner sep=0pt, fill=black] (1) at (0,0) {$a$};
 
-    \node[text=white, circle, draw, minimum size=0.45cm, inner sep=0pt, fill=black] (2) at (-0.5,-1) {$b$};
+    \node[circle, draw, minimum size=0.45cm, inner sep=0pt, fill=white] (2) at (-0.5,-1) {$b$};
 
     \node[text=white, circle, draw, minimum size=0.45cm, inner sep=0pt, fill=black] (3) at (0.5,-1) {$c$};
 
-    \node[circle, draw, minimum size=0.45cm, inner sep=0pt, fill=white] (4) at (1.5,-1) {$d$};
+    \node[text=white, circle, draw, minimum size=0.45cm, inner sep=0pt, fill=black] (4) at (1.5,-1) {$d$};
 
     \draw[] (1) to (2);
     \draw[] (1) to (3);
@@ -65,7 +65,7 @@
 
     
     \end{tikzpicture}
-    \caption[Example tree $T$]{}\label{box_dt_input}
+    \caption[Input tree $T$]{}\label{box_dt_input}
 \end{minipage}
 \begin{minipage}[t]{0.49\textwidth}
     \centering
@@ -88,16 +88,16 @@
     \node[draw, 
         rounded corners=3pt, 
         minimum width=0.65cm, 
-        minimum height=1.0cm, 
-        align=center, fill=gray!20, drop shadow
-        ] (A) at (0,-2.075) {$d$};
+        minimum height=1.4cm, 
+        align=center, fill=gray, drop shadow
+        ] (A) at (0,-2.625) {\raisebox{0.7cm}{$d$}};
 
     \node[draw, 
         rounded corners=3pt, 
         minimum width=0.65cm, 
-        minimum height=1.4cm, 
-        align=center, fill=gray, drop shadow
-        ] (A) at (0,-3.375) {\raisebox{0.7cm}{$b$}};
+        minimum height=0.65cm, 
+        align=center, fill=gray!20, drop shadow
+        ] (A) at (0,-3.75) {$b$};
 
     \node[draw, 
         rounded corners=3pt, 
@@ -281,8 +281,7 @@
     \draw[] (12.east) to (53.north);
     
     \end{tikzpicture}
-    \caption[Example boxed decision tree $D$]{}\label{box_dt}
+    \caption[Example boxed decision tree.]{}\label{box_dt}
 \end{minipage}
-
 \caption[Structure of a boxed decision tree]{Structure of a boxed decision tree. Figure \ref{box_dt_input} shows example input tree $T$, black vertices are heavy and white vertices are white. Figure \ref{box_dt} shows example boxed decision tree $D$ for $T$, dark gray queries are heavy, light gray queries are light, and black spaces represent additional load of boxes.}\label{box_dt_figure}
 \end{figure}

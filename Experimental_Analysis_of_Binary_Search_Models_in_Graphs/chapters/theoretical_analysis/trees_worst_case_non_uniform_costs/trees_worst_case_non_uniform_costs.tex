@@ -1,4 +1,3 @@
-\SetKwFunction{FRankingBasedDT}{RankingBasedDT}
 \SetKwFunction{FQPTAS}{QPTAS}
 \newpage
 \section{Trees, worst case, non-uniform costs}
@@ -11,28 +10,8 @@ We begin with the following simple lemma, which will become useful in few argume
     Let $T'$ be a connected subtree of $T$. Then, $\OPT\br{T'}\leq\OPT\br{T}$.
 \end{lemma}
 
-\subsubsection{Vertex ranking}\label{vertexRanking}
-The \textit{vertex ranking} of $T$ is a labeling of vertices $l:V\to \brc{1,2,\dots,\cl{\log n}+1}$, which satisfies the following condition: for each pair of vertices $u,v\in V\br{T}$, whenever $l\br{u}=l\br{v}$, there exists $z\in \mathcal{P}_T\br{u,v}$ for which $l\br{z}>l\br{v}$. Such a labeling always exists and can be computed in linear time by means of dynamic programming \cite{Schaffer1989OptNodeRankOfTsInLinTime, OnakParys2006GenOfBSSInTsAndFLikePosets, Mozes_Onak2008FindOptTSStartInLinTime}. For a visual example, see Figure \ref{vertex_ranking_figure}
-\input{figures/vertex_ranking.tex}
-
-Having a vertex ranking of $T$, one can easily obtain a decision tree for $T$ using the following procedure:
-\begin{enumerate}
-    \item Let $z\in V\br{T}$ be the unique vertex, such that for every $v\in V\br{T}$, $l\br{z}\geq l\br{v}$.
-    \item Schedule a query to $z$ as the root of the decision tree $D$ for $T$.
-    \item For each $T'\in T-z$, build a decision tree $D_{T'}$ recursively and hang it below the query to $z$ in $D$.
-\end{enumerate} 
-
-When the input tree has uniform costs and the ranking uses the minimal number of labels, the decision tree built in this way is optimal and never uses more than $\fl{\log n} + 1$ queries \cite{OnakParys2006GenOfBSSInTsAndFLikePosets}. Let \FRankingBasedDT be the name of the latter procedure. We have the following corollary:
-  
-\begin{corollary}\label{vertexRankingCorollary}
-    There exists an $O\br{n}$ time procedure \FRankingBasedDT that finds the optimal decision tree for the Tree Search Problem when all costs are uniform. Moreover, the depth of such a decision tree, i.e., the worst-case number of queries, is at most $\fl{\log n} + 1$.
-\end{corollary}
 
 \input{chapters/theoretical_analysis/trees_worst_case_non_uniform_costs/warm_up.tex}
 \input{chapters/theoretical_analysis/trees_worst_case_non_uniform_costs/state_of_the_art.tex}
 \input{chapters/theoretical_analysis/trees_worst_case_non_uniform_costs/qptas.tex}
 \input{chapters/theoretical_analysis/trees_worst_case_non_uniform_costs/parametrized.tex}
-
-
-
-

@@ -3,13 +3,13 @@
 \caption{The QPTAS for $T||V,c,w||C_{max}$.}\label{qptas_pseudocode}
 \SetKwProg{Fn}{Procedure}{:}{}
 \Fn{$\FQPTAS\br{T,c,\epsilon}$}{
-    $p\gets\cl{24/\epsilon}$,
-    $k\gets 0$,
-    $D\gets \emptyset$.
+    $p\gets\cl{59/\epsilon}$.
 
     $d\gets p^2\cdot\br{\fl{\log\br{n}}+1}$.
 
-    \Repeat{$D \neq \emptyset$}
+    $k\gets 0$.
+
+    \While{\textbf{true}}
     {
         $k\gets k+\frac{1}{pn}$.
 
@@ -22,14 +22,18 @@
             }
             
         }
+        $D_A\gets \FDPTimelinesCosts\br{T, c', p, k, d}$
 
+        \If{$D_A\neq \emptyset$}{
         $T_C\gets T$ with all heavy modules contracted.
 
         $D_C\gets\FRankingBasedDT\br{T_C}$.
 
-        $D\gets \FBuildDT\br{T, c', D_C, p, k, d}$.
+        $D\gets \FMergeDTs\br{T, D_A, D_C}$.
+        
+        \Return $D$.
+        }
     }   
-    \Return $D$.
     
 }
 \end{algorithm}
