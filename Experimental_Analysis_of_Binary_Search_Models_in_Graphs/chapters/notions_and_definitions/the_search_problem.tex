@@ -23,12 +23,12 @@ Let $G$ be a graph. A decision tree is a rooted tree $D=(V\br{D}, E\br{D})$, whe
 
 Let $Q_D\br{G,x}$ denote the sequence of queries made to locate a target $x \in V\br{G}$ using $D$, i. e., the sequence of vertices belonging to the unique path in $D$ starting at $r\br{D}$ and ending at $x$. We define the worst case cost of a decision tree $D$ in $\br{G,c}$
 $$
-\COST_{max, G}\br{D, c} = \max_{x\in V\br{G}} \brc{\sum_{q\in Q_D\br{V\br{G},x}}c\br{q}}
+\COST_{max, G}\br{D, c} = \max_{x\in V\br{G}} \brc{\sum_{q\in Q_D\br{G, x}}c\br{q}}
 $$
 
 We define the average case cost of a decision tree $D$ in $\br{G,c,w}$ with as:
 $$
-\COST_{avg, D}\br{I, w} = \sum_{v\in V\br{G}}\sum_{q\in Q_D\br{V\br{G},x}}c\br{q}
+\COST_{avg, G}\br{D, c, w} = \sum_{v\in V\br{G}}\sum_{q\in Q_D\br{G,x}}c\br{q}
 $$
 
 By a slight abuse of notation we will also sometimes use $Q_D\br{V\br{G},x}$ as the set consisting of queries in sequence $Q_D\br{V\br{G},x}$. This is done in order to not inflate the amount of symbols and will not become problematic during the analysis of the solutions.
@@ -37,5 +37,5 @@ We are now ready to define the \textit{Graph Search Problem}:
 
 \begin{tcolorbox}[colback=white, title=Generalized Search Problem, fonttitle=\bfseries, breakable]
 \paragraph{Input:} Graph $G$, the query model and the optimization criterion
-\paragraph{Output:} A viable decision tree for $G$ according to the query model, which optimizes the criterion.
+\paragraph{Output:} A valid decision tree $D$ for $G$ with respect to the query model, which optimizes the criterion.
 \end{tcolorbox}
