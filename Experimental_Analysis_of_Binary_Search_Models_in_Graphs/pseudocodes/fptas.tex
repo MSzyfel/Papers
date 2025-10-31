@@ -1,0 +1,20 @@
+
+\begin{algorithm}
+\caption{The FPTAS for $T||V,w,||\sum C_i$}\label{fptas}
+\SetKwFunction{FFPTAS}{FPTAS}
+\SetKwProg{Fn}{Procedure}{:}{}
+\Fn{$\FFPTAS\br{T, w, \epsilon}$}{
+$K\gets\frac{\epsilon\cdot w\br{T}}{n^2}$.
+
+\ForEach{ $v\in V\br{T}$}
+{$w'\br{v} \gets \cl{\frac{w\br{v}}{K}}$.}
+
+$h\gets \cl{\log_{3/2}w'\br{T}}$.
+
+$P\gets\angl{p_1,\dots,p_h}$, such that for every $1\leq k\leq h$, $p_k\gets \textit{unassigned}$.
+
+$D'\gets\FDPTimelines\br{T, w', P, h}$.
+
+\Return $D'$.
+}
+\end{algorithm}

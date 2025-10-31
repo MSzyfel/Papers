@@ -1,0 +1,29 @@
+\section{Many names, one problem}
+
+As mentioned above, the search problem has been continuously rediscovered under various names and definitions. 
+% It is usually the case, that each of these definitions is equivalent when the search space is a tree. 
+The following list consists of different formulations under which the problem have been studied in the context of graphs: 
+\begin{itemize}
+    \item Binary Search \cite{Knuth1973, OnakParys2006GenOfBSSInTsAndFLikePosets, dereniowski2017ApproxSsForGeneralBSinWTs, Deligkas2019BsInGsRev, Emamjomeh2016DetAndProbBSinGs, dereniowski2022CFApproxAlgForBSInTsWithMonoQTimes, dereniowski2024SInTsMonoQTs, noisyBSSFC, Dereniowski2024OnMG, EfficientNoisyBinarySearch, Dereniowski2023Edge},
+    \item Tree Search Problem \cite{Jacobs2010OnTheComplexSearchInTsAvg, Cicalese2014ImprovedApproxAvgTs, Cicalese2016OnTSPwNonUniCost}, 
+    \item Binary Identification Problem \cite{Cicalese2012BinIdentPForWTs, Karbasi2013Constrained}, 
+    \item Ranking Colorings \cite{Dereniowski2009ERankOfWTs, DereniowskiERAndSInPOSets, DereniowskiEfPQProcByGRank, DereniowskiVxRankOfChGsAndWTs, Lam1998ERankOfGsIsH}, 
+    \item Ordered Colorings \cite{KATCHALSKI1995141}, 
+    \item Elimination Trees \cite{Pothen1988OptimalEliminationTrees}, 
+    \item Hub Labeling \cite{Angelidakis2018ShortestPQ},
+    \item Tree-Depth \cite{NESETRIL20061022, BOROWIECKI2023113682},
+    \item Partition Trees \cite{OnDasHC, Hgemo2024TightAB},
+    \item Hierarchical Clustering \cite{Approximatehierarchicalclusteringviasparsestcutandspreadingmetrics}, 
+    \item Search Trees on Trees \cite{SplayTonT, Fast_app_centroid_trees}, 
+    \item LIFO-Search \cite{GIANNOPOULOU20122089}. 
+\end{itemize}
+Various different problem definitions stem from the learning theory including:
+\begin{itemize}
+    \item Decision Tree \cite{LABER2004209,ATightAnalysisofGreedy, GuptasApproxAlgsForOptDTsAndAdaptTSPPs, Tradingoff},
+    \item Bayesian Active Learning \cite{NearoptimalBayesianactivelearning,Analysisofgreedyactivelearningstrategy},
+    \item Discrete Function evaluation \cite{Diagnosisdetermination},
+    \item Tree Split \cite{OnanOptimalSplitTreeProblem},
+    \item Query Selection \cite{QuerySelection}.
+\end{itemize}
+
+% Each of these problems is equivalent when restricted to tree. Due to the multiplicity of the problem definitions is the interpretation of the notion of weight. When considering the worst case cost, usually the weight is interpreted as the cost of a query. On the other hand, while analyzing the average case cost, the weight is usually the probability that the vertex will be searched for. In such scenario, the cost of the query (if present) is usually called cost. In this work we follow the second convention and we usually denote them as $w(v)$ and $c(v)$ (or $c(e)$ in edge query model) accordingly.

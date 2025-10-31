@@ -1,0 +1,185 @@
+
+
+\begin{figure}[htbp]
+\centering
+\usetikzlibrary{3d}
+\usetikzlibrary{calc}
+
+% Isometric projection setup
+\def\angi{27}
+\def\angii{62}
+\pgfmathsetmacro\xx{sin(\angii)}
+\pgfmathsetmacro\xy{-cos(\angii)*sin(\angi)}
+\pgfmathsetmacro\yx{sin(\angii-90)}
+\pgfmathsetmacro\yy{-cos(\angii-90)*sin(\angi)}
+\pgfmathsetmacro\zx{0}
+\pgfmathsetmacro\zy{cos(\angi)}
+
+
+\begin{tikzpicture}[ scale=2,
+  x={({\xx cm,\xy cm})},
+  y={({\yx cm,\yy cm})},
+  z={({\zx cm,\zy cm})},
+  line cap=round, line join=round]
+
+
+\begin{scope}[canvas is xy plane at z=1.05]
+    \fill[yellow!20!orange!20, opacity=0.5] (-0.1,-0.1) rectangle (5.5,3.8);
+    \draw[yellow!50!orange, very thick] (-0.1,-0.1) rectangle (5.5,3.8);
+    \node[anchor=north west, font=\small\bfseries, yellow!40!orange] at (0.1,0.1) {$s$};
+  \end{scope}
+  % Axes
+  \draw[->, very thick] (0,0,0) -- (5.5,0,0) node[anchor=north east] {};
+  \draw[->, very thick] (0,0,0) -- (0,4,0) node[anchor=north west] {};
+  \draw[->, very thick] (0,0,0) -- (0,0,1.75) node[anchor=south] {$c\br{v}$};
+
+  % Node visually aligned with the xy-plane
+    \vertex{1}{0.25,0.25}{0.0}{}{};
+    \vertex{2}{0.7,0.45}{0.0}{}{};
+    \vertex{3}{1.25,0.75}{0.0}{}{};
+    \vertex{4}{1.7,1.15}{0.0}{}{};
+    
+    \vertex{5}{1.55,1.7}{0.0}{}{};
+    \vertex{6}{1.5,2.3}{0.0}{}{};
+    \vertex{7}{1.4,3}{0.0}{}{};
+    \vertex{8}{0.9,3.3}{0.0}{}{};
+    \vertex{9}{0.3,3.5}{0.0}{}{};
+    
+    \vertex{10}{2.75,0.75}{0.0}{}{};
+    \vertex{11}{2.75,1.4}{0.0}{}{};
+    \vertex{12}{2.5, 1.75}{0.0}{}{};
+    
+    \vertex{13}{3.2,0.6}{0.0}{}{};
+    \vertex{14}{3.75,0.6}{0.0}{}{};
+    \vertex{15}{4.2,0.5}{0.0}{}{};
+    \vertex{16}{5,0.4}{0.0}{}{};
+
+  \draw[very thick] (1) to (2);
+  \draw[very thick] (2) to (3);
+  \draw[very thick] (3) to (4);
+  \draw[very thick] (4) to (5);
+  \draw[very thick] (5) to (6);
+  \draw[very thick] (6) to (7);
+  \draw[very thick] (7) to (8);
+  \draw[very thick] (8) to (9);
+  
+  \draw[very thick] (4) to (10);
+  \draw[very thick] (10) to (11);
+  \draw[very thick] (11) to (12);
+  
+  \draw[very thick] (10) to (13);
+  \draw[very thick] (13) to (14);
+  \draw[very thick] (14) to (15);
+  \draw[very thick] (15) to (16);
+
+
+\vertex{91}{0.25,0.25}{0.35}{}{green!50!black, dotted};
+\vertex{92}{0.7,0.45}{0.9}{}{green!50!black, dotted};
+\vertex{93}{1.25,0.75}{1.75}{}{blue};
+\vertex{94}{1.7,1.15}{1.5}{}{blue};
+
+\vertex{95}{1.55,1.7}{1.25}{}{blue};
+\vertex{96}{1.5,2.3}{0.95}{}{green!50!black, dotted};
+\vertex{97}{1.4,3}{0.8}{}{green!50!black, dotted};
+\vertex{98}{0.9,3.3}{1.65}{}{blue};
+\vertex{99}{0.3,3.5}{1.25}{}{blue};
+
+\vertex{910}{2.75,0.75}{1.75}{}{blue};
+\vertex{911}{2.75,1.4}{1.65}{}{blue};
+\vertex{912}{2.5, 1.75}{0.8}{}{green!50!black, dotted};
+
+\vertex{913}{3.2,0.6}{1.65}{}{blue};
+\vertex{914}{3.75,0.6}{1.35}{}{blue};
+\vertex{915}{4.2,0.5}{0.95}{}{green!50!black, dotted};
+\vertex{916}{5,0.4}{0.7}{}{green!50!black, dotted};
+
+  
+  \draw[->, green!50!black, dotted, dashed] (1) to (91);
+  \draw[->, green!50!black, dotted, dashed] (2) to (92);
+  \draw[green!50!black, dotted, dashed] (3) to (1.25,0.75, 1.05);
+  \draw[->, blue, dashed] (1.25,0.75, 1.05) to (93);
+  
+  \draw[green!50!black, dotted, dashed] (4) to (1.7,1.15, 1.05);
+  \draw[->, blue, dashed] (1.7,1.15, 1.05) to (94);
+  
+  
+  \draw[green!50!black, dotted, dashed] (5) to (1.55,1.7, 1.05);
+  \draw[->, blue, dashed] (1.55,1.7, 1.05) to (95);
+  
+  \draw[blue, dashed] (6) to (1.5,2.3, 0.19);
+  \draw[->, green!50!black, dotted, dashed] (1.5,2.3, 0.19) to (96);
+  
+  \draw[blue, dashed] (7) to (1.4,3, 0.6);
+  \draw[->, green!50!black, dotted, dashed] (1.4,3, 0.6) to (97);
+  
+  \draw[blue, dashed] (8) to (0.9,3.3, 0.77);
+  \draw[green!50!black, dotted, dashed] (0.9,3.3, 0.77) to (0.9,3.3, 1.05);
+  \draw[->, blue, dashed] (0.9,3.3, 1.05) to (98);
+  
+  
+  \draw[blue, dashed] (9) to (0.3,3.5, 0.88);
+  \draw[green!50!black, dotted, dashed] (0.3,3.5, 0.88) to (0.3,3.5, 1.05);
+  \draw[->, blue, dashed] (0.3,3.5, 1.05) to (99);
+  
+  
+  \draw[green!50!black, dotted, dashed] (10) to (2.75,0.75, 1.05);
+  \draw[->, blue, dashed] (2.75,0.75, 1.05) to (910);
+  ;
+  
+  \draw[green!50!black, dotted, dashed] (11) to (2.75,1.4, 1.05);
+  \draw[->, blue, dashed] (2.75,1.4, 1.05) to (911);
+  
+  \draw[->, green!50!black, dotted, dashed] (12) to (912);
+  
+  \draw[green!50!black, dotted, dashed] (13) to (3.2,0.6, 1.05);
+  \draw[->, blue, dashed] (3.2,0.6, 1.05) to (913);
+  
+  
+  \draw[green!50!black, dotted, dashed] (14) to (3.75,0.6, 1.05);
+  \draw[->, blue, dashed] (3.75,0.6, 1.05) to (914);
+  
+  \draw[->, green!50!black, dotted, dashed] (15) to (915);
+
+  \draw[blue, dashed] (16) to (5,0.4, 0.51);
+  \draw[->, green!50!black, dotted , dashed] (5,0.4, 0.51) to (916);
+
+    \draw[very thick, green!50!black, dotted] (91) to (92);
+  
+  \draw[very thick, green!50!black, dotted] (92) to (0.8,0.5, 1.05);
+  \draw[very thick, blue] (0.8,0.5, 1.05) to (93);
+  
+  \draw[very thick, blue] (93) to (94);
+  \draw[very thick, blue] (94) to (95);
+  
+  \draw[very thick, blue] (95) to (1.55,2.25, 1.05);
+  \draw[very thick, green!50!black, dotted] (1.55,2.25, 1.05) to (96);
+  
+  \draw[very thick, green!50!black, dotted] (96) to (97);
+
+  \draw[very thick, green!50!black, dotted] (97) to (1.23,3.07, 1.05);
+  \draw[very thick, blue] (1.23,3.07, 1.05) to (98);
+  
+  \draw[very thick, blue] (98) to (99);
+  
+  \draw[very thick, blue] (94) to (910);
+  \draw[very thick, blue] (910) to (911);
+  
+  \draw[very thick, blue] (911) to (2.59, 1.7, 1.05);
+  \draw[very thick, green!50!black, dotted] (2.59, 1.7, 1.05) to (912);
+  
+  \draw[very thick, blue] (910) to (913);
+  \draw[very thick, blue] (913) to (914);
+  
+  \draw[very thick, blue] (914) to (4.08,0.52, 1.05);
+  \draw[very thick, green!50!black, dotted] (4.08,0.52, 1.05) to (915);
+  
+  \draw[very thick, green!50!black, dotted] (915) to (916);
+
+
+
+
+
+\end{tikzpicture}
+\caption[$k$-up modularity]{A visual depiction of a tree $T$ with a $3$-up-modular cost function $c$. Each vertex of a tree is mapped onto some value of $c$. The yellow plane represents some threshold value $t\in \mathbb{R}_{\geq 0}$ (in this particular example $k\br{T,c,t}=2$). The (two) blue subtrees represent members of $\mathcal{H}_{T,c}\br{t}$.}\label{kUpModularityExample}
+
+\end{figure}

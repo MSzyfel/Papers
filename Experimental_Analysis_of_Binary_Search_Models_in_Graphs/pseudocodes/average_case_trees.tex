@@ -1,22 +1,21 @@
 
 \begin{algorithm}[H]
-\caption{The $\br{4+\epsilon}$-approximation algorithm for $T||V,c,w||\sum{C_i}$.}
-\label{createDecisionTree}
+\caption{The $\br{4+\epsilon}$-approximation algorithm for $T||V,c,w||\sum C_i$}
 \SetKwFunction{FDecisionTree}{DecisionTree}
 \SetKwFunction{FSeparatorFPTAS}{SeparatorFPTAS}
 \SetKwProg{Fn}{Procedure}{:}{}
-\Fn{\FDecisionTree{$T, c, w,  \epsilon$}}{
-$S_T\gets$ \FSeparatorFPTAS$\br{T, c, w, \alpha=2, \delta = \frac{\epsilon}{4+\epsilon}}$
+\Fn{$\FDecisionTree\br{T, c, w,  \epsilon}$}{
+$S_T\gets\FSeparatorFPTAS\br{T, c, w, \alpha=2, \delta = \frac{\epsilon}{4+\epsilon}}$.
 
-Build an arbitrary decision tree $D_T$ on vertices of $S_T$.
+$D_T\gets$ arbitrary partial decision tree for $T$, built from vertices of $S_T$.
 
-    \ForEach{$H\in T-S$}
+    \ForEach{$H\in T-S_T$}
     {
-        $D_H\gets $\FDecisionTree{$H, c, w, \epsilon$}
+        $D_H\gets \FDecisionTree\br{H, c, w, \epsilon}$.
 
-        Hang $D_H$ below the last query consistent with $H$ in $D_T$.
+        Hang $D_H$ in $D_T$ below the last query to $v\in N_T\br{H}$.
     }   
-    \Return $D$
+    \Return $D_T$.
     
 }
 \end{algorithm}

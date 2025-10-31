@@ -1,0 +1,41 @@
+\section{The graph search problem}
+
+Below we list the definitions regarding the search problem.  Since the problem has a modular form and one can almost freely swap criteria and constraints, the number of separate variants is very large. Due to this we present a general \text{Graph Search Problem}, which we will later specify 
+
+The \textit{Graph Search Instance} consists of a pair $G=\br{V\br{G},E\br{G}}$. Among $V\br{G}$ there is a unique hidden target element $x$ which is required
+to be located. During the \textit{Search Process} the searcher is allowed to iteratively perform a \textit{query} which asks about chosen vertex (or alternatively an edge $e$). If the answer is affirmative, then $v$ is the target, otherwise a connected component $H\in G-v$ is returned such that $x\in V\br
+{H}$ (for the edge version always $H\in G-e$ is returned). Based on this information the searcher narrows the subgraph of $G$ which might contain $x$ until there is only one possible option left. 
+
+\begin{remark}
+    In the vertex query model we require that every vertex must be queried even when such vertex is the last among the candidate set. Note that it is sometimes assumed that in such case, this vertex does not need to be queried which may reduce the cost of the solution. Note that all of the algorithms showed in this work can be altered to take this assumption into account. For the sake of the brevity we do not include them but we encourage the reader to obtain them as an exercise.
+\end{remark} 
+
+% The \textit{Poset Search Instance} consists of a pair $\mathcal{P}=\br{X, \preceq}$. Among $X$ there is a unique hidden target element $x$ which is required
+% to be located. During the \textit{Search Process} the searcher is allowed to iteratively perform a \textit{query} which asks about chosen element $v\in X$ and as the answers receives information whether $x\preceq v$. Based on this information the searcher narrows the subset of $X$ which might contain $x$ until there is only one possible option left.
+
+% The \textit{Binary Identification Problem Instance} consists of a pair $\mathcal{P}=\br{\mathcal{H}, \mathcal{Q}}$. In the \textit{Binary Identification Problem} we are given a pair $\br{\mathcal{H}, \mathcal{Q}}$ where $\mathcal{H}$ is a set of hypotheses and $\mathcal{Q}$ is a set of queries. Each query $q = \brc{R_1, R_2,\dots R_k}$ is a partition of $\mathcal{H}$ (we require that $\bigcup_{R\in q}R=\mathcal{H}$ and for any $R_1,R_2\in q$: $R_1\cap R_2=\emptyset$). Among $\mathcal{H}$ there is a unique hidden target hypothesis $x$ which is required
+% to be identified. During the \textit{Search Process} the searcher is allowed to iteratively perform a chosen query $q$. As the response the searcher obtains information which $R\in q$ contains the hidden target. Based on this information the searcher narrows the subset of $\mathcal{H}$ which might contain $x$ until there is only one possible option left.
+\subsection{Additional input parameters}
+As a part of the input we will also allow the cost function. Let $\mathcal{Q}$ be the space of possible queries (either vertex or edge queries). The \textit{cost} of query $q\in\mathcal{Q}$ is then denoted
+as $c:\mathcal{Q}\to \mathbb{R}^+$. We will also allow each vertex to have a \textit{weight function} $c:V\br{G}\to \mathbb{R}^+$ on vertices.
+\subsection{Decision trees, optimization criteria and the Graph Search Problem}
+Let $G$ be a graph. A decision tree is a rooted tree $D=(V\br{D}, E\br{D})$, where $V\br{D}=V\br{G}$ are the vertices of $D$ and $E\br{D}$ are the edges of $D$. It is required that each child of $q\in V\br{D}$ corresponds to a distinct response to the query at $q$, with respect to the subtree of candidate solutions that remain after performing all previous queries. 
+
+Let $Q_D\br{G,x}$ denote the sequence of queries made to locate a target $x \in V\br{G}$ using $D$, i. e., the sequence of vertices belonging to the unique path in $D$ starting at $r\br{D}$ and ending at $x$. We define the worst case cost of a decision tree $D$ in $\br{G,c}$
+$$
+\COST_{max, G}\br{D, c} = \max_{x\in V\br{G}} \brc{\sum_{q\in Q_D\br{G, x}}c\br{q}}
+$$
+
+We define the average case cost of a decision tree $D$ in $\br{G,c,w}$ with as:
+$$
+\COST_{avg, G}\br{D, c, w} = \sum_{v\in V\br{G}}\sum_{q\in Q_D\br{G,x}}c\br{q}
+$$
+
+By a slight abuse of notation we will also sometimes use $Q_D\br{V\br{G},x}$ as the set consisting of queries in sequence $Q_D\br{V\br{G},x}$. This is done in order to not inflate the amount of symbols and will not become problematic during the analysis of the solutions.
+Whenever clear from the context, for the clarity of the analysis, we will occasionally drop any of the subscripts or arguments of the $\COST$ function.
+We are now ready to define the \textit{Graph Search Problem}:
+
+\begin{tcolorbox}[colback=white, title=Generalized Search Problem, fonttitle=\bfseries, breakable]
+\paragraph{Input:} Graph $G$, the query model and the optimization criterion
+\paragraph{Output:} A valid decision tree $D$ for $G$ with respect to the query model, which optimizes the criterion.
+\end{tcolorbox}

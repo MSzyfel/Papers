@@ -1,0 +1,82 @@
+\begin{algorithm}
+\caption{The dynamic programming procedure finding $\OPT\br{T_{v,i}, P}$.}\label{dp_timelines}
+\SetKwFunction{FDPTimelines}{DPTimelines}
+\SetKwFunction{FDP}{DP}
+\SetKwProg{Fn}{Procedure}{:}{}
+
+\Fn{\FDPTimelines{$T_{v,i},w,P,h$}}{
+
+    \If{$i=0$}{
+        \For{$1\leq k\leq h$}{
+            \If{$p_k=\textit{unassigned}$}{
+                $p_k\gets v$.
+
+                \Return{$P$}.
+            }
+        }
+        \Return{$\emptyset$}.
+    }
+    $\mathcal{D}\gets\emptyset$.
+
+    \If{$i=1$}{
+        \For{$1\leq k\leq h$}{
+            \If{$p_k=\textit{unassigned}$}{
+                $P'_k\gets P$.
+
+                $p'_k\gets \textit{blocked}$.
+
+                \For{$k< l\leq h$}{
+                    $p'_k\gets \textit{unassigned}$.
+                }
+                $D'_k\gets \FDPTimelines\br{T_{c_1}, w, P'_k, h}$.
+
+                $q'_k\gets v$.
+
+                Rehang the left child of $q'_k$ as its right child.
+
+                \For{$k< l\leq h$}{
+                    $q'_l\gets p_l$.
+                }
+
+                $\mathcal{D}\gets \mathcal{D}\cup\brc{ D'_k}$.
+            }
+        }
+    }
+    \Else{
+        $I\gets \brc{l|p_l \text{ is unassigned}}$.
+
+        \ForEach{\textnormal{bipartition$\br{I_1, I_2}$of $I$}}{
+            $P_1\gets P$.
+
+            \For{$1\leq k\leq h$}{
+                \If{$k \notin I$}{
+                    $p_{1,k}\gets \textit{blocked}$
+                }
+            }
+            $D_1\gets \FDPTimelines\br{T_{v, i-1}, w, P_1, h}$.
+
+            $k\gets l | q_{1,l}=v$.
+
+            $P_2\gets P$.
+
+            \For{$1\leq l\leq h$}{
+                \If{$k \in I$ or $l>k$}{
+                    $p_{1,k}\gets \textit{unassigned}$.
+                }
+                \Else{
+                    $p_{1,k}\gets \textit{blocked}$.
+                }
+            }
+
+            $D_2\gets \FDPTimelines\br{T_{c_i}, w, P_2, h}$.
+
+            Rehang left child of $q_{2, k}$ as its right child.
+
+            $D\gets D_1$ and $D_2$ with their left paths aligned. 
+
+            $\mathcal{D}\gets\mathcal{D}\cup\brc{D}$.
+        }
+    }
+    \Return{$\argmin_{D\in \mathcal{D}}\brc{\COST_D\br{T_{v,i}}}$}.
+}
+\end{algorithm}

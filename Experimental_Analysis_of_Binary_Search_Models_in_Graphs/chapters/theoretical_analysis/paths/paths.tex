@@ -1,0 +1,8 @@
+\newpage
+\section{Paths}
+In general, all of the variants of the problem dealing with paths are known to be solvable in polynomial time. This is due to the fact that the number of subpaths of a path is of size $\binom{n}{2}=O\br{n^2}$. Such property allows us to construct efficient dynamic programming solutions, which when naively implemented, usually run in time $O\br{n^3}$. The key part of the analysis is often to show how to optimize such solution in order to reduce the factor of $O\br{n}$ thus obtaining $O\br{n^2}$ running time.
+Let $V\br{P}=v_1,\dots,v_n$. In the following considerations by  $\OPT_{sum}\br{i,j}$ we will denote the cost of optimal decision tree for a subpath $v_i,..,v_j$ according to the average case cost and similarly by $\OPT_{max}\br{i,j}$ we will denote the cost of optimal decision tree for a subpath $v_i,..,v_j$ according to the worst case cost. Whenever clear from the context we will drop the subscript and simply write $\OPT\br{i,j}$. For both variants we have that $\OPT=\OPT\br{1,n}$. By a slight abuse of notation we will also use $\OPT\br{i,j}$ to denote the root query of the decision tree whose cost is equal to this value.
+In this section we will be only concerned with the edge query model, as each of the constructed solutions can be easily altered to solve the vertex query version of the problem. The following paragraph introduces us with the general recurrence relationships exploited in the dynamic programming.
+\input{chapters/theoretical_analysis/paths/basic_algorithm.tex} 
+\input{chapters/theoretical_analysis/paths/average_case_non_uniform_weights.tex} 
+\input{chapters/theoretical_analysis/paths/non_uniform_costs_worst_case.tex} 

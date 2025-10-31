@@ -1,0 +1,34 @@
+
+\begin{figure}[htbp]
+    \centering
+    \scalebox{0.9}{
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \tikz [node distance = 16mm, rotate=-90]
+        \graph [spring layout]
+{
+  a -- { b, c, d, e};
+  b -- {c};
+  e -- {j, h};
+  d -- {i, f};
+  j -- {g[> orient=right]};
+  i -- {j, e, k};
+  g -- {l};
+  h --  a;
+  l -- {k};
+};
+        \label{fig:graph}
+    \end{minipage}
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \tikz [tree layout, grow=-90,
+               sibling distance=11mm, level distance=14.5mm,]
+          \graph {
+            ""[as=$e$] ->
+            ""[as=$i$] -> { ""[as=$a$] -> { ""[as=$c$] -> ""[as=$b$],  ""[as=$h$],""[as=$f$] -> ""[as=$d$]}, ""[as=$g$] -> {""[as=$j$], ""[as=$k$] -> ""[as=$l$]}}
+          };
+        \label{fig:dt_g_v}
+    \end{minipage}
+    }
+        \caption[Graph and decision trees for it]{Sample input graph a decision tree for it.}
+\end{figure}

@@ -1,0 +1,16 @@
+\section{Optimization problems}
+A \textit{minimization problem} is one in which given an input $I$, the set of valid solutions $S$ and a cost function $c:S \to \mathbb{R}^+$ we are required to find a solution $s^*\in S$ such that $c\br{s^*}=\min_{s\in S}\brc{c\br{s}}$. Analogously, a \textit{maximization problem} is one in which we are required to find a solution $s^*\in S$ such that $c\br{s^*}=\max_{s\in S}\brc{c\br{s}}$. For both types of problems we define $\OPT\br{I} = c\br{s^*}$. Given an instance $\br{I, S, c}$ of a minimization problem such that $\spr{I} = n$, an $\alpha\br{n}$-approximation algorithm is an algorithm which always outputs a solution $s$ such that:
+$$
+\frac{c\br{s}}{\OPT\br{I}} \leq \alpha\br{n}
+$$
+Analogously, for a maximization problem such an $\alpha\br{n}$-approximation algorithm is an algorithm which always outputs a solution $s$ such that:
+$$
+\frac{c\br{s}}{\OPT\br{I}} \geq \alpha\br{n}
+$$
+If $\alpha\br{n}=O\br{1}$ we say that the algorithm is a constant factor approximation algorithm for $I$. If $\alpha\br{n}=1$ we say that the algorithm is an exact algorithm for $I$. For a minimization problem if for every $0<\epsilon\leq1$ the algorithm provides a $\br{1+\epsilon}$-approximation (or a $\br{1-\epsilon}$-approximation in case of a maximization problem) and:
+\begin{itemize}
+    \item Runs in time $\text{poly}\br{n/\epsilon}$, then it is called a Fully-Polynomial Time Approximation Scheme (FPTAS).
+    \item Runs in time $f\br{\epsilon}\cdot\text{poly}\br{n}$ for some computable function $f$, then it is called a Efficient-Polynomial Time Approximation Scheme (EPTAS).
+    \item Runs in time $n^{O\br{1/\epsilon}}$, then it is called a Polynomial Time Approximation Scheme (PTAS).
+    \item Runs in time $n^{\text{poly}\br{\log n/\epsilon}}$, then it is called a Quasi-Polynomial Time Approximation Scheme (QPTAS).
+\end{itemize}

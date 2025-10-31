@@ -1,0 +1,73 @@
+\begin{algorithm}
+\caption{The dynamic programming procedure finding $\OPT'\br{T_{v,i}, B}$ ($k,p,c,n$ and $d$ are global parameters).}\label{dp_timelines_costs}
+\SetKwProg{Fn}{Procedure}{:}{}
+\Fn{\FDPTimelinesCosts{$T_{v,i}, B$}}{
+    \If{$i=0$}{
+        \For{$1\leq b\leq d$ and $0\leq s\leq \br{k/pn \text{\textbf{ if} }c\br{v}>pk \text{\textbf{ else} 0}}$}{
+            $D\gets$ a decision tree based on $B$.
+
+            Put query to $v$ at the $s$-th slot of $q_b$.
+
+            \If{\textnormal{$D$ is not conflicted.}}{
+                \textbf{if} $\COST'_{D}\br{T_{v,i},c',k}\leq dk$ \textbf{then}: \Return $D$, \textbf{else}: \Return $\emptyset$.
+            }
+        }
+        \Return{$\emptyset$}.
+    }
+    $\mathcal{D}\gets\emptyset$.
+
+    \If{$i=1$}{
+        \For{$1\leq b\leq d$ and $0\leq s\leq \br{k/pn \text{\textbf{ if} }c\br{v}>pk \text{\textbf{ else} 0}}$}{
+            $D\gets $ a decision tree based on $B$.
+
+            \item Put query to $v$ at the $s$-th slot of $q_b$.
+
+            \If{\textnormal{$D$ is not conflicted and $\COST'_{D}\br{T_{v,i},c',k}\leq dk$}}{
+                \If{$\COST'_{D}\br{T_{v,i},c,k}\leq dk$}
+                {
+                    $B'\gets$ left box-path of $D$.
+
+                    $h\gets$ index of the last box $q_h$ occupied by the query to $v$.
+
+                    \For{$h < j\leq d$}{
+                        $b'_{j}\gets 0$.
+                        
+                        $t'_{j}\gets $ \textbf{false}.
+                    }
+                    $D'\gets \FDPTimelinesCosts\br{T_{c_1},c', B'}$.
+
+                    Put query to $v$ at the $s$-th slot of $q'_b$.
+
+                    Rotate $D'$ around $v$.
+
+                    $\mathcal{D}\gets \mathcal{D} \cup \brc{D \text{ and } D' \text{ with their left paths aligned}}$.
+                }
+            }
+        }
+    }
+    \Else{
+        \ForEach{\textnormal{bipartition $\br{B_1, B_2}$ of $B$}}{
+            $D_1\gets \FDPTimelinesCosts\br{T_{v, i-1}, c', B_1}$.
+
+            $h\gets$ index the last box $q_{1,h}$ occupied by the query to $v$.
+
+            \For{$h\leq j\leq d$}{
+                        $b_{2,j}\gets 0$.
+
+                        $t_{2,j}\gets $ \textbf{false}
+                    }
+
+            $D_2\gets \FDPTimelinesCosts\br{T_{c_i}, c', B_2}$.
+
+            
+            Put query to $v$ at the $s$-th slot of $q_{2,b}$.
+
+            Rotate $D_2$ around $v$.
+
+            $\mathcal{D}\gets\mathcal{D}\cup\brc{D_1 \text{ and } D_2 \text{with their left paths aligned}}$.
+        }
+    }
+    \Return{$\argmin_{D\in \mathcal{D}}\brc{\COST'_D\br{T_{v,i},c, k}}$}.
+    }
+
+\end{algorithm}

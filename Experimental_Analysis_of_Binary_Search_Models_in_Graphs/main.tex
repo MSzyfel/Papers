@@ -4,7 +4,7 @@
 \usepackage[backend=biber,style=alphabetic]{biblatex}
 \addbibresource{bibliography.bib}
 
-\input{glossary}
+%\input{glossary.tex}
 \input{nomenclature}   
 
 % Custom title page commands
@@ -14,6 +14,8 @@
 \newcommand{\thetitle}{Experimental Analysis of Binary Search Models in Graphs}
 \begin{document}
 \usetikzlibrary {graphs,graphdrawing} \usegdlibrary {trees, layered, force}
+
+\includepdf[pages=-]{StronaTytulowa_193307.pdf}
 
 \begin{titlepage}
     \centering
@@ -33,21 +35,20 @@
 
 \singlespacing
 \printnomenclature[0.5\textwidth]
-\onehalfspacing
 
-\printglossaries
+%\printglossaries
 
 \tableofcontents
 \listoffigures
 \listoftables
-\include{chapters/introduction}
-\include{chapters/notions_and_definitions}
-\include{chapters/theoretical_analysis}
+\include{chapters/introduction/introduction}
+\include{chapters/notions_and_definitions/notions_and_definitions}
+\include{chapters/theoretical_analysis/theoretical_analysis}
 \include{chapters/experimental_results}
 \include{chapters/conclusions}
 \appendix
 \include{appendix/figures}
 
 \printbibliography
-\include{appendix/appendix}
+%\include{appendix/appendix}
 \end{document}

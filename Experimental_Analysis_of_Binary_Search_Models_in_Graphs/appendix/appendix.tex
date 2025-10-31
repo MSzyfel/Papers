@@ -1,18 +1,47 @@
 \chapter{Hardness proofs}
 \begin{theorem}
-    The decision version of $T||V,c,w||\sum C_j$ is NP-complete in the class of trees with diameter at most $8$ and in the class of trees with degree at most $16$.
+    The decision version of $T||V,c,w||\sum C_j$ is NP-complete even when restricted to trees with $\Delta\br{T}\leq 16$ and to trees with $\diam\br{T}\leq 8$.
     \begin{proof}
-        Of course the problem is in NP since given a decision tree $D$ one can in polynomial time check whether all of the requirements are fulfilled.
+        The problem is in NP since, given a decision tree $D$, one can verify in polynomial time 
+whether all the requirements are satisfied.
 
-        To show the hardness we use the fact that $T||E, w||\sum C_j$ is NP-complete in the class of trees with diameter at most $4$ and in the class of trees with degree at most $16$ \cite{Jacobs2010OnTheComplexSearchInTsAvg}. Let $\br{T, w, K}$ be such instance. We create a new instance $\br{T', c, w, K'}$ for $T||V,c,w||\sum C_j$ in the following way. For every $v\in V\br{T}$ we set $c\br{v}=K+1$. We subdivide each edge $e\in E\br{T}$ by adding new vertex $v_e$ with $w\br{v_e}=0$ and $c\br{v_e}=1$. We set $K'=K+w\br{T}\cdot\br{K+1}$. 
-        Assume that we have a decision tree $D$ of cost at most $K$ for the original instance. To obtain a decision tree $D'$ for the second instance we simply replace each query in $D$ by a query to a vertex which subdivided the queried edge. Additionally, below each leaf of $D$ we hang appropriate queries to the left vertices (as $D$ contains a query to every edge of $T$ each vertex is separated, so for every $v\in V\br{T}$ one such additional query is added. This results in a decision tree $D'$ of cost at most $K'=K+w\br{T}\br{K+1}$ as required.
+To show hardness, we use a black-box reduction from the edge-query, uniform-cost, 
+and non-uniform-weight variant, which is NP-complete even when restricted to trees with $\Delta\br{T}\leq 16$ and to trees with $\diam\br{T}\leq 4$ \cite{Jacobs2010OnTheComplexSearchInTsAvg}. 
+Let $\br{T, w, K}$ be such an instance. 
+We construct a new instance $\br{T', c, w, K'}$ for the TSP as follows: 
+for every $v \in V\br{T}$, we set $c\br{v} = K+1$. 
+We subdivide each edge $e \in E\br{T}$ by adding a new vertex $v_e$ with 
+$w\br{v_e} = 0$ and $c\br{v_e} = 1$. 
+We set $K' = K + w\br{T} \cdot \br{K+1}$.
 
-        
-        Observe that in the new instance for every vertex $v\in T$ we have that the cost of searching for $v$ is at least $K+1$ since $c\br{v}=K+1$. Therefore for these vertices, at least $w\br{T}\cdot\br{K+1}$ cost is required assuming that in the query sequence of each such vertex there is only one such costly query, namely query to $v$ itself. Notice that if it was not the case the cost would exceed $K'$ so we conclude that every such $v$ is queried only when the subtree of candidates consists of $v$ as the only vertex. Assume that we have a tree $D$ for the second instance of cost at most $K'$. We show how to obtain a decision tree $D'$ for the original instance. We delete all of the queries to the vertices $v\in V\br
-        T$. We also replace each query to the vertex in a subdivided edge with a query to this edge. As each query to $v\in V\br
-        T$ was a query to a last vertex in the set of candidates we obtain that $D'$ is a valid decision tree for the original instance. Additionally, the cost of $D'$ is at most $K'-w\br{T}\cdot\br{K+1} = K$ as required.
+Assume that we have a decision tree $D$ of cost at most $K$ for the original instance. 
+To obtain a decision tree $D'$ for the new instance, we replace each query in $D$ 
+with a query to the vertex that subdivides the corresponding edge. 
+Additionally, below each leaf of $D$, we attach the appropriate queries to the original vertices. 
+As $D$ contains a query to every edge of $T$, each vertex is separated, so for every 
+$v \in V\br{T}$, one such additional query is added. 
+This results in a decision tree $D'$ of cost at most $K + w\br{T} \cdot \br{K+1}= K'$, 
+as required.
 
-        Note that by subdividing each edge the diameter of the tree doubles and the degree remains unchanged so the claim follows.
+Observe that in the new instance, for every vertex $v \in T$, the cost of searching for $v$ 
+is at least $K+1$ since $c\br{v} = K+1$. 
+Therefore, for these vertices, at least $w\br{T} \cdot \br{K+1}$ cost is required. 
+This implies that each such vertex has exactly one such query in its query sequence, 
+namely the query to $v$ itself. Otherwise, the cost would exceed $K'$, and we conclude 
+that every such $v$ is queried only when the candidate subset consists solely of $v$. 
+
+Conversely, assume there exists a decision tree $D'$ of cost at most $K'$ for the new instance. 
+We show how to obtain a decision tree $D$ for the original instance. 
+We replace each query to a vertex $v_e$ with a query to edge $e$, 
+and delete all queries to vertices $v \in V\br{T}$. 
+Since each $v \in V\br{T}$ was the last query in $Q_{D'}\br{T', v}$, performed 
+when the candidate set consisted only of $v$, the resulting $D$ is a valid decision tree 
+for the original instance. Additionally, the cost of $D$ is at most $K' - w\br{T} \cdot \br{K+1} = K$, 
+as required.
+
+Finally, note that subdividing each edge doubles the diameter of the tree while leaving the degree unchanged, 
+so the claim follows.
+
     \end{proof}
 \end{theorem}
 \begin{theorem}

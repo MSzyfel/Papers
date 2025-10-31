@@ -1,0 +1,31 @@
+\subsection{An $O\br{\sqrt{\log n}}$-approximation algorithm for $T||V,c||C_{max}$}
+We begin with the following proposition \cite{dereniowski2017ApproxSsForGeneralBSinWTs} about the existence of QPTAS for $T||V,c||C_{max}$:
+\begin{proposition}\label{QPTAS}
+     For any $0 < \epsilon \leq 1$ there exists a $(1+\epsilon)$-approximation algorithm for the Tree Search Problem running in $2^{O\br{\frac{\log^2n}{\epsilon^2}}}$ time.
+\end{proposition}
+The algorithm and the proof of its correctness are very intricate and requires usage of an alternative notion of strategy. However, we rewrite it to use the language of the decision trees. Since the proof is involved for now we will use it as a black-box. The proof will be differed to a separate paragraph after the analysis below.
+
+\begin{theorem}
+    There exists a polynomial time, $O\br{\log n/\log\log n}$-approximation algorithm for the $T||V,c||C_{max}$ problem .
+    \begin{proof}
+    We use the same procedure as in the $O\br{\log n/\log\log n}$-approximation algorithm, however we set $k=2^{\fl{\sqrt{\log n}}+2}$ and we swap the exact procedure to the QPTAS with $\epsilon=1$. The analysis of the algorithm is largely the same, except while evaluating the cost of the resulting decision tree.
+    \begin{lemma}
+        Let $D_T$ be the solution returned by the algorithm. Then the approximation factor of such solution is bounded by 
+    $
+    \APP_T\br{D_T}\leq 2\sqrt{\log n}
+    $.
+    \begin{proof}
+        Let $\mathcal{T}$ be the tree processed at some level of the recursion and let $D_{\mathcal{T}}$ be the decision tree returned by the algorithm. The proof is by induction on the size of $\mathcal{T}$.  We claim that $\APP_{\mathcal{T}}\br{D_{\mathcal{T}}}\leq \max\brc{1, 2\log n\br{\mathcal{T}}/\sqrt{\log n}}$. If $n\br{\mathcal{T}}\leq k$ then $D_{\mathcal{T}}$ is the optimal decision tree for $\mathcal{T}$ which establishes the base case. Let $n\br{\mathcal{T}} > k$ and assume that claim holds for every $t< n\br{\mathcal{T}}$. 
+        By construction, we have that:
+        \begin{align*}
+        \APP_{D_{\mathcal{T}}}\br{\mathcal{T}}&=\frac{\COST_{D_{\mathcal{T}}}\br{\mathcal{T}}}{\OPT\br{\mathcal{T}}}\\
+        &\leq \frac{\COST_{D_{\mathcal{Z}}}\br{\mathcal{T}}+\max_{H\in \mathcal{T}-\mathcal{Z}}\brc{C_{D_H}\br{H}}}{\OPT\br{\mathcal{T}}}\\
+        &\leq \frac{\COST_{D_{\mathcal{Z}}}\br{\mathcal{T}_{\mathcal{Z}}}}{\OPT\br{\mathcal{T}_{\mathcal{Z}}}}+\max_{H\in \mathcal{T}-\mathcal{Z}}\brc{\frac{C_{D_H}\br{H}}{\OPT\br{H}}}\\
+        &\leq 2+\frac{2\log\br{\frac{n\br{\mathcal{T}}}{\sqrt{\log n}}}}{\sqrt{\log n}}= \frac{2\log n\br{\mathcal{T}}}{\sqrt{\log n}}
+        \end{align*}
+        
+        where the first inequality is by construction, the second is by usage of Observation \ref{observation:CostDZinT}, Lemma \ref{lemma:auxTreeCost} and Lemma \ref{lemma:subtreeCost} and the last inequality is due to the Lemma \ref{lemma:componentSize} and the induction hypothesis.
+    \end{proof}
+\end{lemma}
+    \end{proof}
+\end{theorem}

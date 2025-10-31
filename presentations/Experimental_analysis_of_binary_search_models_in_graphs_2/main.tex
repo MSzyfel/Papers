@@ -1,0 +1,166 @@
+% THIS IS GDANSK UNIVERSITY OF TECHNLOGOGY (PG) PRESENTATION TEMPLATE
+% Creator: Jan Cychnerski <jan.cychnerski@eti.pg.edu.pl>
+% Copyleft 2019
+
+% traditional screen
+\documentclass{beamer}
+
+%\usepackage{biblatex}
+
+% Dodajemy plik bibliograficzny
+%\addbibresource{lipics-v2021-sample-article.bib}
+% wide screen
+%\documentclass[aspectratio=169]{beamer}
+
+
+%%% YOUR PACKAGES HERE %%%
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{chngcntr}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{wrapfig}
+\usepackage{adjustbox}
+\usepackage{tikz}
+\usepackage{textgreek}
+\usepackage{float}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{algorithmicx}
+\usepackage{algorithm}
+%\usepackage[noend, linesnumbered]{algpseudocode}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{geometry}
+\usepackage{lscape}
+\usepackage{appendix}
+\usepackage{etoolbox}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{boxedminipage}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable}
+\usetikzlibrary{shadows}
+\usepackage{hyperref}
+
+\usepackage{etoolbox} % Pakiet pomocniczy
+
+\usepackage{lipsum}
+
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{chngcntr}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{wrapfig}
+\usepackage{adjustbox}
+\usepackage{tikz}
+\usepackage{textgreek}
+\usepackage{float}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage[hidelinks]{hyperref}
+\usepackage[ruled,vlined]{algorithm2e}
+\SetArgSty{textnormal} 
+\usepackage{geometry}
+\usepackage{lscape}
+\usepackage{appendix}
+\usepackage{etoolbox}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{boxedminipage}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable}
+\usetikzlibrary{shadows}
+\usetikzlibrary{decorations.pathreplacing,calligraphy,backgrounds}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{3d, calc}
+\usepackage{tikz-3dplot}
+
+
+
+% polish language
+%\usepackage[polish]{babel}
+%\usepackage{polski}
+
+\newcommand{\br}[1]{\left( #1 \right)}
+\newcommand{\brc}[1]{\left\{ #1 \right\}}
+\newcommand{\spr}[1]{\left| #1 \right|}
+\newcommand{\fl}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\cl}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\angl}[1]{\langle #1 \rangle}
+\newcommand{\e}[1]{\exp\left\{ #1 \right\}}
+\newcommand{\ecc}{\operatorname{ecc}}
+\newcommand{\rad}{\operatorname{rad}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\Rim}{\operatorname{Rim}}
+\newcommand{\rim}{\operatorname{rim}}
+\newcommand{\Anc}{\operatorname{Anc}}
+\newcommand{\NPcomplete}{\textnormal{$\mathcal{NP}$-Complete}}
+\newcommand{\NPhard}{\textnormal{$\mathcal{NP}$-Hard}}
+\newcommand{\polyAPXcomplete}{\textnormal{Poly-$\mathcal{APX}$-Complete}}
+\newcommand{\Cent}{\texttt{Cent}}
+\newcommand{\APP}{\texttt{APP}}
+\newcommand{\OPT}{\texttt{OPT}}
+\newcommand{\COST}{\texttt{COST}}
+\newcommand{\LB}{\mathcal{LB}}
+\newcommand{\HB}{\mathcal{HB}}
+\newcommand{\THB}{\mathcal{THB}}
+\newcommand{\THH}{\texttt{TH}}
+\newcommand{\argmin}{\operatorname*{arg\,min}}
+\newcommand{\argmax}{\operatorname*{arg\,max}}
+
+
+\SetKwFunction{FMergeDTs}{MergeDTs}
+\SetKwFunction{FQPTAS}{QPTAS}
+\SetKwFunction{FRankingBasedDT}{RankingBasedDT}
+\SetKwFunction{FDP}{DP}
+\SetKwFunction{FDPOneChild}{DPOneChild}
+\SetKwFunction{FDPNoChildren}{DPNoChildren}
+\SetKwFunction{FDPManyChildren}{DPManyChildren}
+\SetKwFunction{FApproxDT}{ApproxDT}
+
+
+\makeatletter
+
+%%% IMPORT PG PRESENTATION STYLE %%%
+\include{pgbeamer/pgbeamer}
+
+
+
+%%% YOUR OPTIONS HERE %%%
+
+\title[PG Presentation]{Experimental analysis of binary search models in graphs}
+\subtitle{\textbf{Supervised by:} prof. dr. hab. inż. Dariusz Dereniowski}
+\author{Michał Szyfelbein}
+
+\date{\today}
+
+\setbeamercovered{transparent}
+%%% DOCUMENT BEGINS HERE %%%
+
+\begin{document}
+
+
+\usetikzlibrary {graphs,graphdrawing} 
+\usegdlibrary {trees, layered, force}
+
+%%% PG TITLE PAGE %%%
+\pgtitleframe
+
+%%% YOUR PRESENTATION HERE %%%
+
+\input{chapters/introduction.tex}
+\input{chapters/results.tex}
+
+%%% DOCUMENT ENDS HERE. Good bye! :) %%%
+
+\end{document}
+

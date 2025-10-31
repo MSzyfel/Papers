@@ -1,0 +1,96 @@
+\subsection{An $O\br{n^2}$ algorithm for $P||V, w||\sum C_i$.}
+\begin{theorem}
+    There exists an $O\br{n^2}$ algorithm for $P||V, w||\sum C_i$
+    \begin{proof}
+        
+The idea behind the speed-up described below is due to Knuth \cite{Knuth1973} and \cite{EffDPusingQI}. For every $i\leq k< j$ let $\OPT_k\br{i,j} = w\br{i,j} + \OPT\br{i, k} + \OPT\br{k, j}$ be the optimal cost of searching in $v_i,\dots,v_j$ assuming that the edge $v_kv_{k+1}$ is the root of the decision tree. We have that $\OPT\br{i,j}\leq \OPT_k\br{i,j}$. Additionally, define 
+$K\br{i,j} = \max_{i\leq k< j}\brc{k|\OPT_k\br{i,j}=\OPT\br{i,j}}$ to be the largest index such that setting $v_kv_{k+1}$ as the root of the decision tree yields the optimal solution. 
+
+Let $i \leq i' \leq j \leq j'$.
+Observe that the weight function fulfills the following inequalities:
+\begin{enumerate}
+\item Monotocity: $w\br{i',j}\leq w\br{i,j'}$
+\item The quadrangle inequality (QI):
+$
+w\br{i,j} + w\br{i',j'}\leq 
+w\br{i',j} + w\br{i,j'}
+$
+\end{enumerate}
+Using the above fact we will firstly show the following:
+\begin{lemma}
+   The $\OPT$ function satisfies the quadrangle inequality
+   \begin{proof}
+       Let $i \leq i' \leq j \leq j'$. The proof is by induction on $l=j'-i$. Assume by induction that:
+       $$\OPT\br{i,j} + \OPT\br{i',j'}\leq 
+\OPT\br{i',j} + \OPT\br{i,j'}$$
+Whenever $i=i'$ or $j=j'$ the claim follows trivially and therefore is true for $j\leq 1$ so assume otherwise. There are two cases:
+\begin{enumerate}
+   \item $i'=j$.
+   Let $k=K\br{i,j'}$. In this case the inequality reduces to $\OPT\br{i,j} + \OPT\br{j,j'}\leq \OPT\br{i,j'}$. There are two subcases:
+   \begin{enumerate}
+       \item $k\leq j$.
+       We have that:
+       \begin{align*}
+       \OPT\br{i, j} + \OPT\br{j, j'} &\leq \OPT_k\br{i, j} + \OPT\br{j, j'} 
+       \\ 
+       &= 
+       w\br{i, j} + \OPT\br{i, k} + \OPT\br{k+1, j} + \OPT\br{j, j'}
+       \\ 
+       &\leq
+       w\br{i, j'} + \OPT\br{i, k} + \OPT\br{k+1, j'} 
+       \\
+       &=
+       \OPT_k\br{i, j'} \\
+       &= \OPT\br{i, j'}
+       \end{align*}
+       Where the first inequality and the first equality are due to the definition of $\OPT_k$, the second inequality is due to monotonicity of $w$ and the induction hypothesis and the last two equalities are again due to the definition of $\OPT_k$.
+        \item The case when $k\geq j$ is symmetrical.
+   \end{enumerate}
+    \item $i' < j$.
+    Let $y=K\br{i',j}$ and $z=K\br{i,j'}$. There are again two symmetric cases:
+    \begin{enumerate}
+        \item $z\leq y$. We have that:
+        \begin{align*}
+        &\OPT\br{i, j} + \OPT\br{i', j'} \\
+        &\leq \OPT_z\br{i, j} + \OPT_y\br{i', j'} \\
+        &=w\br{i, j} + w\br{i', j'} + \OPT\br{i, z} + \OPT_z\br{z+1, j} + \OPT_y\br{i', y} + \OPT_y\br{y+1, j'} \\
+        &\leq w\br{i', j} + w\br{i, j'} + \OPT\br{i, z} + \OPT_y\br{i', y} + \OPT_z\br{y+1, j} + \OPT_y\br{z+1, j'}\\
+        &= \OPT_y\br{i', j} + \OPT_z\br{i, j'} \\
+        &= \OPT\br{i', j} + \OPT\br{i, j'}
+        \end{align*}
+        Where the first inequality and the first equality are due to the definition of $\OPT_k$, the second inequality is due to QI of $w$ and the induction hypothesis at $z\leq y<j < j'$ and the last two equalities are again due to the definition of $\OPT_k$.
+        \item Also this time the other case when $k\geq j$ is symmetrical.
+    \end{enumerate}
+\end{enumerate} 
+   \end{proof}
+\end{lemma} 
+Having the above lemma we will now prove the following:
+\begin{lemma}
+   $K\br{i,j-1}\leq K\br{i,j}\leq K\br{i +1,j}$
+   \begin{proof}
+   To prove the first inequality $K\br{i,j-1}\leq K\br{i,j}$ we will show that for $i\leq k \leq k' < j$ we have that: $\OPT_{k'}\br{i, j - 1} \leq \OPT_{k}\br{i, j - 1}$ implies that $\OPT_{k'}\br{i, j} \leq \OPT_{k}\br{i, j}$. This condition suffices as whenever $k'=K\br{i, j - 1}$ this means that either $k'=k$ or $k\neq K\br{i, j}$ as choosing $v_{k'}v_{k'+1}$ as the root of the decision tree provides a solution which cannot be worse\footnote{Note that by the definition we require $K\br{i, j}$ to be maximal.}. By using QI at $k\leq k'\leq j -1< j$ we have:
+   $$
+   \OPT\br{k, j-1} + \OPT\br{k', j}\leq \OPT\br{k', j-1} + \OPT\br{k, j}
+   $$
+   By adding $w\br{i,j-1}+w\br{i,j}+\OPT\br{i, k}+\OPT\br{i, k'}$ to both sides we obtain:
+   $$
+   \OPT_k\br{i, j-1} + \OPT_{k'}\br{i, j-1} \leq \OPT_{k'}\br{i, j-1} + \OPT_{k}\br{i, j-1}
+   $$
+   Which implies the claim. 
+   The second inequality $K\br{i,j}\leq K\br{i +1,j}$ follows similarly from the QI at $i < i+1 \leq k \leq k' $.
+   \end{proof}
+\end{lemma}
+ 
+The above lemma allows us to the amount of computation required. The idea is as follows: Before calculating $\OPT\br{i,j}$ we firstly calculate the values of $\OPT\br{i -1,j}$ and $\OPT\br{i,j + 1}$. In doing so we also calculate the indices $K\br{i,j-1}$ and $K\br{i +1,j}$ required to narrow the space of possible choices for value of $K\br{i,j}$. We obtain the following recurrence relationship:
+$$
+\OPT_{sum}\br{i,j} = \min_{K\br{i,j-1}\leq k\leq K\br{i +1,j}}\brc{w\br{i,j}+\OPT_{sum}\br{i, k}+ \OPT_{sum}\br{k+1, j}}
+$$
+It remains to show that the running time can be bounded by $O\br{n^2}$. The amount of computation steps required by the algorithm is equal to:
+\begin{align*}
+\sum_{i=1}^n\sum_{j=i+1}^n\br{K\br{i + 1, j} - K\br{i,j - 1}} &= \sum_{i=1}^n\sum_{j=i}^n\br{K\br{i + 1,j+1} - K\br{i,j}}
+\\
+&=\sum_{i=1}^n\br{K\br{i + 1,n}-K\br{1,i}} = O\br{n^2}
+\end{align*}
+Where the second equality is due to the fact that all of the terms except $K\br{i + 1,n}$ and $K\br{1,i}$ cancel, and the last equality is trivially due to the fact that $K\br{i + 1,n} < n$. This proves the claim.
+    \end{proof}
+\end{theorem}

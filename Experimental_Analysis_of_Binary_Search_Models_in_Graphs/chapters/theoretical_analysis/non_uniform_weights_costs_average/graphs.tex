@@ -1,0 +1,90 @@
+\subsection{An $O\br{\sqrt{\log n}}$-approximation for $G||V,c,w||\sum C_j$}\label{serachingInGs}
+To construct decision trees for general graphs, we exploit a connection to a different problem, 
+namely the Min-Ratio Vertex Cut Problem. 
+Let $\alpha_{c,w}\br{G}$ denote the optimal value of such a vertex cut. 
+We invoke the following result given in \cite{Improvedapproximationalgorithmsvertexseparators}:
+
+\begin{theorem}\label{approxmrvc}
+    Given a graph $G=\br{V\br{G}, E\br{G}}$, the cost function $c:V\to\mathbb{N}$ and the weight function $w:V\to \mathbb{N}$, there exists a
+polynomial-time algorithm, which computes a partition $(A, S, B)$, such that:
+$$
+\alpha_{c,w}\br{A,S,B}=O\br{\sqrt{\log n
+}}\cdot\alpha_{c,w}\br{G}.
+$$
+\end{theorem}
+
+Combining the latter procedure, with the following result, yields an $O\br{\sqrt{\log n
+}}$-approximation algorithm for the $G||V,c,w||\sum C_i$:
+\begin{theorem}
+    Let $f_n$ be the approximation ratio of any polynomial time algorithm for the Min-Ratio Vertex Cut Problem. Then, there exists an $O\br{f_n}$-approximation algorithm for the GSP, running in polynomial time.
+    \begin{proof}
+        Let $\FAlgorithmMinCut$ be the procedure which achieves the $f_n$-approximation ratio for the Min-Ratio Vertex Cut Problem.
+        The algorithm is as follows:
+        \input{pseudocodes/average_case_graphs.tex}
+        
+        Let $\mathcal{G}$ be any subgraph of $G$, for which the procedure was called and let $S_{\mathcal{G}}^*=S_{\fl{w\br{\mathcal{G}}/2}}^*\cap \mathcal{G}$.
+        \begin{lemma}\label{lambda_lemma}
+            Let $\mathcal{H}=\mathcal{G}-S_{\mathcal{G}}^*$ and let $\lambda=6+2\sqrt{5}$ be the unique, positive solution of the equation $\frac{1}{4}-\frac{1}{2\sqrt{\lambda}}=\frac{1}{\lambda}$. Then, we can partition $\mathcal{H}$ into two sets, $\mathcal{A}$ and $\mathcal{B}$ such that for $A=\bigcup_{H\in\mathcal{A}}V\br{H}$ and $B=\bigcup_{H\in\mathcal{B}}V\br{H}$, we have:
+            $$w\br{A\cup S_{\mathcal{G}}^*}\cdot w\br{B\cup S_{\mathcal{G}}^*}\geq w\br{\mathcal{G}}^2/\lambda.$$
+            
+            \begin{proof}
+                There are two cases:
+                \begin{enumerate}
+                    \item $w\br{ S_{\mathcal{G}}^*}\geq w\br{\mathcal{G}}/\sqrt{\lambda}$. In this case we take arbitrary partition $\mathcal{A}, \mathcal{B}$ of $\mathcal{H}$. We have:
+                    $$w\br{A\cup S_{\mathcal{G}}^*}\cdot w\br{B\cup S_{\mathcal{G}}^*}\geq w\br{ S_{\mathcal{G}}^*}^2 \geq w\br{\mathcal{G}}^2/\lambda.$$
+                \item $w\br{ S_{\mathcal{G}}^*} \leq w\br{\mathcal{G}}/\sqrt{\lambda}$.
+                For any choice of the partition $\mathcal{A},\mathcal{B}$ of $\mathcal{H}$, we have $\frac{w\br{A\cup B}}{w\br{\mathcal{G}}}\geq 1-\frac{1}{\sqrt{\lambda}}$. We pick $\mathcal{A},\mathcal{B}$ to be a partition of $\mathcal{H}$, such that $w\br{A}\geq w\br{B}\geq \br{\frac{1}{2}-\frac{1}{\sqrt{\lambda}}}\cdot w\br{\mathcal{G}}$ (this is always possible as $\frac{1}{2}-\frac{1}{\sqrt{\lambda}}>0$ and for each $H\in\mathcal{H}$, $w\br{H}\leq w\br{\mathcal{G}}/2$). We have:
+                \begin{align*}
+                w\br{A\cup S_{\mathcal{G}}^*}\cdot w\br{B\cup S_{\mathcal{G}}^*}&\geq w\br{A}\cdot w\br{B} \\&\geq \br{\br{1-{1}/{\sqrt{\lambda}}}\cdot w\br{\mathcal{G}}-w\br{B}}\cdot w\br{B}\\&\geq  {w\br{\mathcal{G}}^2}/{2}\cdot \br{{1}/{2}-{1}/{\sqrt{\lambda}}} = {w\br{\mathcal{G}}^2}/{\lambda}    
+                \end{align*}
+                
+                
+                where the third inequality is by using the fact that the concave function $f\br{w\br{B}}=w\br{B}\cdot\br{\br{1-\frac{1}{\sqrt{\lambda}}}\cdot w\br{\mathcal{G}}-w\br{B}}$ reaches its minimum in the interval $\left[\br{\frac{1}{2}-\frac{1}{\sqrt{\lambda}}}\cdot w\br{\mathcal{G}},w\br{\mathcal{G}}/2\right]$ when $w\br{B}=\br{\frac{1}{2}-\frac{1}{\sqrt{\lambda}}}\cdot w\br{\mathcal{G}}$.
+                \end{enumerate}
+            \end{proof}
+        \end{lemma}
+
+        % \begin{remark}
+        %     Note that one can improve the value of the above constant to roughly $\lambda\approx 5.95$, by a more detailed analysis. The prove is deferred to the Appendix \ref{betterconst}.
+        % \end{remark}
+        
+        Using the fact, that the partition $\br{A,S_{\mathcal{G}}^*,B}$ in the above lemma is a vertex cut of $\mathcal{G}$, we have the following upper bound on the optimal value of the min-ratio-vertex cut of $\mathcal{G}$,  $\alpha_{c,w}\br{\mathcal{G}}$:
+                $$\alpha_{c,w}\br{\mathcal{G}}\leq \alpha_{c,w}\br{A,S_{\mathcal{G}}^*,B}=\frac{c\br{S_{\mathcal{G}}^*}}{w\br{A\cup S_{\mathcal{G}}^*}\cdot w\br{B\cup S_{\mathcal{G}}^*}}\leq \frac{\lambda\cdot c\br{S_{\mathcal{G}}^*}}{w\br{\mathcal{G}}^2}.
+                $$
+                
+        Let $\br{A_{\mathcal{G}},S_{\mathcal{G}}, B_{\mathcal{G}}}$, be the partition returned by $\FAlgorithmMinCut \br{\mathcal{G},c,w}$. Without the loss of generality assume that $w\br{A_{\mathcal{G}}}\geq w\br{B_{\mathcal{G}}}$. Using Theorem \ref{approxmrvc}, we get that:
+        $$
+        \alpha_{c,w}\br{A_{\mathcal{G}},S_{\mathcal{G}}, B_{\mathcal{G}}}=\frac{c\br{S_{\mathcal{G}}}}{w\br{A_{\mathcal{G}}\cup S_{\mathcal{G}}}\cdot w\br{B_{\mathcal{G}}\cup S_{\mathcal{G}}}}\leq f_n \cdot \frac{\lambda\cdot c\br{S_{\mathcal{G}}^*}} {w\br{\mathcal{G}}^2}.
+        $$
+        
+        Let $\beta=w\br{B_{\mathcal{G}}\cup S_{\mathcal{G}}}/w\br{\mathcal{G}}$. We have that $\br{1-\beta}\cdot w\br{\mathcal{G}} = w\br{A_\mathcal{G}}$, so we conclude that the contribution of the decision tree $D_{\mathcal{G}}$ is bounded by:
+        \begin{align*}
+        w\br{\mathcal{G}}\cdot c\br{S_{\mathcal{G}}} &\leq \lambda \cdot f_n\cdot \frac{w\br{A_{\mathcal{G}}\cup S_{\mathcal{G}}}\cdot w\br{B_{\mathcal{G}}\cup S_{\mathcal{G}}}}{w\br{\mathcal{G}}}\cdot c\br{S_{\mathcal{G}}^*}\\
+        & \leq 
+        \lambda \cdot f_n\cdot w\br{B_{\mathcal{G}}\cup S_{\mathcal{G}}}\cdot c\br{S_{\mathcal{G}}^*} \leq 
+        \lambda \cdot f_n\cdot \sum_{k=w\br{A_{\mathcal{G}}}+1}^{w\br{\mathcal{G}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{G}}
+        \end{align*}
+
+        where the last inequality is by Lemma \ref{splitting}.
+
+        As before, to bound the cost of the whole solution we will firstly show the following lemma. The argument is mostly the same as for the Lemma \ref{up_trees}, however, there are few differences and we include it for completeness:
+            \begin{lemma}\label{up_graphs}
+            $$\sum_{\mathcal{G}}\sum_{k=w\br{A_{\mathcal{G}}}+1}^{w\br{\mathcal{G}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{G}}\leq \sum_{k=0}^{w\br{G}}c\br{S_{\fl{k/2}}^*}.$$
+            \begin{proof}
+                Fix a value of $\mathcal{G}$ and $k$. Their contribution to the cost is $c\br{S_{\fl{k/2}}^*\cap \mathcal{G}}$. Consider which candidate subgraphs contribute such a term. By definition of $S_{\mathcal{G}}$, we have that $\mathcal{G}$ is the minimal subgraph, such that $w\br{\mathcal{G}}\geq k\geq w\br{A_{\mathcal{G}}}+1 >w\br{H}$, for every $H\in \mathcal{G}-S_{\mathcal{G}}$. This means that if for every $H\in \mathcal{G}-S_{\mathcal{G}}$, $w\br{H}<k$, then $\mathcal{G}$ contributes such a term. Since for all $H_1, H_2\in \mathcal{G}-S_{\mathcal{G}}$, $H_1\cap H_2=\emptyset$, we have that $\br{S_{\fl{k/2}}^*\cap H_1}\cup \br{S_{\fl{k/2}}^*\cap H_2}=\emptyset$, the claim follows by summing over all values of $k$.
+            \end{proof}
+            \end{lemma}
+            
+        We are now ready to bound the cost of the solution. Let $D$ be the decision tree returned by the procedure. We have:
+        \begin{align*}
+            $\COST_{D}\br{G}&\leq \sum_{\mathcal{G}}w\br{\mathcal{G}}\cdot c\br{S_{\mathcal{G}}}\\
+            &\leq \lambda \cdot f_n\cdot \sum_{\mathcal{G}}\sum_{k=w\br{A_{\mathcal{G}}}+1}^{w\br{\mathcal{G}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{G}}\leq 
+            \lambda \cdot f_n\cdot\sum_{k=0}^{w\br{G}}c\br{S_{\fl{k/2}}^*} \\
+            &\leq 2\cdot \lambda \cdot f_n\cdot \OPT\br{G} = \br{12+4\sqrt{5}}\cdot f_n \cdot \OPT\br{G}
+        \end{align*}
+        
+    where the third inequality is due to Lemma \ref{up_graphs} and the last inequality is by Lemma \ref{lb_opt}.
+    \end{proof}
+
+\end{theorem}
+    

@@ -1,0 +1,55 @@
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \tikz [tree layout, grow=-65,
+               sibling distance=11mm, level distance=13mm, scale = 0.6, thick]
+          \graph {
+    ""[as=$a$] -- {
+        ""[as=$b$, draw=red, thick, circle] -- ""[as=$c$] -- {
+            ""[as=$d$] -- ""[as=$e$],
+            ""[as=$f$] -- { ""[as=$g$], ""[as=$h$], ""[as=$i$] }
+        },
+        ""[as=$j$] -- ""[as=$k$] -- { ""[as=$l$], ""[as=$m$] }
+    }
+};
+    \caption{Query to $b$.}
+    \end{minipage}
+    \pause
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \tikz [tree layout, grow=-65,
+               sibling distance=11mm, level distance=13mm, scale = 0.6, thick]
+          \graph {
+        ""[as=$c$] -- {
+            ""[as=$d$] -- ""[as=$e$],
+            ""[as=$f$, draw=red, thick, circle] -- { ""[as=$g$], ""[as=$h$], ""[as=$i$]
+        }
+    }
+};
+    \caption{Query to $f$.}
+    \end{minipage}
+    
+    \pause
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \tikz [tree layout, grow=-65,
+               sibling distance=11mm, level distance=13mm, scale = 0.6, thick]
+          \graph {
+        ""[as=$c$] -- {
+            ""[as=$d$, draw=red, thick, circle] -- ""[as=$e$]
+        }
+};
+    \caption{Query to $d$.}
+    \end{minipage}
+    \pause
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \tikz [tree layout, grow=-65,
+               sibling distance=11mm, level distance=13mm, scale = 0.6, thick]
+          \graph {
+        ""[as=$c$, draw=red, thick, circle]
+};
+    \caption{Query to $c$.}
+    \end{minipage}
+\end{figure}

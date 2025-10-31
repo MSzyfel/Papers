@@ -1,0 +1,6 @@
+\newpage
+\section{Average case, non-uniform weights}
+The problem of average case searching is also solvable in polynomial time assuming all of the weight are uniform. However the procedure is the same as for the weighted case and only the running time differ. Hence we combine these results in one section. Note that it is yet unknown whether the same holds for the weighted version of the problem and the fastest known algorithm runs in pseudopolynomial time. Using this one may also obtain a FPTAS using a standard rounding trick. Before that, however we show that a simple greedy heuristics achieves a 2-approximation for $T|V,w|\sum C_j$.
+\input{chapters/theoretical_analysis/trees_average_case_non_uniform_weights/greedy.tex}
+\input{chapters/theoretical_analysis/trees_average_case_non_uniform_weights/ptas.tex}
+\input{chapters/theoretical_analysis/trees_average_case_non_uniform_weights/fptas.tex}

@@ -1,0 +1,20 @@
+
+\begin{algorithm}
+\caption{The \FMergeDTs procedure.}\label{mergeDTspseudocode}
+\SetKwProg{Fn}{Procedure}{:}{}
+\Fn{$\FMergeDTs\br{T, D_A, F_C}$}{
+    \If{$F_C$ is connected}{
+        $r\gets r\br{F_C}$.
+    }
+    \Else{
+        $r\gets r\br{D_A}$.
+    }
+    $D\gets \br{\brc{r}, \emptyset}$.
+    \ForEach{$T'\in T-r$}{
+        $D'\gets \FMergeDTs\br{T, D_A|T', F_C|T'}$.
+
+        Hang $D'$ below $r$ in $D$.
+    }
+    \Return $D$.
+}
+\end{algorithm}

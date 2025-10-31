@@ -1,0 +1,66 @@
+\subsection{FPTAS for $T||V,w||\sum C_j$}
+As it turns out one may employ a different dynamic programming technqieu to obtain an FPTAS for $T|V,w|\sum C_j$. To do so, we firstly design a pseudopolynomial time procedure which then combine with a standard rounding scheme. To do so, we begin with the following bound due to \cite{Fast_app_centroid_trees} (we managed to simplify the proof a bit):
+\begin{theorem}
+    Let $D^*$ be the optimal decision tree for $T|V,w|\sum C_j$. Then we have:
+    $$\COST_{max, D^*}\br{T}\leq \cl{\log_{3/2}w\br{T}}$$
+    \begin{proof}
+        For the sake of the argument we define the following operation. Let $D$ be a decision tree for some tree $T$ and $v\in V\br{T}$. We define $D_v$ to be a decision tree such that $r\br{D}=v$. Additionally, for each $H\in T-v$ we hang $D_{|H}$ below $v$ in $D$. This operation is called a \textit{lifting} of a vertex. Let $x,v\in V\br{T}$ and $H_x\in T-v$ such that $x\in H_x$ if $x\neq v$. We have:
+        $$
+        Q_{D^v}\br{x}=\begin{cases}
+            \brc{v} \text{if } x=v\\
+            \brc{v}\cap \br{Q_{D}\br{x}\cup V\br{H}} \text{otherwise }
+        \end{cases}
+        $$
+        We will show that after each query the size of the candidate subset decreases by a factor of $2/3$. To do so, assume contrary. Let $D$ be a minimum height decision tree for which this is not the case. By doing so we can assume that $r=r\br{D}$ has a child $c$ such that $w\br{D_y}> \frac{2w\br{T}}{3}$. Let $H_r$ denote the set of vertices not in the same component of $T-r$ as $c$ and $H_c$ denote the set of vertices not in the same component of $T-c$ as $r$. We also define $H_{r, c}=V\br{T}-H_r-H_c$. By the assumption $w\br{H_c\cup H_{r, c}}>\frac{2w\br{T}}{3}$ and $w\br{H_r}<\frac{w\br{T}}{3}$. There are two cases:
+        \begin{enumerate}
+            \item $w\br{H_c}>\frac{w\br{T}}{3}$. In such case we augment $D$ by lifting $c$. The query sequences of vertices in $H_c$ decrease by one query, the
+query sequences of vertices in $H_r$ increase by one and query sequences of vertices in $H_{r,c}$ remain unchanged. We have:
+$$
+\COST_{avg, D^v}\br{T}-\COST_{avg, D}\br{T}=w\br{H_r}-w\br{H_c}< 0
+$$
+thus, a contradiction.
+\item $w\br{H_c}\leq \frac{w\br{T}}{3}$. We have that $w\br{H_{r, c}}$ and additionally $H_{r, c}\neq\emptyset$. Let $s\in P\br{r, c}$. In such case we augment $D$ by lifting $s$. The query sequences of vertices in
+$H_{c}$ remain  unchanged, since these vertices gain $t$ and lose $r$ as ancestors. The query sequences of vertices in $H_{r,c}$ are
+decreased by at least one query, since each loses at least one ancestor from ${c, r}$. The query sequences of
+vertices in $H_r$ increase by one, since each of these vertices gains $t$ as ancestor. We have:
+$$
+\COST_{avg, D^v}\br{T}-\COST_{avg, D}\br{T}=w\br{H_r}-w\br{H_{r,c}}< 0
+$$
+again, a contradiction.
+        \end{enumerate}
+As after each query to size of the candidate subset shrinks by the ratio of $2/3$, the claim follows.
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}
+Fix $0<\epsilon\leq n$. There exists a $\br{1+\epsilon}$-approximation algorithm for $T||V,w||\sum C_i$ running in $O\br{n\cdot \br{n/\epsilon}^{2\cdot\log_{3/2}\br{2}}\cdot\log\br{n/\epsilon}}$ time. 
+\begin{proof}
+    
+To obtain the FPTAS we combine this bound with a standard rounding trick and the Algorithm \ref{dp_timelines}. The algorithm \ref{fptas} is as follows: Fix $\epsilon>0$ and let $K=\frac{\epsilon\cdot w\br{T}}{n^2}$. For every $v\in V\br{T}$ we define $w'\br{v}=\cl{\frac{w(v)}{K}}$. We set $h = \cl{\log_{3/2}w'\br{T}}$ and initialize $P\angl{p_1,\dots,p_h}$, such that for every $1\leq k\leq h$, $p_h= \textit{unassigned}$. We then call $\FDPTimelines\br{T, w', P, h}
+$ and return the resulting decision tree $D'$.
+\input{pseudocodes/fptas.tex}
+\begin{lemma}
+    $$
+    \COST_{D'}\br{T, w}\leq \br{1+\epsilon}\cdot \OPT\br{T,w}
+    $$
+    \begin{proof}
+        By definition, for every $v\in V\br{T}$, we have $w'\br{v}\leq \frac{w\br{v}}{K}+1$ and therefore $K\cdot w'\br{v}\leq w\br{v}+K$. Let $D^*$ be the optimal solotion for the $\br{T,w}$ instance. We have:
+        \begin{align*}
+        \COST_{D'}\br{T, w}&\leq K\cdot \COST_{D'}\br{T, w'}\leq K\cdot \COST_{D^*}\br{T, w'}
+        \\&\leq
+        \COST_{D^*}\br{T, w}+K\cdot\sum_{v\in V\br{T}}\spr{Q_{D^*}\br{T,v}}
+        \\
+        &\leq 
+        \COST_{D^*}\br{T, w} + K\cdot n^2 = \COST_{D^*}\br{T, w} +\epsilon\cdot w\br{T} \\&\leq
+        \COST_{D^*}\br{T, w}+\epsilon\cdot \COST_{D^*}\br{T, w} = \br{1+\epsilon}\cdot\OPT_{D^*}\br{T, w}
+        \end{align*}
+
+        where the first inequality is by definition of $w'$, the second inequality is by the optimality of $D'$ in $\br{T,w'}$, the fourth inequality is using the fact that $\sum_{v\in V\br{T}}\spr{Q_{D^*}\br{T,v}}$ is trivially upper bounded by $n^2$, the first equality is by definition of $K$, the last inequality is using the fact that $\COST_{D^*}\br{T, w}$ is trivially lower bounded by $w\br{T}$ and the last equality is by the optimality of $D^*$ in $\br{T,w}$. The claim follows.
+    \end{proof}
+\end{lemma}
+
+    We have that $w'\br{T}=\sum_{v\in V\br{T}}\frac{w\br{v}}{K}\leq n^2/\epsilon+n=O\br{n^2/\epsilon}$.
+    Hence, the running time of the procedure is bounded by $O\br{n\cdot 2^{2h}\cdot h}=O\br{n\cdot w'\br{T}^{\log_{3/2}\br{2}}\cdot \log w'\br{T}}=O\br{n\cdot \br{n/\epsilon}^{2\cdot\log_{3/2}\br{2}}\cdot\log\br{n/\epsilon}}$ and the claim follows.
+\end{proof}
+\end{theorem}
+
