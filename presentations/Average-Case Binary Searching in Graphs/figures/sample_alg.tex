@@ -1,0 +1,101 @@
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.27\textwidth}
+        \centering
+        \scriptsize
+        \begin{tabular}{|c|c|c|}
+\hline
+ & $w\br{v}$ & $c\br{v}$\\
+\hline
+$a$ & 2 & 3\\
+\hline
+$b$ & 1 & 4\\
+\hline
+$c$ & 3 & 6\\
+\hline
+$d$ & 2 & 2\\
+\hline
+$e$ & 4 & 1\\
+\hline
+$f$ & 0 & 3\\
+\hline
+$g$ & 1 & 1\\
+\hline
+$h$ & 4 & 3\\
+\hline
+$i$ & 2 & 3\\
+\hline
+$j$ & 5 & 2\\
+\hline
+$k$ & 1 & 2\\
+\hline
+$l$ & 2 & 3\\
+\hline
+$m$ & 3 & 4\\
+\hline
+\end{tabular}
+    \end{minipage}
+    \begin{minipage}{0.44\textwidth}  
+    \begin{figure}[htbp]
+    \centering
+    
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \tikz [tree layout, grow=-65,
+               sibling distance=11mm, level distance=13mm, scale = 0.5]
+          \graph {
+    ""[as=$a$, draw=red, circle] -- {
+        ""[as=$b$] -- ""[as=$c$] -- {
+            ""[as=$d$] -- ""[as=$e$, draw=red, circle],
+            ""[as=$f$] -- { ""[as=$g$], ""[as=$h$], ""[as=$i$] }
+        },
+        ""[as=$j$] -- ""[as=$k$] -- { ""[as=$l$], ""[as=$m$] }
+    }
+};
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \tikz [tree layout, grow=-65,
+               sibling distance=11mm, level distance=13mm, scale = 0.5]
+          \graph {
+        ""[as=$j$] -- ""[as=$k$, draw=green, circle] -- { ""[as=$l$], ""[as=$m$] }
+};
+    \end{minipage}
+
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \tikz [tree layout, grow=-65,
+               sibling distance=11mm, level distance=13mm, scale = 0.5]
+          \graph {
+    
+        ""[as=$b$] -- ""[as=$c$] -- {
+            ""[as=$d$],
+            ""[as=$f$, draw=blue, circle] -- { ""[as=$g$], ""[as=$h$], ""[as=$i$] }
+        },
+};
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \tikz [tree layout, grow=-65,
+               sibling distance=11mm, level distance=13mm, scale = 0.5]
+          \graph {
+    
+        ""[as=$b$] -- ""[as=$c$, draw=orange, circle] -- {
+            ""[as=$d$]
+        },
+};
+    \end{minipage}
+    \end{figure}
+    \end{minipage}
+    \begin{minipage}{0.25\textwidth}
+        \centering
+        \tikz [tree layout, grow=-90,
+               sibling distance=8mm, level distance=14mm, scale = 0.8]
+          \graph {
+            ""[as=$a$, text = red] -> {""[as=$k$, text = green] -> { ""[as=$j$],  ""[as=$l$],  ""[as=$m$]}, ""[as=$e$, text = red] -> {  ""[as=$f$, text = blue] -> {""[as=$c$, text = orange] -> {""[as=$b$], ""[as=$d$]}, ""[as=$g$], ""[as=$h$], ""[as=$i$]}}}
+            
+          };
+    \end{minipage}
+    \caption{Example solution of cost $259$ built by \FDecisionTree.}
+\end{figure}

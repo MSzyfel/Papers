@@ -1,0 +1,27 @@
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \tikz [tree layout, grow=-65,
+               sibling distance=11mm, level distance=13mm, scale = 0.9, thick]
+          \graph {
+    ""[as=$a$] -- {
+        ""[as=$b$] -- ""[as=$c$, draw=red, circle, thick] -- {
+            ""[as=$d$] -- ""[as=$e$],
+            ""[as=$f$] -- { ""[as=$g$], ""[as=$h$, draw=red, circle, thick], ""[as=$i$] }
+        },
+        ""[as=$j$, draw=red, circle, thick] -- ""[as=$k$] -- { ""[as=$l$], ""[as=$m$] }
+    }
+};
+    \end{minipage}
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \tikz [tree layout, grow=-90,
+               sibling distance=12mm, level distance=14mm, scale = 0.9, thick]
+          \graph {
+            ""[as=$c$, draw=red, circle, thick] -> { ""[as=$j$, draw=red, circle, thick] -> { ""[as=$a$] -> ""[as=$b$],  ""[as=$l$] -> {""[as=$k$] -> ""[as=$m$]}}, ""[as=$h$, draw=red, circle, thick] -> {""[as=$f$] -> {""[as=$g$], ""[as=$i$]}},  ""[as=$d$] -> ""[as=$e$]}
+          };
+    \end{minipage}
+        \caption[Tree and decision trees for it]{A $13/3$-separator induced by the subtree of the decision tree consisting of circled vertices.}\label{fig:sample_decision_trees_for_tree}
+\end{figure}

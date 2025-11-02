@@ -1,0 +1,54 @@
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.65\textwidth}
+        \centering
+        \tikz [tree layout, grow=-65,
+               sibling distance=11mm, level distance=13mm, scale = 0.9, thick]
+          \graph {
+    ""[as=$a$, draw=red, circle, thick] -- {
+        ""[as=$b$] -- ""[as=$c$] -- {
+            ""[as=$d$, draw=red, circle, thick] -- ""[as=$e$],
+            ""[as=$f$] -- { ""[as=$g$, draw=red, circle, thick], ""[as=$h$], ""[as=$i$] }
+        },
+        ""[as=$j$, draw=red, circle, thick] -- ""[as=$k$] -- { ""[as=$l$], ""[as=$m$] }
+    }
+};
+    \end{minipage}
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \footnotesize
+        \begin{tabular}{|c|c|c|}
+\hline
+ & $w\br{v}$ & $c\br{v}$\\
+\hline
+$a$ & 2 & 3\\
+\hline
+$b$ & 1 & 4\\
+\hline
+$c$ & 3 & 6\\
+\hline
+$d$ & 2 & 2\\
+\hline
+$e$ & 4 & 1\\
+\hline
+$f$ & 0 & 3\\
+\hline
+$g$ & 1 & 1\\
+\hline
+$h$ & 4 & 3\\
+\hline
+$i$ & 2 & 3\\
+\hline
+$j$ & 5 & 2\\
+\hline
+$k$ & 1 & 2\\
+\hline
+$l$ & 2 & 3\\
+\hline
+$m$ & 3 & 4\\
+\hline
+\end{tabular}
+    \end{minipage}
+        \caption[Tree and decision trees for it]{Sample input tree $T$ and a weighted $3$-separator (the circled vertices) of cost $8$.}
+\end{figure}
