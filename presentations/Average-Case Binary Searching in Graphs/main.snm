@@ -3,6 +3,10 @@
 \beamer@slide {fig:dt_g_v}{9}
 \beamer@slide {fig:graph}{15}
 \beamer@slide {fig:dt_g_v}{15}
-\beamer@slide {contributionLemma}{37}
-\beamer@slide {fig:placeholder}{46}
-\beamer@slide {approxmrvc}{54}
+\beamer@slide {contributionLemma}{47}
+\beamer@slide {lb_opt}{50}
+\beamer@slide {splitting}{50}
+\beamer@slide {fig:placeholder}{55}
+\beamer@slide {up_trees}{60}
+\beamer@slide {approxmrvc}{64}
+\beamer@slide {lambda_lemma}{68}

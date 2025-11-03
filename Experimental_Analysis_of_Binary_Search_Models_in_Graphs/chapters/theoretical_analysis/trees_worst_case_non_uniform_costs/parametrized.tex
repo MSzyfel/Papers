@@ -11,7 +11,11 @@ $$
 \mathcal{H}_{T,c}\br{t}=\brc{H\subseteq V\br{T}\mid H \text{ is a heavy module w.r.t. } t},
 $$
 
-Let $k\br{T,c, t} = \spr{\mathcal{H}_{T,c}\br{t}}$ be the size of the heavy module set, and finally let $k\br{T,c}= \max_{s\in\mathbb{R}_{\geq 0}}\brc{k\br{T,c, t}}$. We say that a function $c$ is $k$\textit{-up-modular} in $T$ when $k\geq k\br{T,c}$. Whenever clear from the context, we will use $k\br{T,c}$, $k\br{T}$, or $k$ to denote the lowest value such that $c$ is $k$-up-modular in $T$. To illustrate the notion of $k$-up-modularity, see Figure \ref{kUpModularityExample}.
+Let $k\br{T,c, t} = \spr{\mathcal{H}_{T,c}\br{t}}$ be the size of the heavy module set, and finally let:
+$$
+k\br{T,c}= \max_{t\in\mathbb{R}_{\geq 0}}\brc{k\br{T,c, t}}
+$$ 
+We say that a function $c$ is $k$\textit{-up-modular} in $T$ when $k\geq k\br{T,c}$. Whenever clear from the context, we will use $k\br{T,c}$, $k\br{T}$, or $k$ to denote the lowest value such that $c$ is $k$-up-modular in $T$. To illustrate the notion of $k$-up-modularity, see Figure \ref{kUpModularityExample}.
 
 The concept of $k$-up-modularity is a direct generalization of the notion of up-monotonicity of the cost function introduced in \cite{dereniowski2022CFApproxAlgForBSInTsWithMonoQTimes} (as monotonicity) and in \cite{dereniowski2024SInTsMonoQTs} (as up-monotonicity). Let $z=\argmax_{v\in V\br{T}}\brc{c\br{v}}$. A function $c$ is \textit{up-monotonic} in $T$ if for every $v,u\in V\br{T}$, whenever $v$ lies on the path between $z$ and $u$, we have $c\br{v}\geq c\br{u}$. 
 
@@ -39,7 +43,7 @@ We are now ready to introduce the notions of heavy and light vertices (and queri
 \subsubsection{The main recursive procedure}\label{mainRecursiveProcedure}
 
 We are ready to present the main recursive procedure. To avoid ambiguity, let $\mathcal{T}$ be the subtree of $T$ processed at some level of the recursion. Alongside $\mathcal{T}$ and a cost function $c$, the algorithm takes as input an interval $\left(a,b\right]$, such that for every $v\in V\br{\mathcal{T}}$, $c\br{v}\leq b$ and $2a\geq b$. 
-The basic steps of the Algorithm \ref{createDecisionTree} are as follows: 
+The basic steps of Algorithm \ref{createDecisionTree} are as follows: 
 \begin{enumerate}
     \item If every vertex is heavy, return a decision tree built by calling the \FRankingBasedDT procedure for $\mathcal{T}$.
     \item Otherwise, find a set $\mathcal{Z}$, such that each connected component of $\mathcal{T}'\in \mathcal{T}-\mathcal{Z}$ contains at most one heavy module.
@@ -199,7 +203,7 @@ Let $d$ be the remaining depth of the recursion call performed in Line~\ref{recu
 $\COST_D\br{\mathcal{T}}\leq\br{4 d+2}\cdot\OPT\br{T}$.
     \begin{proof}
         
-    Let $Q_D\br{\mathcal{T},x}$ be the sequence of queries performed in order to find $x\in V\br{\mathcal{T}}$. By construction of the Algorithm \ref{createDecisionTree}, $Q_D\br{\mathcal{T},x}$ consists of at most three distinct subsequences of queries (see Figure \ref{structure_of_dt}):
+    Let $Q_D\br{\mathcal{T},x}$ be the sequence of queries performed in order to find $x\in V\br{\mathcal{T}}$. By construction of Algorithm \ref{createDecisionTree}, $Q_D\br{\mathcal{T},x}$ consists of at most three distinct subsequences of queries (see Figure \ref{structure_of_dt}):
     \begin{enumerate}
         \item Firstly, there is a sequence of queries belonging to $Q_{D_{\mathcal{Z}}}\br{\mathcal{T}_{\mathcal{Z}},x}$.
         \item If $x\notin \mathcal{Z}$, then, there is a sequence of queries belonging to $Q_{D_{H}}\br{\mathcal{T}'\angl{H},x}$ for a unique heavy group $H\subseteq V\br{\mathcal{T}'}$ of $\mathcal{T}'\in\mathcal{T}-\mathcal{Z}$, such that $x\in \mathcal{T}'$.

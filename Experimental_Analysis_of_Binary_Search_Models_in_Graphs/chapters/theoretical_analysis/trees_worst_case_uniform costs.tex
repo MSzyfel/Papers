@@ -20,12 +20,12 @@ When the input tree has uniform costs and the ranking uses the minimal number of
     There exists an $O\br{n}$ time procedure \FRankingBasedDT that finds the optimal decision tree for the Tree Search Problem when all costs are uniform. Moreover, the depth of such a decision tree, i.e., the worst-case number of queries, is at most $\fl{\log n} + 1$.
 \end{corollary}
 
-We assume that the input tree is rooted at an atribtarry vertex.
-Below we show how to calculate the optimal vertex ranking of a given tree $T$. For any vertex $v\in V\br{T}$, and any coloring $l$ we define the \textit{visibility sequence} $S\br{v}$ as following: let $l\in \mathbb{N}$. If there exists a vertex $u\in V\br{T}$, such that for every $z\in\mathcal{P}_T\br{u,v}$, $l< l\br{z}$, then $l\in S\br{v}$. We also demand that $S\br{v}$ is sorted decreasingly. If for given label $l$, $l\in S\br{v}$, we say that such label is \texit{visible} from $v$. In order to find the coloring using the minimal amount of colors, we will make use of the standard lexicographic order on visibility sequences. Notice, that for any vertex $v\in V\br{T}$, we have that $\max_{u\in V\br{T}}\brc{l\br{u}}\in S\br{v}$. Therefore, a labeling with the lexycogrophically lowest $S\br{r\br{T}}$ is also an optimal. We focus ourselves on finding such labeling. We devise the following dynamic programming procedure which calculates a labeling of $T$ with a minimal visibility sequence of $r\br{T}$.
+We assume that the input tree is rooted at an arbitrary vertex.
+Below we show how to calculate the optimal vertex ranking of a given tree $T$. For any vertex $v\in V\br{T}$, and any coloring $l$ we define the \textit{visibility sequence} $S\br{v}$ as following: If there exists a vertex $u\in V\br{T}$, such that for every $z\in\mathcal{P}_T\br{u,v}$, $l\br{u}> l\br{z}$, then $l\br{u}\in S\br{v}$. We also demand that $S\br{v}$ is sorted decreasingly. For a given label $k$, $k\in S\br{v}$, we say that $k$ is \textit{visible} from $v$. In order to find a coloring using the minimal amount of colors, we will make use of the standard lexicographic order on visibility sequences. Notice, that for any vertex $v\in V\br{T}$, we have that $\max_{u\in V\br{T}}\brc{l\br{u}}\in S\br{v}$. Therefore, a labeling with the lexicographically lowest $S\br{r\br{T}}$ is also an optimal. We focus ourselves on finding such labeling. We devise the following dynamic programming procedure which calculates a labeling of $T$ with a minimal visibility sequence of $r\br{T}$.
 \input{pseudocodes/calculate_ranking.tex}
 
 The following theorem is by \cite{OnakParys2006GenOfBSSInTsAndFLikePosets}:
 \begin{theorem}
-    Let $T$ be a tree. The Algorithm \ref{calculateRanking} can be implemented in $O\br{n}$ time and returns a correct ranking labeling such that $S\br{r\br{T}}$ islexycogrophically optimal.
+    Let $T$ be a tree. Algorithm \ref{calculateRanking} can be implemented in $O\br{n}$ time and returns a correct ranking labeling such that $S\br{r\br{T}}$ is lexicographically optimal.
 \end{theorem}
 

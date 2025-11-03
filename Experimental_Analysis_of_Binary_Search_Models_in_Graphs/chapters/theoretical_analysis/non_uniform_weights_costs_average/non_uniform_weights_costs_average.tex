@@ -1,79 +1,68 @@
 \newpage
 \section{Non-uniform weights and costs, average case}
-% Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-% \subsubsection{Unitary costs, Worst case}
-% Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-In this section we will be concerned with the following variant of the problem:
-\begin{tcolorbox}[colback=white, title=$G||V,c,w||\sum C_j$, fonttitle=\bfseries, breakable]
-\textbf{Input:} Graph $G$, a query cost function $c:V\to \mathbb{N}$ and a weight function $w:V\to \mathbb{N}$.
-
-\textbf{Output:} A decision tree $D$, minimizing the weighted average search cost: 
-$$
-c_G\br{D} = \sum_{x\in V\br{G}}w\br{x}\cdot \sum_{q\in Q\br{D, x}}c\br{q}.
-$$
-\end{tcolorbox}
-We introduce the following reinterpretation of the latter cost function, 
-for each node $v \in D$, let $G_{D,v}$ be the subgraph of $G$ in which 
+In this section we will be concerned with the $T||V,c,w||\sum C_i$ variant problem which is NP-hard, by an easy reduction from the $T||E,w||\sum C_i$ problem \cite{Jacobs2010OnTheComplexSearchInTsAvg}.
+We introduce the following reinterpretation of the cost function, 
+for each node $v \in D$, let $T_{D,v}$ be the subtree of $T$ in which 
 $v$ is queried when using $D$. 
-Then, the contribution of $v$ to the total cost is $w\br{G_{D,v}} \cdot c\br{v}$, 
+Then, the contribution of $v$ to the total cost is $w\br{T_{D,v}} \cdot c\br{v}$, 
 and therefore we obtain the following simple lemma:
 
 \begin{lemma}\label{contributionLemma}
 $$
-c_G\br{D} = \sum_{v \in V\br{G}} w\br{G_{D,v}} \cdot c\br{v}.
+c_T\br{D} = \sum_{v \in V\br{T}} w\br{T_{D,v}} \cdot c\br{v}.
 $$  
 \end{lemma}
-\subsubsection{Cuts and separators}\label{cutsAndSeparators}
+\subsection{Cuts and separators}\label{cutsAndSeparators}
 To obtain a tight lower bound on the cost of our solution, 
-we establish a connection between the $G||V,c,w||\sum C_i$ and the following 
+we establish a connection between the $T||V,c,w||\sum C_i$ and the following 
 vertex separator problems. 
 We define the \textit{Weighted $\alpha$-Separator Problem} as follows:
 
 
 \begin{tcolorbox}[colback=white, title=Weighted $\alpha$-Separator Problem, fonttitle=\bfseries, breakable]
-\textbf{Input:} Graph $G$, a cost function $c:V\to \mathbb{N}$, a weight function $w:V\to \mathbb{N}$ and a real number $\alpha$.
+\textbf{Input:} Tree $T$, a cost function $c:V\to \mathbb{N}$, a weight function $w:V\to \mathbb{N}$ and a real number $\alpha$.
 
-\textbf{Output:} A set $S\subseteq V\br{G}$ called \textit{$\alpha$-separator}, such that for every $H\in G-S$, $w\br{H}\leq w\br{G}/\alpha$ and $c\br{S}$ is minimized.
+\textbf{Output:} A set $S\subseteq V\br{T}$ called \textit{$\alpha$-separator}, such that for every $H\in T-S$, $w\br{H}\leq w\br{T}/\alpha$ and $c\br{S}$ is minimized.
 \end{tcolorbox}
-We also define the Min-Ratio Vertex Cut Problem as follows:
+% % We also define the Min-Ratio Vertex Cut Problem as follows:
 
-\begin{tcolorbox}[colback=white, title= Min-Ratio Vertex Cut Problem, fonttitle=\bfseries, breakable]
-\textbf{Input:} Graph $G=\br{V\br{G}, E\br{G}}$, the cost function $c:V\to \mathbb{N}$ and the weight function $w:V\to \mathbb{N}$.
+% % \begin{tcolorbox}[colback=white, title= Min-Ratio Vertex Cut Problem, fonttitle=\bfseries, breakable]
+% % \textbf{Input:} Graph $G=\br{V\br{G}, E\br{G}}$, the cost function $c:V\to \mathbb{N}$ and the weight function $w:V\to \mathbb{N}$.
 
-\textbf{Output:} A partition $\br{A,S,B}$ of $V\br{G}$ called \textit{vertex-cut}, such that there are no $u\in A$ and $v\in B$ for which $uv\in E\br{G}$, minimizing the ratio:
-$$
-\alpha_{c,w}\br{A,S,B}=\frac{c\br{S}}{w\br{A\cup S}\cdot w\br{B\cup S}}.
-$$
-\end{tcolorbox}
-\subsubsection{Levels of $\OPT$ and basic bounds}\label{levelsOfOptAndBasicBounds}
+% % \textbf{Output:} A partition $\br{A,S,B}$ of $V\br{G}$ called \textit{vertex-cut}, such that there are no $u\in A$ and $v\in B$ for which $uv\in E\br{G}$, minimizing the ratio:
+% % $$
+% % \alpha_{c,w}\br{A,S,B}=\frac{c\br{S}}{w\br{A\cup S}\cdot w\br{B\cup S}}.
+% % $$
+% % \end{tcolorbox}
+\subsection{Levels of $\OPT$ and basic bounds}\label{levelsOfOptAndBasicBounds}
 
 We begin with additional notation. 
-For any graph $G$ and decision tree $D$, denote by 
-$\mathcal{R}_D\br{G} = \brc{V\br{G_{D,v}} : v \in V\br{G}}$ 
-the family of all candidate subsets of $D$ in $G$. 
+For any tree $T$ and decision tree $D$, denote by 
+$\mathcal{R}_D\br{T} = \brc{V\br{T_{D,v}}\colon v \in V\br{T}}$ 
+the family of all candidate subsets of $D$ in $T$. 
 
 Let $D^*$ be an arbitrary decision tree for the $G||V,c,w||\sum C_i$ such that 
-$\COST_{D^*}\br{G} = \OPT\br{G}$. 
-We denote by $\mathcal{L}_{k}^*$ the subfamily of $\mathcal{R}_{D^*}\br{G}$ 
-consisting of all maximal elements $H$ of $\mathcal{R}_{D^*}\br{G}$ with $w\br{H} \leq k$, 
-that is, if some superset $H'$ of $H$ belongs to $\mathcal{R}_{D^*}\br{G}$, 
+$\COST_{D^*}\br{T} = \OPT\br{T}$. 
+We denote by $\mathcal{L}_{k}^*$ the subfamily of $\mathcal{R}_{D^*}\br{T}$ 
+consisting of all maximal elements $H$ of $\mathcal{R}_{D^*}\br{T}$ with $w\br{H} \leq k$, 
+that is, if some superset $H'$ of $H$ belongs to $\mathcal{R}_{D^*}\br{T}$, 
 then $w\br{H'} > k$. 
-We call such a set the $k$-th \textit{level} of $\OPT\br{G}$. 
-Let $S_{k}^* = V\br{G} - \mathcal{L}_{k}^*$. 
+We call such a set the $k$-th \textit{level} of $\OPT\br{T}$. 
+Let $S_{k}^* = V\br{T} - \mathcal{L}_{k}^*$. 
 These are the vertices belonging to the separator at level $\mathcal{L}_{k}^*$. 
 
-Notice that $S_{k}^*$ forms a Weighted $w\br{G}/k$-separator of $G$. 
-Furthermore, for any $H_1, H_2 \in \mathcal{R}_D\br{G}$, we have 
+Notice that $S_{k}^*$ forms a Weighted $w\br{T}/k$-separator of $T$. 
+Furthermore, for any $H_1, H_2 \in \mathcal{R}_D\br{T}$, we have 
 $H_1 \cup H_2 \neq \emptyset$ if and only if $H_1 \subseteq H_2$ or 
-$H_2 \subseteq H_1$, so $\mathcal{R}_D\br{G}$ is laminar. 
+$H_2 \subseteq H_1$, so $\mathcal{R}_D\br{T}$ is laminar. 
 Therefore, for any $k_1 \neq k_2$, we have 
 $\mathcal{L}_{k_1}^* \cap \mathcal{L}_{k_2}^* = \emptyset$.
 \begin{lemma}
-                $$\OPT\br{G}=\sum_{k=0}^{w\br{G}-1}c\br{S_{k}^*}.$$
+                $$\OPT\br{T}=\sum_{k=0}^{w\br{T}-1}c\br{S_{k}^*}.$$
                 
             \begin{proof}
                 Consider any vertex $v$. For every $0\leq k<w\br{G_{D^*,v}}$, $v\notin \bigcup_{H\in \mathcal{L}_{k}^*}H$, so $v\in S_{k}^*$ and the contribution of $v$ to the cost is $w\br{G_{D^*,v}}\cdot c\br{v}$:
-                $$\sum_{k=0}^{w\br{G}-1}c\br{S_{k}^*}=\sum_{v\in V\br{G}}\sum_{k=0}^{w\br{G_{D^*,v}}-1}c\br{v}=\OPT\br{G}$$
+                $$\sum_{k=0}^{w\br{T}-1}c\br{S_{k}^*}=\sum_{v\in V\br{T}}\sum_{k=0}^{w\br{G_{D^*,v}}-1}c\br{v}=\OPT\br{T}$$
                 
                 where the second equality is by Lemma \ref{contributionLemma}.
             \end{proof}
@@ -82,16 +71,16 @@ $\mathcal{L}_{k_1}^* \cap \mathcal{L}_{k_2}^* = \emptyset$.
 Using the above lemma one easily obtains the following lower bound on the cost of the optimal solution:
 \begin{lemma}\label{lb_opt}
             $$
-            2\cdot\OPT\br{G}= 2\cdot\sum_{k=0}^{w\br{T}-1}c\br{S_{k}^*} \geq \sum_{k=0}^{w\br{T}}c\br{S_{\fl{k/2}}^*}.
+            2\cdot\OPT\br{T}= 2\cdot\sum_{k=0}^{w\br{T}-1}c\br{S_{k}^*} \geq \sum_{k=0}^{w\br{T}}c\br{S_{\fl{k/2}}^*}.
             $$
 \end{lemma}
 
 We also have the following upper bound:
 \begin{lemma}\label{splitting}
-    Let $\mathcal{G}$ be any subgraph of $G$ and $0\leq\beta\leq 1$. Then: 
+    Let $\mathcal{T}$ be any subtree of $T$ and $0\leq\beta\leq 1$. Then: 
             $$
-           \beta\cdot w\br{\mathcal{G}}\cdot c\br{S_{\fl{w\br{\mathcal{G}}/2}}^*\cap \mathcal{G}}
-            \leq \sum_{k=\br{1-\beta}w\br{\mathcal{G}}+1}^{w\br{\mathcal{G}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{G}}.
+           \beta\cdot w\br{\mathcal{T}}\cdot c\br{S_{\fl{w\br{\mathcal{T}}/2}}^*\cap \mathcal{T}}
+            \leq \sum_{k=\br{1-\beta}w\br{\mathcal{T}}+1}^{w\br{\mathcal{T}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{T}}.
             $$
     \begin{proof}
         The inequality is due to the fact that as $k$ decreases, more vertices belong to the separator. 

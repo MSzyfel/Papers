@@ -1,6 +1,6 @@
 \section{The graph search problem}
 
-Below we list the definitions regarding the search problem.  Since the problem has a modular form and one can almost freely swap criteria and constraints, the number of separate variants is very large. Due to this we present a general \text{Graph Search Problem}, which we will later specify 
+Below we list the definitions regarding the search problem.  Since the problem has a modular form and one can almost freely swap criteria and constraints, the number of separate variants is very large. Due to this we will present a general \text{Graph Search Problem}. 
 
 The \textit{Graph Search Instance} consists of a pair $G=\br{V\br{G},E\br{G}}$. Among $V\br{G}$ there is a unique hidden target element $x$ which is required
 to be located. During the \textit{Search Process} the searcher is allowed to iteratively perform a \textit{query} which asks about chosen vertex (or alternatively an edge $e$). If the answer is affirmative, then $v$ is the target, otherwise a connected component $H\in G-v$ is returned such that $x\in V\br
@@ -31,7 +31,7 @@ $$
 \COST_{avg, G}\br{D, c, w} = \sum_{v\in V\br{G}}\sum_{q\in Q_D\br{G,x}}c\br{q}
 $$
 
-By a slight abuse of notation we will also sometimes use $Q_D\br{V\br{G},x}$ as the set consisting of queries in sequence $Q_D\br{V\br{G},x}$. This is done in order to not inflate the amount of symbols and will not become problematic during the analysis of the solutions.
+By a slight abuse of notation we will also sometimes use $Q_D\br{G,x}$ as the set consisting of queries in sequence $Q_D\br{G,x}$. This is done in order to not inflate the amount of symbols and will not become problematic during the analysis of the solutions.
 Whenever clear from the context, for the clarity of the analysis, we will occasionally drop any of the subscripts or arguments of the $\COST$ function.
 We are now ready to define the \textit{Graph Search Problem}:
 

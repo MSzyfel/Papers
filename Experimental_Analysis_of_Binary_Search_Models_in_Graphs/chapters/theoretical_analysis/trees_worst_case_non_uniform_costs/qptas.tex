@@ -1,7 +1,7 @@
 
 \SetKwFunction{FMergeDTs}{MergeDTs}
 \SetKwFunction{FDPTimelinesCosts}{DPTimelinesCosts}
-\subsection{QPTAS for the $T||V,c||C_{max}$ problem}
+\subsection{QPTAS for the $T||V,c||C_{max}$ problem}\label{qptasSection}
 
 The following algorithh is a simplified version of the QPTAS provided in \cite{dereniowski2017ApproxSsForGeneralBSinWTs}. The core idea of the algorithm is the same, however, our solution uses the language of decision trees instead of the language of sequence assignments, which makes the algorithm more intuitive.
 
@@ -13,7 +13,7 @@ For the rest of the analysis, without loss of the generality, we will assume tha
     \end{proof}
 \end{observation}
 \subsubsection{Rounding}
-We will use the following rounding schem which will allow us to discretise the space of possible solutions to process it efficiently. Let $p \in\mathbb{N}$, and $k=a/pn$ for some $a\in\mathbb{N}$. Define:
+We will use the following rounding scheme which will allow us to discretize the space of possible solutions in order to process it efficiently. Let $p \in\mathbb{N}$, and $k=a/pn$ for some $a\in\mathbb{N}$. Define:
 $$
 c'\br{v}=\begin{cases}
     \cl{c\br{c}}_k, & \text{if } c\br{v}>pk, \text{ in which case the vertex will be called \textit{heavy}},\\
@@ -71,8 +71,8 @@ While calculating the decision tree, we will divide the time into boxes of durat
 
 We will call a decision tree fulfilling above conditions \textit{aligned}. In subsequent considerations, we will focus ourselves of finding such decision trees, whose properties will allow us to devise an efficient dynamic programming procedure finding an optimal, aligned decision tree. 
 
-\subsubsection{Heavy module contraction, up and down responses}
-Since, our decision tree is rooted, we can reasonably talk about up and down responses to a query. An \textit{up} response to a query to $v$ in $T$ occurs when the connected component $\in T-v$, which is the reply happens to contain $r\br{T}$. If this is not the case, then such response is called a \textit{down} response. As it will turns out, a repeating occurance of light queries with down responses will become problematic for our algorithm. To account for this issue we will use the following notions:
+\subsubsection{Up and down responses, heavy module contraction, u}
+Recall the followinfg definitions. Since, our decision tree is rooted, we can reasonably talk about up and down responses to a query. An \textit{up} response to a query to $v$ in $T$ occurs when the connected component $\in T-v$, which is the reply happens to contain $r\br{T}$. If this is not the case, then such response is called a \textit{down} response. As it will turns out, a repeating occurance of light queries with down responses will become problematic for our algorithm. To account for this issue we will use the following notions:
 
 We will define a new measure of cost for aligned decision trees called the \textit{aligned cost}. Let $D$ be any aligned strategy for $\br{t,c'}$. For any  vertex $v\in V\br{T}$ and query $q\in Q_{D}\br{T,v}$ the contribution $\kappa_{T,c,k}\br{q,v}$ of $u$ is defined as:
 $$
@@ -114,8 +114,8 @@ We will now prove the Proposition \ref{QPTAS}.
 
 \input{pseudocodes/qptas.tex}
 
-The Algorithm \ref{qptas_pseudocode} starts by picking $p=\cl{\frac{59}{\epsilon}}$, $d=p^2\cdot\br{\fl{\log n}+1}$ and $k=0$ and. At each iteration of the repeat loop, the algorithm picks $k$ to be the next 
-integer multiple of $\frac{1}{pn}$ and performs the rounding operation. After that, the Proposition \label{DPTimelinesCostsProposition} is applied for $\br{T,c',p,k,d}$. If the returned decision tree $D_A\neq\emptyset$, then a new tree $T_C$ is constructed by contracting all heavy modules of $T$. By calling the \FRankingBasedDT for $T_C$, the algorithm builds a second decision tree $D_C$, and then merges it with $D_A$ by applying Proposition \label{MergeDTsProposition}. Then, the algorithm returns the resulting decision $D$.
+Algorithm \ref{qptas_pseudocode} starts by picking $p=\cl{\frac{59}{\epsilon}}$, $d=p^2\cdot\br{\fl{\log n}+1}$ and $k=0$ and. At each iteration of the repeat loop, the algorithm picks $k$ to be the next 
+integer multiple of $\frac{1}{pn}$ and performs the rounding operation. After that, the Proposition \ref{DPTimelinesCostsProposition} is applied for $\br{T,c',p,k,d}$. If the returned decision tree $D_A\neq\emptyset$, then a new tree $T_C$ is constructed by contracting all heavy modules of $T$. By calling the \FRankingBasedDT for $T_C$, the algorithm builds a second decision tree $D_C$, and then merges it with $D_A$ by applying Proposition \ref{MergeDTsProposition}. Then, the algorithm returns the resulting decision $D$.
 
 Let $k'$ be the value of $k$ for which $D$ was built. Let $k''=k-\frac{1}{pn}$ and $c''$ be the values of $k$ and $c'$ of the previous iteration of the while loop. Since we know that for $k''$ and $c''$ we had $D_A=\emptyset$, by Proposition \ref{DPTimelinesCostsProposition} we have that $k'' d \leq \OPT'\br{T,c''}$. Hence,
  $k'\leq \frac{\OPT'\br{T,c'',k'}}{d}+\frac{1}{pn}\leq\frac{2\cdot \OPT'\br{T,c'',k''}}{p^2\cdot\br{\fl{\log n}+1}}$, so we have that:
@@ -138,7 +138,7 @@ $$
 \input{pseudocodes/merge_dts.tex}
 % \input{figures/medusa.tex}
 
-The algorithm \ref{mergeDTspseudocode} takes as arguments a tree $T$, a decision tree $D_A$ and a forest of decision trees $F_C$ for $T$ with heavy groups contracted. Since $F_C$ may not be a valid partial decision tree for $T_$, it may happen that it is disconnected. This because, after performing a light query to $v$ according to $F_C$, if the response was down and $v$ has heavy child modules, the children of $v$ in $T_C$, may not be separated yet. Based on this, we derive two cases for our procedure:
+Algorithm \ref{mergeDTspseudocode} takes as arguments a tree $T$, a decision tree $D_A$ and a forest of decision trees $F_C$ for $T$ with heavy groups contracted. Since $F_C$ may not be a valid partial decision tree for $T_$, it may happen that it is disconnected. This because, after performing a light query to $v$ according to $F_C$, if the response was down and $v$ has heavy child modules, the children of $v$ in $T_C$, may not be separated yet. Based on this, we derive two cases for our procedure:
 \begin{enumerate}
     \item $F_C$ is connected. In such case we pick $r=r\br{F_C}$. 
     \item $F_C$ is disconnected. In such case we pick $r=r\br{D_A}$.
@@ -167,7 +167,7 @@ Let $D$ be the decision tree returned by the \FMergeDTs procedure. Then, $
 
 \input{figures/box_dt.tex}
 
-To devise our dynamic programming procedure, we will need the following generalization of an hierarchical decision trees. A \textit{boxed decision tree} $D=\br{V\br{D}, E\br{D}, u, l}$ for the tree $T$ is a tuple, in which $V\br{D}$ are the nodes of the decision trees, which we will call \textit{boxes}, $E\br{D}$ are edges of the decision tree, $u:V\br{T}\times V\br{D}\to \brc{0, 1/pn,2/pn,\dots,k}$ is the \textit{usage} function and $l:V\br{D}\to\brc{0, 1/pn,2/pn,\dots,k}$ is the \textit{load} function. Based on $u$, for every $b\in V\br{D}$ we will also define the \textit{query assignment} as following: $Q\br{b}=\brc{v\in V\br{T}|u\br{v,b}>0}$, these are the vertices of $T$, such that queries to them overlap with the box $b$.
+To devise our dynamic programming procedure, we will need the following generalization of hierarchical decision trees. A \textit{boxed decision tree} $D=\br{V\br{D}, E\br{D}, u, l}$ for the tree $T$ is a tuple, in which $V\br{D}$ are the nodes of the decision trees, which we will call \textit{boxes}, $E\br{D}$ are edges of the decision tree, $u:V\br{T}\times V\br{D}\to \brc{0, 1/pn,2/pn,\dots,k}$ is the \textit{usage} function and $l:V\br{D}\to\brc{0, 1/pn,2/pn,\dots,k}$ is the \textit{load} function. Based on $u$, for every $b\in V\br{D}$ we will also define the \textit{query assignment} as following: $Q\br{b}=\brc{v\in V\br{T}|u\br{v,b}>0}$, these are the vertices of $T$, such that queries to them overlap with the box $b$.
 
 The boxed decision tree is defined analogously as ordinary decision tree, however, to each query in $b\in V\br{D}$ instead of one vertex of $V\br{T}$, we assign an arbitrary subset of $V\br{T}$, via the query assignment function $Q$. Let $b\in V\br{D}$, and let $T'$ be a candidate subtree of $T$ right before any vertex in $Q\br{b}$ was queried. A box $p$ is a left child of $b$, if either $b$ corresponds to a subtree $T''\in T-Q\br{b}$ such that $r\br{T'}\in V\br{T''}$ or $Q\br{b}\cup Q\br{p}\neq \emptyset$. If otherwise, then $p$ is a right child of $b$.
 
@@ -220,7 +220,7 @@ We will also use the following operations:
         \item $\br{\tau_{1,j}\land \tau_{2,j} \iff \tau_{j}}$.
         \item$\br{\tau_{1,j}\lor \tau_{2,j}}$.
     \end{itemize} 
-    \item Aligning $D_1$ and $D_2$ by their left paths to create new decision tree $D$: 
+    \item Aligning $D_1$ and $D_2$ by their left paths to create a new decision tree $D$: 
     \begin{enumerate}
         \item $D\gets\emptyset$.
         \item \textbf{for} $1\leq j\leq \spr{B}$:

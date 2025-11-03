@@ -1,7 +1,7 @@
 \subsection{FPTAS for $T||V,w||\sum C_j$}
 As it turns out one may employ a different dynamic programming technqieu to obtain an FPTAS for $T|V,w|\sum C_j$. To do so, we firstly design a pseudopolynomial time procedure which then combine with a standard rounding scheme. To do so, we begin with the following bound due to \cite{Fast_app_centroid_trees} (we managed to simplify the proof a bit):
 \begin{theorem}
-    Let $D^*$ be the optimal decision tree for $T|V,w|\sum C_j$. Then we have:
+    Let $D^*$ be the optimal decision tree for $T||V,w||\sum C_j$. Then we have:
     $$\COST_{max, D^*}\br{T}\leq \cl{\log_{3/2}w\br{T}}$$
     \begin{proof}
         For the sake of the argument we define the following operation. Let $D$ be a decision tree for some tree $T$ and $v\in V\br{T}$. We define $D_v$ to be a decision tree such that $r\br{D}=v$. Additionally, for each $H\in T-v$ we hang $D_{|H}$ below $v$ in $D$. This operation is called a \textit{lifting} of a vertex. Let $x,v\in V\br{T}$ and $H_x\in T-v$ such that $x\in H_x$ if $x\neq v$. We have:

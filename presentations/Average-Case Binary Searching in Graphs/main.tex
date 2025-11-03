@@ -158,6 +158,7 @@ along the unique path in $D$ from the root $r\br{D}$ to $x$.
         \item Automated bug detection in computer code,
         \item Hierarchical clustering of data.
     \end{itemize}
+    \pause
     \textbf{Related to:}
     \begin{itemize}
         \item Scheduling of parallel database join operations,
@@ -165,17 +166,52 @@ along the unique path in $D$ from the root $r\br{D}$ to $x$.
         \item Parallel assembly of multi–part products from their components.
     \end{itemize}
 \end{frame}
-
 \begin{frame}{Why do we care?}
 \textbf{Why our setup?:}
 \begin{enumerate}
-    \item \textbf{Average case} – it is natural to assume that the search strategies we design are intended to be used repeatedly. 
+    \item \textbf{Average case} – it is natural to assume that the search strategies we design are intended to be used repeatedly. \pause
     \item \textbf{Weight function} – some vertices may serve 
-as targets more frequently than the others. 
+as targets more frequently than the others. \pause
     \item \textbf{Query costs} – performing a query may require 
-significant resources, such as time or money. 
-\item \textbf{Have not yet been investigated.}
+significant resources, such as time or money. \pause
+    \item \textbf{Have not yet been investigated.}
 \end{enumerate} 
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Other variants}
+Notation: \textbf{search space $||$ query model $||$ objective function:}
+    \pause
+\begin{itemize}
+    \item $T||V||\sum C_i$:
+    \begin{itemize}
+        \item $\br{1+\epsilon}$ in
+$O\br{\br{1/\epsilon}^{2/\log_23}\cdot n^{1+4/\log_23}\cdot \log^2\br{n/\epsilon}}$ time.
+    \item Every optimal decision tree has height at most $O\br{\log w\br{T}}$.
+    \item Weighted centroid decision tree is 2-approximate.
+    \end{itemize}
+    \pause
+    \item $T||V||\sum C_{max}$:
+    \begin{itemize}
+        \item Solvable in $O\br{n}$ time, $\fl{\log n}+1$ queries always suffice.
+    \end{itemize}
+    \pause
+    \item $G||V||\sum C_{max}$
+    \begin{itemize}
+        \item NP-hard, best known approximation is $O\br{\log^{3/2} n}$.
+    \end{itemize}
+    \pause
+    \item $T||V, c||\sum C_{max}$
+    \begin{itemize}
+        \item NP-hard, best known approximation is $O\br{\sqrt{\log n}}$.
+    \end{itemize}
+    \pause
+    \item $G||V, c||\sum C_{max}$
+    \begin{itemize}
+        \item Reducible to the uniform cost version.
+    \end{itemize}
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Many names}
@@ -280,26 +316,39 @@ $
 \end{lemma}
 \end{frame}
 
-\begin{frame}{Example of the connection}
-\input{figures/connection.tex}
+% \begin{frame}{Basic lemmas}
+%     \begin{lemma}
+%     $$
+%     2\cdot\OPT= 2\cdot\sum_{k=0}^{w\br{T}-1}c\br{S_{\OPT}\br{k}} \geq \sum_{k=0}^{w\br{T}}c\br{S_{\OPT}\br{\fl{k/2}}}
+%     $$
+%     \end{lemma}
+%     \begin{lemma}
+%     Let $T$ be a tree, $\mathcal{T}$ - any subtree of $T$ and $0<\beta<1$ - some constant. We have:
+%     \begin{align*}
+%     &\beta\cdot w\br{\mathcal{T}}\cdot c\br{S_{\OPT}\br{\fl{w\br{\mathcal{T}}/2}}\cap \mathcal{T}}\\
+%     &\leq \sum_{k=\br{1-\beta}w\br{\mathcal{T}}+1}^{w\br{\mathcal{T}}}c\br{S_{\OPT}\br{\fl{k/2}}\cap \mathcal{T}}  
+%     \end{align*} 
+%     \end{lemma}
+    
+% \end{frame}
+
+
+\begin{frame}{Basic lemmas}
+\begin{lemma}\label{lb_opt}
+    $$
+    2\cdot\OPT\br{G}= 2\cdot\sum_{k=0}^{w\br{G}-1}c\br{S_{k}^*} \geq \sum_{k=0}^{w\br{G}}c\br{S_{\fl{k/2}}^*}.
+    $$
+\end{lemma}
+    \pause
+\begin{lemma}\label{splitting}
+    Let $\mathcal{G}$ be any subgraph of $G$ and $0\leq\beta\leq 1$. Then: 
+            $$
+           \beta\cdot w\br{\mathcal{G}}\cdot c\br{S_{\fl{w\br{\mathcal{G}}/2}}^*\cap \mathcal{G}}
+            \leq \sum_{k=\br{1-\beta}w\br{\mathcal{G}}+1}^{w\br{\mathcal{G}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{G}}.
+            $$
+\end{lemma}
 \end{frame}
 
-
-% \begin{frame}{Basic lemmas}
-% \begin{lemma}\label{lb_opt}
-%     $$
-%     2\cdot\OPT\br{G}= 2\cdot\sum_{k=0}^{w\br{T}-1}c\br{S_{k}^*} \geq \sum_{k=0}^{w\br{T}}c\br{S_{\fl{k/2}}^*}.
-%     $$
-% \end{lemma}
-%     \pause
-% \begin{lemma}\label{splitting}
-%     Let $\mathcal{G}$ be any subgraph of $G$ and $0\leq\beta\leq 1$. Then: 
-%             $$
-%            \beta\cdot w\br{\mathcal{G}}\cdot c\br{S_{\fl{w\br{\mathcal{G}}/2}}^*\cap \mathcal{G}}
-%             \leq \sum_{k=\br{1-\beta}w\br{\mathcal{G}}+1}^{w\br{\mathcal{G}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{G}}.
-%             $$
-% \end{lemma}
-% \end{frame}
 
 
 
@@ -330,26 +379,37 @@ We will iteratively use the \textbf{FPTAS} for the Weighted $\alpha$–separator
 \input{figures/algorithm}
 \end{frame}
 
-\begin{frame}{How does it work}
-    \input{figures/sample_alg.tex}
-\end{frame}
+% \begin{frame}{How does it work}
+%     \input{figures/sample_alg.tex}
+% \end{frame}
 
 \begin{frame}{Sketch of the proof}
 \begin{itemize}
     \item $\mathcal{T}$ – subtree of $T$ for which the procedure was called.
-    \item Step 1. Bound the cost of \textbf{single} recurrence call:
+    \pause
+    \item Let $S_{\mathcal{T}}^*=S_{\fl{w\br{\mathcal{T}}/2}}^*\cap\mathcal{T}$. We have $c\br{S_{\mathcal{T}}}\leq c\br{S_{\mathcal{T}}^*}$.
+    \pause
+    \item We have that the contribution of the decision tree $D_{\mathcal{T}}$ is bounded by:
     \pause
             \begin{align*}
-                w\br{\mathcal{T}}&\cdot c\br{S_{\mathcal{T}}}
-                \leq \frac{2}{1-\delta}\cdot \sum_{k=\frac{1+\delta}{2}\cdot w\br{\mathcal{T}}+1}^{w\br{\mathcal{T}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{T}}.
-            \end{align*}\pause
-    \item Step 2. Bound the cost of the \textbf{whole} solution:
+                w\br{\mathcal{T}}\cdot c\br{S_{\mathcal{T}}}
+                &\leq w\br{\mathcal{T}}\cdot c\br{S_{\mathcal{T}}^*} 
+                \\&\leq 
+                \frac{2}{1-\delta}\cdot \sum_{k=\frac{1+\delta}{2}\cdot w\br{\mathcal{T}}+1}^{w\br{\mathcal{T}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{T}}.
+            \end{align*}
+    \end{itemize} 
+\end{frame}
+
+\begin{frame}{Sketch of the proof}
+    \begin{lemma}\label{up_trees}
+            $$\sum_{\mathcal{T}}\sum_{k=\frac{1+\delta}{2}\cdot w\br{\mathcal{T}}+1}^{w\br{\mathcal{T}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{T}}\leq \sum_{k=0}^{w\br{T}}c\br{S_{\fl{k/2}}^*}.$$
+            \end{lemma}
+    Let $\beta=\frac{1-\delta}{2}$. We have:
     \begin{align*}
             c_T\br{D} &\leq 
             \frac{2}{1-\delta}\cdot\sum_{\mathcal{T}}\sum_{k=\frac{1+\delta}{2}\cdot w\br{\mathcal{T}}+1}^{w\br{\mathcal{T}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{T}}\\
             &\leq \frac{2}{1-\delta}\cdot\sum_{k=0}^{w\br{T}}c\br{S_{\fl{k/2}}^*}\leq  \br{4+\epsilon}\cdot\OPT\br{T}.
     \end{align*}
-\end{itemize} 
 \end{frame}
 
 
@@ -412,22 +472,67 @@ We will iteratively use the $f_n$–approximation algorithm for the Min–Ratio 
 
     \begin{itemize}
         \item $\mathcal{G}$ – any subgraph of $G$, for which the procedure was called.
-    \item Step 1. Bound the cost of a \textbf{single} recurrence call:
-    \begin{align*}
-        w\br{\mathcal{G}}\cdot c\br{S_{\mathcal{G}}}\leq 
-        11 \cdot f_n\cdot \sum_{k=w\br{A_{\mathcal{G}}}+1}^{w\br{\mathcal{G}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{G}}.
+        \pause
+        \item Let $S_{\mathcal{G}}^*=S_{\fl{w\br{\mathcal{G}}/2}}^*\cap \mathcal{G}$.
+    \end{itemize}
+        \pause
+        \begin{lemma}\label{lambda_lemma}
+            Let $\mathcal{H}=\mathcal{G}-S_{\mathcal{G}}^*$. Then, we can partition $\mathcal{H}$ into two sets, $\mathcal{A}$ and $\mathcal{B}$ such that for $A=\bigcup_{H\in\mathcal{A}}V\br{H}$ and $B=\bigcup_{H\in\mathcal{B}}V\br{H}$, we have:
+            $$w\br{A\cup S_{\mathcal{G}}^*}\cdot w\br{B\cup S_{\mathcal{G}}^*}\geq w\br{\mathcal{G}}^2/11.$$
+        \end{lemma}
+        \pause
+        The partition $\br{A,S_{\mathcal{G}}^*,B}$ in the above lemma is a vertex cut of $\mathcal{G}$, so we have:
+                $$\alpha_{c,w}\br{\mathcal{G}}\leq \frac{c\br{S_{\mathcal{G}}^*}}{w\br{A\cup S_{\mathcal{G}}^*}\cdot w\br{B\cup S_{\mathcal{G}}^*}}\leq \frac{11 \cdot c\br{S_{\mathcal{G}}^*}}{w\br{\mathcal{G}}^2}.
+                $$
+    \end{frame}
+
+
+\begin{frame}{Sketch of the proof}
+    \begin{itemize}
+        \item Let $\br{A_{\mathcal{G}},S_{\mathcal{G}}, B_{\mathcal{G}}}$, be the partition returned by the algorithm:
+        $$
+        \alpha_{c,w}\br{A_{\mathcal{G}},S_{\mathcal{G}}, B_{\mathcal{G}}}=\frac{c\br{S_{\mathcal{G}}}}{w\br{A_{\mathcal{G}}\cup S_{\mathcal{G}}}\cdot w\br{B_{\mathcal{G}}\cup S_{\mathcal{G}}}}\leq f_n \cdot \frac{11\cdot c\br{S_{\mathcal{G}}^*}} {w\br{\mathcal{G}}^2}.
+        $$
+        \pause
+        \item Let $\beta=w\br{B_{\mathcal{G}}\cup S_{\mathcal{G}}}/w\br{\mathcal{G}}$, so that $\br{1-\beta}\cdot w\br{\mathcal{G}} = w\br{A_\mathcal{G}}$.
+        \pause
+        \item Assume w. l. o. s. that $w\br{A_{\mathcal{G}}}\geq w\br{B_{\mathcal{G}}}$. 
+        \pause
+        \item The contribution of the decision tree $D_{\mathcal{G}}$ is bounded by:
+        \begin{align*}
+        w\br{\mathcal{G}}\cdot c\br{S_{\mathcal{G}}} &\leq 11 \cdot f_n\cdot \frac{w\br{A_{\mathcal{G}}\cup S_{\mathcal{G}}}\cdot w\br{B_{\mathcal{G}}\cup S_{\mathcal{G}}}}{w\br{\mathcal{G}}}\cdot c\br{S_{\mathcal{G}}^*}\\
+        & \leq 
+        11 \cdot f_n\cdot w\br{B_{\mathcal{G}}\cup S_{\mathcal{G}}}\cdot c\br{S_{\mathcal{G}}^*}
+        \\ & \leq 
+        11 \cdot f_n\cdot \sum_{k=w\br{A_{\mathcal{G}}}+1}^{w\br{\mathcal{G}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{G}}
         \end{align*}
-    \pause
-    \item Step 2. Bound the cost of the \textbf{whole} solution:
-    \begin{align*}
-            c_G\br{D}&\leq 11 \cdot f_n\cdot \sum_{\mathcal{G}}\sum_{k=w\br{A_{\mathcal{G}}}+1}^{w\br{\mathcal{G}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{G}}
-            \\&\leq 
-            11 \cdot f_n\cdot\sum_{k=0}^{w\br{G}}c\br{S_{\fl{k/2}}^*} \leq  22 \cdot f_n \cdot \OPT\br{G}.
-        \end{align*}
-\end{itemize} 
+    \end{itemize}
 \end{frame}
 
-
+\begin{frame}{Sketch of the proof}
+    Let $D$ be the decision tree returned by the procedure. We have:
+        \begin{align*}
+            c_G\br{D}&\leq \sum_{\mathcal{G}}w\br{\mathcal{G}}\cdot c\br{S_{\mathcal{G}}}\\
+            &\leq 11 \cdot f_n\cdot \sum_{\mathcal{G}}\sum_{k=w\br{A_{\mathcal{G}}}+1}^{w\br{\mathcal{G}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{G}}
+            \\&\leq 
+            11 \cdot f_n\cdot\sum_{k=0}^{w\br{G}}c\br{S_{\fl{k/2}}^*} \\
+            &\leq 22 \cdot f_n\cdot \OPT\br{G}
+        \end{align*}
+\end{frame}
+\begin{frame}{
+    What's next?}
+\begin{itemize}
+    \item The results for the \textbf{average case} variant of the Graph Search Problem far \textbf{outperform} those for the \textbf{worst case} variant:
+    \begin{itemize}
+    \item For trees: $\br{4+\epsilon}$ vs. $O\br{\sqrt{\log n}}$,
+    \item For general graphs: $O\br{\sqrt{\log n}}$ vs  $O\br{\log^{3/2}n}$.
+    \end{itemize}
+    \pause
+    \item \textbf{Greedy} algorithms do not work well in the \textbf{worst case} setup. However we think there is a different way of connecting searching and separating which may yield a constant factor approximation for trees.
+    \pause
+    \item For general graphs we are working on an $O\br{\log n}$ approximation.
+    \end{itemize}
+\end{frame}
 \begin{frame}
 \centering
 \huge

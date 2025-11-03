@@ -1,5 +1,5 @@
 \section{The three field notation for the search problem}
-One may see that the multiplicity of variants for the problem have started to be somewhat problematic. Ideally, we would like to introduce some unified way of speaking about the problem to avoid ambiguity. This is problematic because historically, various variants of the problem were often explored independently. To alleviate this inconvenience we introduce the following three field notation resembling the notation commonly used in task scheduling problems. Similarly, our notation will consists of the three following fields: $\alpha, \beta$ and $\gamma$. The $\alpha$ field is the search space environment field resembling the machine environment. The $\beta$ field is the query characteristics which resembles the job characteristics. The $\gamma$ field is the objective function which we are trying to optimize. In order not to confuse these two notations in contrary to single line separator used in scheduling ($\alpha|\beta|\gamma$), we will separate the three fields with doubled lines: $\alpha||\beta||\gamma$. The following table showcases example variants which may be considered:
+The multiplicity of variants for the problem motivates the following notation. Throughout this work we will use the following three field notation resembling the notation commonly used in task scheduling problems. Our notation will consists of the three fields: $\alpha, \beta$ and $\gamma$. The $\alpha$ field is the search space environment field resembling the machine environment. The $\beta$ field is the query characteristics which resembles the job characteristics. The $\gamma$ field is the objective function which we are trying to optimize. In order not to confuse the two notations we will separate the fields for the graph searching notation with double lines $||$ instead of $|$. The following table showcases example variants which may be considered:
 
 \begin{table}[ht]
 \centering
@@ -18,8 +18,6 @@ $G$ - graphs
 $HT$ - hypertrees
 \newline
 $HG$ - hypergraphs
-\newline
-$S$ - any set of hypothesis
 & 
 $E$ - edge queries
 \newline
@@ -31,9 +29,7 @@ $c$ - cost function on queries
 \newline
 $w$ - weight function on vertices
 \newline
-$d$ - due dates
-\newline
-$\Bar{d}$ - strict deadlines
+$d$ - due dates/deadlines
 \newline
 $r$ - release times
 \newline
@@ -62,4 +58,6 @@ $\sum T_i$ - average tardiness
 \caption{Sample values for the three field notation for the search problem.}
 \end{table}
 
-The striking resemblance between these two notations suggests that we can view the search problem as a specific form of scheduling, in which the search strategy is the schedule and the queries are the jobs. From the perspective of the researcher however, the search problem is not nearly as explored as the scheduling problems and most of the variants which can be constructed using the table above are not even mentioned in the literature. It also seems, that the search problem is in a sense harder than the usual scheduling. For example, the best algorithm\footnote{This algorithm is obtained by a recursive usage of a QPTAS obtained via a non-trivial dynamic programming procedure. For details see: [insert ref here].} known for the NP-hard variant $T||V, c||C_{max}$ achieves an $O\br{\sqrt{\log n}}$-approximation \cite{dereniowski2017ApproxSsForGeneralBSinWTs}. A somewhat similar scheduling problem $P||C_{max}$ has a simple $\frac{4}{3}$-approximation algorithm based on sorting the jobs according to their costs \cite{BoundsonMultiprocessingTimingAnomalies}, admits a PTAS for an unbounded number of machines \cite{Binpackingwithrestrictedpiecesizes} and if the number of machines is bounded an FPTAS can be obtained \cite{AlgorithmsforSchedulingIndependentTasks}.
+The striking resemblance between these two notations suggests that we can view the search problem as a specific variant of task scheduling, in which the search strategy is the schedule and the queries are the jobs. At the start of the schedule there is only one machine processing the queries. After completing each such job, the machine that was processing it is replaced by a new set of machines, one for each possible response to the query. Additionally, from this moment on each such machine only processes the queries to vertices belonging to response associated with it.
+
+In contrast to the classical scheduling the search problem is not nearly as explored and most of the variants which can be constructed using the table above are not even mentioned in the literature. It also seems, that the search problem is usually harder than the corresponding scheduling variants. For example, the best algorithm known for the NP-hard variant $T||V, c||C_{max}$ achieves an $O\br{\sqrt{\log n}}$-approximation \cite{dereniowski2017ApproxSsForGeneralBSinWTs}. A somewhat similar scheduling problem $P||C_{max}$ has a simple $\frac{4}{3}$-approximation algorithm based on sorting the jobs according to their costs \cite{BoundsonMultiprocessingTimingAnomalies}, admits a PTAS for an unbounded number of machines \cite{Binpackingwithrestrictedpiecesizes} and if the number of machines is bounded an FPTAS can be obtained \cite{AlgorithmsforSchedulingIndependentTasks}.
