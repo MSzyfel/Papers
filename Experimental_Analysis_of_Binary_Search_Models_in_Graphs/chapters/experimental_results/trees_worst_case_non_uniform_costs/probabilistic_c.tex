@@ -1,0 +1,54 @@
+\subsection{Probabilistic Trees with Non-Uniform Costs ($T_{GW} || V, c || \COST$)}
+\label{sec:probabilistic_c}
+
+Results for probabilistic trees with non-uniform query costs (worst case).
+
+\begin{table}[H]
+\centering
+\caption{Probabilistic trees with non-uniform costs (worst case)}
+\label{tab:probabilistic_c}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+\hline
+\csvreader[head to column names]{data/probabilistic_c.csv}{}{%
+\n & \avgdepth & \maxdepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/probabilistic_c.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/probabilistic_c.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Probabilistic trees with non-uniform costs}
+\label{fig:probabilistic_c}
+\end{figure}
+

@@ -1,0 +1,224 @@
+\subsection{PTAS Algorithm}
+\label{sec:ptas}
+
+Polynomial-Time Approximation Scheme achieving $(1+\epsilon)$-approximation.
+
+\subsubsection{Random Trees - $\epsilon = 0.5$}
+
+\begin{table}[H]
+\centering
+\caption{PTAS with $\epsilon = 0.5$ on random trees}
+\label{tab:ptas_random_eps05}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: ptas_random_eps05.csv
+\csvreader[head to column names]{data/ptas_random_eps05.csv}{}{%
+\n & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/ptas_random_eps05.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/ptas_random_eps05.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: PTAS with $\epsilon = 0.5$ on random trees}
+\label{fig:ptas_random_eps05}
+\end{figure}
+
+
+\subsubsection{Random Trees - $\epsilon = 0.25$}
+
+\begin{table}[H]
+\centering
+\caption{PTAS with $\epsilon = 0.25$ on random trees}
+\label{tab:ptas_random_eps025}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: ptas_random_eps025.csv
+\csvreader[head to column names]{data/ptas_random_eps025.csv}{}{%
+\n & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/ptas_random_eps025.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/ptas_random_eps025.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: PTAS with $\epsilon = 0.25$ on random trees}
+\label{fig:ptas_random_eps025}
+\end{figure}
+
+
+\subsubsection{Random Trees - $\epsilon = 0.1$}
+
+\begin{table}[H]
+\centering
+\caption{PTAS with $\epsilon = 0.1$ on random trees}
+\label{tab:ptas_random_eps01}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: ptas_random_eps01.csv
+\csvreader[head to column names]{data/ptas_random_eps01.csv}{}{%
+\n & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/ptas_random_eps01.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/ptas_random_eps01.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: PTAS with $\epsilon = 0.1$ on random trees}
+\label{fig:ptas_random_eps01}
+\end{figure}
+
+
+\subsubsection{Caterpillar Trees - Various $\epsilon$}
+
+\begin{table}[H]
+\centering
+\caption{PTAS on caterpillar trees with different $\epsilon$ values}
+\label{tab:ptas_caterpillar}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$\epsilon$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: ptas_caterpillar_epsilon.csv
+\csvreader[head to column names]{data/ptas_caterpillar_epsilon.csv}{}{%
+\epsilon & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/ptas_caterpillar_epsilon.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/ptas_caterpillar_epsilon.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: PTAS on caterpillar trees with different $\epsilon$ values}
+\label{fig:ptas_caterpillar}
+\end{figure}
+
+
+\textbf{Observations:}
+\begin{itemize}
+    \item PTAS achieves guaranteed approximation bounds
+    \item Runtime increases as $\epsilon$ decreases (better approximation)
+    \item Trade-off between solution quality and computation time
+    \item Practical approximation ratios often better than theoretical guarantee
+\end{itemize}

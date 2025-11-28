@@ -1,0 +1,54 @@
+\subsection{Probabilistic Trees (Galton-Watson)}
+\label{sec:probabilistic_trees}
+
+Trees generated using Galton-Watson branching process where each vertex independently produces a random number of children according to a Poisson distribution with $\lambda=1.5$.
+
+\begin{table}[H]
+\centering
+\caption{Probabilistic tree generation (worst case depth)}
+\label{tab:probabilistic_uniform}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: probabilistic_uniform.csv
+\csvreader[head to column names]{data/probabilistic_uniform.csv}{}{%
+\n & \avgdepth & \maxdepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/probabilistic_uniform.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/probabilistic_uniform.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Probabilistic trees}
+\label{fig:probabilistic_uniform}
+\end{figure}

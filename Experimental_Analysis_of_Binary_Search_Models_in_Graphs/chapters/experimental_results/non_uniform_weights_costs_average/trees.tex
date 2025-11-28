@@ -1,0 +1,701 @@
+\subsection{Trees with Both Non-Uniform Weights and Costs}
+\label{sec:combined_trees}
+
+Results for trees combining both weight and cost variations.
+
+\subsubsection{Random Trees - Uniform Weights, Random Costs}
+
+\begin{table}[H]
+\centering
+\caption{Random trees: uniform weights, random costs}
+\label{tab:combined_uniform_random}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Expected Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: combined_uniform_random.csv
+\csvreader[head to column names]{data/combined_uniform_random.csv}{}{%
+\n & \avgcost & \expecteddepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/combined_uniform_random.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/combined_uniform_random.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Random trees: uniform weights, random costs}
+\label{fig:combined_uniform_random}
+\end{figure}
+
+
+\subsubsection{Random Trees - Random Weights, Random Costs}
+
+\begin{table}[H]
+\centering
+\caption{Random trees: random weights, random costs}
+\label{tab:combined_random_random}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Expected Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: combined_random_random.csv
+\csvreader[head to column names]{data/combined_random_random.csv}{}{%
+\n & \avgcost & \expecteddepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/combined_random_random.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/combined_random_random.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Random trees: random weights, random costs}
+\label{fig:combined_random_random}
+\end{figure}
+
+
+\subsubsection{Random Trees - Exponential Weights, Power-law Costs}
+
+\begin{table}[H]
+\centering
+\caption{Random trees: exponential weights, power-law costs}
+\label{tab:combined_exp_power}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Expected Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: combined_exp_power.csv
+\csvreader[head to column names]{data/combined_exp_power.csv}{}{%
+\n & \avgcost & \expecteddepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/combined_exp_power.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/combined_exp_power.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Random trees: exponential weights, power-law costs}
+\label{fig:combined_exp_power}
+\end{figure}
+
+
+\subsubsection{Distribution Interaction Effects}
+
+\begin{table}[H]
+\centering
+\caption{Interaction between weight and cost distributions ($n=50$)}
+\label{tab:combined_interactions}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Weights & Costs & Avg Cost & Expected Depth & Correlation \\
+\hline
+% Data from: combined_interactions.csv
+\csvreader[head to column names]{data/combined_interactions.csv}{}{%
+\weights & \costs & \avgcost & \expecteddepth & \correlation \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/combined_interactions.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/combined_interactions.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Interaction between weight and cost distributions ($n=50$)}
+\label{fig:combined_interactions}
+\end{figure}
+
+
+\textbf{Observations:}
+\begin{itemize}
+    \item Weight and cost distributions interact in complex ways
+    \item Skewed distributions significantly affect performance
+    \item Algorithm must balance both cost and probability considerations
+    \item Some distribution combinations are harder than others
+\end{itemize}
+
+\subsubsection{Spider Graphs - Combined Distributions}
+\label{sec:combined_spider}
+
+\begin{table}[H]
+\centering
+\caption{Spider graphs with random weights and costs}
+\label{tab:combined_spider}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Expected Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: combined_spider.csv
+\csvreader[head to column names]{data/combined_spider.csv}{}{%
+\n & \avgcost & \expecteddepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/combined_spider.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/combined_spider.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Spider graphs with random weights and costs}
+\label{fig:combined_spider}
+\end{figure}
+
+\subsubsection{Caterpillar Trees - Combined Distributions}
+\label{sec:combined_caterpillar}
+
+\begin{table}[H]
+\centering
+\caption{Caterpillar trees with random weights and costs}
+\label{tab:combined_caterpillar}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Expected Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: combined_caterpillar.csv
+\csvreader[head to column names]{data/combined_caterpillar.csv}{}{%
+\n & \avgcost & \expecteddepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/combined_caterpillar.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/combined_caterpillar.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Caterpillar trees with random weights and costs}
+\label{fig:combined_caterpillar}
+\end{figure}
+
+\subsubsection{Balanced Trees - Combined Distributions}
+\label{sec:combined_balanced}
+
+\begin{table}[H]
+\centering
+\caption{Balanced trees with random weights and costs}
+\label{tab:combined_balanced}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Expected Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: combined_balanced.csv
+\csvreader[head to column names]{data/combined_balanced.csv}{}{%
+\n & \avgcost & \expecteddepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/combined_balanced.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/combined_balanced.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Balanced trees with random weights and costs}
+\label{fig:combined_balanced}
+\end{figure}
+
+\subsubsection{Broom Trees - Combined Distributions}
+\label{sec:combined_broom}
+
+\begin{table}[H]
+\centering
+\caption{Broom trees with random weights and costs}
+\label{tab:combined_broom}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Expected Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: combined_broom.csv
+\csvreader[head to column names]{data/combined_broom.csv}{}{%
+\n & \avgcost & \expecteddepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/combined_broom.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/combined_broom.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Broom trees with random weights and costs}
+\label{fig:combined_broom}
+\end{figure}
+
+\subsubsection{Lobster Trees - Combined Distributions}
+\label{sec:combined_lobster}
+
+\begin{table}[H]
+\centering
+\caption{Lobster trees with random weights and costs}
+\label{tab:combined_lobster}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Expected Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: combined_lobster.csv
+\csvreader[head to column names]{data/combined_lobster.csv}{}{%
+\n & \avgcost & \expecteddepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/combined_lobster.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/combined_lobster.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Lobster trees with random weights and costs}
+\label{fig:combined_lobster}
+\end{figure}
+
+\subsubsection{Full m-ary Trees - Combined Distributions}
+\label{sec:combined_mary}
+
+\begin{table}[H]
+\centering
+\caption{Full m-ary trees with random weights and costs ($m=3$)}
+\label{tab:combined_mary}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Expected Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: combined_mary.csv
+\csvreader[head to column names]{data/combined_mary.csv}{}{%
+\n & \avgcost & \expecteddepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/combined_mary.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/combined_mary.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Full m-ary trees with random weights and costs}
+\label{fig:combined_mary}
+\end{figure}
+
+\subsubsection{Probabilistic Trees - Combined Distributions}
+\label{sec:combined_probabilistic}
+
+\begin{table}[H]
+\centering
+\caption{Probabilistic trees with random weights and costs}
+\label{tab:combined_probabilistic}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Expected Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: combined_probabilistic.csv
+\csvreader[head to column names]{data/combined_probabilistic.csv}{}{%
+\n & \avgcost & \expecteddepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/combined_probabilistic.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/combined_probabilistic.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Probabilistic trees with random weights and costs}
+\label{fig:combined_probabilistic}
+\end{figure}
+
+\subsubsection{Recursive Trees - Combined Distributions}
+\label{sec:combined_recursive}
+
+\begin{table}[H]
+\centering
+\caption{Recursive trees with random weights and costs}
+\label{tab:combined_recursive}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Expected Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: combined_recursive.csv
+\csvreader[head to column names]{data/combined_recursive.csv}{}{%
+\n & \avgcost & \expecteddepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/combined_recursive.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/combined_recursive.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Recursive trees with random weights and costs}
+\label{fig:combined_recursive}
+\end{figure}
+
+\subsubsection{Preferential Attachment Trees - Combined Distributions}
+\label{sec:combined_preferential}
+
+\begin{table}[H]
+\centering
+\caption{Preferential attachment trees with random weights and costs}
+\label{tab:combined_preferential}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Expected Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: combined_preferential.csv
+\csvreader[head to column names]{data/combined_preferential.csv}{}{%
+\n & \avgcost & \expecteddepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/combined_preferential.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/combined_preferential.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Preferential attachment trees with random weights and costs}
+\label{fig:combined_preferential}
+\end{figure}

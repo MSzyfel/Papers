@@ -1,0 +1,224 @@
+\subsection{State-of-the-Art Approximation Algorithms}
+\label{sec:state_art}
+
+Results for current best approximation algorithms.
+
+\subsubsection{Random Trees - Random Costs}
+
+\begin{table}[H]
+\centering
+\caption{State-of-the-art algorithm on random trees with random costs}
+\label{tab:sota_random_random}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: sota_random_random.csv
+\csvreader[head to column names]{data/sota_random_random.csv}{}{%
+\n & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/sota_random_random.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/sota_random_random.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: State-of-the-art algorithm on random trees with random costs}
+\label{fig:sota_random_random}
+\end{figure}
+
+
+\subsubsection{Bounded Degree Trees}
+
+\begin{table}[H]
+\centering
+\caption{State-of-the-art algorithm on bounded degree trees}
+\label{tab:sota_bounded_degree}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$\Delta$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: sota_bounded_degree.csv
+\csvreader[head to column names]{data/sota_bounded_degree.csv}{}{%
+\delta & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/sota_bounded_degree.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/sota_bounded_degree.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: State-of-the-art algorithm on bounded degree trees}
+\label{fig:sota_bounded_degree}
+\end{figure}
+
+
+\subsubsection{Special Structures Comparison}
+
+\begin{table}[H]
+\centering
+\caption{State-of-the-art algorithm on different tree structures}
+\label{tab:sota_structures}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Structure & Avg Cost & Approx Ratio & Avg Time (ms) & Best Known \\
+\hline
+% Data from: sota_structures.csv
+\csvreader[head to column names]{data/sota_structures.csv}{}{%
+\structure & \avgcost & \approxratio & \avgtime & \bestknown \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/sota_structures.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/sota_structures.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: State-of-the-art algorithm on different tree structures}
+\label{fig:sota_structures}
+\end{figure}
+
+
+\subsubsection{Algorithm Comparison}
+
+\begin{table}[H]
+\centering
+\caption{Comparison of all algorithms on random trees ($n=100$)}
+\label{tab:sota_comparison}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Algorithm & Avg Cost & Approx Ratio & Avg Time (ms) & Quality \\
+\hline
+% Data from: sota_comparison.csv
+\csvreader[head to column names]{data/sota_comparison.csv}{}{%
+\algorithm & \avgcost & \approxratio & \avgtime & \quality \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/sota_comparison.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/sota_comparison.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Comparison of all algorithms on random trees ($n=100$)}
+\label{fig:sota_comparison}
+\end{figure}
+
+
+\textbf{Observations:}
+\begin{itemize}
+    \item State-of-the-art algorithms balance quality and efficiency
+    \item Performance varies with tree structure
+    \item Practical approximation ratios often better than worst-case bounds
+    \item Choice depends on instance characteristics and requirements
+\end{itemize}

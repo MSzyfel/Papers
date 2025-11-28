@@ -1,0 +1,73 @@
+\subsection{Random Trees ($T_R || V || \COST$)}
+\label{sec:random_trees}
+
+Uniformly random labeled trees generated using the standard random tree generation algorithm (Prüfer sequences). In the worst-case uniform cost model, all queries have cost 1, and we measure the maximum depth of the decision tree.
+
+\begin{table}[H]
+\centering
+\caption{Performance on random trees with uniform query costs}
+\label{tab:random_uniform}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Depth & Max Depth & Avg Time (s) & Max Time (s) \\
+\hline
+\csvreader[
+    head to column names,
+    filter expr={
+        test{\ifnumequal{\thecsvinputline}{1}} or
+        test{\ifnumequal{\Size}{10}} or
+        test{\ifnumequal{\Size}{20}} or
+        test{\ifnumequal{\Size}{30}} or
+        test{\ifnumequal{\Size}{40}} or
+        test{\ifnumequal{\Size}{50}} or
+        test{\ifnumequal{\Size}{60}} or
+        test{\ifnumequal{\Size}{70}} or
+        test{\ifnumequal{\Size}{80}} or
+        test{\ifnumequal{\Size}{90}} or
+        test{\ifnumequal{\Size}{100}}
+    }
+]{data/analysis_basic_ranking_based_dt_results.csv}{Size=\Size,AvgCPUTime_s=\AvgCPUTimes,MaxCPUTime_s=\MaxCPUTimes,AvgDepth=\AvgDepth,MaxDepth=\MaxDepth}{%
+\Size & \AvgDepth & \MaxDepth & \AvgCPUTimes & \MaxCPUTimes \\
+}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Decision tree depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=1.5pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgDepth, col sep=comma] {data/analysis_basic_ranking_based_dt_results.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxDepth, col sep=comma] {data/analysis_basic_ranking_based_dt_results.csv};
+\legend{Avg Depth, Max Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (s)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=1.5pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/analysis_basic_ranking_based_dt_results.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxCPUTime_s, col sep=comma] {data/analysis_basic_ranking_based_dt_results.csv};
+\legend{Avg Time, Max Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics for random trees (uniform query costs)}
+\label{fig:random_uniform}
+\end{figure}
+
+The average depth grows approximately as $\log_2 n$, consistent with theoretical bounds. Centroid decomposition achieves near-optimal decision tree height.

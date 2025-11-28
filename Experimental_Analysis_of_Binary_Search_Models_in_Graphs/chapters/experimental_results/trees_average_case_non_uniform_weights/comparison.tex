@@ -1,0 +1,171 @@
+\subsection{Algorithm Comparison}
+\label{sec:comparison}
+
+Direct comparison of Greedy, PTAS, and FPTAS on selected instances.
+
+\subsubsection{Random Trees ($n=100$)}
+
+\begin{table}[H]
+\centering
+\caption{Comparison of algorithms on random trees with $n=100$}
+\label{tab:comparison_random_100}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Algorithm & Avg Cost & Approx Ratio & Avg Time (ms) & Quality/Time \\
+\hline
+% Data from: comparison_random_100.csv
+\csvreader[head to column names]{data/comparison_random_100.csv}{}{%
+\algorithm & \avgcost & \approxratio & \avgtime & \qualitytime \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/comparison_random_100.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/comparison_random_100.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Comparison of algorithms on random trees with $n=100$}
+\label{fig:comparison_random_100}
+\end{figure}
+
+
+\subsubsection{Caterpillar Trees ($n=100$)}
+
+\begin{table}[H]
+\centering
+\caption{Comparison of algorithms on caterpillar trees with $n=100$}
+\label{tab:comparison_caterpillar_100}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Algorithm & Avg Cost & Approx Ratio & Avg Time (ms) & Quality/Time \\
+\hline
+% Data from: comparison_caterpillar_100.csv
+\csvreader[head to column names]{data/comparison_caterpillar_100.csv}{}{%
+\algorithm & \avgcost & \approxratio & \avgtime & \qualitytime \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/comparison_caterpillar_100.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/comparison_caterpillar_100.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Comparison of algorithms on caterpillar trees with $n=100$}
+\label{fig:comparison_caterpillar_100}
+\end{figure}
+
+
+\subsubsection{Scalability Comparison}
+
+\begin{table}[H]
+\centering
+\caption{Scalability comparison across different tree sizes}
+\label{tab:comparison_scalability}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Greedy Time & PTAS Time & FPTAS Time & Speedup \\
+\hline
+% Data from: comparison_scalability.csv
+\csvreader[head to column names]{data/comparison_scalability.csv}{}{%
+\n & \greedytime & \ptastime & \fptastime & \speedup \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/comparison_scalability.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/comparison_scalability.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Scalability comparison across different tree sizes}
+\label{fig:comparison_scalability}
+\end{figure}
+
+
+\textbf{Key Findings:}
+\begin{itemize}
+    \item Greedy algorithm offers excellent runtime with good approximation
+    \item PTAS provides better quality but at higher computational cost
+    \item FPTAS strikes best balance for fine approximations
+    \item Choice of algorithm depends on time-quality requirements
+\end{itemize}

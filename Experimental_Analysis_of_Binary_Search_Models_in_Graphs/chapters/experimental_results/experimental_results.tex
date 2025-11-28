@@ -1,0 +1,147 @@
+\section*{Overview}
+
+The experimental analysis is divided into the following sections, mirroring the theoretical analysis:
+
+\begin{enumerate}
+    \item \textbf{Trees with uniform costs (worst case)} - Experiments for the basic variant with unit query costs
+    \item \textbf{Trees with non-uniform costs (worst case)} - Testing of parametrized and approximation algorithms with varying edge/query costs
+\end{enumerate}
+
+\subsection*{Experimental Design Matrix}
+
+Our experimental framework systematically tests algorithms across multiple dimensions:
+
+\begin{itemize}
+    \item \textbf{Tree Generation Methods} - 15 different structural patterns
+    \item \textbf{Cost Distributions} ($c$) - 3 probability distributions for edge/query costs (Uniform, Exponential, Power-Law)
+\end{itemize}
+
+\subsubsection*{Tree Generation Methods}
+
+Table~\ref{tab:tree_methods} summarizes all tree generation methods used in our experiments.
+
+\begin{table}[H]
+\centering
+\caption{Tree generation methods and their properties}
+\label{tab:tree_methods}
+\small
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Method} & \textbf{Parameters} & \textbf{Description} \\
+\hline
+Random & $n$ & Uniformly random labeled tree generated using Prüfer sequence \\
+\hline
+Bounded Degree & $n, \Delta$ & Tree with maximum degree constraint $\Delta$ (each vertex has degree $\leq \Delta$) \\
+\hline
+Bounded Diameter & $n, D$ & Tree with maximum diameter constraint $D$ (maximum distance between any two vertices $\leq D$) \\
+\hline
+Balanced & $n, m$ & Balanced $m$-ary tree constructed level-by-level (BFS), minimizing tree height \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection*{Detailed Generation Algorithms}
+
+\paragraph{Random Trees.} Generated using NetworkX's \texttt{random\_labeled\_tree} function, which employs Prüfer sequences to sample uniformly from all labeled trees on $n$ vertices. A random vertex is chosen as root, and the tree is oriented via BFS traversal from this root.
+
+\paragraph{Bounded Degree Trees.} Constructed incrementally by maintaining a list of available parent nodes with fewer than $\Delta-1$ children. Each new vertex is attached to a uniformly random available parent. When a parent reaches its degree limit, it is removed from the available list. This ensures every vertex has total degree at most $\Delta$.
+
+\paragraph{Bounded Diameter Trees.} For diameter bound $D$, vertices are distributed across $h = \lfloor D/2 \rfloor + 1$ levels. The root occupies level 0, and remaining vertices are randomly assigned to levels $1, \ldots, h-1$. Each non-root vertex connects to a random parent in the previous level, ensuring the diameter does not exceed $D$.
+
+\paragraph{Balanced Trees.} Similar to full $m$-ary trees but ensures balanced structure by filling levels completely before starting the next level. This minimizes tree height for given $n$ and $m$. Construction proceeds via BFS, adding exactly $m$ children to each internal node until $n$ vertices are placed.
+
+\subsubsection*{Distribution Functions}
+
+Table~\ref{tab:distributions} lists all probability distributions used for vertex weights ($w$) and edge costs ($c$).
+
+\begin{table}[H]
+\centering
+\caption{Probability distributions for edge costs}
+\label{tab:distributions}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Distribution} & \textbf{Formula} & \textbf{Properties} \\
+\hline
+Uniform & $\mathcal{U}(0,1)$ & All values equally likely in $[0,1]$, mean $\mathbb{E}[X]=0.5$ \\
+\hline
+Binomial & $\text{Binomial}(n, p)$ & Discrete distribution with parameters $n=10$, $p=0.5$, mean $\mathbb{E}[X]=np=5$ \\
+\hline
+Exponential & $\mathcal{E}(\lambda=1)$ & Memoryless, continuous distribution with rate $\lambda=1$, mean $\mathbb{E}[X]=1$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection*{Extended Three-Field Notation for Experiments}
+
+To systematically describe our experimental configurations, we extend the theoretical three-field notation $\alpha || \beta || \gamma$ to include specific tree generation methods and distribution types:
+
+\textbf{Field $\alpha$ (Search Space):} In experiments, we specify the specific tree generation method using subscripts. For this study, we focus on four representative tree classes:
+\begin{itemize}
+    \item $T_R$ - Random trees (uniformly random labeled trees via Prüfer sequence)
+    \item $T_{\Delta}$ - Bounded degree trees (maximum degree constraint $\Delta$)
+    \item $T_D$ - Bounded diameter trees (maximum diameter constraint $D$)
+    \item $T_{bal}$ - Balanced trees (balanced $m$-ary trees with minimal height)
+\end{itemize}
+
+\textbf{Field $\beta$ (Query Characteristics):} All experiments use vertex queries ($V$). For worst-case optimization, we consider four cost scenarios:
+\begin{itemize}
+    \item $V$ - vertex queries with uniform unit costs ($c(v) = 1$ for all $v$)
+    \item $V, c = \mathcal{U}$ - vertex queries with costs from uniform distribution $\mathcal{U}(0,1)$
+    \item $V, c = \mathcal{B}$ - vertex queries with costs from binomial distribution $\text{Binomial}(n=10, p=0.5)$
+    \item $V, c = \mathcal{E}$ - vertex queries with costs from exponential distribution $\mathcal{E}(\lambda=1)$
+\end{itemize}
+
+\textbf{Field $\gamma$ (Objective):} For all experiments, we optimize the worst-case criterion:
+\begin{itemize}
+    \item $\COST$ - minimize worst-case search time (maximum depth in uniform cost case, maximum weighted path cost in non-uniform cost case)
+\end{itemize}
+
+\textbf{Complete experimental notation examples:}
+\begin{itemize}
+    \item $T_R || V || \COST$ - Random trees, vertex queries with uniform unit costs, minimize worst-case depth
+    \item $T_{\Delta} || V, c = \mathcal{U} || \COST$ - Bounded degree trees, vertex queries with uniformly distributed costs, minimize worst-case cost
+    \item $T_D || V, c = \mathcal{B} || \COST$ - Bounded diameter trees, vertex queries with binomially distributed costs, minimize worst-case cost
+    \item $T_{bal} || V, c = \mathcal{E} || \COST$ - Balanced trees, vertex queries with exponentially distributed costs, minimize worst-case cost
+\end{itemize}
+
+\textbf{Experimental structure:} Each of the four tree types is tested under:
+\begin{itemize}
+    \item \textbf{Section 4.1} (Uniform Costs): 4 subsections for $T_R, T_{\Delta}, T_D, T_{bal}$ each with notation $T_X || V || \COST$
+    \item \textbf{Section 4.3} (Non-Uniform Costs): 4 subsections for $T_R, T_{\Delta}, T_D, T_{bal}$, each containing 3 subsubsections:
+        \begin{itemize}
+        \item Uniform distribution: $T_X || V, c = \mathcal{U} || \COST$
+        \item Binomial distribution: $T_X || V, c = \mathcal{B} || \COST$
+        \item Exponential distribution: $T_X || V, c = \mathcal{E} || \COST$
+    \end{itemize}
+\end{itemize}
+
+This yields a total of $4 + 4 \times 3 = 16$ experimental configurations systematically covering the interaction between tree structure (4 types) and cost distributions (uniform unit, uniform random, binomial, exponential).
+
+\subsubsection*{Experiment Coverage Matrix}
+
+Table~\ref{tab:experiment_matrix} shows which combinations of tree types and problem variants are tested. Each cell contains a reference to the corresponding subsection with detailed results.
+
+\begin{table}[H]
+\centering
+\caption{Experiment coverage: tree generation methods vs. problem variants}
+\label{tab:experiment_matrix}
+\scriptsize
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Tree Method} & $T || V || \COST$ & $T || V, c || \COST$ \\
+\hline
+Random & \ref{sec:random_trees} & \ref{sec:random_c} \\
+\hline
+Bounded Degree & \ref{sec:bounded_degree} & \ref{sec:bounded_degree_c} \\
+\hline
+Bounded Diameter & \ref{sec:bounded_diameter} & \ref{sec:bounded_diameter_c} \\
+\hline
+Balanced & \ref{sec:balanced_trees} & \ref{sec:balanced_c} \\
+\hline
+\end{tabular}
+\end{table}
+
+\input{chapters/experimental_results/trees_worst_case_uniform_costs/trees_worst_case_uniform_costs.tex}
+% \input{chapters/experimental_results/trees_average_case_non_uniform_weights/trees_average_case_non_uniform_weights.tex}
+\input{chapters/experimental_results/trees_worst_case_non_uniform_costs/trees_worst_case_non_uniform_costs.tex}
+% \input{chapters/experimental_results/non_uniform_weights_costs_average/non_uniform_weights_costs_average.tex}

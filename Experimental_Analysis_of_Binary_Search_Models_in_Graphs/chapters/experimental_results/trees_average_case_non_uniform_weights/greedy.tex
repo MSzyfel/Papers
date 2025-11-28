@@ -1,0 +1,330 @@
+\subsection{Greedy Algorithm}
+\label{sec:greedy}
+
+The greedy algorithm provides a 2-approximation for the average-case search problem.
+
+\subsubsection{Random Trees - Uniform Weights}
+
+\begin{table}[H]
+\centering
+\caption{Greedy algorithm on random trees with uniform weights}
+\label{tab:greedy_random_uniform}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: greedy_random_uniform.csv
+\csvreader[head to column names]{data/greedy_random_uniform.csv}{}{%
+\n & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/greedy_random_uniform.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/greedy_random_uniform.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Greedy algorithm on random trees with uniform weights}
+\label{fig:greedy_random_uniform}
+\end{figure}
+
+
+\subsubsection{Random Trees - Random Weights}
+
+\begin{table}[H]
+\centering
+\caption{Greedy algorithm on random trees with random weights}
+\label{tab:greedy_random_random}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: greedy_random_random.csv
+\csvreader[head to column names]{data/greedy_random_random.csv}{}{%
+\n & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/greedy_random_random.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/greedy_random_random.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Greedy algorithm on random trees with random weights}
+\label{fig:greedy_random_random}
+\end{figure}
+
+
+\subsubsection{Random Trees - Exponential Weights}
+
+\begin{table}[H]
+\centering
+\caption{Greedy algorithm on random trees with exponential weights}
+\label{tab:greedy_random_exponential}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: greedy_random_exponential.csv
+\csvreader[head to column names]{data/greedy_random_exponential.csv}{}{%
+\n & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/greedy_random_exponential.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/greedy_random_exponential.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Greedy algorithm on random trees with exponential weights}
+\label{fig:greedy_random_exponential}
+\end{figure}
+
+
+\subsubsection{Star Graphs - Various Distributions}
+
+\begin{table}[H]
+\centering
+\caption{Greedy algorithm on star graphs}
+\label{tab:greedy_star}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Distribution & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: greedy_star_distributions.csv
+\csvreader[head to column names]{data/greedy_star_distributions.csv}{}{%
+\distribution & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/greedy_star_distributions.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/greedy_star_distributions.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Greedy algorithm on star graphs}
+\label{fig:greedy_star}
+\end{figure}
+
+
+\textbf{Observations:}
+\begin{itemize}
+    \item Greedy algorithm consistently achieves near-optimal performance
+    \item Approximation ratios typically below 1.5 in practice
+    \item Very fast runtime, suitable for large instances
+    \item Performance varies with weight distribution skewness
+\end{itemize}
+
+\subsubsection{Broom Trees - Greedy Algorithm}
+\label{sec:greedy_broom}
+
+\begin{table}[H]
+\centering
+\caption{Greedy algorithm on broom trees with various weight distributions}
+\label{tab:greedy_broom}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Distribution & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: greedy_broom.csv
+\csvreader[head to column names]{data/greedy_broom.csv}{}{%
+\distribution & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/greedy_broom.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/greedy_broom.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Greedy algorithm on broom trees}
+\label{fig:greedy_broom}
+\end{figure}
+
+\subsubsection{Lobster Trees - Greedy Algorithm}
+\label{sec:greedy_lobster}
+
+\begin{table}[H]
+\centering
+\caption{Greedy algorithm on lobster trees with various weight distributions}
+\label{tab:greedy_lobster}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Distribution & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: greedy_lobster.csv
+\csvreader[head to column names]{data/greedy_lobster.csv}{}{%
+\distribution & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/greedy_lobster.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/greedy_lobster.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Greedy algorithm on lobster trees}
+\label{fig:greedy_lobster}
+\end{figure}

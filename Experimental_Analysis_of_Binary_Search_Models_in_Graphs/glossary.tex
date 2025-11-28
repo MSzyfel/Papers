@@ -1,4 +1,334 @@
-\newglossaryentry{graph}{
-    name=graph,
-    description={- a set of nodes connected by edges}
+% Symbols in logical order
+\newglossaryentry{symG}{
+    name=$G$,
+    description={A graph consisting of vertices and edges},
+    nonumberlist,
+    sort=a01
+}
+
+\newglossaryentry{symV}{
+    name=$V\br{G}$,
+    description={The set of vertices in a graph},
+    nonumberlist,
+    sort=a02
+}
+
+\newglossaryentry{symE}{
+    name=$E\br{G}$,
+    description={The set of edges in a graph},
+    nonumberlist,
+    sort=a03
+}
+
+\newglossaryentry{symn}{
+    name=$n$,
+    description={The number of vertices, $n = |V\br{G}|$},
+    nonumberlist,
+    sort=a04
+}
+
+\newglossaryentry{symm}{
+    name=$m$,
+    description={The number of edges, $m = |E\br{G}|$},
+    nonumberlist,
+    sort=a05
+}
+
+\newglossaryentry{symT}{
+    name=$T$,
+    description={A tree (connected acyclic graph)},
+    nonumberlist,
+    sort=a06
+}
+
+\newglossaryentry{symN}{
+    name=$N_G\br{v}$,
+    description={The set of neighbors of vertex $v$ in graph $G$, $N_G\br{v} = \brc{u\in V\br{G}|uv\in E\br{G}}$},
+    nonumberlist,
+    sort=a07
+}
+
+\newglossaryentry{symdeg}{
+    name=$\deg_G\br{v}$,
+    description={The degree of vertex $v$ in graph $G$ (number of incident edges)},
+    nonumberlist,
+    sort=a08
+}
+
+\newglossaryentry{symDelta}{
+    name=$\Delta\br{G}$,
+    description={Maximum degree of vertices in graph $G$},
+    nonumberlist,
+    sort=a09
+}
+
+\newglossaryentry{symdist}{
+    name=$d\br{u, v}$,
+    description={The distance between vertices $u$ and $v$ (length of shortest path)},
+    nonumberlist,
+    sort=a10
+}
+
+\newglossaryentry{symdiam}{
+    name=$\diam\br{T}$,
+    description={Diameter of tree $T$ (maximum distance between any two vertices)},
+    nonumberlist,
+    sort=a11
+}
+
+\newglossaryentry{symc}{
+    name=$c$,
+    description={Query cost function, $c: V \to \mathbb{R}^+$, assigning a cost to each vertex},
+    nonumberlist,
+    sort=a12
+}
+
+\newglossaryentry{symcv}{
+    name=$c\br{v}$,
+    description={The cost of querying vertex $v$},
+    nonumberlist,
+    sort=a13
+}
+
+\newglossaryentry{symD}{
+    name=$D$,
+    description={A decision tree used to identify target vertices through queries},
+    nonumberlist,
+    sort=a14
+}
+
+\newglossaryentry{symQD}{
+    name=$Q_D\br{G,x}$,
+    description={The sequence of queries made to locate target $x$ in graph $G$ using decision tree $D$},
+    nonumberlist,
+    sort=a15
+}
+
+\newglossaryentry{symCost}{
+    name=$\COST\br{D}$,
+    description={Worst-case search cost of decision tree $D$, $\COST\br{D} = \max_{v \in V} \sum_{q \in Q_D\br{G,v}} c\br{q}$},
+    nonumberlist,
+    sort=a16
+}
+
+\newglossaryentry{symTR}{
+    name=$T_R$,
+    description={Random tree generated via Prüfer sequence},
+    nonumberlist,
+    sort=a18
+}
+
+\newglossaryentry{symTDelta}{
+    name=$T_{\Delta}$,
+    description={Bounded degree tree with maximum degree $\Delta$},
+    nonumberlist,
+    sort=a19
+}
+
+\newglossaryentry{symTdiam}{
+    name=$T_{\diam}$,
+    description={Bounded diameter tree with diameter at most $\diam$},
+    nonumberlist,
+    sort=a20
+}
+
+\newglossaryentry{symTbal}{
+    name=$T_{bal}$,
+    description={Balanced m-ary tree},
+    nonumberlist,
+    sort=a21
+}
+
+\newglossaryentry{symU}{
+    name=$\mathcal{U}\br{a,b}$,
+    description={Uniform distribution: all values in $[a,b]$ equally likely},
+    nonumberlist,
+    sort=a22
+}
+
+\newglossaryentry{symB}{
+    name=$\mathcal{B}\br{n,p}$,
+    description={Binomial distribution: number of successes in $n$ trials with probability $p$},
+    nonumberlist,
+    sort=a23
+}
+
+\newglossaryentry{symExp}{
+    name=$\mathcal{E}\br{\lambda}$,
+    description={Exponential distribution with rate parameter $\lambda$},
+    nonumberlist,
+    sort=a24
+}
+
+\newglossaryentry{symcsimU}{
+    name=$c \sim \mathcal{U}$,
+    description={Query costs drawn from uniform distribution},
+    nonumberlist,
+    sort=a25
+}
+
+\newglossaryentry{symcsimB}{
+    name=$c \sim \mathcal{B}$,
+    description={Query costs drawn from binomial distribution},
+    nonumberlist,
+    sort=a26
+}
+
+\newglossaryentry{symcsimE}{
+    name=$c \sim \mathcal{E}$,
+    description={Query costs drawn from exponential distribution},
+    nonumberlist,
+    sort=a27
+}
+
+\newglossaryentry{symThreeField}{
+    name=$\alpha || \beta || \gamma$,
+    description={Three-field notation: $\alpha$ = tree type, $\beta$ = query characteristics, $\gamma$ = objective},
+    nonumberlist,
+    sort=a28
+}
+
+% Key Definitions
+\newglossaryentry{binarysearch}{
+    name=Binary Search,
+    description={A search strategy that repeatedly divides the search space by querying intermediate vertices},
+    nonumberlist
+}
+
+\newglossaryentry{decisiontree}{
+    name=Decision Tree,
+    description={A rooted binary tree where internal nodes represent queries and leaves represent target vertices},
+    nonumberlist
+}
+
+\newglossaryentry{querycost}{
+    name=Query Cost,
+    description={The cost $c\br{v}$ of querying vertex $v$ to determine the target's location relative to $v$},
+    nonumberlist
+}
+
+\newglossaryentry{searchcost}{
+    name=Search Cost,
+    description={The total cost of all queries performed to identify a target vertex},
+    nonumberlist
+}
+
+\newglossaryentry{worstcase}{
+    name=Worst Case,
+    description={The maximum search cost over all possible target vertices},
+    nonumberlist
+}
+
+\newglossaryentry{vertexranking}{
+    name=Vertex Ranking,
+    description={A labeling $l:V\to \brc{1,2,\dots,k}$ where for each pair $u,v$ with $l\br{u}=l\br{v}$, there exists $z$ on the path between $u$ and $v$ with $l\br{z}>l\br{v}$},
+    nonumberlist
+}
+
+\newglossaryentry{upresponse}{
+    name=Up Response,
+    description={A response to query $v$ in rooted tree $T$ where the returned component contains the root $r\br{T}$},
+    nonumberlist
+}
+
+\newglossaryentry{downresponse}{
+    name=Down Response,
+    description={A response to query $v$ in rooted tree $T$ where the returned component does not contain the root $r\br{T}$},
+    nonumberlist
+}
+
+\newglossaryentry{heavyvertex}{
+    name=Heavy Vertex,
+    description={A vertex $v$ with query cost $c\br{v} > pk$ for some parameter $p$ and box size $k$},
+    nonumberlist
+}
+
+\newglossaryentry{lightvertex}{
+    name=Light Vertex,
+    description={A vertex $v$ with query cost $c\br{v} \leq pk$ for some parameter $p$ and box size $k$},
+    nonumberlist
+}
+
+\newglossaryentry{heavymodule}{
+    name=Heavy Module,
+    description={A maximal connected subset $H\subseteq V\br{T}$ where every vertex in $H$ is heavy},
+    nonumberlist
+}
+
+\newglossaryentry{alignedcost}{
+    name=Aligned Cost,
+    description={A modified cost measure for aligned decision trees that penalizes light queries with down responses},
+    nonumberlist
+}
+
+\newglossaryentry{ptas}{
+    name=PTAS,
+    description={Polynomial-Time Approximation Scheme: produces $(1+\epsilon)$-approximation in polynomial time for fixed $\epsilon$},
+    nonumberlist
+}
+
+\newglossaryentry{eptas}{
+    name=EPTAS,
+    description={Efficient Polynomial-Time Approximation Scheme: PTAS with running time $f\br{\epsilon}\cdot \text{poly}\br{n}$ where $f$ depends only on $\epsilon$},
+    nonumberlist
+}
+
+\newglossaryentry{qptas}{
+    name=QPTAS,
+    description={Quasi-Polynomial-Time Approximation Scheme: produces $(1+\epsilon)$-approximation in $n^{O\br{\text{polylog}\br{n}}}$ time},
+    nonumberlist
+}
+
+\newglossaryentry{fptas}{
+    name=FPTAS,
+    description={Fully Polynomial-Time Approximation Scheme: produces $(1+\epsilon)$-approximation in $O\br{\text{poly}\br{n, 1/\epsilon}}$ time},
+    nonumberlist
+}
+
+\newglossaryentry{approximationratio}{
+    name=Approximation Ratio,
+    description={The ratio $\frac{\text{ALG}}{\text{OPT}}$ between algorithm's solution and optimal solution},
+    nonumberlist
+}
+
+\newglossaryentry{path}{
+    name=Path,
+    description={A sequence of vertices where each adjacent pair is connected by an edge},
+    nonumberlist
+}
+
+\newglossaryentry{cycle}{
+    name=Cycle,
+    description={A closed path where the first and last vertices are the same},
+    nonumberlist
+}
+
+\newglossaryentry{forest}{
+    name=Forest,
+    description={An acyclic graph; a disjoint union of trees},
+    nonumberlist
+}
+
+\newglossaryentry{connectedcomponent}{
+    name=Connected Component,
+    description={A maximal connected subgraph where every pair of vertices has a path between them},
+    nonumberlist
+}
+
+\newglossaryentry{rootedtree}{
+    name=Rooted Tree,
+    description={A tree with a designated root vertex $r$ that establishes parent-child relationships},
+    nonumberlist
+}
+
+\newglossaryentry{inducedsubgraph}{
+    name=Induced Subgraph,
+    description={For $S\subseteq V\br{G}$, the subgraph $G\angl{S}$ with vertex set $S$ and all edges from $E\br{G}$ with both endpoints in $S$},
+    nonumberlist
+}
+
+\newglossaryentry{subtree}{
+    name=Subtree,
+    description={A connected subgraph of a tree},
+    nonumberlist
 }

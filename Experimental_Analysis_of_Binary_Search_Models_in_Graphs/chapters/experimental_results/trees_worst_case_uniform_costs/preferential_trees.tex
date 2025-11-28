@@ -1,0 +1,54 @@
+\subsection{Preferential Attachment Trees ($T_{PA} || V || \COST$)}
+\label{sec:preferential_trees}
+
+Trees grown using the Barabási-Albert preferential attachment model where each new vertex attaches to existing vertices with probability proportional to their current degree, creating scale-free networks.
+
+\begin{table}[H]
+\centering
+\caption{Preferential attachment trees (worst case depth)}
+\label{tab:preferential_uniform}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: preferential_uniform.csv
+\csvreader[head to column names]{data/preferential_uniform.csv}{}{%
+\n & \avgdepth & \maxdepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/preferential_uniform.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/preferential_uniform.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Preferential attachment trees}
+\label{fig:preferential_uniform}
+\end{figure}

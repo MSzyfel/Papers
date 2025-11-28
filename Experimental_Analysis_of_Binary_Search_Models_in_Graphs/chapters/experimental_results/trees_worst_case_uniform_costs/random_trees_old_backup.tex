@@ -1,0 +1,489 @@
+\subsection{Random Trees}
+\label{sec:random_trees}
+
+This subsection presents results for uniformly random labeled trees generated using the standard random tree generation algorithm. In the worst-case uniform cost model, all queries have cost 1, and we measure the maximum depth (height) of the decision tree.
+
+\subsubsection{Basic Random Trees}
+
+\textbf{Description:} Uniformly random labeled trees on $n$ vertices.
+
+\textbf{Results:}
+
+\begin{table}[H]
+\centering
+\caption{Performance on random trees with uniform distribution}
+\label{tab:random_uniform}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data to be imported from CSV: random_trees_uniform.csv
+\csvreader[head to column names]{data/random_trees_uniform.csv}{}{%
+\n & \avgdepth & \maxdepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/random_trees_uniform.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/random_trees_uniform.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics for random trees with uniform distribution}
+\label{fig:random_uniform}
+\end{figure}
+
+\textbf{Observations:}
+\begin{itemize}
+    \item The average depth grows approximately as $\log_2 n$, consistent with theoretical bounds
+    \item Runtime scales well with tree size
+    \item Low variance indicates stable performance across different random instances
+\end{itemize}
+
+\subsubsection{Random Distribution}
+
+\textbf{Description:} Vertex weights are assigned uniformly at random from $[0,1]$ and normalized.
+
+\textbf{Results:}
+
+\begin{table}[H]
+\centering
+\caption{Performance on random trees with random weight distribution}
+\label{tab:random_random}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data to be imported from CSV: random_trees_random.csv
+\csvreader[head to column names]{data/random_trees_random.csv}{}{%
+\n & \avgdepth & \maxdepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/random_trees_random.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/random_trees_random.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics for random trees with random weight distribution}
+\label{fig:random_random}
+\end{figure}
+
+\textbf{Observations:}
+\begin{itemize}
+    \item Performance similar to uniform distribution case
+    \item Slight variations due to weight distribution effects
+\end{itemize}
+
+\subsubsection{Exponential Distribution}
+
+\textbf{Description:} Vertex weights follow an exponential distribution with rate parameter $\lambda = 1$, then normalized.
+
+\textbf{Results:}
+
+\begin{table}[H]
+\centering
+\caption{Performance on random trees with exponential weight distribution}
+\label{tab:random_exponential}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data to be imported from CSV: random_trees_exponential.csv
+\csvreader[head to column names]{data/random_trees_exponential.csv}{}{%
+\n & \avgdepth & \maxdepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/random_trees_exponential.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/random_trees_exponential.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics for random trees with exponential weight distribution}
+\label{fig:random_exponential}
+\end{figure}
+
+\textbf{Observations:}
+\begin{itemize}
+    \item Skewed distribution affects search tree structure
+    \item Higher variance in depth compared to uniform case
+    \item Algorithm prioritizes high-weight vertices
+\end{itemize}
+
+\subsubsection{Power-Law Distribution}
+
+\textbf{Description:} Vertex weights follow a power-law distribution with exponent $\alpha = 2.5$, then normalized.
+
+\textbf{Results:}
+
+\begin{table}[H]
+\centering
+\caption{Performance on random trees with power-law weight distribution}
+\label{tab:random_powerlaw}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data to be imported from CSV: random_trees_powerlaw.csv
+\csvreader[head to column names]{data/random_trees_powerlaw.csv}{}{%
+\n & \avgdepth & \maxdepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/random_trees_powerlaw.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/random_trees_powerlaw.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics for random trees with power-law weight distribution}
+\label{fig:random_powerlaw}
+\end{figure}
+
+\textbf{Observations:}
+\begin{itemize}
+    \item Heavy-tailed distribution creates challenging instances
+    \item Few vertices dominate the weight distribution
+\textbf{Observations:}
+\begin{itemize}
+    \item Heavy-tailed distribution creates challenging instances
+    \item Few vertices dominate the weight distribution
+    \item Search depth significantly affected by weight skewness
+\end{itemize}
+
+\subsubsection{Comparison Across Distributions}
+
+\begin{table}[H]
+\centering
+\caption{Comparison of weight distributions on random trees ($n = 100$)}
+\label{tab:random_comparison}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Distribution & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data to be imported from CSV: random_trees_comparison.csv
+\csvreader[head to column names]{data/random_trees_comparison.csv}{}{%
+\distribution & \avgdepth & \maxdepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Distribution},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    ybar,
+    symbolic x coords={Uniform,Random,Exponential,Power-Law},
+    xtick=data,
+    x tick label style={rotate=45,anchor=east},
+    grid=major,
+    legend pos=north west,
+    bar width=15pt
+]
+\addplot[fill=blue!60] table[x=distribution, y=avgdepth, col sep=comma] {data/random_trees_comparison.csv};
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Distribution},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    ybar,
+    symbolic x coords={Uniform,Random,Exponential,Power-Law},
+    xtick=data,
+    x tick label style={rotate=45,anchor=east},
+    grid=major,
+    legend pos=north west,
+    bar width=15pt
+]
+\addplot[fill=red!60] table[x=distribution, y=avgtime, col sep=comma] {data/random_trees_comparison.csv};
+\end{axis}
+\end{tikzpicture}
+\caption{Comparison of weight distributions on random trees ($n=100$)}
+\label{fig:random_comparison}
+\end{figure}
+
+\textbf{Observations:}
+\begin{itemize}
+    \item Weight distribution significantly impacts search performance
+    \item Uniform and random distributions show similar behavior
+    \item Skewed distributions (exponential, power-law) increase search complexity
+    \item Algorithm remains efficient across all distributions
+\end{itemize}
+
+\subsubsection{Probabilistic Trees}
+\label{sec:random_probabilistic}
+
+\begin{table}[H]
+\centering
+\caption{Probabilistic tree generation with uniform weights}
+\label{tab:random_probabilistic}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: random_probabilistic.csv
+\csvreader[head to column names]{data/random_probabilistic.csv}{}{%
+\n & \avgdepth & \maxdepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/random_probabilistic.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/random_probabilistic.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Probabilistic tree generation with uniform weights}
+\label{fig:random_probabilistic}
+\end{figure}
+
+\subsubsection{Recursive Trees}
+\label{sec:random_recursive}
+
+\begin{table}[H]
+\centering
+\caption{Recursive tree generation with uniform weights}
+\label{tab:random_recursive}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: random_recursive.csv
+\csvreader[head to column names]{data/random_recursive.csv}{}{%
+\n & \avgdepth & \maxdepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/random_recursive.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/random_recursive.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Recursive tree generation with uniform weights}
+\label{fig:random_recursive}
+\end{figure}
+
+\subsubsection{Preferential Attachment Trees}
+\label{sec:random_preferential}
+
+\begin{table}[H]
+\centering
+\caption{Preferential attachment trees with uniform weights}
+\label{tab:random_preferential}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: random_preferential.csv
+\csvreader[head to column names]{data/random_preferential.csv}{}{%
+\n & \avgdepth & \maxdepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/random_preferential.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/random_preferential.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Preferential attachment trees with uniform weights}
+\label{fig:random_preferential}
+\end{figure}

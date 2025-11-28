@@ -1,0 +1,53 @@
+\subsection{Recursive Trees with Non-Uniform Weights ($T_{rec} || V, w || \sum w_i C_i$)}
+\label{sec:recursive_w}
+
+Results for recursive trees with non-uniform vertex weights.
+
+\begin{table}[H]
+\centering
+\caption{Recursive trees with non-uniform weights (average case)}
+\label{tab:recursive_w}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+\csvreader[head to column names]{data/recursive_w.csv}{}{%
+\n & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average cost},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgcost, col sep=comma] {data/recursive_w.csv};
+\legend{Avg Cost}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/recursive_w.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Recursive trees with non-uniform weights}
+\label{fig:recursive_w}
+\end{figure}

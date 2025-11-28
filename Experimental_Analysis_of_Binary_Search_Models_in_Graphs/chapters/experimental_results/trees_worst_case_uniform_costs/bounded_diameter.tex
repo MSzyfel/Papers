@@ -1,0 +1,225 @@
+\subsection{Bounded Diameter Trees ($T_D || V || \COST$)}
+\label{sec:bounded_diameter}
+
+Results for trees with diameter constraint $D$. The diameter constraint naturally limits the maximum depth of decision trees.
+
+\subsubsection{Diameter 5}
+
+\begin{table}[H]
+\centering
+\caption{Trees with $D = 5$ (worst case depth)}
+\label{tab:diam5_uniform}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: bounded_diameter_5_uniform.csv
+\csvreader[head to column names]{data/bounded_diameter_5_uniform.csv}{}{%
+\n & \avgdepth & \maxdepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/bounded_diameter_5_uniform.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/bounded_diameter_5_uniform.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Trees with $D = 5$}
+\label{fig:diam5_uniform}
+\end{figure}
+
+
+\subsubsection{Diameter 10}
+
+\begin{table}[H]
+\centering
+\caption{Trees with $D = 10$ (worst case depth)}
+\label{tab:diam10_uniform}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: bounded_diameter_10_uniform.csv
+\csvreader[head to column names]{data/bounded_diameter_10_uniform.csv}{}{%
+\n & \avgdepth & \maxdepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/bounded_diameter_10_uniform.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/bounded_diameter_10_uniform.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Trees with $D = 10$}
+\label{fig:diam10_uniform}
+\end{figure}
+
+
+\subsubsection{Diameter 20}
+
+\begin{table}[H]
+\centering
+\caption{Trees with $D = 20$ (worst case depth)}
+\label{tab:diam20_uniform}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: bounded_diameter_20_uniform.csv
+\csvreader[head to column names]{data/bounded_diameter_20_uniform.csv}{}{%
+\n & \avgdepth & \maxdepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/bounded_diameter_20_uniform.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/bounded_diameter_20_uniform.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Trees with $D = 20$}
+\label{fig:diam20_uniform}
+\end{figure}
+
+
+\subsubsection{Comparison Across Diameter Bounds}
+
+\begin{table}[H]
+\centering
+\caption{Performance comparison for different diameter bounds ($n = 100$)}
+\label{tab:diameter_comparison}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$D$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: bounded_diameter_comparison.csv
+\csvreader[head to column names]{data/bounded_diameter_comparison.csv}{}{%
+\diameter & \avgdepth & \maxdepth & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/bounded_diameter_comparison.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/bounded_diameter_comparison.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Performance comparison for different diameter bounds ($n = 100$)}
+\label{fig:diameter_comparison}
+\end{figure}
+
+
+\textbf{Observations:}
+\begin{itemize}
+    \item Diameter constraints naturally limit decision tree depth
+    \item Smaller diameter bounds force more balanced tree structures
+    \item Trees with small $D$ tend toward star-like configurations
+    \item Performance remains consistent across diameter variations
+    \item Trade-off between tree diameter and search efficiency
+\end{itemize}

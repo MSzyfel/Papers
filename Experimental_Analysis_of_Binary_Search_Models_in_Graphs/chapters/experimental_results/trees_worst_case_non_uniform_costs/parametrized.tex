@@ -1,0 +1,499 @@
+\subsection{Parametrized Algorithms}
+\label{sec:param}
+
+Results for parametrized algorithms on k-up-modular cost functions.
+
+\subsubsection{1-up-modular Costs (Monotone)}
+
+\begin{table}[H]
+\centering
+\caption{Parametrized algorithm with $k=1$ on random trees}
+\label{tab:param_k1_random}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: parametrized_k1_random.csv
+\csvreader[head to column names]{data/parametrized_k1_random.csv}{}{%
+\n & \avgcost & \worstcost & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/parametrized_k1_random.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/parametrized_k1_random.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Parametrized algorithm with $k=1$ on random trees}
+\label{fig:param_k1_random}
+\end{figure}
+
+
+\subsubsection{2-up-modular Costs}
+
+\begin{table}[H]
+\centering
+\caption{Parametrized algorithm with $k=2$ on random trees}
+\label{tab:param_k2_random}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: parametrized_k2_random.csv
+\csvreader[head to column names]{data/parametrized_k2_random.csv}{}{%
+\n & \avgcost & \worstcost & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/parametrized_k2_random.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/parametrized_k2_random.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Parametrized algorithm with $k=2$ on random trees}
+\label{fig:param_k2_random}
+\end{figure}
+
+
+\subsubsection{3-up-modular Costs}
+
+\begin{table}[H]
+\centering
+\caption{Parametrized algorithm with $k=3$ on random trees}
+\label{tab:param_k3_random}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: parametrized_k3_random.csv
+\csvreader[head to column names]{data/parametrized_k3_random.csv}{}{%
+\n & \avgcost & \worstcost & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/parametrized_k3_random.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/parametrized_k3_random.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Parametrized algorithm with $k=3$ on random trees}
+\label{fig:param_k3_random}
+\end{figure}
+
+
+\subsubsection{Runtime vs. k Parameter}
+
+\begin{table}[H]
+\centering
+\caption{Runtime dependence on k parameter ($n=100$)}
+\label{tab:param_k_comparison}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$k$ & Avg Cost & Avg Time (ms) & Time Factor & Optimality \\
+\hline
+% Data from: parametrized_k_comparison.csv
+\csvreader[head to column names]{data/parametrized_k_comparison.csv}{}{%
+\k & \avgcost & \avgtime & \timefactor & \optimality \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/parametrized_k_comparison.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/parametrized_k_comparison.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Runtime dependence on k parameter ($n=100$)}
+\label{fig:param_k_comparison}
+\end{figure}
+
+
+\textbf{Observations:}
+\begin{itemize}
+    \item Algorithm runtime grows with k parameter
+    \item Optimal solutions for k-up-modular instances
+    \item Practical efficiency for small k values
+    \item Performance degrades for large k
+\end{itemize}
+
+\subsubsection{Spider Graphs with k-up-modular Costs}
+\label{sec:param_spider}
+
+\begin{table}[H]
+\centering
+\caption{Parametrized algorithm on spider graphs ($k=2$)}
+\label{tab:param_spider}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: parametrized_spider.csv
+\csvreader[head to column names]{data/parametrized_spider.csv}{}{%
+\n & \avgcost & \worstcost & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/parametrized_spider.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/parametrized_spider.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Parametrized algorithm on spider graphs}
+\label{fig:param_spider}
+\end{figure}
+
+Spider graphs have a central node with degree $k$ and $k$ paths attached. The parametrized algorithm exploits this structure effectively with 2-up-modular costs.
+
+\subsubsection{Caterpillar Trees with k-up-modular Costs}
+\label{sec:param_caterpillar}
+
+\begin{table}[H]
+\centering
+\caption{Parametrized algorithm on caterpillar trees ($k=2$)}
+\label{tab:param_caterpillar}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: parametrized_caterpillar.csv
+\csvreader[head to column names]{data/parametrized_caterpillar.csv}{}{%
+\n & \avgcost & \worstcost & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/parametrized_caterpillar.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/parametrized_caterpillar.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Parametrized algorithm on caterpillar trees}
+\label{fig:param_caterpillar}
+\end{figure}
+
+Caterpillar trees (path with leaves attached) are particularly well-suited for parametrized algorithms due to their simple structure and low pathwidth.
+
+\subsubsection{Broom Trees with k-up-modular Costs}
+\label{sec:param_broom}
+
+\begin{table}[H]
+\centering
+\caption{Parametrized algorithm on broom trees ($k=2$)}
+\label{tab:param_broom}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: parametrized_broom.csv
+\csvreader[head to column names]{data/parametrized_broom.csv}{}{%
+\n & \avgcost & \worstcost & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/parametrized_broom.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/parametrized_broom.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Parametrized algorithm on broom trees}
+\label{fig:param_broom}
+\end{figure}
+
+Broom trees combine a star component with a path, providing an interesting test case for parametrized algorithms.
+
+\subsubsection{Lobster Trees with k-up-modular Costs}
+\label{sec:param_lobster}
+
+\begin{table}[H]
+\centering
+\caption{Parametrized algorithm on lobster trees ($k=2$)}
+\label{tab:param_lobster}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: parametrized_lobster.csv
+\csvreader[head to column names]{data/parametrized_lobster.csv}{}{%
+\n & \avgcost & \worstcost & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/parametrized_lobster.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/parametrized_lobster.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Parametrized algorithm on lobster trees}
+\label{fig:param_lobster}
+\end{figure}
+
+Lobster trees (caterpillar with additional leaves) test the limits of parametrized approaches with slightly more complex structure.
+
+\subsubsection{Full m-ary Trees with k-up-modular Costs}
+\label{sec:param_mary}
+
+\begin{table}[H]
+\centering
+\caption{Parametrized algorithm on full m-ary trees ($k=2$, $m=3$)}
+\label{tab:param_mary}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: parametrized_mary.csv
+\csvreader[head to column names]{data/parametrized_mary.csv}{}{%
+\n & \avgcost & \worstcost & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/parametrized_mary.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/parametrized_mary.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: Parametrized algorithm on full m-ary trees}
+\label{fig:param_mary}
+\end{figure}
+
+Full m-ary trees with uniform branching provide a balanced test case for parametrized algorithms.

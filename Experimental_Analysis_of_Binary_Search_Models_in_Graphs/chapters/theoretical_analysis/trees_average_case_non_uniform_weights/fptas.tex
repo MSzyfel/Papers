@@ -44,7 +44,7 @@ $ and return the resulting decision tree $D'$.
     \COST_{D'}\br{T, w}\leq \br{1+\epsilon}\cdot \OPT\br{T,w}
     $$
     \begin{proof}
-        By definition, for every $v\in V\br{T}$, we have $w'\br{v}\leq \frac{w\br{v}}{K}+1$ and therefore $K\cdot w'\br{v}\leq w\br{v}+K$. Let $D^*$ be the optimal solotion for the $\br{T,w}$ instance. We have:
+        By definition, for every $v\in V\br{T}$, we have $w'\br{v}\leq \frac{w\br{v}}{K}+1$ and therefore $K\cdot w'\br{v}\leq w\br{v}+K$. Let $D^*$ be the optimal solution for the $\br{T,w}$ instance. We have:
         \begin{align*}
         \COST_{D'}\br{T, w}&\leq K\cdot \COST_{D'}\br{T, w'}\leq K\cdot \COST_{D^*}\br{T, w'}
         \\&\leq
@@ -60,7 +60,10 @@ $ and return the resulting decision tree $D'$.
 \end{lemma}
 
     We have that $w'\br{T}=\sum_{v\in V\br{T}}\frac{w\br{v}}{K}\leq n^2/\epsilon+n=O\br{n^2/\epsilon}$.
-    Hence, the running time of the procedure is bounded by $O\br{n\cdot 2^{2h}\cdot h}=O\br{n\cdot w'\br{T}^{\log_{3/2}\br{2}}\cdot \log w'\br{T}}=O\br{n\cdot \br{n/\epsilon}^{2\cdot\log_{3/2}\br{2}}\cdot\log\br{n/\epsilon}}$ and the claim follows.
+    Hence, the running time of the procedure is bounded by: 
+    $$O\br{n\cdot 2^{2h}\cdot h}=O\br{n\cdot w'\br{T}^{2\cdot\log_{3/2}\br{2}}\cdot \log w'\br{T}}=O\br{n\cdot \br{n/\epsilon}^{4\cdot\log_{3/2}\br{2}}\cdot\log\br{n/\epsilon}}$$ and the claim follows.
 \end{proof}
 \end{theorem}
+
+It should be noted that despite the fact that the above algorithm is an FPTAS, the exponent of the polynomial of $n$ is $4\log_{3/2}\br{2}+1\approx 7.838$ (ignoring polylogarithmic factors). This makes the algorithm impractical for most inputs and yields the greedy algorithm querying weighted centroid a preferential choice for most applications. A similar issue concerns the PTAS from the previous section. For $\epsilon=1$ the running time of the latter is $O\br{n^{5}}$ which is much worse then the $O\br{n\log n}$ time achieved by the greedy algorithm. The PTAS is therefore useful for $\epsilon \in (0.413, 1)$ when it outperforms the FPTAS. 
 

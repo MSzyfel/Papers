@@ -1,0 +1,489 @@
+\subsection{QPTAS Algorithm}
+\label{sec:qptas}
+
+Quasi-Polynomial Time Approximation Scheme for general cost functions.
+
+\subsubsection{Random Trees - $\epsilon = 0.5$}
+
+\begin{table}[H]
+\centering
+\caption{QPTAS with $\epsilon = 0.5$ on random trees}
+\label{tab:qptas_random_eps05}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: qptas_random_eps05.csv
+\csvreader[head to column names]{data/qptas_random_eps05.csv}{}{%
+\n & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/qptas_random_eps05.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/qptas_random_eps05.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: QPTAS with $\epsilon = 0.5$ on random trees}
+\label{fig:qptas_random_eps05}
+\end{figure}
+
+
+\subsubsection{Random Trees - $\epsilon = 0.25$}
+
+\begin{table}[H]
+\centering
+\caption{QPTAS with $\epsilon = 0.25$ on random trees}
+\label{tab:qptas_random_eps025}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: qptas_random_eps025.csv
+\csvreader[head to column names]{data/qptas_random_eps025.csv}{}{%
+\n & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/qptas_random_eps025.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/qptas_random_eps025.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: QPTAS with $\epsilon = 0.25$ on random trees}
+\label{fig:qptas_random_eps025}
+\end{figure}
+
+
+\subsubsection{Random Trees - $\epsilon = 0.1$}
+
+\begin{table}[H]
+\centering
+\caption{QPTAS with $\epsilon = 0.1$ on random trees}
+\label{tab:qptas_random_eps01}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: qptas_random_eps01.csv
+\csvreader[head to column names]{data/qptas_random_eps01.csv}{}{%
+\n & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/qptas_random_eps01.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/qptas_random_eps01.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: QPTAS with $\epsilon = 0.1$ on random trees}
+\label{fig:qptas_random_eps01}
+\end{figure}
+
+
+\subsubsection{Cost Distribution Comparison}
+
+\begin{table}[H]
+\centering
+\caption{QPTAS performance on different cost distributions ($n=50$, $\epsilon=0.25$)}
+\label{tab:qptas_distributions}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Distribution & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: qptas_distributions.csv
+\csvreader[head to column names]{data/qptas_distributions.csv}{}{%
+\distribution & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/qptas_distributions.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/qptas_distributions.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: QPTAS performance on different cost distributions ($n=50$, $\epsilon=0.25$)}
+\label{fig:qptas_distributions}
+\end{figure}
+
+
+\textbf{Observations:}
+\begin{itemize}
+    \item QPTAS provides theoretical guarantees for arbitrary cost functions
+    \item Runtime is quasi-polynomial in n and $1/\epsilon$
+    \item Practical performance depends on cost distribution
+    \item Trade-off between quality and computation time
+\end{itemize}
+
+\subsubsection{Spider Graphs with QPTAS}
+\label{sec:qptas_spider}
+
+\begin{table}[H]
+\centering
+\caption{QPTAS on spider graphs ($\epsilon = 0.25$)}
+\label{tab:qptas_spider}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: qptas_spider.csv
+\csvreader[head to column names]{data/qptas_spider.csv}{}{%
+\n & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/qptas_spider.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/qptas_spider.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: QPTAS on spider graphs}
+\label{fig:qptas_spider}
+\end{figure}
+
+\subsubsection{Caterpillar Trees with QPTAS}
+\label{sec:qptas_caterpillar}
+
+\begin{table}[H]
+\centering
+\caption{QPTAS on caterpillar trees ($\epsilon = 0.25$)}
+\label{tab:qptas_caterpillar}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: qptas_caterpillar.csv
+\csvreader[head to column names]{data/qptas_caterpillar.csv}{}{%
+\n & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/qptas_caterpillar.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/qptas_caterpillar.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: QPTAS on caterpillar trees}
+\label{fig:qptas_caterpillar}
+\end{figure}
+
+\subsubsection{Broom Trees with QPTAS}
+\label{sec:qptas_broom}
+
+\begin{table}[H]
+\centering
+\caption{QPTAS on broom trees ($\epsilon = 0.25$)}
+\label{tab:qptas_broom}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: qptas_broom.csv
+\csvreader[head to column names]{data/qptas_broom.csv}{}{%
+\n & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/qptas_broom.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/qptas_broom.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: QPTAS on broom trees}
+\label{fig:qptas_broom}
+\end{figure}
+
+\subsubsection{Lobster Trees with QPTAS}
+\label{sec:qptas_lobster}
+
+\begin{table}[H]
+\centering
+\caption{QPTAS on lobster trees ($\epsilon = 0.25$)}
+\label{tab:qptas_lobster}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: qptas_lobster.csv
+\csvreader[head to column names]{data/qptas_lobster.csv}{}{%
+\n & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/qptas_lobster.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/qptas_lobster.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: QPTAS on lobster trees}
+\label{fig:qptas_lobster}
+\end{figure}
+
+\subsubsection{Full m-ary Trees with QPTAS}
+\label{sec:qptas_mary}
+
+\begin{table}[H]
+\centering
+\caption{QPTAS on full m-ary trees ($\epsilon = 0.25$, $m=3$)}
+\label{tab:qptas_mary}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
+\hline
+% Data from: qptas_mary.csv
+\csvreader[head to column names]{data/qptas_mary.csv}{}{%
+\n & \avgcost & \approxratio & \avgtime & \stddev \\
+}
+\hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Average depth},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/qptas_mary.csv};
+\legend{Avg Depth}
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (ms)},
+    width=0.48\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/qptas_mary.csv};
+\legend{Avg Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Performance metrics: QPTAS on full m-ary trees}
+\label{fig:qptas_mary}
+\end{figure}

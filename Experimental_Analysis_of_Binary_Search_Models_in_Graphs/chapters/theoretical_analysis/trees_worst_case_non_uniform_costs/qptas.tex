@@ -1,7 +1,7 @@
 
 \SetKwFunction{FMergeDTs}{MergeDTs}
 \SetKwFunction{FDPTimelinesCosts}{DPTimelinesCosts}
-\subsection{QPTAS for the $T||V,c||C_{max}$ problem}\label{qptasSection}
+\subsection{QPTAS for the $T||V,c||\COST$ problem}\label{qptasSection}
 
 The following algorithh is a simplified version of the QPTAS provided in \cite{dereniowski2017ApproxSsForGeneralBSinWTs}. The core idea of the algorithm is the same, however, our solution uses the language of decision trees instead of the language of sequence assignments, which makes the algorithm more intuitive.
 
@@ -72,7 +72,7 @@ While calculating the decision tree, we will divide the time into boxes of durat
 We will call a decision tree fulfilling above conditions \textit{aligned}. In subsequent considerations, we will focus ourselves of finding such decision trees, whose properties will allow us to devise an efficient dynamic programming procedure finding an optimal, aligned decision tree. 
 
 \subsubsection{Up and down responses, heavy module contraction, u}
-Recall the followinfg definitions. Since, our decision tree is rooted, we can reasonably talk about up and down responses to a query. An \textit{up} response to a query to $v$ in $T$ occurs when the connected component $\in T-v$, which is the reply happens to contain $r\br{T}$. If this is not the case, then such response is called a \textit{down} response. As it will turns out, a repeating occurance of light queries with down responses will become problematic for our algorithm. To account for this issue we will use the following notions:
+Recall the following definitions. Since our decision tree is rooted, we can reasonably talk about up and down responses to a query. An \textit{up} response to a query to $v$ in $T$ occurs when the connected component $\in T-v$, which is the reply, happens to contain $r\br{T}$. If this is not the case, then such response is called a \textit{down} response. As it will turn out, a repeating occurrence of light queries with down responses will become problematic for our algorithm. To account for this issue we will use the following notions:
 
 We will define a new measure of cost for aligned decision trees called the \textit{aligned cost}. Let $D$ be any aligned strategy for $\br{t,c'}$. For any  vertex $v\in V\br{T}$ and query $q\in Q_{D}\br{T,v}$ the contribution $\kappa_{T,c,k}\br{q,v}$ of $u$ is defined as:
 $$

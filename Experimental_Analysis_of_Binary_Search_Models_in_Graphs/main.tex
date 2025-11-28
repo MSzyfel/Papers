@@ -4,8 +4,11 @@
 \usepackage[backend=biber,style=alphabetic]{biblatex}
 \addbibresource{bibliography.bib}
 
-%\input{glossary.tex}
+\input{glossary.tex}
 \input{nomenclature}   
+
+% Add all glossary entries even if not referenced
+\glsaddall   
 
 % Custom title page commands
 \newcommand{\supervisor}{prof. dr. hab. inż. Dariusz Dereniowski}
@@ -36,7 +39,7 @@
 \singlespacing
 \printnomenclature[0.5\textwidth]
 
-%\printglossaries
+\printglossaries
 
 \tableofcontents
 \listoffigures
