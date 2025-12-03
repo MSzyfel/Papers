@@ -1,4 +1,4 @@
-\documentclass[10pt]{report}
+\documentclass[10pt,twoside]{report}
 
 \usepackage{template}
 \usepackage[backend=biber,style=alphabetic]{biblatex}
@@ -20,6 +20,8 @@
 
 \includepdf[pages=-]{StronaTytulowa_193307.pdf}
 
+\pagenumbering{gobble} % No page numbers for title pages
+
 \begin{titlepage}
     \centering
     \vspace*{2.5cm}
@@ -36,14 +38,15 @@
 
 \include{chapters/abstract}
 
+\pagenumbering{arabic} % Start Arabic numbering from page 3 (Table of Contents)
+\setcounter{page}{3}
+
 \singlespacing
 \printnomenclature[0.5\textwidth]
 
-\printglossaries
-
 \tableofcontents
-\listoffigures
-\listoftables
+
+\printglossaries
 \include{chapters/introduction/introduction}
 \include{chapters/notions_and_definitions/notions_and_definitions}
 \include{chapters/theoretical_analysis/theoretical_analysis}
@@ -53,5 +56,8 @@
 \include{appendix/figures}
 
 \printbibliography
+
+\listoffigures
+\listoftables
 %\include{appendix/appendix}
 \end{document}

@@ -1,7 +1,8 @@
 \chapter{Experimental Results}
 
-This chapter presents comprehensive experimental evaluation of the algorithms discussed in the theoretical analysis. The experiments are organized following the same structure as the theoretical chapter, with sections corresponding to different problem variants. For each algorithm and graph class, we provide detailed results based on various probability distributions and instance sizes.
+The following chapter is concerned with a series of experiments conducted in order to evaluate the performance of the algorithms for the Tree Search Problem presented in the previous chapter.
 
-The experimental methodology involves generating random instances using the \texttt{Tree} class implementation, applying the algorithms, and measuring their performance metrics. Results are presented in tabular form, derived from CSV data files containing the experimental measurements.
+Our main goal was to compare the quality of the solutions produced by the different algorithms on various classes of trees and cost functions and the computation time required to obtain such results. We measured the performance of our algorithms on randomly generated trees of three main classes: random trees, trees with bounded degree and trees with a bounded diameter. For the two latter, we have chosen trees of degree at most 3 and diameter at most 6, since these are minimal values of these paramaters for which the Tree Search Problem with non uniform costs is known to be NP-hard \cite{Cicalese2012BinIdentPForWTs}. We also used three different ways of generating the cost functions: random uniform distribution, binomial distribution and exponential distribution.
 
+We implemented the previously descriped algorithms using python programming language. The experiments were conducted on a machine with 32 x AMD Ryzen 9 7950X 16-Core Processor and 128 GB of RAM. 
 \input{chapters/experimental_results/experimental_results.tex}

@@ -1,24 +1,15 @@
-\section*{Overview}
+\newpage
+\section{Overview of the experiments}
 
-The experimental analysis is divided into the following sections, mirroring the theoretical analysis:
+The experimental analysis is divided into two sections, the concerning uniform and non-uniform query costs. In the first section we measured the running time of the \FRankingBasedDT algorithm from Section~\ref{sec:uniform_cost_algorithm} and the depth of the decision trees produced by it. The second secition was concerned with the non-uniform cost model and included the evaluation of the $O\br{\log n/\log\log n}$-approximation algorithm from Section~\ref{sec:log n/log log n approximation}, the $O\br{\sqrt{\log n}}$-approximation algorithm from Section~\ref{sec:sqrt log n approximation} based on the QPTAS and the $O\br{\log\log n}$-approximation algorithm from Section~\ref{sec:log log n approximation}. We compared the quality of the solutions produced by these algorithms on various classes of trees and cost functions and the computation time required to obtain these results. Additionally, for small input sizes we menaged to calculate the optimal solutions using the exact exponential time algorithm. This allowed us to compare the approximation ratios of the algorithms with respect to the optimal solutions.
 
-\begin{enumerate}
-    \item \textbf{Trees with uniform costs (worst case)} - Experiments for the basic variant with unit query costs
-    \item \textbf{Trees with non-uniform costs (worst case)} - Testing of parametrized and approximation algorithms with varying edge/query costs
-\end{enumerate}
+We have also employed few heurstics speed-ups particularly for the QPTAS. Firstly, instead of using $\epsilon=1$ we set it to $\epsilon=59$ which reduces most of the computational complexity of each QPTAS call. For both the $O\br{\sqrt{\log n}}$-approximation algorithm and the $O\br{\log\log n}$-approximation algorithm this does not impact the asymptotical guarantee of the algorithms. Secondly, a careful reading of the proof of the QPTAS reveals that the depth of the considered boxed decision trees can be limited to $\rank\br{T}$ where $\rank\br{T}$ is the number of labels used by the optimal ranking of $T$. This reduces the running time of the QPTAS to $n^{O\br{\log \rank\br{T}/\epsilon^2}}$ which in practice is usually significantly better.
 
-\subsection*{Experimental Design Matrix}
 
-Our experimental framework systematically tests algorithms across multiple dimensions:
+\subsection*{Tree Generation Methods}
 
-\begin{itemize}
-    \item \textbf{Tree Generation Methods} - 15 different structural patterns
-    \item \textbf{Cost Distributions} ($c$) - 3 probability distributions for edge/query costs (Uniform, Exponential, Power-Law)
-\end{itemize}
-
-\subsubsection*{Tree Generation Methods}
-
-Table~\ref{tab:tree_methods} summarizes all tree generation methods used in our experiments.
+We used three different methods of generating random trees for our experiments: random trees, trees with bounded degree and trees with bounded diameter. 
+Table~\ref{tab:tree_methods} summarizes all tree generation methods used in our experiments. We decided to measure the performance of our algorithms on relatively small instances, 10 to 100 vertices per instance, since the complex dynamic programming subroutines of our algorithm require significant computation time even for such sizes.
 
 \begin{table}[H]
 \centering
@@ -35,8 +26,6 @@ Bounded Degree & $n, \Delta$ & Tree with maximum degree constraint $\Delta$ (eac
 \hline
 Bounded Diameter & $n, D$ & Tree with maximum diameter constraint $D$ (maximum distance between any two vertices $\leq D$) \\
 \hline
-Balanced & $n, m$ & Balanced $m$-ary tree constructed level-by-level (BFS), minimizing tree height \\
-\hline
 \end{tabular}
 \end{table}
 
@@ -48,9 +37,7 @@ Balanced & $n, m$ & Balanced $m$-ary tree constructed level-by-level (BFS), mini
 
 \paragraph{Bounded Diameter Trees.} For diameter bound $D$, vertices are distributed across $h = \lfloor D/2 \rfloor + 1$ levels. The root occupies level 0, and remaining vertices are randomly assigned to levels $1, \ldots, h-1$. Each non-root vertex connects to a random parent in the previous level, ensuring the diameter does not exceed $D$.
 
-\paragraph{Balanced Trees.} Similar to full $m$-ary trees but ensures balanced structure by filling levels completely before starting the next level. This minimizes tree height for given $n$ and $m$. Construction proceeds via BFS, adding exactly $m$ children to each internal node until $n$ vertices are placed.
-
-\subsubsection*{Distribution Functions}
+\subsubsection*{Cost Function Generation}
 
 Table~\ref{tab:distributions} lists all probability distributions used for vertex weights ($w$) and edge costs ($c$).
 
@@ -91,32 +78,6 @@ To systematically describe our experimental configurations, we extend the theore
     \item $V, c = \mathcal{E}$ - vertex queries with costs from exponential distribution $\mathcal{E}(\lambda=1)$
 \end{itemize}
 
-\textbf{Field $\gamma$ (Objective):} For all experiments, we optimize the worst-case criterion:
-\begin{itemize}
-    \item $\COST$ - minimize worst-case search time (maximum depth in uniform cost case, maximum weighted path cost in non-uniform cost case)
-\end{itemize}
-
-\textbf{Complete experimental notation examples:}
-\begin{itemize}
-    \item $T_R || V || \COST$ - Random trees, vertex queries with uniform unit costs, minimize worst-case depth
-    \item $T_{\Delta} || V, c = \mathcal{U} || \COST$ - Bounded degree trees, vertex queries with uniformly distributed costs, minimize worst-case cost
-    \item $T_D || V, c = \mathcal{B} || \COST$ - Bounded diameter trees, vertex queries with binomially distributed costs, minimize worst-case cost
-    \item $T_{bal} || V, c = \mathcal{E} || \COST$ - Balanced trees, vertex queries with exponentially distributed costs, minimize worst-case cost
-\end{itemize}
-
-\textbf{Experimental structure:} Each of the four tree types is tested under:
-\begin{itemize}
-    \item \textbf{Section 4.1} (Uniform Costs): 4 subsections for $T_R, T_{\Delta}, T_D, T_{bal}$ each with notation $T_X || V || \COST$
-    \item \textbf{Section 4.3} (Non-Uniform Costs): 4 subsections for $T_R, T_{\Delta}, T_D, T_{bal}$, each containing 3 subsubsections:
-        \begin{itemize}
-        \item Uniform distribution: $T_X || V, c = \mathcal{U} || \COST$
-        \item Binomial distribution: $T_X || V, c = \mathcal{B} || \COST$
-        \item Exponential distribution: $T_X || V, c = \mathcal{E} || \COST$
-    \end{itemize}
-\end{itemize}
-
-This yields a total of $4 + 4 \times 3 = 16$ experimental configurations systematically covering the interaction between tree structure (4 types) and cost distributions (uniform unit, uniform random, binomial, exponential).
-
 \subsubsection*{Experiment Coverage Matrix}
 
 Table~\ref{tab:experiment_matrix} shows which combinations of tree types and problem variants are tested. Each cell contains a reference to the corresponding subsection with detailed results.
@@ -128,7 +89,7 @@ Table~\ref{tab:experiment_matrix} shows which combinations of tree types and pro
 \scriptsize
 \begin{tabular}{|l|c|c|}
 \hline
-\textbf{Tree Method} & $T || V || \COST$ & $T || V, c || \COST$ \\
+\textbf{Tree Method} & $T || V || \COST_{max}$ & $T || V, c || \COST_{max}$ \\
 \hline
 Random & \ref{sec:random_trees} & \ref{sec:random_c} \\
 \hline

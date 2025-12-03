@@ -1,131 +1,22 @@
 \chapter{Conclusions}
 
-This thesis presented an experimental analysis of the generalized binary search problem in trees, focusing on worst-case scenarios. The work combined theoretical foundations with empirical validation across multiple tree structures and cost models.
+This thesis presented an experimental analysis of the generalized worst-case binary search problem in tree graphs. We explored various algorithms designed to tackle the Tree Search Problem with both uniform and non-uniform query costs. 
 
-\section{Summary of Theoretical Contributions}
+Obtaining efficient search strategies for trees is important due to numerous practical applications, such as bug searching, network diagnostics and river pollution detection. Additionally, the graph search problem is also important from a theoretical point of view. In particular, for the case of uniform costs, the depth od the decision tree corresponds to the well-known graph parameter called the \emph{tree-depth} \cite{GIANNOPOULOU20122089}. This parameter, tightly connected to other graph invariants like tree-width, is of wide interest in graph theory and parametrized complexity \cite{BODLAENDER1995238,NESETRIL20061022, BOROWIECKI2023113682}. The significance of the non-uniform cost model, on the other hand is because it is one of the few problems which are NP-hard already on trees. This is due to the fact that the decision trees have a non local structure, which in turn yields most of the classic dynamic programming techniques inapplicable. Approximation algorithm presented hereby, are therefore of particular interest, since they provide efficient ways of obtaining solutions of guaranteed quality for problems with such characteristics. It is interesting whether similar techniques can be applied to other, similar problems. Among them is for example the conflict-free connection coloring which differs only slightly since it requires that each path in the tree contains a vertex/edge with a unique color \cite{CfreeConOfTs}, a relaxed condition of the ranking coloring which is equivalent to the Tree Search Problem. 
 
-The theoretical analysis established a foundation for understanding the binary search problem in tree structures:
+The above mentioned non-locality enforces the use of complex algorithmic techniques, and non-polynomial time subroutines. This provides a two-fold challenge: on the one hand, it makes the algorithms hard to implement and debug, on the other hand, it limits their practical usability to relatively small instances. Due to this, the experimental analysis conducted in this thesis required significant effort. This war particularly demanding while implementing the QPTAS for $T||V, c||\COST_{max}$ both in terms of the used data structres (boxed decision trees) with operations on them (efficient merging and rotating) as well as the algorithm by itself, consisiting of few cases using complex subroutines. 
 
-\begin{itemize}
-    \item \textbf{Problem Formalization:} We systematically formalized the worst-case search problem, distinguishing between uniform and non-uniform cost models.
-    
-    \item \textbf{Algorithmic Framework:} We presented and analyzed algorithmic approaches for worst-case optimization:
-    \begin{itemize}
-        \item Optimal algorithms for trees with uniform costs (centroid decomposition)
-        \item Parametrized and approximation algorithms for non-uniform edge costs (k-up-modular, QPTAS)
-    \end{itemize}
-    
-    \item \textbf{Complexity Analysis:} We established computational complexity bounds and approximation guarantees for each problem variant, demonstrating the transition from polynomial-time solvability to NP-hardness.
-\end{itemize}
+It is interesting question, whether it is possible to derive similar results, using simpler techniques. In particular, a further research direction would be to further simplify the QPTAS both in terms of the large constant in the exponent and the algorithm itself. Even A central question in this line of research if whether is is possible to derive constant factor approximation guarantee for the non-uniform costs or ideally, a PTAS. As of right now, no inapproximability results are known for this problem, besides a trivial non-existence of absolute approximation algorithms. This problem therefore is included among the specific list of problems for which a $O\br{\sqrt{\log n}}$-approximation exists, but there is no lower bound matching this result. A similar issue is prevalent among many separation problems such as treewidth, vertex separators and edge cuts \cite{ExpFsGEandGPart,PartGsintoBComps, Improvedapproximationalgorithmsvertexseparators} for which $O\br{\sqrt{\log n}}$-approximation algorithms are known, but no non-trivial lower bounds beyond constant factor inapproximability are known. Interestingly, these problems are connected to Tree Search Problem, since they can be used to derive relatively simple constant factor approximation algorithms for the average case version of the problem \cite{szyfelbein2025approximatingaveragecasegraphsearch,OnDasHC,Acostfunctionforsimilaritybasedhierarchicalclustering}.
 
-\section{Experimental Validation and Findings}
+The main conclusion drawn from the experimental analysis is that the state-of-the-art approximation algorithms algorithms are of practical use only for relatively small instances, up to several dozens of vertices. Beyond that, the $O\br{\log n/\log\log n}$-approximation algorithm is the most efficient one.  The $O\br{\log\log n}$-approximation algorithm, while theoretically interesting, is impractical for real-world applications due to its high computational complexity.
 
-The experimental component provided empirical verification of theoretical claims and revealed practical insights into algorithm performance across four key tree structures.
+Additionally, on the random instances used in our experiments, the costs of the solutions built by all algorithms were relatively low, and no particular algorithm consistently outperformed the others. This suggests that on random instances, most heuristics usually perform well. Additionally, the approximation ratios observed in the experiments were significantly better than the theoretical worst-case guarantees, indicating that the algorithms are effective in practice despite their theoretical limitations. It should be remarked that the approximation ratios obtained during the theoretical analysis are worst-case guarantees and in general, the intrinsic difficulty of achieving better results for the Tree Search Problem is lack of mathemathical techniques providing better lower bounds on the optimal solution. In particular the only lower bound used in the analysis of the QPTAS is the value of $1$ (after costs normalization) which is rather weak. Moreover during its recursive usage in the $O\br{\sqrt{\log n}}$-approximation algorithm, each such usage induces the cost of $O\br{\OPT}$, which is a lot considering the fact, that the size of the instances processed at each level of the recursion is significantly smaller then the original instance. Transcending any of these obstacles is a possible further research direction.
 
-\subsection{Trees with Uniform Costs (Worst Case)}
+Another intersting observation is the suprisingly good performance of the $O\br{2^nn}$ time exact algorithm. Despite its exponential time complexity, it was able to solve instances with up to 40 vertices within reasonable time limits. In fact the upper bound on the running time of this algorithm is the number of connected subtrees of $T$. Since we generated our random trees using Prüfer sequences, by \cite{SubTsofRT} we know that the expected number of connected subtrees of a tree generated in this way is of order $O\br{1.4196^n}$. Although this is still exponential, it is significantly better than the worst-case bound of $O\br{2^n}$. This suggests that the exact algorithm may be practical for small to medium-sized instances, especially when the input trees have certain structural properties that limit the number of connected subtrees. In recent years many NP-hard problems, such as the Traveling Salesman Problem or the Steiner Tree Problem, have seen significant improvements in their exact exponential time algorithms \cite{ExpTAlgs}. It is therefore an interesting research direction to investigate whether similar improvements can be obtained for the Tree Search Problem.
+\section*{Acknowledgements}
 
-Our experiments on the centroid decomposition algorithm confirmed its optimal performance:
 
-\begin{itemize}
-    \item \textbf{Scalability:} The algorithm exhibits excellent runtime scaling, with average depth growing as $O(\log n)$ across all tested tree structures
-    
-    \item \textbf{Structural Impact:} Different tree generation methods produced varying search complexities:
-    \begin{itemize}
-        \item Random trees showed typical logarithmic behavior with predictable variance
-        \item Bounded degree trees demonstrated depth patterns inversely correlated with maximum degree
-        \item Bounded diameter trees exhibited controlled search depths proportional to diameter bounds
-        \item Balanced trees achieved near-optimal depths consistently across all instance sizes
-    \end{itemize}
-    
-    \item \textbf{Algorithm Robustness:} The centroid-based approach proved robust across diverse tree structures, consistently achieving worst-case logarithmic depth
-\end{itemize}
+The author wants to thank Dariusz Dereniowski for the preliminary discussions
+and guidance throughout the development of this thesis.
 
-\subsection{Trees with Non-Uniform Costs (Worst Case)}
-
-Experiments on parametrized and approximation algorithms for non-uniform edge costs revealed:
-
-\begin{itemize}
-    \item \textbf{k-up-Modularity:} The parametrized algorithm's performance strongly depends on the k-up-modular parameter. For practical instances with $k \leq 3$, the algorithm remains efficient and produces high-quality solutions.
-    
-    \item \textbf{QPTAS Behavior:} The quasi-polynomial time approximation scheme showed exponential runtime growth with decreasing $\epsilon$, as expected. However, for moderate tree sizes ($n \leq 200$) and $\epsilon \geq 0.1$, it remained computationally feasible.
-    
-    \item \textbf{Cost Distribution Effects:} Non-uniform cost distributions (exponential, power-law) increased worst-case costs across all tree structures, with the impact varying by tree topology:
-    \begin{itemize}
-        \item Random trees showed moderate sensitivity to cost distributions
-        \item Bounded degree trees exhibited predictable cost scaling based on degree constraints
-        \item Bounded diameter trees demonstrated controlled cost growth within diameter limits
-        \item Balanced trees maintained relatively stable performance across different cost distributions
-    \end{itemize}
-\end{itemize}
-
-\section{Comprehensive Experimental Design}
-
-A key contribution of this work is the systematic experimental methodology:
-
-\begin{itemize}
-    \item \textbf{Tree Generation Selection:} We focused on four representative tree classes providing diverse structural properties:
-    \begin{itemize}
-        \item Random trees (baseline, general case)
-        \item Bounded degree trees (degree-constrained scenarios)
-        \item Bounded diameter trees (distance-constrained scenarios)
-        \item Balanced trees (optimal structure baseline)
-    \end{itemize}
-    
-    \item \textbf{Distribution Coverage:} Three probability distributions (uniform, exponential, power-law) were applied to edge costs, enabling analysis of cost distribution effects on worst-case performance.
-    
-    \item \textbf{Parameter Sweeps:} Systematic variation of algorithm parameters ($\epsilon$ for approximation schemes, $k$ for parametrized algorithms) provided complete characterization of algorithm behavior.
-    
-    \item \textbf{Statistical Validity:} Multiple trials per configuration ensured statistical significance of observed trends.
-\end{itemize}
-
-\section{Practical Implications}
-
-The experimental findings translate into actionable recommendations for practitioners:
-
-\begin{enumerate}
-    \item \textbf{Algorithm Selection:}
-    \begin{itemize}
-        \item For uniform cost trees: Use centroid decomposition (optimal, efficient)
-        \item For general costs: Assess k-up-modularity; if $k$ is small, use parametrized algorithm; otherwise, use QPTAS
-    \end{itemize}
-    
-    \item \textbf{Input Characteristics Matter:}
-    \begin{itemize}
-        \item Tree structure significantly affects search complexity
-        \item Cost distributions should be analyzed before algorithm selection
-        \item Bounded degree/diameter constraints provide predictable performance bounds
-    \end{itemize}
-    
-    \item \textbf{Runtime Considerations:}
-    \begin{itemize}
-        \item For real-time applications with uniform costs, centroid decomposition is optimal
-        \item For offline computation with non-uniform costs, QPTAS provides better solution quality with acceptable runtime for moderate tree sizes
-        \item Large-scale instances ($n > 500$) may require careful parameter tuning
-    \end{itemize}
-\end{enumerate}
-
-\section{Limitations and Future Work}
-
-While this work provides experimental coverage of worst-case scenarios on trees, several directions warrant further investigation:
-
-\begin{itemize}
-    \item \textbf{Average-Case Analysis:} Extension to average-case scenarios with non-uniform vertex weights would complement the worst-case focus.
-    
-    \item \textbf{Additional Tree Structures:} Investigation of specialized structures (stars, caterpillars, probabilistic models) could reveal additional structural insights.
-    
-    \item \textbf{General Graphs:} Extension to series-parallel graphs, bounded treewidth graphs, and general graphs would broaden applicability.
-    
-    \item \textbf{Dynamic Scenarios:} Experiments where the tree structure or costs change over time present interesting challenges.
-    
-    \item \textbf{Real-World Case Studies:} Application of developed algorithms to concrete problems (network routing, database query optimization) would validate practical utility.
-\end{itemize}
-
-\section{Final Remarks}
-
-This thesis successfully validated theoretical analysis through systematic experimentation on the worst-case binary search problem in trees. The experiments confirmed theoretical predictions while revealing practical performance patterns across diverse tree structures and cost models.
-
-The focused exploration of algorithm performance across four representative tree classes and multiple cost distributions provides practical guidance for algorithm selection in worst-case optimization scenarios. The experimental methodology developed here—combining multiple tree generation methods, cost distributions, and statistical validation—serves as a foundation for rigorous algorithm evaluation in graph search problems.
-
-Most importantly, this work demonstrates that theoretical guarantees must be complemented by empirical analysis to understand practical performance. The experimental insights presented here enable informed algorithm selection and parameter tuning for real-world applications requiring worst-case performance guarantees in tree search.
-
-In conclusion, the worst-case binary search problem on trees admits both theoretically elegant solutions and practically efficient implementations. Through systematic experimental analysis across representative tree structures, we have characterized when and how to effectively deploy these algorithms, contributing to both theoretical understanding and practical applicability of tree search methods.
+Gratitude is also expressed towards the Department of Algorithms and System Modeling for providing computational resources required to conduct the experiments presented in this thesis. Special thanks are extended to dr. inż. Krzysztof Manuszewski for his assistance with setting up the experimental environment.
