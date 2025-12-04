@@ -1,4 +1,4 @@
-\subsection{Special Tree Structures}
+\FloatBarrier\FloatBarrier\subsection{Special Tree Structures}
 \label{sec:special_structures}
 
 This section examines the worst-case performance of various special tree structures. All analyses focus on structural properties and decision tree depth, with uniform query costs.
@@ -6,7 +6,7 @@ This section examines the worst-case performance of various special tree structu
 \subsubsection{Star Graphs}
 \label{sec:star_graphs}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Star graphs (worst case depth)}
 \label{tab:star_uniform}
@@ -21,14 +21,14 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -43,7 +43,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -61,7 +61,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \subsubsection{Caterpillar Trees}
 \label{sec:caterpillar_trees}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Caterpillar trees (worst case depth)}
 \label{tab:caterpillar_uniform}
@@ -76,14 +76,14 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -98,7 +98,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -114,7 +114,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 
 \subsubsection{Balanced Binary Trees}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Balanced binary trees (worst case depth)}
 \label{tab:balanced_uniform}
@@ -129,14 +129,14 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -151,7 +151,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -167,7 +167,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 
 \subsubsection{Spider Graphs}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Spider graphs (worst case depth)}
 \label{tab:spider_uniform}
@@ -182,14 +182,14 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -204,7 +204,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -220,7 +220,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 
 \subsubsection{Broom Trees}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Broom trees (worst case depth)}
 \label{tab:broom_uniform}
@@ -235,14 +235,14 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -257,7 +257,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -273,7 +273,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 
 \subsubsection{Lobster Trees}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Lobster trees (worst case depth)}
 \label{tab:lobster_uniform}
@@ -288,14 +288,14 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -310,7 +310,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -327,7 +327,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \subsubsection{Full m-ary Trees}
 \label{sec:special_mary}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Full m-ary trees ($m=3$, worst case depth)}
 \label{tab:mary_uniform}
@@ -342,14 +342,14 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -364,7 +364,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt

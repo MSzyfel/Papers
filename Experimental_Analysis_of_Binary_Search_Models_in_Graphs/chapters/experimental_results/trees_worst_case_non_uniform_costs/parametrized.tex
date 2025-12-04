@@ -1,11 +1,11 @@
-\subsection{Parametrized Algorithms}
+\FloatBarrier\FloatBarrier\subsection{Parametrized Algorithms}
 \label{sec:param}
 
 Results for parametrized algorithms on k-up-modular cost functions.
 
 \subsubsection{1-up-modular Costs (Monotone)}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Parametrized algorithm with $k=1$ on random trees}
 \label{tab:param_k1_random}
@@ -20,14 +20,14 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -42,7 +42,7 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -58,7 +58,7 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
 
 \subsubsection{2-up-modular Costs}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Parametrized algorithm with $k=2$ on random trees}
 \label{tab:param_k2_random}
@@ -73,14 +73,14 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -95,7 +95,7 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -111,7 +111,7 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
 
 \subsubsection{3-up-modular Costs}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Parametrized algorithm with $k=3$ on random trees}
 \label{tab:param_k3_random}
@@ -126,14 +126,14 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -148,7 +148,7 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -164,7 +164,7 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
 
 \subsubsection{Runtime vs. k Parameter}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Runtime dependence on k parameter ($n=100$)}
 \label{tab:param_k_comparison}
@@ -179,14 +179,14 @@ $k$ & Avg Cost & Avg Time (ms) & Time Factor & Optimality \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -201,7 +201,7 @@ $k$ & Avg Cost & Avg Time (ms) & Time Factor & Optimality \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -226,7 +226,7 @@ $k$ & Avg Cost & Avg Time (ms) & Time Factor & Optimality \\
 \subsubsection{Spider Graphs with k-up-modular Costs}
 \label{sec:param_spider}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Parametrized algorithm on spider graphs ($k=2$)}
 \label{tab:param_spider}
@@ -241,14 +241,14 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -263,7 +263,7 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -281,7 +281,7 @@ Spider graphs have a central node with degree $k$ and $k$ paths attached. The pa
 \subsubsection{Caterpillar Trees with k-up-modular Costs}
 \label{sec:param_caterpillar}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Parametrized algorithm on caterpillar trees ($k=2$)}
 \label{tab:param_caterpillar}
@@ -296,14 +296,14 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -318,7 +318,7 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -336,7 +336,7 @@ Caterpillar trees (path with leaves attached) are particularly well-suited for p
 \subsubsection{Broom Trees with k-up-modular Costs}
 \label{sec:param_broom}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Parametrized algorithm on broom trees ($k=2$)}
 \label{tab:param_broom}
@@ -351,14 +351,14 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -373,7 +373,7 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -391,7 +391,7 @@ Broom trees combine a star component with a path, providing an interesting test 
 \subsubsection{Lobster Trees with k-up-modular Costs}
 \label{sec:param_lobster}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Parametrized algorithm on lobster trees ($k=2$)}
 \label{tab:param_lobster}
@@ -406,14 +406,14 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -428,7 +428,7 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -446,7 +446,7 @@ Lobster trees (caterpillar with additional leaves) test the limits of parametriz
 \subsubsection{Full m-ary Trees with k-up-modular Costs}
 \label{sec:param_mary}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Parametrized algorithm on full m-ary trees ($k=2$, $m=3$)}
 \label{tab:param_mary}
@@ -461,14 +461,14 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -483,7 +483,7 @@ $n$ & Avg Cost & Worst Cost & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt

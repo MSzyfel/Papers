@@ -1,17 +1,18 @@
 \newpage
 \section{Overview of the experiments}
 
-The experimental analysis is divided into two sections, the concerning uniform and non-uniform query costs. In the first section we measured the running time of the \FRankingBasedDT algorithm from Section~\ref{sec:uniform_cost_algorithm} and the depth of the decision trees produced by it. The second secition was concerned with the non-uniform cost model and included the evaluation of the $O\br{\log n/\log\log n}$-approximation algorithm from Section~\ref{sec:log n/log log n approximation}, the $O\br{\sqrt{\log n}}$-approximation algorithm from Section~\ref{sec:sqrt log n approximation} based on the QPTAS and the $O\br{\log\log n}$-approximation algorithm from Section~\ref{sec:log log n approximation}. We compared the quality of the solutions produced by these algorithms on various classes of trees and cost functions and the computation time required to obtain these results. Additionally, for small input sizes we menaged to calculate the optimal solutions using the exact exponential time algorithm. This allowed us to compare the approximation ratios of the algorithms with respect to the optimal solutions.
+The experimental analysis is divided into two sections concerning uniform and non-uniform query costs. In the first section we measured the running time of the \FRankingBasedDT algorithm from Section~\ref{sec:trees_uniform_costs} and the depth of the decision trees produced by it. The second section was concerned with the non-uniform cost model and included the evaluation of the $O\br{\log n/\log\log n}$-approximation algorithm from Section~\ref{sec:log_n_log_log_n_approx}, the $O\br{\sqrt{\log n}}$-approximation algorithm from Section~\ref{sec:sqrt_log_n_approx} based on the QPTAS and the $O\br{\log\log n}$-approximation algorithm from Section~\ref{sec:log_log_n_approx}. We compared the quality of the solutions produced by these algorithms on various classes of trees and cost functions and the computation time required to obtain these results. Additionally, for small input sizes we managed to calculate the optimal solutions using the exact exponential time algorithm. This allowed us to compare the approximation ratios of the algorithms with respect to the optimal solutions.
 
-We have also employed few heurstics speed-ups particularly for the QPTAS. Firstly, instead of using $\epsilon=1$ we set it to $\epsilon=59$ which reduces most of the computational complexity of each QPTAS call. For both the $O\br{\sqrt{\log n}}$-approximation algorithm and the $O\br{\log\log n}$-approximation algorithm this does not impact the asymptotical guarantee of the algorithms. Secondly, a careful reading of the proof of the QPTAS reveals that the depth of the considered boxed decision trees can be limited to $\rank\br{T}$ where $\rank\br{T}$ is the number of labels used by the optimal ranking of $T$. This reduces the running time of the QPTAS to $n^{O\br{\log \rank\br{T}/\epsilon^2}}$ which in practice is usually significantly better.
+We have also employed a few heuristic speed-ups, particularly for the QPTAS. Firstly, instead of using $\epsilon=1$ we set it to $\epsilon=59$, which reduces most of the computational complexity of each QPTAS call. For both the $O\br{\sqrt{\log n}}$-approximation algorithm and the $O\br{\log\log n}$-approximation algorithm this does not impact the asymptotic guarantee of the algorithms. Secondly, a careful reading of the proof of the QPTAS reveals that the depth of the considered boxed decision trees can be limited to $\rank\br{T}$, where $\rank\br{T}$ is the number of labels used by the optimal ranking of $T$. This reduces the running time of the QPTAS to $n^{O\br{\log \rank\br{T}/\epsilon^2}}$, which in practice is usually significantly better than the upper bound $\rank\br{T}=O\br{\log n}$.
 
+Lastly we decided to simplify the implementation of the linear time algorithm for $T||V||\COST_{max}$ based on calculating the ranking coloring. We implemented this algorithm niavely with $O\br{n\log n}$ time complexity. This is done in order to simplify the already complex implementation. Additionally, this running time is negligible compared to the other algorithms and we are mainly focused on the quality of the solutions produced by it. Also note that although we performed experiments for the uniform costs variant of the problem using this algorithm, the main focus of this thesis is the non-uniform costs model and this algorithm serves as an essential subroutine for both QPTAS and the $O\br{\log\log n}$-approximation algorithm, rather then a standalone procedure.
 
 \subsection*{Tree Generation Methods}
 
 We used three different methods of generating random trees for our experiments: random trees, trees with bounded degree and trees with bounded diameter. 
 Table~\ref{tab:tree_methods} summarizes all tree generation methods used in our experiments. We decided to measure the performance of our algorithms on relatively small instances, 10 to 100 vertices per instance, since the complex dynamic programming subroutines of our algorithm require significant computation time even for such sizes.
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Tree generation methods and their properties}
 \label{tab:tree_methods}
@@ -41,7 +42,7 @@ Bounded Diameter & $n, D$ & Tree with maximum diameter constraint $D$ (maximum d
 
 Table~\ref{tab:distributions} lists all probability distributions used for vertex weights ($w$) and edge costs ($c$).
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Probability distributions for edge costs}
 \label{tab:distributions}
@@ -82,7 +83,7 @@ To systematically describe our experimental configurations, we extend the theore
 
 Table~\ref{tab:experiment_matrix} shows which combinations of tree types and problem variants are tested. Each cell contains a reference to the corresponding subsection with detailed results.
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Experiment coverage: tree generation methods vs. problem variants}
 \label{tab:experiment_matrix}

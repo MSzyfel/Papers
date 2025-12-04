@@ -1,12 +1,9 @@
-\subsection{Bounded Diameter Trees with Non-Uniform Costs ($T_D || V, c || \COST$)}
-\label{sec:bounded_diameter_c}
+\FloatBarrier\subsection{Bounded Diameter Trees with Non-Uniform Costs ($T_D || V, c || \COST$, $D=6$)}
 \label{sec:bounded_diameter_c}
 
 \subsubsection{Uniform Cost Distribution ($c \sim \mathcal{U}$)}
 
-Results for bounded diameter trees with uniformly distributed query costs.
-
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Bounded diameter trees with uniform cost distribution}
 \label{tab:bounded_diameter_c_uniform}
@@ -21,14 +18,14 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -43,7 +40,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -58,9 +55,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 
 \subsubsection{Exponential Cost Distribution ($c \sim \mathcal{E}$)}
 
-Results for bounded diameter trees with exponentially distributed query costs.
-
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Bounded diameter trees with exponential cost distribution}
 \label{tab:bounded_diameter_c_exp}
@@ -75,14 +70,14 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -97,7 +92,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -114,7 +109,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 
 Results for bounded diameter trees with binomially distributed query costs.
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Bounded diameter trees with binomial cost distribution}
 \label{tab:bounded_diameter_c_binomial}
@@ -129,14 +124,14 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -151,7 +146,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt

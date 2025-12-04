@@ -1,9 +1,7 @@
-\subsection{Random Trees ($T_R || V || \COST$)}
+\FloatBarrier\FloatBarrier\subsection{Random Trees ($T_R || V || \COST$)}
 \label{sec:random_trees}
 
-Uniformly random labeled trees generated using the standard random tree generation algorithm (Prüfer sequences). In the worst-case uniform cost model, all queries have cost 1, and we measure the maximum depth of the decision tree.
-
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Performance on random trees with uniform query costs}
 \label{tab:random_uniform}
@@ -16,58 +14,62 @@ $n$ & Avg Depth & Max Depth & Avg Time (s) & Max Time (s) \\
     filter expr={
         test{\ifnumequal{\thecsvinputline}{1}} or
         test{\ifnumequal{\Size}{10}} or
-        test{\ifnumequal{\Size}{20}} or
-        test{\ifnumequal{\Size}{30}} or
-        test{\ifnumequal{\Size}{40}} or
         test{\ifnumequal{\Size}{50}} or
-        test{\ifnumequal{\Size}{60}} or
-        test{\ifnumequal{\Size}{70}} or
-        test{\ifnumequal{\Size}{80}} or
-        test{\ifnumequal{\Size}{90}} or
-        test{\ifnumequal{\Size}{100}}
+        test{\ifnumequal{\Size}{100}} or
+        test{\ifnumequal{\Size}{200}} or
+        test{\ifnumequal{\Size}{300}} or
+        test{\ifnumequal{\Size}{400}} or
+        test{\ifnumequal{\Size}{500}} or
+        test{\ifnumequal{\Size}{600}} or
+        test{\ifnumequal{\Size}{700}} or
+        test{\ifnumequal{\Size}{800}} or
+        test{\ifnumequal{\Size}{900}} or
+        test{\ifnumequal{\Size}{1000}}
     }
-]{data/analysis_basic_ranking_based_dt_results.csv}{Size=\Size,AvgCPUTime_s=\AvgCPUTimes,MaxCPUTime_s=\MaxCPUTimes,AvgDepth=\AvgDepth,MaxDepth=\MaxDepth}{%
-\Size & \AvgDepth & \MaxDepth & \AvgCPUTimes & \MaxCPUTimes \\
+]{data/analysis_basic_ranking_based_dt1000.csv}{Size=\Size,AvgCPUTime_s=\AvgCPUTimes,MaxCPUTime_s=\MaxCPUTimes,AvgCost=\AvgCost,MaxCost=\MaxCost}{%
+\Size & \AvgCost & \MaxCost & \AvgCPUTimes & \MaxCPUTimes \\
 }
 \hline
 \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Decision tree depth},
-    width=0.48\textwidth,
-    height=6cm,
+    width=\textwidth,
+    height=10cm,
     grid=major,
     legend pos=north west,
-    mark size=1.5pt
+    ymin=0
 ]
-\addplot[blue, mark=*, thick] table[x=Size, y=AvgDepth, col sep=comma] {data/analysis_basic_ranking_based_dt_results.csv};
-\addplot[red, mark=square*, thick] table[x=Size, y=MaxDepth, col sep=comma] {data/analysis_basic_ranking_based_dt_results.csv};
+\addplot[blue, thick] table[x=Size, y=AvgCost, col sep=comma] {data/analysis_basic_ranking_based_dt1000.csv};
+\addplot[red, thick] table[x=Size, y=MaxCost, col sep=comma] {data/analysis_basic_ranking_based_dt1000.csv};
 \legend{Avg Depth, Max Depth}
 \end{axis}
 \end{tikzpicture}
-\hfill
+\caption{Decision tree depth for random trees (uniform query costs)}
+\label{fig:random_uniform_depth}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Runtime (s)},
-    width=0.48\textwidth,
-    height=6cm,
+    width=\textwidth,
+    height=10cm,
     grid=major,
-    legend pos=north west,
-    mark size=1.5pt
+    legend pos=north west
 ]
-\addplot[blue, mark=*, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/analysis_basic_ranking_based_dt_results.csv};
-\addplot[red, mark=square*, thick] table[x=Size, y=MaxCPUTime_s, col sep=comma] {data/analysis_basic_ranking_based_dt_results.csv};
+\addplot[blue, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/analysis_basic_ranking_based_dt1000.csv};
+\addplot[red, thick] table[x=Size, y=MaxCPUTime_s, col sep=comma] {data/analysis_basic_ranking_based_dt1000.csv};
 \legend{Avg Time, Max Time}
 \end{axis}
 \end{tikzpicture}
-\caption{Performance metrics for random trees (uniform query costs)}
-\label{fig:random_uniform}
+\caption{Runtime for random trees (uniform query costs)}
+\label{fig:random_uniform_time}
 \end{figure}
-
-The average depth grows approximately as $\log_2 n$, consistent with theoretical bounds. Centroid decomposition achieves near-optimal decision tree height.

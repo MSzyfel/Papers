@@ -1,12 +1,9 @@
-\subsection{Bounded Degree Trees with Non-Uniform Costs ($T_{\Delta} || V, c || \COST$)}
-\label{sec:bounded_degree_c}
+\FloatBarrier\subsection{Bounded Degree Trees with Non-Uniform Costs ($T_{\Delta} || V, c || \COST$, $\Delta=3$)}
 \label{sec:bounded_degree_c}
 
 \subsubsection{Uniform Cost Distribution ($c \sim \mathcal{U}$)}
 
-Results for bounded degree trees with uniformly distributed query costs.
-
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Bounded degree trees with uniform cost distribution}
 \label{tab:bounded_degree_c_uniform}
@@ -21,14 +18,14 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -43,7 +40,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -58,9 +55,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 
 \subsubsection{Exponential Cost Distribution ($c \sim \mathcal{E}$)}
 
-Results for bounded degree trees with exponentially distributed query costs.
-
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Bounded degree trees with exponential cost distribution}
 \label{tab:bounded_degree_c_exp}
@@ -75,14 +70,14 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -97,7 +92,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -114,7 +109,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 
 Results for bounded degree trees with binomially distributed query costs.
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Bounded degree trees with binomial cost distribution}
 \label{tab:bounded_degree_c_binomial}
@@ -129,14 +124,14 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -151,7 +146,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt

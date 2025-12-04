@@ -1,9 +1,7 @@
-\subsection{Balanced Binary Trees ($T_{bal} || V || \COST$)}
+\FloatBarrier\subsection{Balanced Binary Trees ($T_{bal} || V || \COST$)}
 \label{sec:balanced_trees}
 
-Balanced binary trees are constructed by distributing vertices level-by-level in a BFS manner, ensuring complete levels before starting the next level.
-
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Balanced binary trees (worst case depth)}
 \label{tab:balanced_uniform}
@@ -18,14 +16,14 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -40,7 +38,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt

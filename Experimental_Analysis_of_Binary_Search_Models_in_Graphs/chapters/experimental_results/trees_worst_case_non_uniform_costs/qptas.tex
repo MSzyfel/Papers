@@ -1,11 +1,11 @@
-\subsection{QPTAS Algorithm}
+\FloatBarrier\FloatBarrier\subsection{QPTAS Algorithm}
 \label{sec:qptas}
 
 Quasi-Polynomial Time Approximation Scheme for general cost functions.
 
 \subsubsection{Random Trees - $\epsilon = 0.5$}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{QPTAS with $\epsilon = 0.5$ on random trees}
 \label{tab:qptas_random_eps05}
@@ -20,14 +20,14 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -42,7 +42,7 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -58,7 +58,7 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 
 \subsubsection{Random Trees - $\epsilon = 0.25$}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{QPTAS with $\epsilon = 0.25$ on random trees}
 \label{tab:qptas_random_eps025}
@@ -73,14 +73,14 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -95,7 +95,7 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -111,7 +111,7 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 
 \subsubsection{Random Trees - $\epsilon = 0.1$}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{QPTAS with $\epsilon = 0.1$ on random trees}
 \label{tab:qptas_random_eps01}
@@ -126,14 +126,14 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -148,7 +148,7 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -164,7 +164,7 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 
 \subsubsection{Cost Distribution Comparison}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{QPTAS performance on different cost distributions ($n=50$, $\epsilon=0.25$)}
 \label{tab:qptas_distributions}
@@ -179,14 +179,14 @@ Distribution & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -201,7 +201,7 @@ Distribution & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -226,7 +226,7 @@ Distribution & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 \subsubsection{Spider Graphs with QPTAS}
 \label{sec:qptas_spider}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{QPTAS on spider graphs ($\epsilon = 0.25$)}
 \label{tab:qptas_spider}
@@ -241,14 +241,14 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -263,7 +263,7 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -279,7 +279,7 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 \subsubsection{Caterpillar Trees with QPTAS}
 \label{sec:qptas_caterpillar}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{QPTAS on caterpillar trees ($\epsilon = 0.25$)}
 \label{tab:qptas_caterpillar}
@@ -294,14 +294,14 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -316,7 +316,7 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -332,7 +332,7 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 \subsubsection{Broom Trees with QPTAS}
 \label{sec:qptas_broom}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{QPTAS on broom trees ($\epsilon = 0.25$)}
 \label{tab:qptas_broom}
@@ -347,14 +347,14 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -369,7 +369,7 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -385,7 +385,7 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 \subsubsection{Lobster Trees with QPTAS}
 \label{sec:qptas_lobster}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{QPTAS on lobster trees ($\epsilon = 0.25$)}
 \label{tab:qptas_lobster}
@@ -400,14 +400,14 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -422,7 +422,7 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -438,7 +438,7 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 \subsubsection{Full m-ary Trees with QPTAS}
 \label{sec:qptas_mary}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{QPTAS on full m-ary trees ($\epsilon = 0.25$, $m=3$)}
 \label{tab:qptas_mary}
@@ -453,14 +453,14 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -475,7 +475,7 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt

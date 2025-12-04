@@ -1,11 +1,11 @@
-\subsection{State-of-the-Art Approximation Algorithms}
+\FloatBarrier\FloatBarrier\subsection{State-of-the-Art Approximation Algorithms}
 \label{sec:state_art}
 
 Results for current best approximation algorithms.
 
 \subsubsection{Random Trees - Random Costs}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{State-of-the-art algorithm on random trees with random costs}
 \label{tab:sota_random_random}
@@ -20,14 +20,14 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -42,7 +42,7 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -58,7 +58,7 @@ $n$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 
 \subsubsection{Bounded Degree Trees}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{State-of-the-art algorithm on bounded degree trees}
 \label{tab:sota_bounded_degree}
@@ -73,14 +73,14 @@ $\Delta$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -95,7 +95,7 @@ $\Delta$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -111,7 +111,7 @@ $\Delta$ & Avg Cost & Approx Ratio & Avg Time (ms) & Std Dev \\
 
 \subsubsection{Special Structures Comparison}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{State-of-the-art algorithm on different tree structures}
 \label{tab:sota_structures}
@@ -126,14 +126,14 @@ Structure & Avg Cost & Approx Ratio & Avg Time (ms) & Best Known \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -148,7 +148,7 @@ Structure & Avg Cost & Approx Ratio & Avg Time (ms) & Best Known \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -164,7 +164,7 @@ Structure & Avg Cost & Approx Ratio & Avg Time (ms) & Best Known \\
 
 \subsubsection{Algorithm Comparison}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
 \caption{Comparison of all algorithms on random trees ($n=100$)}
 \label{tab:sota_comparison}
@@ -179,14 +179,14 @@ Algorithm & Avg Cost & Approx Ratio & Avg Time (ms) & Quality \\
 \hline
 \end{tabular}
 \end{table}
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
     ylabel={Average depth},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
@@ -201,7 +201,7 @@ Algorithm & Avg Cost & Approx Ratio & Avg Time (ms) & Quality \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (ms)},
     width=0.48\textwidth,
-    height=6cm,
+    height=9cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
