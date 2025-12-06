@@ -80,22 +80,24 @@ To systematically describe our experimental configurations, we extend the theore
 
 \subsubsection*{Experiment Coverage Matrix}
 
-Table~\ref{tab:experiment_matrix} shows which combinations of tree types and problem variants are tested. Each cell contains a reference to the corresponding subsection with detailed results.
+Table~\ref{tab:experiment_matrix} shows which combinations of tree types, cost distributions, and problem variants are tested. Each cell contains references to the corresponding subsections with detailed results.
 
 \begin{table}[!h]
 \centering
-\caption{Experiment coverage: tree generation methods vs. problem variants}
+\caption{Experiment coverage: tree generation methods vs. problem variants and cost distributions}
 \label{tab:experiment_matrix}
 \scriptsize
-\begin{tabular}{|l|c|c|}
+\begin{tabular}{|l|c|c|c|c|}
 \hline
-\textbf{Tree Method} & $T || V || \COST_{max}$ & $T || V, c || \COST_{max}$ \\
+\textbf{Tree Method} & $T || V || \COST_{max}$ & \multicolumn{3}{c|}{$T || V, c || \COST_{max}$} \\
+\cline{3-5}
+ & (uniform costs) & $c \sim \mathcal{U}$ & $c \sim \mathcal{B}$ & $c \sim \mathcal{E}$ \\
 \hline
-Random & \ref{sec:random_trees} & \ref{sec:random_c_uniform} \\
+Random & \ref{sec:random_trees} & \ref{sec:random_c_uniform} & \ref{sec:random_c_binomial} & \ref{sec:random_c_exponential} \\
 \hline
-Bounded Degree & \ref{sec:bounded_degree} & --- \\
+Bounded Degree & \ref{sec:bounded_degree} & \ref{sec:bounded_degree_c_uniform} & \ref{sec:bounded_degree_c_binomial} & \ref{sec:bounded_degree_c_exponential} \\
 \hline
-Bounded Diameter & \ref{sec:bounded_diameter} & --- \\
+Bounded Diameter & \ref{sec:bounded_diameter} & \ref{sec:bounded_diameter_c_uniform} & \ref{sec:bounded_diameter_c_binomial} & \ref{sec:bounded_diameter_c_exponential} \\
 \hline
 \end{tabular}
 \end{table}
