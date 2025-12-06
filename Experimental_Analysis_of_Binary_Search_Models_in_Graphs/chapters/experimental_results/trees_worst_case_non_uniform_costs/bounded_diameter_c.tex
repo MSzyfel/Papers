@@ -1,157 +1,503 @@
-\FloatBarrier\subsection{Bounded Diameter Trees with Non-Uniform Costs ($T_D || V, c || \COST$, $D=6$)}
+\FloatBarrier\subsection{Bounded Diameter Trees with Non-Uniform Costs ($T_{\Delta d=6} || V, c || \COST$)}
 \label{sec:bounded_diameter_c}
 
 \subsubsection{Uniform Cost Distribution ($c \sim \mathcal{U}$)}
 
-\begin{table}[!h]
+\paragraph{DP Exact Algorithm}
+
+\begin{table}[H]
 \centering
-\caption{Bounded diameter trees with uniform cost distribution}
-\label{tab:bounded_diameter_c_uniform}
-\begin{tabular}{|c|c|c|c|c|}
+\caption{Bounded diameter trees (d=6) with uniform cost distribution - DP exact algorithm}
+\label{tab:bounded_diameter_c_uniform_dp}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline
-$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Instances \\
 \hline
-\csvreader[head to column names, late after line=\\]{data/bounded_diameter_c_uniform.csv}{}{%
-\n & \avgdepth & \maxdepth & \avgtime & \stddev}
+\csvreader[head to column names, late after line=\\]{data/dp_tree/dp_tree_diam_6_cu_analysis.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,InstanceCount=\Instances}{%
+\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \Instances}
 \hline
 \end{tabular}
 \end{table}
 
-\begin{figure}[!h]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
-    ylabel={Average depth},
-    width=0.48\textwidth,
-    height=9cm,
+    ylabel={Cost / Time},
+    width=\textwidth,
+    height=10cm,
     grid=major,
     legend pos=north west,
-    mark size=2pt
+    mark size=1.5pt,
+    axis y line*=left,
+    ylabel style={blue}
 ]
-\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/bounded_diameter_c_uniform.csv};
-\legend{Avg Depth}
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgCost, col sep=comma] {data/dp_tree/dp_tree_diam_6_cu_analysis.csv};
+\legend{Avg Cost}
 \end{axis}
-\end{tikzpicture}
-\hfill
-\begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
-    ylabel={Runtime (ms)},
-    width=0.48\textwidth,
-    height=9cm,
-    grid=major,
-    legend pos=north west,
-    mark size=2pt
+    ylabel={Time (s)},
+    width=\textwidth,
+    height=10cm,
+    grid=none,
+    legend pos=north east,
+    mark size=1.5pt,
+    axis y line*=right,
+    axis x line=none,
+    ylabel style={red}
 ]
-\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/bounded_diameter_c_uniform.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/dp_tree/dp_tree_diam_6_cu_analysis.csv};
 \legend{Avg Time}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded diameter trees: Uniform cost distribution}
-\label{fig:bounded_diameter_c_uniform}
+\caption{Bounded diameter trees (d=6) with uniform costs - DP algorithm}
+\label{fig:bounded_diameter_c_uniform_dp}
+\end{figure}
+
+\paragraph{Cicalese Algorithm ($O(\log n / \log \log n)$-approximation)}
+
+\begin{table}[H]
+\centering
+\caption{Bounded diameter trees (d=6) with uniform cost distribution - Cicalese (every 2nd instance)}
+\label{tab:bounded_diameter_c_uniform_cic}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Time (s) & Avg Cost & Avg Ratio & Max Ratio \\
+\hline
+\csvreader[head to column names, late after line=\\, filter expr={\ifnumgreater{\thecsvinputline}{1}{\ifnumodd{\thecsvinputline}{}{\csvfilterreject}}{\csvfilteraccept}}]{data/cic_insp/cic_insp_diam_6_cu_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,AvgCost=\AvgCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
+\Size & \AvgTime & \AvgCost & \AvgRatio & \MaxRatio}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation Ratio},
+    width=\textwidth,
+    height=10cm,
+    grid=major,
+    legend pos=north west,
+    mark size=1.5pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/cic_insp/cic_insp_diam_6_cu_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/cic_insp/cic_insp_diam_6_cu_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Bounded diameter trees (d=6) with uniform costs - Cicalese algorithm}
+\label{fig:bounded_diameter_c_uniform_cic}
+\end{figure}
+
+\paragraph{Dereniowski Algorithm ($O(\sqrt{\log n})$-approximation)}
+
+\begin{table}[H]
+\centering
+\caption{Bounded diameter trees (d=6) with uniform cost distribution - Dereniowski (every 2nd instance)}
+\label{tab:bounded_diameter_c_uniform_der}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Time (s) & Avg Cost & Avg Ratio & Max Ratio \\
+\hline
+\csvreader[head to column names, late after line=\\, filter expr={\ifnumgreater{\thecsvinputline}{1}{\ifnumodd{\thecsvinputline}{}{\csvfilterreject}}{\csvfilteraccept}}]{data/der_insp/der_insp_diam_6_cu_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,AvgCost=\AvgCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
+\Size & \AvgTime & \AvgCost & \AvgRatio & \MaxRatio}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation Ratio},
+    width=\textwidth,
+    height=10cm,
+    grid=major,
+    legend pos=north west,
+    mark size=1.5pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/der_insp/der_insp_diam_6_cu_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/der_insp/der_insp_diam_6_cu_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Bounded diameter trees (d=6) with uniform costs - Dereniowski algorithm}
+\label{fig:bounded_diameter_c_uniform_der}
+\end{figure}
+
+\paragraph{K-up Algorithm ($O(\log \log n)$-approximation)}
+
+\begin{table}[H]
+\centering
+\caption{Bounded diameter trees (d=6) with uniform cost distribution - K-up (every 2nd instance)}
+\label{tab:bounded_diameter_c_uniform_kup}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Time (s) & Avg Cost & Avg Ratio & Max Ratio \\
+\hline
+\csvreader[head to column names, late after line=\\, filter expr={\ifnumgreater{\thecsvinputline}{1}{\ifnumodd{\thecsvinputline}{}{\csvfilterreject}}{\csvfilteraccept}}]{data/k_up/k_up_diam_6_cu_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,AvgCost=\AvgCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
+\Size & \AvgTime & \AvgCost & \AvgRatio & \MaxRatio}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation Ratio},
+    width=\textwidth,
+    height=10cm,
+    grid=major,
+    legend pos=north west,
+    mark size=1.5pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/k_up/k_up_diam_6_cu_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/k_up/k_up_diam_6_cu_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Bounded diameter trees (d=6) with uniform costs - K-up algorithm}
+\label{fig:bounded_diameter_c_uniform_kup}
 \end{figure}
 
 \subsubsection{Exponential Cost Distribution ($c \sim \mathcal{E}$)}
 
-\begin{table}[!h]
+\paragraph{DP Exact Algorithm}
+
+\begin{table}[H]
 \centering
-\caption{Bounded diameter trees with exponential cost distribution}
-\label{tab:bounded_diameter_c_exp}
-\begin{tabular}{|c|c|c|c|c|}
+\caption{Bounded diameter trees (d=6) with exponential cost distribution - DP exact algorithm}
+\label{tab:bounded_diameter_c_exp_dp}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline
-$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Instances \\
 \hline
-\csvreader[head to column names, late after line=\\]{data/bounded_diameter_c_exponential.csv}{}{%
-\n & \avgdepth & \maxdepth & \avgtime & \stddev}
+\csvreader[head to column names, late after line=\\]{data/dp_tree/dp_tree_diam_6_ce_analysis.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,InstanceCount=\Instances}{%
+\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \Instances}
 \hline
 \end{tabular}
 \end{table}
 
-\begin{figure}[!h]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
-    ylabel={Average depth},
-    width=0.48\textwidth,
-    height=9cm,
+    ylabel={Cost / Time},
+    width=\textwidth,
+    height=10cm,
     grid=major,
     legend pos=north west,
-    mark size=2pt
+    mark size=1.5pt,
+    axis y line*=left,
+    ylabel style={blue}
 ]
-\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/bounded_diameter_c_exponential.csv};
-\legend{Avg Depth}
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgCost, col sep=comma] {data/dp_tree/dp_tree_diam_6_ce_analysis.csv};
+\legend{Avg Cost}
 \end{axis}
-\end{tikzpicture}
-\hfill
-\begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
-    ylabel={Runtime (ms)},
-    width=0.48\textwidth,
-    height=9cm,
-    grid=major,
-    legend pos=north west,
-    mark size=2pt
+    ylabel={Time (s)},
+    width=\textwidth,
+    height=10cm,
+    grid=none,
+    legend pos=north east,
+    mark size=1.5pt,
+    axis y line*=right,
+    axis x line=none,
+    ylabel style={red}
 ]
-\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/bounded_diameter_c_exponential.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/dp_tree/dp_tree_diam_6_ce_analysis.csv};
 \legend{Avg Time}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded diameter trees: Exponential cost distribution}
-\label{fig:bounded_diameter_c_exp}
+\caption{Bounded diameter trees (d=6) with exponential costs - DP algorithm}
+\label{fig:bounded_diameter_c_exp_dp}
+\end{figure}
+
+\paragraph{Cicalese Algorithm}
+
+\begin{table}[H]
+\centering
+\caption{Bounded diameter trees (d=6) with exponential cost distribution - Cicalese (every 2nd instance)}
+\label{tab:bounded_diameter_c_exp_cic}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Time (s) & Avg Cost & Avg Ratio & Max Ratio \\
+\hline
+\csvreader[head to column names, late after line=\\, filter expr={\ifnumgreater{\thecsvinputline}{1}{\ifnumodd{\thecsvinputline}{}{\csvfilterreject}}{\csvfilteraccept}}]{data/cic_insp/cic_insp_diam_6_ce_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,AvgCost=\AvgCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
+\Size & \AvgTime & \AvgCost & \AvgRatio & \MaxRatio}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation Ratio},
+    width=\textwidth,
+    height=10cm,
+    grid=major,
+    legend pos=north west,
+    mark size=1.5pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/cic_insp/cic_insp_diam_6_ce_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/cic_insp/cic_insp_diam_6_ce_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Bounded diameter trees (d=6) with exponential costs - Cicalese algorithm}
+\label{fig:bounded_diameter_c_exp_cic}
+\end{figure}
+
+\paragraph{Dereniowski Algorithm}
+
+\begin{table}[H]
+\centering
+\caption{Bounded diameter trees (d=6) with exponential cost distribution - Dereniowski (every 2nd instance)}
+\label{tab:bounded_diameter_c_exp_der}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Time (s) & Avg Cost & Avg Ratio & Max Ratio \\
+\hline
+\csvreader[head to column names, late after line=\\, filter expr={\ifnumgreater{\thecsvinputline}{1}{\ifnumodd{\thecsvinputline}{}{\csvfilterreject}}{\csvfilteraccept}}]{data/der_insp/der_insp_diam_6_ce_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,AvgCost=\AvgCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
+\Size & \AvgTime & \AvgCost & \AvgRatio & \MaxRatio}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation Ratio},
+    width=\textwidth,
+    height=10cm,
+    grid=major,
+    legend pos=north west,
+    mark size=1.5pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/der_insp/der_insp_diam_6_ce_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/der_insp/der_insp_diam_6_ce_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Bounded diameter trees (d=6) with exponential costs - Dereniowski algorithm}
+\label{fig:bounded_diameter_c_exp_der}
+\end{figure}
+
+\paragraph{K-up Algorithm}
+
+\begin{table}[H]
+\centering
+\caption{Bounded diameter trees (d=6) with exponential cost distribution - K-up (every 2nd instance)}
+\label{tab:bounded_diameter_c_exp_kup}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Time (s) & Avg Cost & Avg Ratio & Max Ratio \\
+\hline
+\csvreader[head to column names, late after line=\\, filter expr={\ifnumgreater{\thecsvinputline}{1}{\ifnumodd{\thecsvinputline}{}{\csvfilterreject}}{\csvfilteraccept}}]{data/k_up/k_up_diam_6_ce_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,AvgCost=\AvgCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
+\Size & \AvgTime & \AvgCost & \AvgRatio & \MaxRatio}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation Ratio},
+    width=\textwidth,
+    height=10cm,
+    grid=major,
+    legend pos=north west,
+    mark size=1.5pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/k_up/k_up_diam_6_ce_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/k_up/k_up_diam_6_ce_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Bounded diameter trees (d=6) with exponential costs - K-up algorithm}
+\label{fig:bounded_diameter_c_exp_kup}
 \end{figure}
 
 \subsubsection{Binomial Cost Distribution ($c \sim \mathcal{B}$)}
 
-Results for bounded diameter trees with binomially distributed query costs.
+\paragraph{DP Exact Algorithm}
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
-\caption{Bounded diameter trees with binomial cost distribution}
-\label{tab:bounded_diameter_c_binomial}
-\begin{tabular}{|c|c|c|c|c|}
+\caption{Bounded diameter trees (d=6) with binomial cost distribution - DP exact algorithm}
+\label{tab:bounded_diameter_c_binomial_dp}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline
-$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Instances \\
 \hline
-\csvreader[head to column names, late after line=\\]{data/bounded_diameter_c_binomial.csv}{}{%
-\n & \avgdepth & \maxdepth & \avgtime & \stddev}
+\csvreader[head to column names, late after line=\\]{data/dp_tree/dp_tree_diam_6_cb_analysis.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,InstanceCount=\Instances}{%
+\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \Instances}
 \hline
 \end{tabular}
 \end{table}
 
-\begin{figure}[!h]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
-    ylabel={Average depth},
-    width=0.48\textwidth,
-    height=9cm,
+    ylabel={Cost / Time},
+    width=\textwidth,
+    height=10cm,
     grid=major,
     legend pos=north west,
-    mark size=2pt
+    mark size=1.5pt,
+    axis y line*=left,
+    ylabel style={blue}
 ]
-\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/bounded_diameter_c_binomial.csv};
-\legend{Avg Depth}
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgCost, col sep=comma] {data/dp_tree/dp_tree_diam_6_cb_analysis.csv};
+\legend{Avg Cost}
 \end{axis}
-\end{tikzpicture}
-\hfill
-\begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
-    ylabel={Runtime (ms)},
-    width=0.48\textwidth,
-    height=9cm,
-    grid=major,
-    legend pos=north west,
-    mark size=2pt
+    ylabel={Time (s)},
+    width=\textwidth,
+    height=10cm,
+    grid=none,
+    legend pos=north east,
+    mark size=1.5pt,
+    axis y line*=right,
+    axis x line=none,
+    ylabel style={red}
 ]
-\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/bounded_diameter_c_binomial.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/dp_tree/dp_tree_diam_6_cb_analysis.csv};
 \legend{Avg Time}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded diameter trees: Binomial cost distribution}
-\label{fig:bounded_diameter_c_binomial}
+\caption{Bounded diameter trees (d=6) with binomial costs - DP algorithm}
+\label{fig:bounded_diameter_c_binomial_dp}
 \end{figure}
+
+\paragraph{Cicalese Algorithm}
+
+\begin{table}[H]
+\centering
+\caption{Bounded diameter trees (d=6) with binomial cost distribution - Cicalese (every 2nd instance)}
+\label{tab:bounded_diameter_c_binomial_cic}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Time (s) & Avg Cost & Avg Ratio & Max Ratio \\
+\hline
+\csvreader[head to column names, late after line=\\, filter expr={\ifnumgreater{\thecsvinputline}{1}{\ifnumodd{\thecsvinputline}{}{\csvfilterreject}}{\csvfilteraccept}}]{data/cic_insp/cic_insp_diam_6_cb_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,AvgCost=\AvgCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
+\Size & \AvgTime & \AvgCost & \AvgRatio & \MaxRatio}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation Ratio},
+    width=\textwidth,
+    height=10cm,
+    grid=major,
+    legend pos=north west,
+    mark size=1.5pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/cic_insp/cic_insp_diam_6_cb_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/cic_insp/cic_insp_diam_6_cb_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Bounded diameter trees (d=6) with binomial costs - Cicalese algorithm}
+\label{fig:bounded_diameter_c_binomial_cic}
+\end{figure}
+
+\paragraph{Dereniowski Algorithm}
+
+\begin{table}[H]
+\centering
+\caption{Bounded diameter trees (d=6) with binomial cost distribution - Dereniowski (every 2nd instance)}
+\label{tab:bounded_diameter_c_binomial_der}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Time (s) & Avg Cost & Avg Ratio & Max Ratio \\
+\hline
+\csvreader[head to column names, late after line=\\, filter expr={\ifnumgreater{\thecsvinputline}{1}{\ifnumodd{\thecsvinputline}{}{\csvfilterreject}}{\csvfilteraccept}}]{data/der_insp/der_insp_diam_6_cb_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,AvgCost=\AvgCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
+\Size & \AvgTime & \AvgCost & \AvgRatio & \MaxRatio}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation Ratio},
+    width=\textwidth,
+    height=10cm,
+    grid=major,
+    legend pos=north west,
+    mark size=1.5pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/der_insp/der_insp_diam_6_cb_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/der_insp/der_insp_diam_6_cb_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Bounded diameter trees (d=6) with binomial costs - Dereniowski algorithm}
+\label{fig:bounded_diameter_c_binomial_der}
+\end{figure}
+
+\paragraph{K-up Algorithm}
+
+\begin{table}[H]
+\centering
+\caption{Bounded diameter trees (d=6) with binomial cost distribution - K-up (every 2nd instance)}
+\label{tab:bounded_diameter_c_binomial_kup}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Time (s) & Avg Cost & Avg Ratio & Max Ratio \\
+\hline
+\csvreader[head to column names, late after line=\\, filter expr={\ifnumgreater{\thecsvinputline}{1}{\ifnumodd{\thecsvinputline}{}{\csvfilterreject}}{\csvfilteraccept}}]{data/k_up/k_up_diam_6_cb_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,AvgCost=\AvgCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
+\Size & \AvgTime & \AvgCost & \AvgRatio & \MaxRatio}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation Ratio},
+    width=\textwidth,
+    height=10cm,
+    grid=major,
+    legend pos=north west,
+    mark size=1.5pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/k_up/k_up_diam_6_cb_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/k_up/k_up_diam_6_cb_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Bounded diameter trees (d=6) with binomial costs - K-up algorithm}
+\label{fig:bounded_diameter_c_binomial_kup}
+\end{figure}
+
+
+

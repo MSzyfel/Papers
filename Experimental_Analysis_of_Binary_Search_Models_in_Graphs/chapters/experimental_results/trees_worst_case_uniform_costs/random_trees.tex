@@ -3,6 +3,7 @@
 
 \begin{table}[!h]
 \centering
+\tiny
 \caption{Performance on random trees with uniform query costs}
 \label{tab:random_uniform}
 \begin{tabular}{|c|c|c|c|c|}
@@ -15,16 +16,29 @@ $n$ & Avg Depth & Max Depth & Avg Time (s) & Max Time (s) \\
     filter expr={
         test{\ifnumequal{\thecsvinputline}{1}} or
         test{\ifnumequal{\Size}{10}} or
+        test{\ifnumequal{\Size}{20}} or
+        test{\ifnumequal{\Size}{30}} or
+        test{\ifnumequal{\Size}{40}} or
         test{\ifnumequal{\Size}{50}} or
+        test{\ifnumequal{\Size}{60}} or
         test{\ifnumequal{\Size}{100}} or
+        test{\ifnumequal{\Size}{150}} or
         test{\ifnumequal{\Size}{200}} or
+        test{\ifnumequal{\Size}{250}} or
         test{\ifnumequal{\Size}{300}} or
+        test{\ifnumequal{\Size}{350}} or
         test{\ifnumequal{\Size}{400}} or
+        test{\ifnumequal{\Size}{450}} or
         test{\ifnumequal{\Size}{500}} or
+        test{\ifnumequal{\Size}{550}} or
         test{\ifnumequal{\Size}{600}} or
+        test{\ifnumequal{\Size}{650}} or
         test{\ifnumequal{\Size}{700}} or
+        test{\ifnumequal{\Size}{750}} or
         test{\ifnumequal{\Size}{800}} or
+        test{\ifnumequal{\Size}{850}} or
         test{\ifnumequal{\Size}{900}} or
+        test{\ifnumequal{\Size}{950}} or
         test{\ifnumequal{\Size}{1000}}
     }
 ]{data/analysis_basic_ranking_based_dt1000.csv}{Size=\Size,AvgCPUTime_s=\AvgCPUTimes,MaxCPUTime_s=\MaxCPUTimes,AvgCost=\AvgCost,MaxCost=\MaxCost}{%
@@ -40,7 +54,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (s) & Max Time (s) \\
     xlabel={Tree size ($n$)},
     ylabel={Decision tree depth},
     width=\textwidth,
-    height=10cm,
+    height=7cm,
     grid=major,
     legend pos=north west,
     ymin=0
@@ -61,7 +75,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (s) & Max Time (s) \\
     xlabel={Tree size ($n$)},
     ylabel={Runtime (s)},
     width=\textwidth,
-    height=10cm,
+    height=7cm,
     grid=major,
     legend pos=north west
 ]

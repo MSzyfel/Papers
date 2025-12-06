@@ -63,12 +63,11 @@ Exponential & $\mathcal{E}(\lambda=1)$ & Memoryless, continuous distribution wit
 
 To systematically describe our experimental configurations, we extend the theoretical three-field notation $\alpha || \beta || \gamma$ to include specific tree generation methods and distribution types:
 
-\textbf{Field $\alpha$ (Search Space):} In experiments, we specify the specific tree generation method using subscripts. For this study, we focus on four representative tree classes:
+\textbf{Field $\alpha$ (Search Space):} In experiments, we specify the specific tree generation method using subscripts. For this study, we focus on three representative tree classes:
 \begin{itemize}
     \item $T_R$ - Random trees (uniformly random labeled trees via Prüfer sequence)
     \item $T_{\Delta}$ - Bounded degree trees (maximum degree constraint $\Delta$)
     \item $T_D$ - Bounded diameter trees (maximum diameter constraint $D$)
-    \item $T_{bal}$ - Balanced trees (balanced $m$-ary trees with minimal height)
 \end{itemize}
 
 \textbf{Field $\beta$ (Query Characteristics):} All experiments use vertex queries ($V$). For worst-case optimization, we consider four cost scenarios:
@@ -92,13 +91,11 @@ Table~\ref{tab:experiment_matrix} shows which combinations of tree types and pro
 \hline
 \textbf{Tree Method} & $T || V || \COST_{max}$ & $T || V, c || \COST_{max}$ \\
 \hline
-Random & \ref{sec:random_trees} & \ref{sec:random_c} \\
+Random & \ref{sec:random_trees} & \ref{sec:random_c_uniform} \\
 \hline
-Bounded Degree & \ref{sec:bounded_degree} & \ref{sec:bounded_degree_c} \\
+Bounded Degree & \ref{sec:bounded_degree} & --- \\
 \hline
-Bounded Diameter & \ref{sec:bounded_diameter} & \ref{sec:bounded_diameter_c} \\
-\hline
-Balanced & \ref{sec:balanced_trees} & \ref{sec:balanced_c} \\
+Bounded Diameter & \ref{sec:bounded_diameter} & --- \\
 \hline
 \end{tabular}
 \end{table}

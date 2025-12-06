@@ -1,158 +1,244 @@
-\FloatBarrier\subsection{Random Trees with Non-Uniform Costs ($T_R || V, c || \COST$)}
-\label{sec:random_c}
+﻿\FloatBarrier\subsection{Random Trees with Uniform Cost Distribution ($T_R || V, c \sim \mathcal{U} || \COST$)}
+\label{sec:random_c_uniform}
 
-\subsubsection{Uniform Cost Distribution ($c \sim \mathcal{U}$)}
+\subsubsection{DP Exact Algorithm}
 
-\begin{table}[!h]
+\begin{table}[ht]
 \centering
-\caption{Random trees with uniform cost distribution}
-\label{tab:random_c_uniform}
+\tiny
+\caption{Random trees with uniform cost distribution - DP exact algorithm}
+\label{tab:random_c_uniform_dp}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
 \hline
-\csvreader[head to column names, late after line=\\]{data/random_c_uniform.csv}{}{%
-\n & \avgdepth & \maxdepth & \avgtime & \stddev}
+\csvreader[head to column names, late after line=\\]{data/dp_tree/dp_tree_basic_cu_analysis.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,InstanceCount=\Instances}{%
+\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost}
 \hline
 \end{tabular}
 \end{table}
 
-\begin{figure}[!h]
+\begin{figure}[ht]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
-    ylabel={Average depth},
-    width=0.48\textwidth,
-    height=9cm,
+    ylabel={Cost},
+    width=\textwidth,
+    height=7cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
 ]
-\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/random_c_uniform.csv};
-\legend{Avg Depth}
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgCost, col sep=comma] {data/dp_tree/dp_tree_basic_cu_analysis.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxCost, col sep=comma] {data/dp_tree/dp_tree_basic_cu_analysis.csv};
+\legend{Avg Cost, Max Cost}
 \end{axis}
 \end{tikzpicture}
-\hfill
-\begin{tikzpicture}
-\begin{axis}[
-    xlabel={Tree size ($n$)},
-    ylabel={Runtime (ms)},
-    width=0.48\textwidth,
-    height=9cm,
-    grid=major,
-    legend pos=north west,
-    mark size=2pt
-]
-\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/random_c_uniform.csv};
-\legend{Avg Time}
-\end{axis}
-\end{tikzpicture}
-\caption{Random trees: Uniform cost distribution}
-\label{fig:random_c_uniform}
+\caption{Random trees with uniform costs - DP exact algorithm: cost}
+\label{fig:random_c_uniform_dp_cost}
 \end{figure}
 
-\subsubsection{Exponential Cost Distribution ($c \sim \mathcal{E}$)}
-
-\begin{table}[!h]
+\begin{figure}[ht]
 \centering
-\caption{Random trees with exponential cost distribution}
-\label{tab:random_c_exp}
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (s)},
+    width=\textwidth,
+    height=7cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/dp_tree/dp_tree_basic_cu_analysis.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxCPUTime_s, col sep=comma] {data/dp_tree/dp_tree_basic_cu_analysis.csv};
+\legend{Avg Time, Max Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Random trees with uniform costs - DP exact algorithm: runtime}
+\label{fig:random_c_uniform_dp_time}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{Cicalese et al. $O(\log n / \log \log n)$-Approximation Algorithm}
+
+\begin{table}[ht]
+\centering
+\tiny
+\caption{Random trees with uniform cost distribution - Cicalese algorithm (every 2nd instance)}
+\label{tab:random_c_uniform_cic}
+\begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
-$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
 \hline
-\csvreader[head to column names, late after line=\\]{data/random_c_exponential.csv}{}{%
-\n & \avgdepth & \maxdepth & \avgtime & \stddev}
+\csvreader[head to column names, late after line=\\]{data/cic_insp/cic_insp_basic_cu_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
+\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
 
-\begin{figure}[!h]
+\begin{figure}[ht]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
-    ylabel={Average depth},
-    width=0.48\textwidth,
-    height=9cm,
+    ylabel={Approximation ratio},
+    width=\textwidth,
+    height=7cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
 ]
-\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/random_c_exponential.csv};
-\legend{Avg Depth}
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/cic_insp/cic_insp_basic_cu_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/cic_insp/cic_insp_basic_cu_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
 \end{axis}
 \end{tikzpicture}
-\hfill
-\begin{tikzpicture}
-\begin{axis}[
-    xlabel={Tree size ($n$)},
-    ylabel={Runtime (ms)},
-    width=0.48\textwidth,
-    height=9cm,
-    grid=major,
-    legend pos=north west,
-    mark size=2pt
-]
-\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/random_c_exponential.csv};
-\legend{Avg Time}
-\end{axis}
-\end{tikzpicture}
-\caption{Random trees: Exponential cost distribution}
-\label{fig:random_c_exp}
+\caption{Random trees with uniform costs - Cicalese algorithm: approximation quality}
+\label{fig:random_c_uniform_cic}
 \end{figure}
 
-\subsubsection{Binomial Cost Distribution ($c \sim \mathcal{B}$)}
-
-Results for random trees with binomially distributed query costs.
-
-\begin{table}[!h]
+\begin{figure}[ht]
 \centering
-\caption{Random trees with binomial cost distribution}
-\label{tab:random_c_binomial}
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (s)},
+    width=\textwidth,
+    height=7cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/cic_insp/cic_insp_basic_cu_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxCPUTime_s, col sep=comma] {data/cic_insp/cic_insp_basic_cu_comparison.csv};
+\legend{Avg Time, Max Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Random trees with uniform costs - Cicalese algorithm: runtime}
+\label{fig:random_c_uniform_cic_time}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{Dereniowski $O(\sqrt{\log n})$-Approximation Algorithm}
+
+\begin{table}[ht]
+\centering
+\tiny
+\caption{Random trees with uniform cost distribution - Dereniowski algorithm (every 2nd instance)}
+\label{tab:random_c_uniform_der}
+\begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
-$n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
 \hline
-\csvreader[head to column names, late after line=\\]{data/random_c_binomial.csv}{}{%
-\n & \avgdepth & \maxdepth & \avgtime & \stddev}
+\csvreader[head to column names, late after line=\\]{data/der_insp/der_insp_basic_cu_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
+\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
 
-\begin{figure}[!h]
+\begin{figure}[ht]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
-    ylabel={Average depth},
-    width=0.48\textwidth,
-    height=9cm,
+    ylabel={Approximation ratio},
+    width=\textwidth,
+    height=7cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
 ]
-\addplot[blue, mark=*, thick] table[x=n, y=avgdepth, col sep=comma] {data/random_c_binomial.csv};
-\legend{Avg Depth}
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/der_insp/der_insp_basic_cu_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/der_insp/der_insp_basic_cu_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
 \end{axis}
 \end{tikzpicture}
-\hfill
+\caption{Random trees with uniform costs - Dereniowski algorithm: approximation quality}
+\label{fig:random_c_uniform_der}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
-    ylabel={Runtime (ms)},
-    width=0.48\textwidth,
-    height=9cm,
+    ylabel={Runtime (s)},
+    width=\textwidth,
+    height=7cm,
     grid=major,
     legend pos=north west,
     mark size=2pt
 ]
-\addplot[red, mark=square*, thick] table[x=n, y=avgtime, col sep=comma] {data/random_c_binomial.csv};
-\legend{Avg Time}
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/der_insp/der_insp_basic_cu_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxCPUTime_s, col sep=comma] {data/der_insp/der_insp_basic_cu_comparison.csv};
+\legend{Avg Time, Max Time}
 \end{axis}
 \end{tikzpicture}
-\caption{Random trees: Binomial cost distribution}
-\label{fig:random_c_binomial}
+\caption{Random trees with uniform costs - Dereniowski algorithm: runtime}
+\label{fig:random_c_uniform_der_time}
 \end{figure}
 
+\FloatBarrier
+
+\subsubsection{K-up $O(\log \log n)$-Approximation Algorithm}
+
+\begin{table}[ht]
+\centering
+\tiny
+\caption{Random trees with uniform cost distribution - K-up algorithm (every 2nd instance)}
+\label{tab:random_c_uniform_kup}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+\hline
+\csvreader[head to column names, late after line=\\]{data/k_up/k_up_basic_cu_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
+\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation ratio},
+    width=\textwidth,
+    height=7cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/k_up/k_up_basic_cu_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/k_up/k_up_basic_cu_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Random trees with uniform costs - K-up algorithm: approximation quality}
+\label{fig:random_c_uniform_kup}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (s)},
+    width=\textwidth,
+    height=7cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/k_up/k_up_basic_cu_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxCPUTime_s, col sep=comma] {data/k_up/k_up_basic_cu_comparison.csv};
+\legend{Avg Time, Max Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Random trees with uniform costs - K-up algorithm: runtime}
+\label{fig:random_c_uniform_kup_time}
+\end{figure}
