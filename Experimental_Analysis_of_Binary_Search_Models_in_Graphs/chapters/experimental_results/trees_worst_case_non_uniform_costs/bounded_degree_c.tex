@@ -1,12 +1,12 @@
 \FloatBarrier\subsection{Bounded Degree Trees with Uniform Cost Distribution ($T_{\Delta} || V, c \sim \mathcal{U} || \COST$)}
 \label{sec:bounded_degree_c_uniform}
 
-\subsubsection{DP Exact Algorithm}
+\subsubsection{Exact Algorithm}
 
 \begin{table}[ht]
 \centering
 \tiny
-\caption{Bounded degree trees ($\Delta=3$) with uniform cost distribution - DP exact algorithm}
+\caption{Bounded degree trees ($\Delta(T) = 3$) with uniform cost distribution - exact algorithm}
 \label{tab:bounded_degree_c_uniform_dp}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
@@ -35,7 +35,7 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
 \legend{Avg Cost, Max Cost}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with uniform costs - DP exact algorithm: cost comparison}
+\caption{Bounded degree trees with uniform costs - exact algorithm: cost comparison}
 \label{fig:bounded_degree_c_uniform_dp_cost}
 \end{figure}
 
@@ -56,18 +56,18 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
 \legend{Avg Time, Max Time}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with uniform costs - DP exact algorithm: runtime comparison}
+\caption{Bounded degree trees with uniform costs - exact algorithm: runtime comparison}
 \label{fig:bounded_degree_c_uniform_dp_time}
 \end{figure}
 
 \FloatBarrier
 
-\subsubsection{Cicalese et al. $O(\log n / \log \log n)$-Approximation Algorithm}
+\subsubsection{$O(\log n / \log \log n)$-Approximation Algorithm}
 
 \begin{table}[ht]
 \centering
 \tiny
-\caption{Bounded degree trees ($\Delta=3$) with uniform cost distribution - Cicalese algorithm (every 2nd instance)}
+\caption{Bounded degree trees ($\Delta(T) = 3$) with uniform cost distribution - $O(\log n / \log \log n)$-approximation algorithm}
 \label{tab:bounded_degree_c_uniform_cic}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
@@ -96,7 +96,7 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \legend{Avg Ratio, Max Ratio}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with uniform costs - Cicalese algorithm: approximation quality}
+\caption{Bounded degree trees with uniform costs - $O(\log n / \log \log n)$-approximation algorithm: approximation quality}
 \label{fig:bounded_degree_c_uniform_cic}
 \end{figure}
 
@@ -117,18 +117,18 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \legend{Avg Time, Max Time}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with uniform costs - Cicalese algorithm: runtime}
+\caption{Bounded degree trees with uniform costs - $O(\log n / \log \log n)$-approximation algorithm: runtime}
 \label{fig:bounded_degree_c_uniform_cic_time}
 \end{figure}
 
 \FloatBarrier
 
-\subsubsection{Dereniowski $O(\sqrt{\log n})$-Approximation Algorithm}
+\subsubsection{$O(\sqrt{\log n})$-Approximation Algorithm}
 
 \begin{table}[ht]
 \centering
 \tiny
-\caption{Bounded degree trees ($\Delta=3$) with uniform cost distribution - Dereniowski algorithm (every 2nd instance)}
+\caption{Bounded degree trees ($\Delta(T) = 3$) with uniform cost distribution - $O(\sqrt{\log n})$-approximation algorithm}
 \label{tab:bounded_degree_c_uniform_der}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
@@ -157,7 +157,7 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \legend{Avg Ratio, Max Ratio}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with uniform costs - Dereniowski algorithm: approximation quality}
+\caption{Bounded degree trees with uniform costs - $O(\sqrt{\log n})$-approximation algorithm: approximation quality}
 \label{fig:bounded_degree_c_uniform_der}
 \end{figure}
 
@@ -178,18 +178,18 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \legend{Avg Time, Max Time}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with uniform costs - Dereniowski algorithm: runtime}
+\caption{Bounded degree trees with uniform costs - $O(\sqrt{\log n})$-approximation algorithm: runtime}
 \label{fig:bounded_degree_c_uniform_der_time}
 \end{figure}
 
 \FloatBarrier
 
-\subsubsection{K-up $O(\log \log n)$-Approximation Algorithm}
+\subsubsection{$O(\log \log n)$-Approximation Algorithm}
 
 \begin{table}[ht]
 \centering
 \tiny
-\caption{Bounded degree trees ($\Delta=3$) with uniform cost distribution - K-up algorithm (every 2nd instance)}
+\caption{Bounded degree trees ($\Delta(T) = 3$) with uniform cost distribution - $O(\log \log n)$-approximation algorithm}
 \label{tab:bounded_degree_c_uniform_kup}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
@@ -218,7 +218,7 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \legend{Avg Ratio, Max Ratio}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with uniform costs - K-up algorithm: approximation quality}
+\caption{Bounded degree trees with uniform costs - $O(\log \log n)$-approximation algorithm: approximation quality}
 \label{fig:bounded_degree_c_uniform_kup}
 \end{figure}
 
@@ -239,19 +239,19 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \legend{Avg Time, Max Time}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with uniform costs - K-up algorithm: runtime}
+\caption{Bounded degree trees with uniform costs - $O(\log \log n)$-approximation algorithm: runtime}
 \label{fig:bounded_degree_c_uniform_kup_time}
 \end{figure}
 
 \FloatBarrier\subsection{Bounded Degree Trees with Binomial Cost Distribution ($T_{\Delta} || V, c \sim \mathcal{B} || \COST$)}
 \label{sec:bounded_degree_c_binomial}
 
-\subsubsection{DP Exact Algorithm}
+\subsubsection{Exact Algorithm}
 
 \begin{table}[ht]
 \centering
 \tiny
-\caption{Bounded degree trees ($\Delta=3$) with binomial cost distribution - DP exact algorithm}
+\caption{Bounded degree trees ($\Delta(T) = 3$) with binomial cost distribution - exact algorithm}
 \label{tab:bounded_degree_c_binomial_dp}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
@@ -280,7 +280,7 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
 \legend{Avg Cost, Max Cost}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with binomial costs - DP exact algorithm: cost comparison}
+\caption{Bounded degree trees with binomial costs - exact algorithm: cost comparison}
 \label{fig:bounded_degree_c_binomial_dp_cost}
 \end{figure}
 
@@ -301,18 +301,18 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
 \legend{Avg Time, Max Time}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with binomial costs - DP exact algorithm: runtime comparison}
+\caption{Bounded degree trees with binomial costs - exact algorithm: runtime comparison}
 \label{fig:bounded_degree_c_binomial_dp_time}
 \end{figure}
 
 \FloatBarrier
 
-\subsubsection{Cicalese et al. $O(\log n / \log \log n)$-Approximation Algorithm}
+\subsubsection{$O(\log n / \log \log n)$-Approximation Algorithm}
 
 \begin{table}[ht]
 \centering
 \tiny
-\caption{Bounded degree trees ($\Delta=3$) with binomial cost distribution - Cicalese algorithm (every 2nd instance)}
+\caption{Bounded degree trees ($\Delta(T) = 3$) with binomial cost distribution - $O(\log n / \log \log n)$-approximation algorithm}
 \label{tab:bounded_degree_c_binomial_cic}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
@@ -341,7 +341,7 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \legend{Avg Ratio, Max Ratio}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with binomial costs - Cicalese algorithm: approximation quality}
+\caption{Bounded degree trees with binomial costs - $O(\log n / \log \log n)$-approximation algorithm: approximation quality}
 \label{fig:bounded_degree_c_binomial_cic}
 \end{figure}
 
@@ -362,18 +362,18 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \legend{Avg Time, Max Time}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with binomial costs - Cicalese algorithm: runtime}
+\caption{Bounded degree trees with binomial costs - $O(\log n / \log \log n)$-approximation algorithm: runtime}
 \label{fig:bounded_degree_c_binomial_cic_time}
 \end{figure}
 
 \FloatBarrier
 
-\subsubsection{Dereniowski $O(\sqrt{\log n})$-Approximation Algorithm}
+\subsubsection{$O(\sqrt{\log n})$-Approximation Algorithm}
 
 \begin{table}[ht]
 \centering
 \tiny
-\caption{Bounded degree trees ($\Delta=3$) with binomial cost distribution - Dereniowski algorithm (every 2nd instance)}
+\caption{Bounded degree trees ($\Delta(T) = 3$) with binomial cost distribution - $O(\sqrt{\log n})$-approximation algorithm}
 \label{tab:bounded_degree_c_binomial_der}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
@@ -402,7 +402,7 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \legend{Avg Ratio, Max Ratio}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with binomial costs - Dereniowski algorithm: approximation quality}
+\caption{Bounded degree trees with binomial costs - $O(\sqrt{\log n})$-approximation algorithm: approximation quality}
 \label{fig:bounded_degree_c_binomial_der}
 \end{figure}
 
@@ -423,18 +423,18 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \legend{Avg Time, Max Time}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with binomial costs - Dereniowski algorithm: runtime}
+\caption{Bounded degree trees with binomial costs - $O(\sqrt{\log n})$-approximation algorithm: runtime}
 \label{fig:bounded_degree_c_binomial_der_time}
 \end{figure}
 
 \FloatBarrier
 
-\subsubsection{K-up $O(\log \log n)$-Approximation Algorithm}
+\subsubsection{$O(\log \log n)$-Approximation Algorithm}
 
 \begin{table}[ht]
 \centering
 \tiny
-\caption{Bounded degree trees ($\Delta=3$) with binomial cost distribution - K-up algorithm (every 2nd instance)}
+\caption{Bounded degree trees ($\Delta(T) = 3$) with binomial cost distribution - $O(\log \log n)$-approximation algorithm}
 \label{tab:bounded_degree_c_binomial_kup}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
@@ -463,7 +463,7 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \legend{Avg Ratio, Max Ratio}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with binomial costs - K-up algorithm: approximation quality}
+\caption{Bounded degree trees with binomial costs - $O(\log \log n)$-approximation algorithm: approximation quality}
 \label{fig:bounded_degree_c_binomial_kup}
 \end{figure}
 
@@ -484,19 +484,19 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \legend{Avg Time, Max Time}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with binomial costs - K-up algorithm: runtime}
+\caption{Bounded degree trees with binomial costs - $O(\log \log n)$-approximation algorithm: runtime}
 \label{fig:bounded_degree_c_binomial_kup_time}
 \end{figure}
 
 \FloatBarrier\subsection{Bounded Degree Trees with Exponential Cost Distribution ($T_{\Delta} || V, c \sim \mathcal{E} || \COST$)}
 \label{sec:bounded_degree_c_exponential}
 
-\subsubsection{DP Exact Algorithm}
+\subsubsection{Exact Algorithm}
 
 \begin{table}[ht]
 \centering
 \tiny
-\caption{Bounded degree trees ($\Delta=3$) with exponential cost distribution - DP exact algorithm}
+\caption{Bounded degree trees ($\Delta(T) = 3$) with exponential cost distribution - exact algorithm}
 \label{tab:bounded_degree_c_exponential_dp}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
@@ -525,7 +525,7 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
 \legend{Avg Cost, Max Cost}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with exponential costs - DP exact algorithm: cost comparison}
+\caption{Bounded degree trees with exponential costs - exact algorithm: cost comparison}
 \label{fig:bounded_degree_c_exponential_dp_cost}
 \end{figure}
 
@@ -546,18 +546,18 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
 \legend{Avg Time, Max Time}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with exponential costs - DP exact algorithm: runtime comparison}
+\caption{Bounded degree trees with exponential costs - exact algorithm: runtime comparison}
 \label{fig:bounded_degree_c_exponential_dp_time}
 \end{figure}
 
 \FloatBarrier
 
-\subsubsection{Cicalese et al. $O(\log n / \log \log n)$-Approximation Algorithm}
+\subsubsection{$O(\log n / \log \log n)$-Approximation Algorithm}
 
 \begin{table}[ht]
 \centering
 \tiny
-\caption{Bounded degree trees ($\Delta=3$) with exponential cost distribution - Cicalese algorithm (every 2nd instance)}
+\caption{Bounded degree trees ($\Delta(T) = 3$) with exponential cost distribution - $O(\log n / \log \log n)$-approximation algorithm}
 \label{tab:bounded_degree_c_exponential_cic}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
@@ -586,7 +586,7 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \legend{Avg Ratio, Max Ratio}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with exponential costs - Cicalese algorithm: approximation quality}
+\caption{Bounded degree trees with exponential costs - $O(\log n / \log \log n)$-approximation algorithm: approximation quality}
 \label{fig:bounded_degree_c_exponential_cic}
 \end{figure}
 
@@ -607,18 +607,18 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \legend{Avg Time, Max Time}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with exponential costs - Cicalese algorithm: runtime}
+\caption{Bounded degree trees with exponential costs - $O(\log n / \log \log n)$-approximation algorithm: runtime}
 \label{fig:bounded_degree_c_exponential_cic_time}
 \end{figure}
 
 \FloatBarrier
 
-\subsubsection{Dereniowski $O(\sqrt{\log n})$-Approximation Algorithm}
+\subsubsection{$O(\sqrt{\log n})$-Approximation Algorithm}
 
 \begin{table}[ht]
 \centering
 \tiny
-\caption{Bounded degree trees ($\Delta=3$) with exponential cost distribution - Dereniowski algorithm (every 2nd instance)}
+\caption{Bounded degree trees ($\Delta(T) = 3$) with exponential cost distribution - $O(\sqrt{\log n})$-approximation algorithm}
 \label{tab:bounded_degree_c_exponential_der}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
@@ -647,7 +647,7 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \legend{Avg Ratio, Max Ratio}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with exponential costs - Dereniowski algorithm: approximation quality}
+\caption{Bounded degree trees with exponential costs - $O(\sqrt{\log n})$-approximation algorithm: approximation quality}
 \label{fig:bounded_degree_c_exponential_der}
 \end{figure}
 
@@ -668,18 +668,18 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \legend{Avg Time, Max Time}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with exponential costs - Dereniowski algorithm: runtime}
+\caption{Bounded degree trees with exponential costs - $O(\sqrt{\log n})$-approximation algorithm: runtime}
 \label{fig:bounded_degree_c_exponential_der_time}
 \end{figure}
 
 \FloatBarrier
 
-\subsubsection{K-up $O(\log \log n)$-Approximation Algorithm}
+\subsubsection{$O(\log \log n)$-Approximation Algorithm}
 
 \begin{table}[ht]
 \centering
 \tiny
-\caption{Bounded degree trees ($\Delta=3$) with exponential cost distribution - K-up algorithm (every 2nd instance)}
+\caption{Bounded degree trees ($\Delta(T) = 3$) with exponential cost distribution - $O(\log \log n)$-approximation algorithm}
 \label{tab:bounded_degree_c_exponential_kup}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
@@ -708,7 +708,7 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \legend{Avg Ratio, Max Ratio}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with exponential costs - K-up algorithm: approximation quality}
+\caption{Bounded degree trees with exponential costs - $O(\log \log n)$-approximation algorithm: approximation quality}
 \label{fig:bounded_degree_c_exponential_kup}
 \end{figure}
 
@@ -729,7 +729,7 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \legend{Avg Time, Max Time}
 \end{axis}
 \end{tikzpicture}
-\caption{Bounded degree trees with exponential costs - K-up algorithm: runtime}
+\caption{Bounded degree trees with exponential costs - $O(\log \log n)$-approximation algorithm: runtime}
 \label{fig:bounded_degree_c_exponential_kup_time}
 \end{figure}
 
