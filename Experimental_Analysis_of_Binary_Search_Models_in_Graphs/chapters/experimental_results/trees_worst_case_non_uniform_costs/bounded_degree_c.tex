@@ -11,9 +11,8 @@
 \hline
 $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \hline
-\csvreader[head to column names]{data/bounded_degree_c_uniform.csv}{}{%
-\n & \avgdepth & \maxdepth & \avgtime & \stddev \\
-}
+\csvreader[head to column names, late after line=\\]{data/bounded_degree_c_uniform.csv}{}{%
+\n & \avgdepth & \maxdepth & \avgtime & \stddev}
 \hline
 \end{tabular}
 \end{table}
@@ -63,9 +62,8 @@ $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \hline
 $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \hline
-\csvreader[head to column names]{data/bounded_degree_c_exponential.csv}{}{%
-\n & \avgdepth & \maxdepth & \avgtime & \stddev \\
-}
+\csvreader[head to column names, late after line=\\]{data/bounded_degree_c_exponential.csv}{}{%
+\n & \avgdepth & \maxdepth & \avgtime & \stddev}
 \hline
 \end{tabular}
 \end{table}
@@ -117,9 +115,8 @@ Results for bounded degree trees with binomially distributed query costs.
 \hline
 $n$ & Avg Depth & Max Depth & Avg Time (ms) & Std Dev \\
 \hline
-\csvreader[head to column names]{data/bounded_degree_c_binomial.csv}{}{%
-\n & \avgdepth & \maxdepth & \avgtime & \stddev \\
-}
+\csvreader[head to column names, late after line=\\]{data/bounded_degree_c_binomial.csv}{}{%
+\n & \avgdepth & \maxdepth & \avgtime & \stddev}
 \hline
 \end{tabular}
 \end{table}

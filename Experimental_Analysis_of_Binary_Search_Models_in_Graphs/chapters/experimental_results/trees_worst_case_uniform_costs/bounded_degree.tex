@@ -11,6 +11,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (s) & Max Time (s) \\
 \hline
 \csvreader[
     head to column names,
+    late after line=\\,
     filter expr={
         test{\ifnumequal{\thecsvinputline}{1}} or
         test{\ifnumequal{\Size}{10}} or
@@ -27,8 +28,7 @@ $n$ & Avg Depth & Max Depth & Avg Time (s) & Max Time (s) \\
         test{\ifnumequal{\Size}{1000}}
     }
 ]{data/analysis_bounded_degree_ranking_based_dt_results.csv}{Size=\Size,AvgCPUTime_s=\AvgCPUTimes,MaxCPUTime_s=\MaxCPUTimes,AvgCost=\AvgCost,MaxCost=\MaxCost}{%
-\Size & \AvgCost & \MaxCost & \AvgCPUTimes & \MaxCPUTimes \\
-}
+\Size & \AvgCost & \MaxCost & \AvgCPUTimes & \MaxCPUTimes}
 \hline
 \end{tabular}
 \end{table}
