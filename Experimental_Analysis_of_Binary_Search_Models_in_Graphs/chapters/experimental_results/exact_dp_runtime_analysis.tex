@@ -1,0 +1,46 @@
+\FloatBarrier
+\subsection{Exponential Runtime Growth Analysis of Exact Algorithm}
+\label{sec:exact_dp_runtime_analysis}
+
+During the execution of the exact dynamic programming algorithm from Section~\ref{sec:log_n_log_log_n_approx}, it could be noticed that often, the running time of the procedure was slightly better then $O\br{2^nn}$. We decided to find the value of $b$ such that the function $T(n) = b^n$ best approximates the running time of the procedure. 
+The coefficient of determination $R^2$ indicates the quality of the exponential fit. It is defined as:
+$$
+R^2 = 1 - \frac{\sum_{i=1}^{n}\br{y_i - \hat{y}_i}^2}{\sum_{i=1}^{n}\br{y_i - \bar{y}}^2}
+$$
+where $y_i$ are the observed runtime values, $\hat{y}_i$ are the predicted values from the model $T(n) = b^n$, and $\bar{y}$ is the mean of observed values. Values of $R^2$ close to 1 suggest that the exponential model accurately describes the runtime growth, while values close to 0 indicate poor fit. The base $b$ of the exponential represents the growth rate per additional vertex. We observe that:
+\FloatBarrier
+
+\begin{table}[H]
+\centering
+\caption{Exponential fit coefficient $b^n$ for exact DP algorithm runtime}
+\label{tab:dp_exponential_fits}
+\small
+\begin{tabular}{|l|l|c|c|c|c|}
+\hline
+\multirow{2}{*}{\textbf{Variant}} & \multirow{2}{*}{\textbf{Distribution}} & \multicolumn{2}{c|}{\textbf{Average CPU Time}} & \multicolumn{2}{c|}{\textbf{Maximum CPU Time}} \\
+\cline{3-6}
+ &  & $b$ & $R^2$ & $b$ & $R^2$ \\
+\hline
+\multirow{3}{*}{Random} & Binomial & 1.341 & 0.924 & 1.381 & 0.734 \\
+ & Exponential & 1.348 & 0.606 & 1.382 & 0.465 \\
+ & Uniform & 1.350 & 0.918 & 1.386 & 0.598 \\
+\hline
+\multirow{3}{*}{Random Degree 3} & Binomial & 1.355 & 0.918 & 1.377 & 0.961 \\
+ & Exponential & 1.358 & 0.978 & 1.379 & 0.940 \\
+ & Uniform & 1.353 & 0.975 & 1.373 & 0.967 \\
+\hline
+\multirow{3}{*}{Random Diameter 6} & Binomial & 1.518 & 0.817 & 1.600 & 0.251 \\
+ & Exponential & 1.519 & 0.717 & 1.600 & 0.764 \\
+ & Uniform & 1.509 & 0.882 & 1.610 & 0.949 \\
+\hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+We observe that:
+\begin{itemize}
+    \item The bases $b$ are all significantly smaller than 2, ranging from approximately 1.34 to 1.61, indicating that the algorithm performs better than the worst-case $O(2^n)$ growth in practice for these instances.
+    \item Random trees with bounded degree (Degree 3) exhibit strong exponential growth pattern ($R^2 > 0.91$ for average time), with bases $b$ ranging from 1.353 to 1.379.
+    \item Random trees with bounded diameter (Diameter 6) display the highest growth bases ($b \approx 1.5$-$1.6$), consistent with their more balanced structure requiring exploration of more subtrees.
+\end{itemize}
+
+\FloatBarrier

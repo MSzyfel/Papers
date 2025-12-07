@@ -1,0 +1,249 @@
+\clearpage\subsection{Bounded Diameter Trees with Binomial Cost Distribution ($T_{D} || V, c \sim \mathcal{B} || \COST$)}
+\label{sec:bounded_diameter_c_binomial}
+
+\subsubsection{Exact Algorithm}
+
+\begin{table}[ht]
+\centering
+\tiny
+\caption{Bounded diameter trees ($\diam\br{T} = 6$) with binomial cost distribution - exact algorithm}
+\label{tab:bounded_diameter_c_binomial_dp}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
+\hline
+\csvreader[head to column names, late after line=\\]{data/dp_tree/dp_tree_diam_6_cb_analysis.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,InstanceCount=\Instances}{%
+\Size & \AvgTime & \MaxTime}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Cost},
+    width=\textwidth,
+    height=7cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgCost, col sep=comma] {data/dp_tree/dp_tree_diam_6_cb_analysis.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxCost, col sep=comma] {data/dp_tree/dp_tree_diam_6_cb_analysis.csv};
+\legend{Avg Cost, Max Cost}
+\end{axis}
+\end{tikzpicture}
+\caption{Bounded diameter trees with binomial costs - exact algorithm: cost comparison}
+\label{fig:bounded_diameter_c_binomial_dp_cost}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (s)},
+    ymode=log,
+    width=\textwidth,
+    height=7cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/dp_tree/dp_tree_diam_6_cb_analysis.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxCPUTime_s, col sep=comma] {data/dp_tree/dp_tree_diam_6_cb_analysis.csv};
+\legend{Avg Time, Max Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Bounded diameter trees with binomial costs - exact algorithm: runtime comparison}
+\label{fig:bounded_diameter_c_binomial_dp_time}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{$O(\log n / \log \log n)$-Approximation Algorithm}
+
+\begin{table}[ht]
+\centering
+\tiny
+\caption{Bounded diameter trees ($\diam\br{T} = 6$) with binomial cost distribution - $O(\log n / \log \log n)$-approximation algorithm}
+\label{tab:bounded_diameter_c_binomial_cic}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+\hline
+\csvreader[head to column names, late after line=\\]{data/cic_insp/cic_insp_diam_6_cb_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation ratio},
+    width=\textwidth,
+    height=7cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/cic_insp/cic_insp_diam_6_cb_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/cic_insp/cic_insp_diam_6_cb_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Bounded diameter trees with binomial costs - $O(\log n / \log \log n)$-approximation algorithm: approximation quality}
+\label{fig:bounded_diameter_c_binomial_cic}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (s)},
+    ymode=log,
+    width=\textwidth,
+    height=7cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/cic_insp/cic_insp_diam_6_cb_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxCPUTime_s, col sep=comma] {data/cic_insp/cic_insp_diam_6_cb_comparison.csv};
+\legend{Avg Time, Max Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Bounded diameter trees with binomial costs - $O(\log n / \log \log n)$-approximation algorithm: runtime}
+\label{fig:bounded_diameter_c_binomial_cic_time}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{$O(\sqrt{\log n})$-Approximation Algorithm}
+
+\begin{table}[ht]
+\centering
+\tiny
+\caption{Bounded diameter trees ($\diam\br{T} = 6$) with binomial cost distribution - $O(\sqrt{\log n})$-approximation algorithm}
+\label{tab:bounded_diameter_c_binomial_der}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+\hline
+\csvreader[head to column names, late after line=\\]{data/der_insp/der_insp_diam_6_cb_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation ratio},
+    width=\textwidth,
+    height=7cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/der_insp/der_insp_diam_6_cb_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/der_insp/der_insp_diam_6_cb_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Bounded diameter trees with binomial costs - $O(\sqrt{\log n})$-approximation algorithm: approximation quality}
+\label{fig:bounded_diameter_c_binomial_der}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (s)},
+    ymode=log,
+    width=\textwidth,
+    height=7cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/der_insp/der_insp_diam_6_cb_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxCPUTime_s, col sep=comma] {data/der_insp/der_insp_diam_6_cb_comparison.csv};
+\legend{Avg Time, Max Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Bounded diameter trees with binomial costs - $O(\sqrt{\log n})$-approximation algorithm: runtime}
+\label{fig:bounded_diameter_c_binomial_der_time}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{$O(\log \log n)$-Approximation Algorithm}
+
+\begin{table}[ht]
+\centering
+\tiny
+\caption{Bounded diameter trees ($\diam\br{T} = 6$) with binomial cost distribution - $O(\log \log n)$-approximation algorithm}
+\label{tab:bounded_diameter_c_binomial_kup}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+\hline
+\csvreader[head to column names, late after line=\\]{data/k_up/k_up_diam_6_cb_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation ratio},
+    width=\textwidth,
+    height=7cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/k_up/k_up_diam_6_cb_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/k_up/k_up_diam_6_cb_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Bounded diameter trees with binomial costs - $O(\log \log n)$-approximation algorithm: approximation quality}
+\label{fig:bounded_diameter_c_binomial_kup}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (s)},
+    ymode=log,
+    width=\textwidth,
+    height=7cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/k_up/k_up_diam_6_cb_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxCPUTime_s, col sep=comma] {data/k_up/k_up_diam_6_cb_comparison.csv};
+\legend{Avg Time, Max Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Bounded diameter trees with binomial costs - $O(\log \log n)$-approximation algorithm: runtime}
+\label{fig:bounded_diameter_c_binomial_kup_time}
+\end{figure}
+

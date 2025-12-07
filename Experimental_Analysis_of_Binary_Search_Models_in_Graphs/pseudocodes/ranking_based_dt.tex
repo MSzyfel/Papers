@@ -1,0 +1,17 @@
+\begin{algorithm}[H]
+\caption{Ranking-based decision tree construction}
+\label{alg:ranking_based_dt}
+\SetKwProg{Proc}{Procedure}{}{}
+\Proc{\FRankingBasedDT$\br{T, l}$}{
+Let $z \gets \argmax_{v \in V(T)} l(v)$.
+
+$D\gets\br{\brc{z}, \emptyset}$.
+
+\ForEach{$T' \in T - z$}{
+    $D_{T'} \gets$ \FRankingBasedDT$\br{T', l}$.
+
+    Attach $D_{T'}$ as a child of $z$ in $D$.
+}
+\Return $D$.
+}
+\end{algorithm}
