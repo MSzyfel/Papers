@@ -8,36 +8,15 @@
 \tiny
 \caption{Random trees with uniform cost distribution - exact algorithm}
 \label{tab:random_c_uniform_dp}
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
+$n$ & Avg Time (s) & Max Time (s) \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/dp_tree/dp_tree_basic_cu_analysis.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,InstanceCount=\Instances}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost}
+\Size & \AvgTime & \MaxTime}
 \hline
 \end{tabular}
 \end{table}
-
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}
-\begin{axis}[
-    xlabel={Tree size ($n$)},
-    ylabel={Cost},
-    width=\textwidth,
-    height=7cm,
-    grid=major,
-    legend pos=north west,
-    mark size=2pt
-]
-\addplot[blue, mark=*, thick] table[x=Size, y=AvgCost, col sep=comma] {data/dp_tree/dp_tree_basic_cu_analysis.csv};
-\addplot[red, mark=square*, thick] table[x=Size, y=MaxCost, col sep=comma] {data/dp_tree/dp_tree_basic_cu_analysis.csv};
-\legend{Avg Cost, Max Cost}
-\end{axis}
-\end{tikzpicture}
-\caption{Random trees with uniform costs - exact algorithm: cost}
-\label{fig:random_c_uniform_dp_cost}
-\end{figure}
 
 \begin{figure}[ht]
 \centering
@@ -70,12 +49,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
 \tiny
 \caption{Random trees with uniform cost distribution - $O(\log n / \log \log n)$-approximation algorithm}
 \label{tab:random_c_uniform_cic}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/cic_insp/cic_insp_basic_cu_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
@@ -132,12 +111,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \tiny
 \caption{Random trees with uniform cost distribution - $O(\sqrt{\log n})$-approximation algorithm}
 \label{tab:random_c_uniform_der}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/der_insp/der_insp_basic_cu_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
@@ -194,12 +173,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \tiny
 \caption{Random trees with uniform cost distribution - $O(\log \log n)$-approximation algorithm}
 \label{tab:random_c_uniform_kup}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/k_up/k_up_basic_cu_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
@@ -257,36 +236,15 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \tiny
 \caption{Random trees with binomial cost distribution - exact algorithm}
 \label{tab:random_c_binomial_dp}
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
+$n$ & Avg Time (s) & Max Time (s) \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/dp_tree/dp_tree_basic_cb_analysis.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,InstanceCount=\Instances}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost}
+\Size & \AvgTime & \MaxTime}
 \hline
 \end{tabular}
 \end{table}
-
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}
-\begin{axis}[
-    xlabel={Tree size ($n$)},
-    ylabel={Cost},
-    width=\textwidth,
-    height=7cm,
-    grid=major,
-    legend pos=north west,
-    mark size=2pt
-]
-\addplot[blue, mark=*, thick] table[x=Size, y=AvgCost, col sep=comma] {data/dp_tree/dp_tree_basic_cb_analysis.csv};
-\addplot[red, mark=square*, thick] table[x=Size, y=MaxCost, col sep=comma] {data/dp_tree/dp_tree_basic_cb_analysis.csv};
-\legend{Avg Cost, Max Cost}
-\end{axis}
-\end{tikzpicture}
-\caption{Random trees with binomial costs - exact algorithm: cost comparison}
-\label{fig:random_c_binomial_dp_cost}
-\end{figure}
 
 \begin{figure}[ht]
 \centering
@@ -319,12 +277,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
 \tiny
 \caption{Random trees with binomial cost distribution - $O(\log n / \log \log n)$-approximation algorithm}
 \label{tab:random_c_binomial_cic}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/cic_insp/cic_insp_basic_cb_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
@@ -381,12 +339,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \tiny
 \caption{Random trees with binomial cost distribution - $O(\sqrt{\log n})$-approximation algorithm}
 \label{tab:random_c_binomial_der}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/der_insp/der_insp_basic_cb_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
@@ -443,12 +401,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \tiny
 \caption{Random trees with binomial cost distribution - $O(\log \log n)$-approximation algorithm}
 \label{tab:random_c_binomial_kup}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/k_up/k_up_basic_cb_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
@@ -506,36 +464,15 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \tiny
 \caption{Random trees with exponential cost distribution - exact algorithm}
 \label{tab:random_c_exponential_dp}
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
+$n$ & Avg Time (s) & Max Time (s) \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/dp_tree/dp_tree_basic_ce_analysis.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,InstanceCount=\Instances}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost}
+\Size & \AvgTime & \MaxTime}
 \hline
 \end{tabular}
 \end{table}
-
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}
-\begin{axis}[
-    xlabel={Tree size ($n$)},
-    ylabel={Cost},
-    width=\textwidth,
-    height=7cm,
-    grid=major,
-    legend pos=north west,
-    mark size=2pt
-]
-\addplot[blue, mark=*, thick] table[x=Size, y=AvgCost, col sep=comma] {data/dp_tree/dp_tree_basic_ce_analysis.csv};
-\addplot[red, mark=square*, thick] table[x=Size, y=MaxCost, col sep=comma] {data/dp_tree/dp_tree_basic_ce_analysis.csv};
-\legend{Avg Cost, Max Cost}
-\end{axis}
-\end{tikzpicture}
-\caption{Random trees with exponential costs - exact algorithm: cost comparison}
-\label{fig:random_c_exponential_dp_cost}
-\end{figure}
 
 \begin{figure}[ht]
 \centering
@@ -568,12 +505,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
 \tiny
 \caption{Random trees with exponential cost distribution - $O(\log n / \log \log n)$-approximation algorithm}
 \label{tab:random_c_exponential_cic}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/cic_insp/cic_insp_basic_ce_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
@@ -630,12 +567,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \tiny
 \caption{Random trees with exponential cost distribution - $O(\sqrt{\log n})$-approximation algorithm}
 \label{tab:random_c_exponential_der}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/der_insp/der_insp_basic_ce_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
@@ -692,12 +629,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \tiny
 \caption{Random trees with exponential cost distribution - $O(\log \log n)$-approximation algorithm}
 \label{tab:random_c_exponential_kup}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/k_up/k_up_basic_ce_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}

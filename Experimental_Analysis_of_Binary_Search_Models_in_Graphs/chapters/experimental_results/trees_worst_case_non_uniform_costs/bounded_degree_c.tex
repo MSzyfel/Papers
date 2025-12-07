@@ -8,12 +8,12 @@
 \tiny
 \caption{Bounded degree trees ($\Delta(T) = 3$) with uniform cost distribution - exact algorithm}
 \label{tab:bounded_degree_c_uniform_dp}
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
+$n$ & Avg Time (s) & Max Time (s) \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/dp_tree/dp_tree_deg_3_cu_analysis.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,InstanceCount=\Instances}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost}
+\Size & \AvgTime & \MaxTime}
 \hline
 \end{tabular}
 \end{table}
@@ -70,12 +70,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
 \tiny
 \caption{Bounded degree trees ($\Delta(T) = 3$) with uniform cost distribution - $O(\log n / \log \log n)$-approximation algorithm}
 \label{tab:bounded_degree_c_uniform_cic}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/cic_insp/cic_insp_deg_3_cu_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
@@ -132,12 +132,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \tiny
 \caption{Bounded degree trees ($\Delta(T) = 3$) with uniform cost distribution - $O(\sqrt{\log n})$-approximation algorithm}
 \label{tab:bounded_degree_c_uniform_der}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/der_insp/der_insp_deg_3_cu_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
@@ -194,12 +194,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \tiny
 \caption{Bounded degree trees ($\Delta(T) = 3$) with uniform cost distribution - $O(\log \log n)$-approximation algorithm}
 \label{tab:bounded_degree_c_uniform_kup}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/k_up/k_up_deg_3_cu_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
@@ -257,12 +257,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \tiny
 \caption{Bounded degree trees ($\Delta(T) = 3$) with binomial cost distribution - exact algorithm}
 \label{tab:bounded_degree_c_binomial_dp}
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
+$n$ & Avg Time (s) & Max Time (s) \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/dp_tree/dp_tree_deg_3_cb_analysis.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,InstanceCount=\Instances}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost}
+\Size & \AvgTime & \MaxTime}
 \hline
 \end{tabular}
 \end{table}
@@ -319,12 +319,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
 \tiny
 \caption{Bounded degree trees ($\Delta(T) = 3$) with binomial cost distribution - $O(\log n / \log \log n)$-approximation algorithm}
 \label{tab:bounded_degree_c_binomial_cic}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/cic_insp/cic_insp_deg_3_cb_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
@@ -381,12 +381,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \tiny
 \caption{Bounded degree trees ($\Delta(T) = 3$) with binomial cost distribution - $O(\sqrt{\log n})$-approximation algorithm}
 \label{tab:bounded_degree_c_binomial_der}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/der_insp/der_insp_deg_3_cb_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
@@ -443,12 +443,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \tiny
 \caption{Bounded degree trees ($\Delta(T) = 3$) with binomial cost distribution - $O(\log \log n)$-approximation algorithm}
 \label{tab:bounded_degree_c_binomial_kup}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/k_up/k_up_deg_3_cb_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
@@ -506,12 +506,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \tiny
 \caption{Bounded degree trees ($\Delta(T) = 3$) with exponential cost distribution - exact algorithm}
 \label{tab:bounded_degree_c_exponential_dp}
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
+$n$ & Avg Time (s) & Max Time (s) \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/dp_tree/dp_tree_deg_3_ce_analysis.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,InstanceCount=\Instances}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost}
+\Size & \AvgTime & \MaxTime}
 \hline
 \end{tabular}
 \end{table}
@@ -568,12 +568,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
 \tiny
 \caption{Bounded degree trees ($\Delta(T) = 3$) with exponential cost distribution - $O(\log n / \log \log n)$-approximation algorithm}
 \label{tab:bounded_degree_c_exponential_cic}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/cic_insp/cic_insp_deg_3_ce_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
@@ -630,12 +630,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \tiny
 \caption{Bounded degree trees ($\Delta(T) = 3$) with exponential cost distribution - $O(\sqrt{\log n})$-approximation algorithm}
 \label{tab:bounded_degree_c_exponential_der}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/der_insp/der_insp_deg_3_ce_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
@@ -692,12 +692,12 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \tiny
 \caption{Bounded degree trees ($\Delta(T) = 3$) with exponential cost distribution - $O(\log \log n)$-approximation algorithm}
 \label{tab:bounded_degree_c_exponential_kup}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/k_up/k_up_deg_3_ce_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
-\Size & \AvgTime & \MaxTime & \AvgCost & \MaxCost & \AvgRatio & \MaxRatio}
+\Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
 \hline
 \end{tabular}
 \end{table}
