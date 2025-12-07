@@ -23,27 +23,6 @@ $n$ & Avg Time (s) & Max Time (s) \\
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
-    ylabel={Cost},
-    width=\textwidth,
-    height=7cm,
-    grid=major,
-    legend pos=north west,
-    mark size=2pt
-]
-\addplot[blue, mark=*, thick] table[x=Size, y=AvgCost, col sep=comma] {data/dp_tree/dp_tree_deg_3_cb_analysis.csv};
-\addplot[red, mark=square*, thick] table[x=Size, y=MaxCost, col sep=comma] {data/dp_tree/dp_tree_deg_3_cb_analysis.csv};
-\legend{Avg Cost, Max Cost}
-\end{axis}
-\end{tikzpicture}
-\caption{Bounded degree trees with binomial costs - exact algorithm: cost comparison}
-\label{fig:bounded_degree_c_binomial_dp_cost}
-\end{figure}
-
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}
-\begin{axis}[
-    xlabel={Tree size ($n$)},
     ylabel={Runtime (s)},
     ymode=log,
     width=\textwidth,

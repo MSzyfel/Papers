@@ -8,36 +8,15 @@
 \tiny
 \caption{Bounded diameter trees ($\diam\br{T} = 6$) with uniform cost distribution - exact algorithm}
 \label{tab:bounded_diameter_c_uniform_dp}
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
+$n$ & Avg Time (s) & Max Time (s) \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/dp_tree/dp_tree_diam_6_cu_analysis.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,InstanceCount=\Instances}{%
 \Size & \AvgTime & \MaxTime}
 \hline
 \end{tabular}
 \end{table}
-
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}
-\begin{axis}[
-    xlabel={Tree size ($n$)},
-    ylabel={Cost},
-    width=\textwidth,
-    height=7cm,
-    grid=major,
-    legend pos=north west,
-    mark size=2pt
-]
-\addplot[blue, mark=*, thick] table[x=Size, y=AvgCost, col sep=comma] {data/dp_tree/dp_tree_diam_6_cu_analysis.csv};
-\addplot[red, mark=square*, thick] table[x=Size, y=MaxCost, col sep=comma] {data/dp_tree/dp_tree_diam_6_cu_analysis.csv};
-\legend{Avg Cost, Max Cost}
-\end{axis}
-\end{tikzpicture}
-\caption{Bounded diameter trees with uniform costs - exact algorithm: cost comparison}
-\label{fig:bounded_diameter_c_uniform_dp_cost}
-\end{figure}
 
 \begin{figure}[ht]
 \centering
@@ -70,9 +49,9 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost \\
 \tiny
 \caption{Bounded diameter trees ($\diam\br{T} = 6$) with uniform cost distribution - $O(\log n / \log \log n)$-approximation algorithm}
 \label{tab:bounded_diameter_c_uniform_cic}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/cic_insp/cic_insp_diam_6_cu_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
 \Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
@@ -132,9 +111,9 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \tiny
 \caption{Bounded diameter trees ($\diam\br{T} = 6$) with uniform cost distribution - $O(\sqrt{\log n})$-approximation algorithm}
 \label{tab:bounded_diameter_c_uniform_der}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/der_insp/der_insp_diam_6_cu_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
 \Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
@@ -194,9 +173,9 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \tiny
 \caption{Bounded diameter trees ($\diam\br{T} = 6$) with uniform cost distribution - $O(\log \log n)$-approximation algorithm}
 \label{tab:bounded_diameter_c_uniform_kup}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-$n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio \\
+$n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \hline
 \csvreader[head to column names, late after line=\\]{data/k_up/k_up_diam_6_cu_comparison.csv}{Size=\Size,AvgCPUTime_s=\AvgTime,MaxCPUTime_s=\MaxTime,AvgCost=\AvgCost,MaxCost=\MaxCost,AvgRatio=\AvgRatio,MaxRatio=\MaxRatio}{%
 \Size & \AvgTime & \MaxTime & \AvgRatio & \MaxRatio}
@@ -246,4 +225,5 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Cost & Max Cost & Avg Ratio & Max Ratio 
 \caption{Bounded diameter trees with uniform costs - $O(\log \log n)$-approximation algorithm: runtime}
 \label{fig:bounded_diameter_c_uniform_kup_time}
 \end{figure}
-
+\FloatBarrier
+We see that all of the algorithms achieve the average approximation ratio of almost 1. This will usually also be the case for the other cost distributions for bounded diameter. Notably the approximation ratio of the $O\br{\log n/\log \log n}$-approximation algorithm never exceeds 1.6.
