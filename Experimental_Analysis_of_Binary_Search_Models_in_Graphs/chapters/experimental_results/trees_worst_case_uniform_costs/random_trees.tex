@@ -87,3 +87,6 @@ $n$ & Avg Depth & Max Depth & Avg Time (s) & Max Time (s) \\
 \caption{Runtime for random trees (uniform query costs)}
 \label{fig:random_uniform_time}
 \end{figure}
+\FloatBarrier
+
+It is clearly visible that the running time of the algorithm on randomly generated instances is almost linear. The runtime of the algorithm behaves stabily and does not vary much between different instances of the same size. As expected the average and worst case depths of the decision trees built grows logarithmically in $n$. This suggest that the typical instances for the problem achieve the asymptotical upper bound of at most $O\br{\log n}$ queries in the worst case.

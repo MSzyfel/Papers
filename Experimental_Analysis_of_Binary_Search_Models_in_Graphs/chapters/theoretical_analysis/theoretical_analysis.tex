@@ -7,6 +7,26 @@ Firstly, we present a classic linear time algorithm for the uniform cost variant
 Secondly, for the non-uniform cost model, we present previously known results including an $O\br{\log n/\log\log n}$-approximation algorithm inspired by the algorithm for the edge query variant \cite{Cicalese2016OnTSPwNonUniCost}. We also rewrite the QPTAS from \cite{dereniowski2017ApproxSsForGeneralBSinWTs} using a somewhat different dynamic program inspired by the work on the average-case variant of the problem \cite{Jacobs2010OnTheComplexSearchInTsAvg,Angelidakis2018ShortestPQ}. As a result we also obtain an incremental improvement on the running of the QPTAS since the original construction yields an algorithm with running time roughly $n^{112898\cdot\log n/\epsilon^2}$ while me managed to reduce this to approximately $n^{6965\cdot\log n/\epsilon^2}$.
 
 We then use this QPTAS to derive a polynomial time $O\br{\sqrt{\log n}}$-approximation algorithm and a $O\br{\log\log n}$ approximation algorithm running in $O\br{k^{O\br{\log n}\cdot}\text{poly}\br{n}}$ time, where $k$ is the $k$-up modularity of the cost function.
+
+% Table~\ref{tab:algorithms_summary} provides an overview of all algorithms analyzed in this chapter with their theoretical guarantees and corresponding section references.
+
+\begin{table}[H]
+\centering
+\caption{Summary of analyzed algorithms with theoretical guarantees}
+\label{tab:algorithms_summary}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Uniform Costs: $T||V||\COST_{max}$} & \textbf{Non-uniform Costs: $T||V, c||\COST_{max}$} \\
+\hline
+\FRankingBasedDT $\OPT$ in $O\br{n\log n}$ time, Section~\ref{sec:trees_uniform_costs} & $\OPT$ in $O\br{2^n \cdot n}$ time, Section~\ref{sec:log_n_log_log_n_approx} \\
+ & $O\br{\log n/\log\log n}$-approx. in $\text{poly}\br{n}$ time, Section~\ref{sec:log_n_log_log_n_approx} \\
+ & $\br{1+\epsilon}$-approx. in $n^{O\br{\log n/\epsilon^2}}$ time, Section~\ref{qptasSection} \\
+ & $O\br{\sqrt{\log n}}$-approx. in $\text{poly}\br{n}$ time, Section~\ref{sec:sqrt_log_n_approx} \\
+ & $O\br{\log\log n}$-approx. in $k^{O\br{\log k}}$ time, Section~\ref{sec:log_log_n_approx} \\
+\hline
+\end{tabular}
+\end{table}
+
 %\input{chapters/theoretical_analysis/paths/paths.tex}
 \input{chapters/theoretical_analysis/trees_worst_case_uniform costs.tex}
 % \input{chapters/theoretical_analysis/trees_average_case_non_uniform_weights/trees_average_case_non_uniform_weights.tex}

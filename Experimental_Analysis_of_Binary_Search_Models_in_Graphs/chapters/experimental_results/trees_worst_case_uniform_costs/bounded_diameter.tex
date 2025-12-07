@@ -87,3 +87,6 @@ $n$ & Avg Depth & Max Depth & Avg Time (s) & Max Time (s) \\
 \caption{Runtime for bounded diameter trees (uniform query costs)}
 \label{fig:bounded_diameter_uniform_time}
 \end{figure}
+
+\FloatBarrier
+For bounded degree trees the sitautation is quite different. The running time of our procedure achieves the worst case upper bound of $O\br{n\log n}$. Also the running time is more varying and unstable. Conversely, the depth of the decision trees built is stricly upper bounded by $4$. This is due to the fact that the depth of the decision tree is trivially upper bounded by $\cl{\frac{\diam\br{T}+1}{2}}$. 
