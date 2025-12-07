@@ -3,6 +3,8 @@
 
 This section evaluates algorithms for the worst-case search problem with non-uniform query costs. Due to the limited computational resources and the increased complexity of handling non-uniform costs, for each algorithm, we include results up to the largest tree size that could be processed within the available time. Since we are interested in the approximation ratios achieves by the algorithms, for small instances for which we were able to compute the optimal solution, we include comparisons against the optimum as well. If such results are not available for a particular tree size, it is indicated in the respective tables by the N/A entry.
 
+As the running times of the algorithms vary significantly, all plots of the running times use a logarithmic scale on the y-axis to better visualize these differences. Also, since the running times are often polynomial os high degree it would be hard to distinguish their running times from the exponential time procedures on the linear scale.
+
 \input{chapters/experimental_results/trees_worst_case_non_uniform_costs/random_c.tex}
 
 \input{chapters/experimental_results/trees_worst_case_non_uniform_costs/bounded_degree_c.tex}

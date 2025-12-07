@@ -3,7 +3,7 @@
 \SetKwFunction{FDPTimelinesCosts}{DPTimelinesCosts}
 \subsection{QPTAS for the $T||V,c||\COST$ problem}\label{qptasSection}
 
-The following algorithh is a simplified version of the QPTAS provided in \cite{dereniowski2017ApproxSsForGeneralBSinWTs}. The core idea of the algorithm is the same, however, our solution uses the language of decision trees instead of the language of sequence assignments, which makes the algorithm more intuitive.
+The following algorithm is a simplified version of the QPTAS provided in \cite{dereniowski2017ApproxSsForGeneralBSinWTs}. The core idea of the algorithm is the same, however, our solution uses the language of decision trees instead of the language of sequence assignments, which makes the algorithm more intuitive.
 
 For the rest of the analysis, without loss of the generality, we will assume that $T$ is rooted in a vertex $v$ minimizing $c\br{v}$.  We will also assume that all costs are normalized, so that $\max_{v\in V\br{T}}\brc{c\br{v}}=1$. If not, the costs are scaled by dividing them by $\max_{v\in V\br{T}}\brc{c(v)}$. Note that this operation does not affect the optimality of a strategy or the quality of an approximation.
 \begin{observation}\label{basicBoundsOnCost}
