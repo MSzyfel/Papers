@@ -51,6 +51,39 @@ Given a tree $T = (V, E)$ with a hidden target vertex $x$:
 \end{block}
 \end{frame}
 
+\section{Related Work}
+
+\subsection{Three-Field Notation}
+
+\begin{frame}{Three-Field Notation}
+\begin{block}{Notation: $\alpha||\beta||\gamma$}
+Classification scheme for search problems:
+\begin{itemize}
+    \item $\alpha$ -- \textbf{Search domain:} structure being searched
+    \begin{itemize}
+        \item $T$ (trees), $G$ (graphs), $P$ (posets)
+    \end{itemize}
+    \item $\beta$ -- \textbf{Target set and costs:}
+    \begin{itemize}
+        \item $V$ -- any vertex can be target
+        \item $c$ -- non-uniform query costs (omitted if uniform)
+    \end{itemize}
+    \item $\gamma$ -- \textbf{Optimization criterion:}
+    \begin{itemize}
+        \item $\COST_{max}$ -- minimize worst-case cost
+        \item $\COST_{avg}$ -- minimize average cost
+    \end{itemize}
+\end{itemize}
+\end{block}
+
+\vspace{0.3cm}
+\textbf{Examples:}
+\begin{itemize}
+    \item $T||V||\COST_{max}$ -- uniform costs, worst-case optimization
+    \item $T||V, c||\COST_{max}$ -- non-uniform costs, worst-case optimization
+\end{itemize}
+\end{frame}
+
 \section{Experimental Setup}
 
 \begin{frame}{Hardware and Software}

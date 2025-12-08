@@ -1,0 +1,68 @@
+\section{Related work}\label{relatedwork}
+In what follows, we summarize the most important and relevant results, 
+organized according to the query model and the objective function\footnote{Note that the notion of vertex weights is relevant only in the average-case setting.}.
+\subsubsection{Vertex queries, worst-case cost ($G||V,c||C_{max}$)}
+When the input graph is a tree and all costs are uniform, the problem is solvable in linear time \cite{Schaffer1989OptNodeRankOfTsInLinTime,OnakParys2006GenOfBSSInTsAndFLikePosets} and $O\br{\log n}$ queries always suffice. Beyond trees, the problem is known to be NP-hard even in: chordal graphs \cite{DereniowskiVxRankOfChGsAndWTs}, bipartite and co-bipartite graphs \cite{RankingsofGraphs}. By combining the results of \cite{BODLAENDER1995238} and \cite{Improvedapproximationalgorithmsvertexseparators} one can obtain a general $O\br{\log^{3/2}n}$-approximation algorithm. Additionally, the problem is solvable in polynomial time for graphs with bounded treewidth \cite{RankingsofGraphs}. 
+
+In the case of non-uniform costs, the problem is known to be NP-hard even for trees 
+\cite{Dereniowski2009ERankOfWTs,Cicalese2012BinIdentPForWTs,Cicalese2016OnTSPwNonUniCost}, 
+for which there exists an $O\br{\sqrt{\log n}}$-approximation algorithm 
+\cite{dereniowski2017ApproxSsForGeneralBSinWTs}. 
+Further improvements are possible for restricted classes of the cost function. 
+These results include:
+\begin{itemize}
+    \item A parametrized PTAS running in $O\br{\br{cn/\epsilon}^{2c/\epsilon}}$ time, where $c$ is the largest cost \cite{DereniowskiVxRankOfChGsAndWTs}, 
+    \item A 2-approximation algorithm for down-monotonic cost functions \cite{dereniowski2022CFApproxAlgForBSInTsWithMonoQTimes},
+    \item An 8-approximation algorithm for up-monotonic cost functions \cite{dereniowski2022CFApproxAlgForBSInTsWithMonoQTimes,dereniowski2024SInTsMonoQTs}
+\end{itemize}
+
+
+For general graphs with non-uniform costs, the problem can be reduced to the uniform-cost case 
+by rounding all costs to polynomial values and applying a reduction similar to that in 
+\cite{DereniowskiVxRankOfChGsAndWTs}, which yields an $O\br{\log^{3/2} n}$-approximation.
+
+\subsubsection{Vertex queries, average-case cost ($G||V,c||\sum C_i$)}
+
+For trees with non-uniform weights and uniform query costs, a PTAS running in 
+$O\br{n^{2/\epsilon+1}}$ time exists \cite{SplayTonT}. 
+This was later improved to an FPTAS with running time 
+$O\br{\br{1/\epsilon}^{2/\log_23}\cdot n^{1+4/\log_23}\cdot \log^2\br{n/\epsilon}}$ 
+\cite{Berendsohn2024}. 
+Every optimal decision tree has height at most $O\br{\log w\br{T}}$, and a simple 
+decision tree that always queries the weighted centroid achieves a 2-approximation 
+\cite{Fast_app_centroid_trees}. 
+Beyond trees, the problem is NP-hard even for graphs with treewidth at most 15, 
+as well as for dense graphs with uniform weights \cite{Berendsohn2024}. 
+
+For non-uniform costs and non-uniform weights, we recently obtained an $\br{4+\epsilon}$-approximation FPTAS for trees and an $O\br{\sqrt{\log n}}$-approximation for general graphs \cite{szyfelbein2025approximatingaveragecasegraphsearch}. Additionally, we showed that the problem is NP-hard even for trees of degree at most $16$ and for trees of diameter at most $8$.
+
+\subsubsection{Edge queries, worst-case cost ($G||E,c||C_{max}$)}
+
+For trees with uniform costs, the problem is solvable in linear time 
+\cite{Lam1998ERankOfGsIsH,Mozes_Onak2008FindOptTSStartInLinTime}, 
+and at most 
+$\frac{\Delta\br{T}-1}{\log\br{\Delta\br{T}+1}-1}\cdot \log n$ queries always suffice 
+\cite{Emamjomeh2016DetAndProbBSinGs}. 
+For general graphs, the problem is known to be NP-hard \cite{Lam1998ERankOfGsIsH}. 
+When query costs are non-uniform, an $O\br{\log n}$-approximation was given 
+\cite{Dereniowski2009ERankOfWTs}, later improved to 
+$O\br{\log n/\log\log\log n}$ \cite{Cicalese2012BinIdentPForWTs}, then to 
+$O\br{\log n/\log\log n}$, and finally, by reduction from the vertex version of the 
+problem, to $O\br{\sqrt{\log n}}$ \cite{dereniowski2017ApproxSsForGeneralBSinWTs}.
+\subsubsection{Edge queries, average-case cost ($G||E,c||\sum C_i$)}
+
+For trees with uniform costs, the problem is known to be (weakly) NP-hard 
+even for trees with diameter at most $4$ and for trees with degree at most $16$ 
+\cite{Jacobs2010OnTheComplexSearchInTsAvg}. 
+Every optimal decision tree has height at most $O\br{\Delta \log w\br{T}}$, and there exists 
+an FPTAS running in $\text{poly}\br{n^{\Delta\br{T}}/\epsilon}$ time. 
+A simple greedy algorithm that always queries the edge which splits the weights most evenly 
+achieves a 2-approximation \cite{Jacobs2010OnTheComplexSearchInTsAvg}, later improved to $\phi$ in \cite{Cicalese2014ImprovedApproxAvgTs} and $3/2$ in 
+\cite{Hgemo2024TightAB} which is tight. 
+
+For uniform weights and non-uniform costs, there exists an $6.75$-approximation algorithm for trees 
+and an $O\br{\sqrt{\log n}}$-approximation algorithm for general graphs 
+\cite{HCObjFsandAlgs,Approximatehierarchicalclusteringviasparsestcutandspreadingmetrics}. 
+On the hardness side, the problem cannot be approximated within any constant factor 
+if the \textit{Small Set Expansion Hypothesis} holds 
+\cite{Approximatehierarchicalclusteringviasparsestcutandspreadingmetrics}, even when all costs are uniform.
