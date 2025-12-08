@@ -28,7 +28,7 @@ $$
     \begin{proof}
         Let $D^*$ be an optimal strategy for $\br{T,c}$. By definition, we have that for every vertex $v\in V\br{T}$, $c'\br{v}\leq \br{1+\frac{1}{p}}\cdot c\br{v}+\frac{n}{p}n$ and therefore:
         \begin{align*}
-            \OPT\br{T, c'}&\leq \COST_{D^*}\br{T,c'}=\max_{v\in V\br{T}}\brc{\sum_{q\in Q_{D^*}\br{T,v}}c'\br{q}}
+            \OPT\br{T, c'}&\leq \COST_{T}\br{D^*,c'}=\max_{v\in V\br{T}}\brc{\sum_{q\in Q_{D^*}\br{T,v}}c'\br{q}}
             \\&
             \leq \max_{v\in V\br{T}}\brc{\sum_{q\in Q_{D^*}\br{T,v}}\br{\br{1+\frac{1}{p}}\cdot c\br{v}+\frac{1}{pn}}}
             \\&
@@ -41,15 +41,15 @@ $$
 
 While calculating the decision tree, we will divide the time into boxes of duration $k$, which will be further subdivided into $a$ identical slots of length $\frac{1}{pn}$. Let $t_q$ denote the start of some query in a decision tree $D$. Note that the numbers $t_v$ provide a complete information about any decision tree, and are an equiavalent representation of any strategy. We will assume that for any heavy vertex $v\in V\br{T}$, $t_v$ is an integer multiple of $c$ and for any light vertex $v\in V\br{T}$, $t_v$ is an integer multiple of $\frac{1}{pn}$. \footnote{Note that by doing so, we allow decision trees to contain idle time intervals, in which no queries are scheduled. However, if this occurs, after obtaining such decision tree, we simply delete the idle times, which results in a valid decision tree} We have the following lemma:
 \begin{lemma}\label{aligned_dts_lemma}
-    There exists a decision tree $D$ for $\br{T,c'}$, such that $\COST_{D}\br{T, c'}\leq \br{1+\frac{3}{p}}\cdot\OPT\br{T, c'}$ and for every vertex $v\in V\br{T}$ we have:
+    There exists a decision tree $D$ for $\br{T,c'}$, such that $\COST_{T}\br{D, c'}\leq \br{1+\frac{3}{p}}\cdot\OPT\br{T, c'}$ and for every vertex $v\in V\br{T}$ we have:
     \begin{enumerate}
         \item if $c\br{v}> pk$, then $t_v/k\in\mathbb{N}$ (every heavy query is aligned to a multiple of $c$),
         \item if $c\br{v}\leq pk$, then $t_vpn\in\mathbb{N}$ (every light query is aligned to a multiple of $\frac{1}{pn}$).
     \end{enumerate}
     \begin{proof}
-        Let $D^*$ by any optimal decision tree for $\br{T,c'}$. For any $v\in V\br{T}$, let $t_v^*$ be the start of query to $v$ in $D^*$ and let $t_v'=\br{1+\frac{2}{p}}t_v^*$, thus construction a new decision tree $D'$. Since in this new decision tree $D'$, the ordering of vertices is exactly the same as in $D^*$, for any two consecutive queries $v,u$ in $D'$ we have:
+        Let $D^*$ by any optimal decision tree for $\br{T,c'}$. For any $v\in V\br{T}$, let $t_v^*$ be the start of query to $v$ in $D^*$ and let $t_v'=\br{1+\frac{2}{p}}t_v^*$, yielding a new decision tree $D'$. Since in $D'$, the ordering of vertices is exactly the same as in $D^*$, for any two consecutive queries $v,u$ in $D'$ we have:
         $$
-            t_u'-t_v'=\br{1+\frac{2}{p}}\cdot\br{t_u-t_v}\geq \br{1+\frac{2}{p}}\cdot c\br{v}
+            t_u'-t_v'=\br{1+\frac{2}{p}}\cdot\br{t_u-t_v}\geq \br{1+\frac{2}{p}}\cdot c\br{v}.
         $$
 
         We now construct $D$ as follows: If $v\in V\br{T}$ is heavy, we assign $t_v=\cl{t_v'}_k$ and $t_v=t_v'$ otherwise. For any two consecutive queries $v,u$ in $D$, such that $v$ is heavy we have:
@@ -59,7 +59,7 @@ While calculating the decision tree, we will divide the time into boxes of durat
 
         So we conclude that no two queries overlap. To obtain the second part of the claim, we round up the starting time of each query to a light vertex in $D$ to an integer multiple of $\frac{1}{pn}$. We have:
         \begin{align*}
-            \COST_{D}\br{T,c'}&
+            \COST_{T}\br{D,c'}&
             \leq \max_{v\in V\br{T}}\brc{\sum_{q\in Q_{D^*}\br{T,v}}\br{\br{1+\frac{2}{p}}\cdot c'\br{v}+\frac{1}{pn}}}
             \\&
             \leq \frac{1}{p}+\br{1+\frac{2}{p}}\cdot \max_{v\in V\br{T}}\brc{\sum_{q\in Q_{D^*}\br{T,v}}c'\br{v} }\leq \br{1+\frac{3}{p}}\OPT\br{T,c'}
@@ -69,12 +69,12 @@ While calculating the decision tree, we will divide the time into boxes of durat
     \end{proof}
 \end{lemma}
 
-We will call a decision tree fulfilling above conditions \textit{aligned}. In subsequent considerations, we will focus ourselves of finding such decision trees, whose properties will allow us to devise an efficient dynamic programming procedure finding an optimal, aligned decision tree. 
+We will call a decision tree fulfilling above conditions \textit{aligned}. In subsequent considerations, we will limit ourselves to finding only aligned decision trees, whose properties will allow us to devise an efficient dynamic programming procedure finding an optimal, aligned decision tree. 
 
-\subsubsection{Up and down responses, heavy module contraction, u}
-Recall the following definitions. Since our decision tree is rooted, we can reasonably talk about up and down responses to a query. An \textit{up} response to a query to $v$ in $T$ occurs when the connected component $\in T-v$, which is the reply, happens to contain $r\br{T}$. If this is not the case, then such response is called a \textit{down} response. As it will turn out, a repeating occurrence of light queries with down responses will become problematic for our algorithm. To account for this issue we will use the following notions:
+\subsubsection{Up and down responses, heavy module contraction and aligned cost}
+Since our decision tree is rooted, we can reasonably talk about up and down responses to a query. An \textit{up} response to a query to $v$ in $T$ occurs when the connected component $\in T-v$, which is the reply, happens to contain $r\br{T}$. If this is not the case, then such response is called a \textit{down} response. As it will turn out, a repeating occurrence of light queries with down responses will become problematic for our algorithm. To account for this issue we will use the following notions:
 
-We will define a new measure of cost for aligned decision trees called the \textit{aligned cost}. Let $D$ be any aligned strategy for $\br{t,c'}$. For any  vertex $v\in V\br{T}$ and query $q\in Q_{D}\br{T,v}$ the contribution $\kappa_{T,c,k}\br{q,v}$ of $u$ is defined as:
+We define a new measure of cost for aligned decision trees called the \textit{aligned cost}. Let $D$ be any aligned strategy for $\br{T,c'}$. For any vertex $v\in V\br{T}$ and query $q\in Q_{D}\br{T,v}$ the contribution $\kappa_{T,c,k}\br{q,v}$ of $u$ is defined as:
 $$
 \kappa_{T,c}\br{q, v}= \begin{cases}
     \fl{t_v+c\br{q}}_k-t_v, & \text{if } c\br{v}\leq pk \text{ and the response to query $q$ in $T$, towards $v$ is down},\\
@@ -85,11 +85,11 @@ $$
 Then, the \textit{aligned cost} of $D$ is defined as:
 
 $$
-\COST'_D\br{T,c',k}=\max_{v\in V\br{T}}\brc{\sum_{q\in Q_D\br{T,v}}\kappa_{T,c', k}\br{q,v}}.
+\COST'_{T}\br{D,c',k}=\max_{v\in V\br{T}}\brc{\sum_{q\in Q_D\br{T,v}}\kappa_{T,c', k}\br{q,v}}.
 $$
 
 Let $\OPT'\br{T,c',k}$ denote the optimal aligned cost among all aligned decision trees for $\br{T,c',k}$.
-Notice that in the above cost, we lose $k$ query time per light query with a down response. Since of course, the amount of such queries may be of order $O\br{n}$, the difference between $\COST'_D\br{T,c',k}$ and $\COST_D\br{T,c',k}$ may grow almost arbitrarily large. However, we will make sure that this does not happen to often, which will give us the desired bound on the cost of the solution. We have the following simple observation:
+Notice that in the above cost, we lose up to $k$ units of time per each light query with a down response. Since of course, the amount of such queries may be of order $O\br{n}$, the difference between $\COST'_{T}\br{D,c',k}$ and $\COST_{T}\br{D,c',k}$ may grow almost arbitrarily large. However, we will make sure that this does not happen to often, which will give us the desired bound on the cost of the solution. We have the following simple observation:
 \begin{observation}\label{aligned_subtree_opt_observation}
     Let $T'$ be a subtree of $T$. Then, $\OPT'\br{T'}\leq\OPT'\br{T}$.
 \end{observation}
@@ -101,12 +101,12 @@ We define a \textit{heavy module} as $H\subseteq V\br{T}$ such that: $T[H]$ is c
 
 We will use the following propositions:
 \begin{proposition}\label{DPTimelinesCostsProposition}
-     Let $T$ be a tree, $c'$ an aligned cost function, $p\in \mathbb{N}$, $k$ the box size and $d\in \mathbb{N}$~be the depth. There exists a \FDPTimelinesCosts procedure, which (if it exists) calculates an aligned decision tree $D$ for $\br{T,c'}$ of cost at most $\COST'_D\br{T,c',k}\leq kd$, running in $\br{pn}^{O\br{d}}$ time.
+     Let $T$ be a tree, $c'$ an aligned cost function, $p\in \mathbb{N}$, $k$ the box size and $d\in \mathbb{N}$~be the depth. There exists a \FDPTimelinesCosts procedure, which (if it exists) calculates an aligned decision tree $D$ for $\br{T,c'}$ of cost at most $\COST'_{T}\br{D,c',k}\leq kd$, running in $\br{pn}^{O\br{d}}$ time.
 \end{proposition}
 \begin{proposition}\label{MergeDTsProposition}
     Let $T$ be a tree, $c'$ be an aligned cost function, $p\in \mathbb{N}$, $k\in \mathbb{R}_{>0}$ be the box size, $D_A$ be a decision tree for $T$ and $F_C$ be forest of decision trees for $T$ with all heavy modules contracted. There exists a polynomial time \FMergeDTs procedure which returns a decision tree of cost at most:
         $$
-            \COST_{D}\br{T,c',k}\leq\COST'_{D_A}\br{T,c',k}+2pk\cdot \COST_{F_C}\br{T,1}.
+            \COST_{T}\br{D,c',k}\leq\COST'_{T}\br{D_A,c',k}+2pk\cdot \COST_{T}\br{F_C,1}.
         $$
 \end{proposition}
 The proofs will be provided in the further sections.
@@ -120,7 +120,7 @@ integer multiple of $\frac{1}{pn}$ and performs the rounding operation. After th
 Let $k'$ be the value of $k$ for which $D$ was built. Let $k''=k-\frac{1}{pn}$ and $c''$ be the values of $k$ and $c'$ of the previous iteration of the while loop. Since we know that for $k''$ and $c''$ we had $D_A=\emptyset$, by Proposition \ref{DPTimelinesCostsProposition} we have that $k'' d \leq \OPT'\br{T,c''}$. Hence,
  $k'\leq \frac{\OPT'\br{T,c'',k'}}{d}+\frac{1}{pn}\leq\frac{2\cdot \OPT'\br{T,c'',k''}}{p^2\cdot\br{\fl{\log n}+1}}$, so we have that:
 \begin{align*}
-    \COST_{D}\br{T,c'}&\leq \OPT'\br{T,c',k'}+2pk'\cdot \br{\fl{\log n}+1}
+    \COST_{T}\br{D,c'}&\leq \OPT'\br{T,c',k'}+2pk'\cdot \br{\fl{\log n}+1}
     \\&\leq \OPT'\br{T,c'',k''}+2p\cdot \br{\fl{\log n}+1}\cdot \frac{2\cdot\OPT'\br{T,c'', k''}}{p^2\cdot\br{\fl{\log n}+1}} \\
     & \leq \br{1+\frac{4}{p}}\cdot\OPT'\br{T,c'',k''}\leq \br{1+\frac{2}{p}}\cdot\br{1+\frac{3}{p}}\cdot\br{1+\frac{4}{p}}\cdot\OPT\br{T,c}
     \\&
@@ -138,7 +138,7 @@ $$
 \input{pseudocodes/merge_dts.tex}
 % \input{figures/medusa.tex}
 
-Algorithm \ref{mergeDTspseudocode} takes as arguments a tree $T$, a decision tree $D_A$ and a forest of decision trees $F_C$ for $T$ with heavy groups contracted. Since $F_C$ may not be a valid partial decision tree for $T_$, it may happen that it is disconnected. This because, after performing a light query to $v$ according to $F_C$, if the response was down and $v$ has heavy child modules, the children of $v$ in $T_C$, may not be separated yet. Based on this, we derive two cases for our procedure:
+Algorithm \ref{mergeDTspseudocode} takes as arguments a tree $T$, a decision tree $D_A$ and a forest of decision trees $F_C$ for $T$ with heavy groups contracted. Since $F_C$ may not be a valid partial decision tree for $T_$, it may happen that it is disconnected. This is because, after performing a light query to $v$ according to $F_C$, if the response was down and $v$ has heavy child modules, the children of $v$ in $T_C$, may not be separated yet. Based on this, we derive two cases for our procedure:
 \begin{enumerate}
     \item $F_C$ is connected. In such case we pick $r=r\br{F_C}$. 
     \item $F_C$ is disconnected. In such case we pick $r=r\br{D_A}$.
@@ -146,17 +146,17 @@ Algorithm \ref{mergeDTspseudocode} takes as arguments a tree $T$, a decision tre
 We set $D=\br{\brc{r}, \emptyset}$ and then, for each $T'\in T-r$,  we build a decision tree $D'$ for $T'$ recursively by calling \FMergeDTs with arguments $\br{T, D_A|T', F_C|T'}$ and hang $D'$ below $r$ in $D$.
 \begin{lemma}
 Let $D$ be the decision tree returned by the \FMergeDTs procedure. Then, $
-            \COST_{D}\br{T,c',k}\leq\COST'_{D_A}\br{T,c',k}+2pk\cdot \COST_{F_C}\br{T,1}.
+            \COST_{T}\br{D,c',k}\leq\COST'_{T}\br{D_A,c',k}+2pk\cdot \COST_{T}\br{F_C,1}.
         $
 \begin{proof}
      Let $x\in V\br{T}$. We have two cases:
     \begin{enumerate}
-        \item $r$ is heavy or $r$ is light and the response is up. In this case the cost of query to $r$ is incorporated into $\COST'_{D_A}\br{T,c',k}$.
-        \item $r$ is light and the response is down. Let  $r_1$ and $r_2$ be two consecutive light queries in $Q_D\br{T,x}$ with a down response, and let $T''\in T-\brc{r_1, r_2}$, such that $x\in T''$. We will show that $\COST_{F_C|T}\br{T,1}\leq \COST_{F_C}\br{T,1}-1$, so the additional cost of such queries is at most $2pk\cdot \COST_{F_C}\br{T,1}$.
+        \item $r$ is heavy or $r$ is light and the response is up. In this case the cost of query to $r$ is incorporated into $\COST'_{T}\br{D_A,c',k}$.
+        \item $r$ is light and the response is down. Let  $r_1$ and $r_2$ be two consecutive light queries in $Q_D\br{T,x}$ with a down response, and let $T''\in T-\brc{r_1, r_2}$, such that $x\in T''$. We will show that $\COST_{T}\br{F_C|T,1}\leq \COST_{T}\br{F_C,1}-1$, so the additional cost of such queries is at most $2pk\cdot \COST_{T}\br{F_C,1}$.
         \begin{enumerate}
-            \item $F_C$ is connected. In such case $r_1=r\br{F_C}$ so after query to $r_1$, by definition of the decision tree $\COST_{F_C|T'}\br{T,1}\leq \COST_{F_C}\br{T,1}-1$.
+            \item $F_C$ is connected. In such case $r_1=r\br{F_C}$ so after query to $r_1$, by definition of the decision tree $\COST_{T}\br{F_C|T',1}\leq \COST_{T}\br{F_C,1}-1$.
             
-            \item $F_C$ is disconnected. Let $T'$ be any down response to query to $r$. If $r_1=r\br{F_C|T'}$, then $\COST_{F_C|T'}\br{T',1}\leq \COST_{F_C}\br{T,1} - 1$. Otherwise, we argue that $F_C|T'$ is connected. Assume contrary. Firstly, we observe that $F_{C}|T_{r_1}$ is connected. This is because, $r_1$ is light, so the tree $T_{r_1,C}$ denoting $T_{r_1}$ with all heavy modules contracted is connected. By assumption, there at least two connected components $D_1,D_2,\dots,D_j$ of $F_C|T'$, with roots $d_1,d_2,\dots, d_j$ respectively. Since every other query $q\in V\br{F_C|T'}$ is a descendant of some $d_1,\dots,d_j$, the only query which could be the parent of $d_1,\dots, d_j$ in $F_C|T'$ is $r_1$, which is a contradiction. Therefore, the next query $r_2$ of $D$ in $T'$ is $r\br{F_C|T'}$. We get that by definition of the decision tree $\COST_{F_C|T''}\br{T,1}\leq \COST_{F_C}\br{T,1}-1$.
+            \item $F_C$ is disconnected. Let $T'$ be any down response to query to $r$. If $r_1=r\br{F_C|T'}$, then $\COST_{T}\br{F_C|T',1}\leq \COST_{T}\br{F_C,1} - 1$. Otherwise, we argue that $F_C|T'$ is connected. Assume contrary. Firstly, we observe that $F_{C}|T_{r_1}$ is connected. This is because, $r_1$ is light, so the tree $T_{r_1,C}$ denoting $T_{r_1}$ with all heavy modules contracted is connected. By assumption, there at least two connected components $D_1,D_2,\dots,D_j$ of $F_C|T'$, with roots $d_1,d_2,\dots, d_j$ respectively. Since every other query $q\in V\br{F_C|T'}$ is a descendant of some $d_1,\dots,d_j$, the only query which could be the parent of $d_1,\dots, d_j$ in $F_C|T'$ is $r_1$, which is a contradiction. Therefore, the next query $r_2$ of $D$ in $T'$ is $r\br{F_C|T'}$. We get that by definition of the decision tree $\COST_{T}\br{F_C|T''}\leq \COST_{T}\br{F_C,1}-1$.
         \end{enumerate} 
     \end{enumerate}
 \end{proof}
@@ -245,10 +245,8 @@ We now introduce the subproblems which our dynamic programming solves. A problem
     \begin{enumerate}
         \item $T_{v,0}$. We start by building a decision tree $D$ based on $B$. Then, we greedily pick the box with smallest index $1 \leq b \leq d$, such that there exists slot $s$ for which it is possible to place query to $v$ at the $s$-th slot of $q_b$, without introducing conflicts. If there is no such index, we declare the subproblem unfeasible. In other case, the solution obtained by taking timeline $P$ and setting $p_k=v$.
         \item $T_{v,1}$. Assume that we have already solved all the subproblems of $T_u$. We again start by building a decision tree $D$ based on $B$. Then, for any $1 \leq b \leq d$, such that there exists slot $s$ for which it is possible to place query to $v$ at the $s$-th slot of $q_b$, without introducing conflicts we put such query. Let $h$ be the index of last box $q_h$ occupied by $v$. We set the load of each next consecutive box in $B'$ to be $0$ and we set all further boolean flags to false. We then retrieve the optimal decision tree $D'$ for $\br{T_{c_1}, B'}$, put query to $v$ in $D'$ at the $s$-th slot of box $q'_b$, rotate $D'$ around $v$ and align $D'$ with $D$.
-
         Then, among all of such obtained decision trees we pick the one which minimizes the aligned cost.
         \item $T_{v,i}$ for $i>1$, we assume that we have already solved all the subproblems of $T_{v,i-1}$ and $T_{c_i}$. We consider all bipartitions $\br{B_1, B_2}$ of $B$. We retrieve the optimal decision tree $D_1$ for $\br{T_{v, {i-1}}, B_1}$. Let $h$ be the index of last box $q_h$ occupied by $v$ in $D_1$. We set the load of each next consecutive box in $B_2$ to be $0$ and we set all further boolean flags to false. Then, we retrieve the optimal decision tree $D_2$ for $\br{T_{c_{i}}, B_2}$, put query to $v$ in $D_2$ at the $s$-th slot of box $q'_b$, rotate $D_2$ around $v$ and align $D_1$ with $D_2$.
-        
         Then, among all of such obtained decision trees we pick the one which minimizes the aligned cost.
     \end{enumerate}
 

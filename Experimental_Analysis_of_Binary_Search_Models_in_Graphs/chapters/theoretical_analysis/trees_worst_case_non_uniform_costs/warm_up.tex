@@ -1,6 +1,6 @@
 
 \SetKwFunction{FExact}{Exact}
-\subsection{A warm up: $O\br{\log n/\log\log n}$-approximation algorithm  for $T||V,c||\COST$}
+\subsection{A warm up: $O\br{\log n/\log\log n}$-approximation algorithm  for $T||V,c||\COST_{max}$}
 \label{sec:log_n_log_log_n_approx}
 This first algorithm is an adapted and simplified version of the algorithm due to \cite{Cicalese2016OnTSPwNonUniCost} for the edge query model.
 \begin{theorem}
@@ -13,7 +13,7 @@ To construct a decision tree we will use the the procedure from the lemma below:
     \begin{proof}
         The algorithm is a general version of the dynamic programming procedure for paths. We have that:
         $$
-        \OPT\br{T} = \min_{v\in V\br{T}}\brc{c\br{v}+\max_{H\in T-v}\brc{\OPT\br{H}}}.
+        \OPT\br{T,c} = \min_{v\in V\br{T}}\brc{c\br{v}+\max_{H\in T-v}\brc{\OPT\br{H,c}}}.
         $$
 
         Notice, that there are at most $O\br{2^n}$ different subtrees of $T$ to be checked. Additionally, for each $v\in V\br{T}$, there are at most $\deg_T\br{v}$ possible responses to check in the inner $\max$ function. Therefore, for each subproblem, there are at most
@@ -41,7 +41,7 @@ If otherwise, to build a solution we will firstly define a set $\mathcal{X}\subs
 We also define set $\mathcal{Y}\subseteq V\br{\mathcal{T}}$ which consists of vertices in $\mathcal{X}$ and all vertices in $v\in \mathcal{T}\angl{X}$ such that $\deg_{T\angl{\mathcal{X}}}\br{v}\geq 3$.
 Furthermore, we define set $\mathcal{Z}\subseteq V\br{\mathcal{T}}$ as a set consisting of vertices in $\mathcal{Y}$ and for every $u,v\in \mathcal{Y}$ such that $\mathcal{P}_{\mathcal{T}}\br{u, v}\neq\emptyset$ and $\mathcal{P}_{\mathcal{T}}\br{u, v}\cap \mathcal{Y}=\emptyset$ we add to $\mathcal{Z}$ the vertex $\argmin_{z\in \mathcal{P}_{\mathcal{T}}\br{u, v}}\brc{c\br{z}}$ (for example see Figure \ref{exampleTreeWithSetZ}). We then create an auxiliary tree $\mathcal{T}_{\mathcal{Z}}=\br{\mathcal{Z},\brc{uv|\mathcal{P}_{\mathcal{T}}\br{u, v}\cap \mathcal{Z}=\emptyset}}$ (for example see Figure \ref{exampleAuxTreeTZ}). The algorithm builds an optimal decision tree $D_{\mathcal{Z}}$ for $\mathcal{T}_{\mathcal{Z}}$ by applying the $\FExact$ procedure for $\br{\mathcal{T}_{\mathcal{Z}},c}$. Observe, that $D_{\mathcal{Z}}$ is a  partial decision tree for $\mathcal{T}$, so we get that:
 \begin{observation}\label{observation:CostDZinT}
-    $\COST_{D_{\mathcal{Z}}}\br{\mathcal{T}_{\mathcal{Z}}}=\COST_{D_{\mathcal{Z}}}\br{\mathcal{T}}$.
+    $\COST_{\mathcal{T}_{\mathcal{Z}}}\br{D_{\mathcal{Z}}}=\COST_{\mathcal{T}}\br{D_{\mathcal{Z}}}$.
 \end{observation}
 Then for each $H\in \mathcal{T}-\mathcal{Z}$ we recursively apply the same algorithm to obtain the decision tree $D_H$ and we hang it in $D_\mathcal{Z}$ below the unique last query to vertex in $N_{\mathcal{T}'}\br{H}$ (By Observation \ref{neighborsPathObservation}).
 \input{pseudocodes/cicalese_inspired}
@@ -61,9 +61,9 @@ Then for each $H\in \mathcal{T}-\mathcal{Z}$ we recursively apply the same algor
 \begin{lemma}\label{lemma:auxTreeCost}
     Let $\mathcal{T}_{\mathcal{Z}}$ be the auxiliary tree. Then, $\OPT\br{\mathcal{T}_{\mathcal{Z}}}\leq \OPT\br{\mathcal{T}}$.
     \begin{proof}
-        Let $D^*$ be the optimal strategy for $\mathcal{T}\angl{\mathcal{Z}}$. We build a new decision tree $D_{\mathcal{Z}}'$ for $\mathcal{T}_{\mathcal{Z}}$ by transforming $D^*$: Let $u,v\in \mathcal{Y}$ such that $\mathcal{P}_{\mathcal{T}}\br{u, v}\neq\emptyset$ and $\mathcal{P}_{\mathcal{T}}\br{u, v}\cap \mathcal{Y}=\emptyset$. Let $q\in V\br{D^*}$ such that $q\in \mathcal{P}_{\mathcal{T}}\br{u, v}$ is the first query among vertices of $\mathcal{P}_{\mathcal{T}}\br{u, v}$. We replace $q$ in $D^*$ by the query to the distinct vertex $v_{u,v}\in \mathcal{P}_{\mathcal{T}}\br{u, v}\cap \mathcal{Z}$ and delete all queries to vertices $\mathcal{P}_{\mathcal{T}}\br{u, v}-v_{u,v}$ from $D^*$. By construction, $D_{\mathcal{Z}}'$ is a valid decision tree for $\mathcal{T}_{\mathcal{Z}}$ and as for every $z\in \mathcal{P}_{\mathcal{T}}\br{u, v}$: $c\br{v_{u,v}}\leq c\br{z}$ such strategy has cost at most $\COST_{D_{\mathcal{Z}}'}\br{\mathcal{T}_{\mathcal{Z}}}\leq \OPT\br{\mathcal{T}\angl{\mathcal{Z}}}$. We get:
+        Let $D^*$ be the optimal strategy for $\mathcal{T}\angl{\mathcal{Z}}$. We build a new decision tree $D_{\mathcal{Z}}'$ for $\mathcal{T}_{\mathcal{Z}}$ by transforming $D^*$: Let $u,v\in \mathcal{Y}$ such that $\mathcal{P}_{\mathcal{T}}\br{u, v}\neq\emptyset$ and $\mathcal{P}_{\mathcal{T}}\br{u, v}\cap \mathcal{Y}=\emptyset$. Let $q\in V\br{D^*}$ such that $q\in \mathcal{P}_{\mathcal{T}}\br{u, v}$ is the first query among vertices of $\mathcal{P}_{\mathcal{T}}\br{u, v}$. We replace $q$ in $D^*$ by the query to the distinct vertex $v_{u,v}\in \mathcal{P}_{\mathcal{T}}\br{u, v}\cap \mathcal{Z}$ and delete all queries to vertices $\mathcal{P}_{\mathcal{T}}\br{u, v}-v_{u,v}$ from $D^*$. By construction, $D_{\mathcal{Z}}'$ is a valid decision tree for $\mathcal{T}_{\mathcal{Z}}$ and as for every $z\in \mathcal{P}_{\mathcal{T}}\br{u, v}$: $c\br{v_{u,v}}\leq c\br{z}$ such strategy has cost at most $\COST_{\mathcal{T}_{\mathcal{Z}}}\br{D_{\mathcal{Z}}'}\leq \OPT\br{\mathcal{T}\angl{\mathcal{Z}}}$. We get:
         $$
-        \OPT\br{\mathcal{T}_{\mathcal{Z}}}\leq \COST_{D_{\mathcal{Z}}'}\br{\mathcal{T}_{\mathcal{Z}}}\leq \OPT\br{\mathcal{T}\angl{\mathcal{Z}}}\leq \OPT\br{\mathcal{T}}
+        \OPT\br{\mathcal{T}_{\mathcal{Z}}}\leq \COST_{\mathcal{T}_{\mathcal{Z}}}\br{D_{\mathcal{Z}}'}\leq \OPT\br{\mathcal{T}\angl{\mathcal{Z}}}\leq \OPT\br{\mathcal{T}}
         $$
 
         where the first inequality is due to the optimality and the last inequality is due to the fact that $\mathcal{T}\angl{\mathcal{Z}}$ is a subtree of $\mathcal{T}$ (by Lemma \ref{lemma:subtreeCost}). The lemma follows.
@@ -78,13 +78,13 @@ Then for each $H\in \mathcal{T}-\mathcal{Z}$ we recursively apply the same algor
         Let $\mathcal{T}$ be the tree processed at some level of the recursion and let $D_{\mathcal{T}}$ be the decision tree returned by the algorithm. The proof is by induction on the size of $\mathcal{T}$.  We claim that $\APP_{\mathcal{T}}\br{D_{\mathcal{T}}}\leq \max\brc{1, \log n\br{\mathcal{T}}/\log\log n}$. If $n\br{\mathcal{T}}\leq k$ then $D_{\mathcal{T}}$ is the optimal decision tree for $\mathcal{T}$ which establishes the base case. Let $n\br{\mathcal{T}} > k$ and assume that claim holds for every $t< n\br{\mathcal{T}}$. 
         By construction, we have that:
         \begin{align*}
-        \APP_{D_{\mathcal{T}}}\br{\mathcal{T}}&=\frac{\COST_{D_{\mathcal{T}}}\br{\mathcal{T}}}{\OPT\br{\mathcal{T}}}\\
-        &\leq \frac{\COST_{D_{\mathcal{Z}}}\br{\mathcal{T}}+\max_{H\in \mathcal{T}-\mathcal{Z}}\brc{C_{D_H}\br{H}}}{\OPT\br{\mathcal{T}}}\\
+        \APP_{D_{\mathcal{T}}}\br{\mathcal{T}}&=\frac{\COST_{\mathcal{T}}\br{D_{\mathcal{T}}}}{\OPT\br{\mathcal{T}}}\\
+        &\leq \frac{\COST_{\mathcal{T}}\br{D_{\mathcal{Z}}}+\max_{H\in \mathcal{T}-\mathcal{Z}}\brc{C_{\mathcal{T}}\br{D_H}}}{\OPT\br{\mathcal{T}}}\\
         &\leq 
-        \frac{\COST_{D_{\mathcal{Z}}}\br{\mathcal{T}_{\mathcal{Z}}}}{\OPT\br{\mathcal{T}_{\mathcal{Z}}}}+\max_{H\in \mathcal{T}-\mathcal{Z}}\brc{\frac{C_{D_H}\br{H}}{\OPT\br{H}}}\\
+        \frac{\COST_{\mathcal{T}_{\mathcal{Z}}}\br{D_{\mathcal{Z}}}}{\OPT\br{\mathcal{T}_{\mathcal{Z}}}}+\max_{H\in \mathcal{T}-\mathcal{Z}}\brc{\frac{C_{\mathcal{T}}\br{D_H}}{\OPT\br{H}}}\\
         &\leq 1+\frac{\log\br{\frac{n\br{\mathcal{T}}}{\log n\br{\mathcal{T}}}}}{\log\log n}= \frac{\log n\br{\mathcal{T}}}{\log\log n}
         \end{align*}
-        
+
         where the first inequality is by construction, the second is by usage of Observation \ref{observation:CostDZinT}, Lemma \ref{lemma:auxTreeCost} and Lemma \ref{lemma:subtreeCost} and the last inequality is due to the Lemma \ref{lemma:componentSize} and the induction hypothesis.
     \end{proof}
 \end{lemma}

@@ -9,7 +9,7 @@
             Put query to $v$ at the $s$-th slot of $q_b$.
 
             \If{\textnormal{$D$ is not conflicted.}}{
-                \textbf{if} $\COST'_{D}\br{T_{v,i},c',k}\leq dk$ \textbf{then}: \Return $D$, \textbf{else}: \Return $\emptyset$.
+                \textbf{if} $\COST'_{T_{v,i}}\br{D,c',k}\leq dk$ \textbf{then}: \Return $D$, \textbf{else}: \Return $\emptyset$.
             }
         }
         \Return{$\emptyset$}.
@@ -22,8 +22,8 @@
 
             \item Put query to $v$ at the $s$-th slot of $q_b$.
 
-            \If{\textnormal{$D$ is not conflicted and $\COST'_{D}\br{T_{v,i},c',k}\leq dk$}}{
-                \If{$\COST'_{D}\br{T_{v,i},c,k}\leq dk$}
+            \If{\textnormal{$D$ is not conflicted and $\COST'_{T_{v,i}}\br{D,c',k}\leq dk$}}{
+                \If{$\COST'_{T_{v,i}}\br{D,c,k}\leq dk$}
                 {
                     $B'\gets$ left box-path of $D$.
 
@@ -67,7 +67,7 @@
             $\mathcal{D}\gets\mathcal{D}\cup\brc{D_1 \text{ and } D_2 \text{with their left paths aligned}}$.
         }
     }
-    \Return{$\argmin_{D\in \mathcal{D}}\brc{\COST'_D\br{T_{v,i},c, k}}$}.
+    \Return{$\argmin_{D\in \mathcal{D}}\brc{\COST'_{T_{v,i}}\br{D,c, k}}$}.
     }
 
 \end{algorithm}

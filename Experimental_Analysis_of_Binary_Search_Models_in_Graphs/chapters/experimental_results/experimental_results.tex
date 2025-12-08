@@ -4,14 +4,14 @@
 
 The experimental analysis is divided into two sections concerning uniform and non-uniform query costs. In the first section we measured the running time of the \FRankingBasedDT algorithm from Section~\ref{sec:trees_uniform_costs} and the depth of the decision trees produced by it. The second section was concerned with the non-uniform cost model and included the evaluation of the $O\br{\log n/\log\log n}$-approximation algorithm from Section~\ref{sec:log_n_log_log_n_approx}, the $O\br{\sqrt{\log n}}$-approximation algorithm from Section~\ref{sec:sqrt_log_n_approx} based on the QPTAS and the $O\br{\log\log n}$-approximation algorithm from Section~\ref{sec:log_log_n_approx}. We compared the quality of the solutions produced by these algorithms on various classes of trees and cost functions and the computation time required to obtain these results. Additionally, for small input sizes we managed to calculate the optimal solutions using the exact exponential time algorithm. This allowed us to compare the approximation ratios of the algorithms with respect to the optimal solutions.
 
-We have also employed a few heuristic speed-ups, particularly for the QPTAS. Firstly, instead of using $\epsilon=1$ we set it to $\epsilon=59$, which reduces most of the computational complexity of each QPTAS call. For both the $O\br{\sqrt{\log n}}$-approximation algorithm and the $O\br{\log\log n}$-approximation algorithm this does not impact the asymptotic guarantee of the algorithms. Secondly, a careful reading of the proof of the QPTAS reveals that the depth of the considered boxed decision trees can be limited to $\rank\br{T}$, where $\rank\br{T}$ is the number of labels used by the optimal ranking of $T$. This reduces the running time of the QPTAS to $n^{O\br{\log \rank\br{T}/\epsilon^2}}$, which in practice is usually significantly better than the upper bound $\rank\br{T}=O\br{\log n}$.
+We have also employed a few heuristic speed-ups, particularly for the QPTAS. Firstly, instead of using $\epsilon=1$ we set it to $\epsilon=59$, which reduces most of the computational complexity of each QPTAS call. For both the $O\br{\sqrt{\log n}}$-approximation algorithm and the $O\br{\log\log n}$-approximation algorithm this does not impact the asymptotic guarantee of the algorithms. Secondly, a careful reading of the analysis of the QPTAS reveals that the depth of the considered boxed decision trees can be limited to $\rank\br{T}$. This reduces the running time of the QPTAS to $n^{O\br{\log \rank\br{T}/\epsilon^2}}$, which in practice is usually slightly better than the upper bound $\rank\br{T}=O\br{\log n}$.
 
-Lastly we decided to simplify the implementation of the linear time algorithm for $T||V||\COST_{max}$ based on calculating the ranking coloring. We implemented this algorithm niavely with $O\br{n\log n}$ time complexity. This is done in order to simplify the already complex implementation. Additionally, this running time is negligible compared to the other algorithms and we are mainly focused on the quality of the solutions produced by it. Also note that although we performed experiments for the uniform costs variant of the problem using this algorithm, the main focus of this thesis is the non-uniform costs model and this algorithm serves as an essential subroutine for both QPTAS and the $O\br{\log\log n}$-approximation algorithm, rather then a standalone procedure.
+Lastly we decided to simplify the implementation of the linear time algorithm for $T||V||\COST_{max}$ based on calculating the ranking coloring. We implemented this algorithm niavely with $O\br{n\log n}$ time complexity. This is done in order to simplify the already complex implementation. Additionally, this running time is negligible compared to the other algorithms and we are mainly focused on the quality of the solutions produced by them. Also note that although we performed experiments for the uniform costs variant of the problem using this algorithm, the main focus of this thesis is the non-uniform costs model and this algorithm serves as an essential subroutine for both QPTAS and the $O\br{\log\log n}$-approximation algorithm, rather then a standalone procedure.
 
 \subsection*{Tree Generation Methods}
 
 We used three different methods of generating random trees for our experiments: random trees, random trees with bounded degree and random trees with bounded diameter. 
-Table~\ref{tab:tree_methods} summarizes all tree generation methods used in our experiments. We decided to measure the performance of our algorithms on relatively small instances, 10 to 100 vertices per instance, since the complex dynamic programming subroutines of our algorithm require significant computation time even for such sizes.
+Table~\ref{tab:tree_methods} summarizes all tree generation methods used in our experiments. For the uniform costs model, we decided to measure the performance of our algorithms on instances of sizes 10 to 1000 with 10 instances per size. For non-uniform costs model, we focused on relatively small instances, 10 to 100 vertices per instance, since the complex dynamic programming subroutines of our algorithm require significant computation time even for such sizes.
 
 \begin{table}[!h]
 \centering
@@ -41,21 +41,21 @@ Random Bounded Diameter & $n, D$ & Random tree with maximum diameter constraint 
 
 \subsubsection*{Cost Function Generation}
 
-Table~\ref{tab:distributions} lists all probability distributions used for generating the vertex costs ($c$). Note that after generation, all costs are normalized so that the maximum cost equals 1. This is done due to the fact that it is convenient for the design of the QPTAS. used as an essential subroutine for both $O\br{\sqrt{\log n}}$ and the $O\br{\log\log n}$-approximation algorithm. 
+Table~\ref{tab:distributions} lists all probability distributions used for generating the vertex costs. Note that after generation, all costs are normalized so that the maximum cost equals 1. This is done due to the fact that it is convenient for the design of the QPTAS which is used as an essential subroutine for both $O\br{\sqrt{\log n}}$ and the $O\br{\log\log n}$-approximation algorithm. 
 
 \begin{table}[!h]
 \centering
 \caption{Probability distributions for vertex costs}
 \label{tab:distributions}
-\begin{tabular}{|l|l|p{10cm}|}
+\begin{tabular}{|l|l|p{6.5cm}|}
 \hline
 \textbf{Distribution} & \textbf{Formula} & \textbf{Properties} \\
 \hline
-Uniform & $\mathcal{U}(0,1)$ & All values equally likely in $[0,1]$, mean $\mathbb{E}[X]=0.5$ \\
+Uniform $\mathcal{U}$ & $f(x) = \begin{cases} 1/b & \text{if } 0 \leq x \leq b \\ 0 & \text{otherwise} \end{cases}$ & All values in $[0,1]$ equally likely, $\mathbb{E}[X]=0.5$ \\
 \hline
-Binomial & $\text{Binomial}(n, p)$ & Discrete distribution with parameters $n=10$, $p=0.5$, mean $\mathbb{E}[X]=np=5$ \\
+Binomial $\mathcal{B}$ & $\mathbb{P}[X=k] = \binom{n}{k}p^k{(1-p)}^{n-k}$ & Discrete distribution with parameters $n=10$, $p=0.5$, $\mathbb{E}[X]=np=5$ \\
 \hline
-Exponential & $\mathcal{E}(\lambda=1)$ & Memoryless, continuous distribution with rate $\lambda=1$, mean $\mathbb{E}[X]=1$ \\
+Exponential $\mathcal{E}$ & $f(x) = \lambda e^{-\lambda x}$ for $x \geq 0$ & Continuous distribution with rate $\lambda=1$, $\mathbb{E}[X]=1/\lambda=1$ \\
 \hline
 \end{tabular}
 \end{table}
@@ -64,14 +64,15 @@ Exponential & $\mathcal{E}(\lambda=1)$ & Memoryless, continuous distribution wit
 
 To systematically describe our experimental configurations, we extend the theoretical three-field notation $\alpha || \beta || \gamma$ to include specific tree generation methods and distribution types:
 
-\textbf{Field $\alpha$ (Search Space):} In experiments, we specify the specific tree generation method using subscripts. For this study, we focus on three representative tree classes:
+\textbf{Field $\alpha$ (Search Space):} In experiments, we specify the specific tree generation method using subscripts:
 \begin{itemize}
     \item $T_R$ - Random trees
     \item $T_{\Delta}$ - Random bounded degree trees
     \item $T_D$ - Random bounded diameter trees
 \end{itemize}
 
-\textbf{Field $\beta$ (Query Characteristics):} All experiments use vertex queries ($V$). For worst-case optimization, we consider four cost scenarios:
+\textbf{Field $\beta$ (Query Characteristics):} 
+We consider four cost scenarios:
 \begin{itemize}
     \item $V$ - vertex queries with uniform unit costs ($c(v) = 1$ for all $v$)
     \item $V, c = \mathcal{U}$ - vertex queries with costs from uniform distribution $\mathcal{U}(0,1)$
@@ -93,7 +94,7 @@ Throughout the experimental analysis, we report the following metrics:
 \end{itemize}
 \subsubsection*{Experiment Coverage Matrix}
 
-Table~\ref{tab:experiment_matrix} shows which combinations of tree types, cost distributions, and problem variants are tested. Each cell contains references to the corresponding subsections with detailed results.
+Table~\ref{tab:experiment_matrix} contains references to the corresponding subsections containing particular results.
 
 \begin{table}[!h]
 \centering
@@ -102,15 +103,15 @@ Table~\ref{tab:experiment_matrix} shows which combinations of tree types, cost d
 \scriptsize
 \begin{tabular}{|l|c|c|c|c|}
 \hline
-\textbf{Tree Method} & $T || V || \COST_{max}$ & \multicolumn{3}{c|}{$T || V, c || \COST_{max}$} \\
+\textbf{Tree Type/Cost function} & $T || V || \COST_{max}$ & \multicolumn{3}{c|}{$T || V, c || \COST_{max}$} \\
 \cline{3-5}
  & (uniform costs) & $c \sim \mathcal{U}$ & $c \sim \mathcal{B}$ & $c \sim \mathcal{E}$ \\
 \hline
-Random & \ref{sec:random_trees} & \ref{sec:random_c_uniform} & \ref{sec:random_c_binomial} & \ref{sec:random_c_exponential} \\
+Random trees $T_R$ & \ref{sec:random_trees} & \ref{sec:random_c_uniform} & \ref{sec:random_c_binomial} & \ref{sec:random_c_exponential} \\
 \hline
-Bounded Degree & \ref{sec:bounded_degree} & \ref{sec:bounded_degree_c_uniform} & \ref{sec:bounded_degree_c_binomial} & \ref{sec:bounded_degree_c_exponential} \\
+Random bounded degree trees $T_{\Delta}$ & \ref{sec:bounded_degree} & \ref{sec:bounded_degree_c_uniform} & \ref{sec:bounded_degree_c_binomial} & \ref{sec:bounded_degree_c_exponential} \\
 \hline
-Bounded Diameter & \ref{sec:bounded_diameter} & \ref{sec:bounded_diameter_c_uniform} & \ref{sec:bounded_diameter_c_binomial} & \ref{sec:bounded_diameter_c_exponential} \\
+Random bounded diameter trees $T_D$ & \ref{sec:bounded_diameter} & \ref{sec:bounded_diameter_c_uniform} & \ref{sec:bounded_diameter_c_binomial} & \ref{sec:bounded_diameter_c_exponential} \\
 \hline
 \end{tabular}
 \end{table}

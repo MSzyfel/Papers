@@ -1,4 +1,4 @@
-\FloatBarrier\FloatBarrier\subsection{Random Bounded Degree Trees ($T_{\Delta} || V || \COST$)}
+\FloatBarrier\FloatBarrier\subsection{Random Bounded Degree Trees ($T_{\Delta} || V || \COST_{max}$)}
 \label{sec:bounded_degree}
 
 \begin{table}[!h]
@@ -90,4 +90,4 @@ $n$ & Avg Depth & Max Depth & Avg Time (s) & Max Time (s) \\
 
 \FloatBarrier
 
-For bounded degree trees, the algorithm behaves similarly as for the random trees. The running time of the algorithm grows linearly and a little bit slower then for the random trees. The stabily is also preserved. Again, as expected the average and worst case depths of the decision trees built grows logarithmically in $n$. This is easily explaimnable as it is not hard to see that $\rank\br{T} = \Omega\br{\log_{\Delta}}n$ since each query results in at least one response of size at least $\frac{n-1}{\Delta}$.
+For bounded degree trees, the algorithm behaves similarly as for the random trees. The running time of the algorithm grows linearly, a little bit slower then for the random trees. The stabily is also preserved. Again, as expected, the average and worst case depths of the decision trees built grows logarithmically in $n$. This is easily explainable since it is not hard to see that $\rank\br{T} = \Omega\br{\log_{\Delta} n}$ because each query results in at least one response of size at least $\frac{n-1}{\Delta}$.
