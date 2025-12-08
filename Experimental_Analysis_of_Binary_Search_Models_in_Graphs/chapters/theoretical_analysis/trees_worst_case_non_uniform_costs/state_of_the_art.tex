@@ -1,10 +1,11 @@
-\subsection{An $O\br{\sqrt{\log n}}$-approximation algorithm for $T||V,c||\COST$}
+\subsection{An $O\br{\sqrt{\log n}}$-approximation algorithm for $T||V,c||\COST_{max}$}
 \label{sec:sqrt_log_n_approx}
-We begin with the following proposition \cite{dereniowski2017ApproxSsForGeneralBSinWTs} about the existence of QPTAS for $T||V,c||\COST$:
+We begin with the following proposition \cite{dereniowski2017ApproxSsForGeneralBSinWTs} about the existence of QPTAS for $T||V,c||\COST_{max}$:
 \begin{proposition}\label{QPTAS}
      For any $0 < \epsilon \leq 59$ there exists a $(1+\epsilon)$-approximation algorithm for the Tree Search Problem running in $2^{O\br{\frac{\log^2n}{\epsilon^2}}}$ time.
 \end{proposition}
-In order to obtain the above QPTAS, we need to carefully analyze the structure of the decision trees used in the algorithm. The algorithm is very intricate and requires usage of an alternative notion of strategy, which is deferred to Section~\ref{qptasSection}.
+
+The algorithm is very intricate and  is deferred to Section~\ref{qptasSection}.
 
 \begin{theorem}
     There exists a polynomial time, $O\br{\sqrt{\log n}}$-approximation algorithm for the $T||V,c||C_{max}$ problem .

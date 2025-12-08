@@ -2,11 +2,11 @@
 
 The following chapter is concerned with the presentation and theoretical analysis of the algorithms for the Tree Search Problem in its worst-case variants. We partition the analysis into 2 main sections. 
 
-Firstly, we present a classic linear time algorithm for the uniform cost variant of the problem based on the equivalence of the ranking coloring and the Tree Search Problem \cite{Schaffer1989OptNodeRankOfTsInLinTime,OnakParys2006GenOfBSSInTsAndFLikePosets, Mozes_Onak2008FindOptTSStartInLinTime}. 
+Firstly, we present a classic $O\br{n\log n}$ time algorithm for the uniform cost variant of the problem based on the equivalence of the ranking coloring and the Tree Search Problem \cite{Schaffer1989OptNodeRankOfTsInLinTime,OnakParys2006GenOfBSSInTsAndFLikePosets, Mozes_Onak2008FindOptTSStartInLinTime}. 
 
 Secondly, for the non-uniform cost model, we present previously known results including an $O\br{\log n/\log\log n}$-approximation algorithm inspired by the algorithm for the edge query variant \cite{Cicalese2016OnTSPwNonUniCost}. We also rewrite the QPTAS from \cite{dereniowski2017ApproxSsForGeneralBSinWTs} using a somewhat different dynamic program inspired by the work on the average-case variant of the problem \cite{Jacobs2010OnTheComplexSearchInTsAvg,Angelidakis2018ShortestPQ}. As a result we also obtain an incremental improvement on the running of the QPTAS since the original construction yields an algorithm with running time roughly $n^{112898\cdot\log n/\epsilon^2}$ while me managed to reduce this to approximately $n^{6965\cdot\log n/\epsilon^2}$.
 
-We then use this QPTAS to derive a polynomial time $O\br{\sqrt{\log n}}$-approximation algorithm and a $O\br{\log\log n}$ approximation algorithm running in $O\br{k^{O\br{\log n}\cdot}\text{poly}\br{n}}$ time, where $k$ is the $k$-up modularity of the cost function.
+We then use this QPTAS to derive a polynomial time $O\br{\sqrt{\log n}}$-approximation algorithm and a $O\br{\log\log n}$ approximation algorithm running in $O\br{k^{O\br{\log n}}\cdot\text{poly}\br{n}}$ time, where $k$ is the $k$-up modularity of the cost function.
 
 % Table~\ref{tab:algorithms_summary} provides an overview of all algorithms analyzed in this chapter with their theoretical guarantees and corresponding section references.
 

@@ -13,29 +13,28 @@ To construct a decision tree we will use the the procedure from the lemma below:
     \begin{proof}
         The algorithm is a general version of the dynamic programming procedure for paths. We have that:
         $$
-        \OPT_{max}\br{T} = \min_{v\in V\br{T}}\brc{c\br{v}+\max_{H\in T-v}\brc{\OPT_{max}\br{H}}}
+        \OPT\br{T} = \min_{v\in V\br{T}}\brc{c\br{v}+\max_{H\in T-v}\brc{\OPT\br{H}}}.
         $$
 
-        There are at most $O\br{2^n}$ different subtrees of $T$ to be checked. Additionally, for each $v\in V\br{T}$, there are at most $\deg_T\br{v}$ possible responses to check in the inner $\max$ function. Therefore, for each subproblem, there are at most
+        Notice, that there are at most $O\br{2^n}$ different subtrees of $T$ to be checked. Additionally, for each $v\in V\br{T}$, there are at most $\deg_T\br{v}$ possible responses to check in the inner $\max$ function. Therefore, for each subproblem, there are at most
         $
         \sum_{v\in V\br{T}}\deg_T\br{v} = 2m = 2n-2
         $
-
         comparison operations to be performed. As at each level of the recursion the algorithm considers all possible choices of the next queried vertex $v$, it necessarily returns the optimal decision tree for $T$ and the claim follows.
     \end{proof}
 \end{lemma}
 
-We will denote the above procedure.
+We will denote the above procedure as $\FExact$.
 Let $k=2^{\fl{\log\log n}+2}$.
 The basic idea of the Algorithm \ref{cicalese_inspired_pseudocode} is as follows: The algorithm is recursive. Let $\mathcal{T}$ be the tree currently processed by the algorithm. If $n\br{T}\leq k$ then we call $\FExact\br{\mathcal{T}, c}$ to find the optimal solution in time $2^kk=\text{poly}\br{n}$.
 
-If otherwise, to build a solution we will firstly define a set $\mathcal{X}\subseteq V\br{\mathcal{T}}$ which will be of size at most $k$. We build $\mathcal{X}$ iteratively. Starting with an empty set we pick the centroid $x_1$ of $T$ which we add to $\mathcal{X}$. Then we take the forest $F=T-x$, find the largest $H\in F$, pick its centroid $x_2$ and append it to $\mathcal{X}$. We continue this in $F-H + \br{H-x_2}$ until $\spr{\mathcal{X}}=k$.
+If otherwise, to build a solution we will firstly define a set $\mathcal{X}\subseteq V\br{\mathcal{T}}$ which will be of size at most $k$. We build $\mathcal{X}$ iteratively. Starting with an empty set we pick the centroid $x_1$ of $T$ which we add to $\mathcal{X}$. Then we take the forest $F=T-x$, find the largest $H\in F$, pick its centroid $x_2$ and append it to $\mathcal{X}$. We continue this in $\br{F-H} \cup \br{H-x_2}$ until $\spr{\mathcal{X}}=k$.
 \begin{lemma}\label{lemma:componentSize}
     For every $H\in \mathcal{T}-\mathcal{X}$ we have that $n\br{H}\leq n\br{\mathcal{T}}/\log\br{n}$.
     \begin{proof}
-        We prove by induction on $t$ that deleting first $2^t$ centroids from $T$ each connected components $H_t$ has size at most $n\br{H_t}\leq n\br{\mathcal{T}}/2^{t-1}$. For the case when $t=0$ we have that after 1 iteration every $H_1$ has size at most $n\br{T}/2\leq 2\br{n}$ so the base of induction is complete.
+        We prove by induction on $t$ that deleting first $2^t$ centroids from $T$ each connected components $H_t$ has size at most $n\br{H_t}\leq n\br{\mathcal{T}}/2^{t-1}$. For the case when $t=0$ we have that after 1 iteration every $H_1$ has size at most $n\br{\mathcal{T}}/2\leq 2n$ so the base of induction is complete.
 
-        Fix $t>0$ and by assume by the induction hypothesis that after $2^{t-1}$ iterations all
+        Fix $t>0$ and assume by the induction hypothesis that after $2^{t-1}$ iterations all components of $\mathcal{T}-\mathcal{X}$ have size at most $n\br{\mathcal{T}}/2^{t-2}$. Let $p$ denote the number of such components that have size at least $n\br{\mathcal{T}}/2^{t-1}$ so that $p\leq 2^{t-1}$. By the property of centroids, after deleting one centroid from each of these components, each resulting component has size at most $n\br{\mathcal{T}}/2^{t-1}$. Therefore, after deleting $n\br{\mathcal{T}}/2^{t-1}+p\leq n\br{\mathcal{T}}/2^{t}$ centroids, we have that all resulting components have size at most $n\br{\mathcal{T}}/2^t$. This completes the induction step and the claim follows by the choice of $k$.
     \end{proof}
 \end{lemma}
 
@@ -85,6 +84,7 @@ Then for each $H\in \mathcal{T}-\mathcal{Z}$ we recursively apply the same algor
         \frac{\COST_{D_{\mathcal{Z}}}\br{\mathcal{T}_{\mathcal{Z}}}}{\OPT\br{\mathcal{T}_{\mathcal{Z}}}}+\max_{H\in \mathcal{T}-\mathcal{Z}}\brc{\frac{C_{D_H}\br{H}}{\OPT\br{H}}}\\
         &\leq 1+\frac{\log\br{\frac{n\br{\mathcal{T}}}{\log n\br{\mathcal{T}}}}}{\log\log n}= \frac{\log n\br{\mathcal{T}}}{\log\log n}
         \end{align*}
+        
         where the first inequality is by construction, the second is by usage of Observation \ref{observation:CostDZinT}, Lemma \ref{lemma:auxTreeCost} and Lemma \ref{lemma:subtreeCost} and the last inequality is due to the Lemma \ref{lemma:componentSize} and the induction hypothesis.
     \end{proof}
 \end{lemma}

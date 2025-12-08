@@ -1,13 +1,13 @@
 
 \SetKwFunction{FMergeDTs}{MergeDTs}
 \SetKwFunction{FDPTimelinesCosts}{DPTimelinesCosts}
-\subsection{QPTAS for the $T||V,c||\COST$ problem}\label{qptasSection}
+\subsection{QPTAS for $T||V,c||\COST_{max}$}\label{qptasSection}
 
 The following algorithm is a simplified version of the QPTAS provided in \cite{dereniowski2017ApproxSsForGeneralBSinWTs}. The core idea of the algorithm is the same, however, our solution uses the language of decision trees instead of the language of sequence assignments, which makes the algorithm more intuitive.
 
-For the rest of the analysis, without loss of the generality, we will assume that $T$ is rooted in a vertex $v$ minimizing $c\br{v}$.  We will also assume that all costs are normalized, so that $\max_{v\in V\br{T}}\brc{c\br{v}}=1$. If not, the costs are scaled by dividing them by $\max_{v\in V\br{T}}\brc{c(v)}$. Note that this operation does not affect the optimality of a strategy or the quality of an approximation.
+For the rest of the analysis, without loss of the generality, we will assume that $T$ is rooted in a vertex $v$ minimizing $c\br{v}$.  We will also assume that all costs are normalized, so that $\max_{v\in V\br{T}}\brc{c\br{v}}=1$. If not, the costs are scaled by dividing them by $\max_{v\in V\br{T}}\brc{c(v)}$. Note that this operation does not affect the optimality of a strategy or the quality of the approximation.
 \begin{observation}\label{basicBoundsOnCost}
-    Let $T$ be a tree such that $\spr{V\br{T}}> 1$ and $c:V\to \mathbb{R}^+$ be a normalized weight function. Then, $1\leq \OPT(T) \leq \fl{\log n}+1$.
+    Let $T$ be a tree such that $\spr{V\br{T}}> 1$ and $c:V\to \mathbb{R}^+$ be a normalized cost function. Then, $1\leq \OPT(T) \leq \fl{\log n}+1$.
     \begin{proof}
         The first inequality is due to the fact that there exists $v\in V\br{T}$, such that $c\br{v}=1$ and for any decision tree $D$ we have $v\in Q_{D}\br{T,v}$. The second inequality is due to the fact that we can always locate the target using $\fl{\log n}+1$ queries \cite{OnakParys2006GenOfBSSInTsAndFLikePosets}.
     \end{proof}
@@ -23,10 +23,10 @@ $$
 
 \begin{lemma}\label{rounded_dt_lemma}
     $$
-    \OPT\br{T,c'}\leq \br{1+\frac{2}{p}}\cdot \OPT\br{T,c}
+    \OPT\br{T,c'}\leq \br{1+\frac{2}{p}}\cdot \OPT\br{T,c}.
     $$
     \begin{proof}
-        Let $D^*$ be an optimal strategy for $\br{T,c}$. By definition, we have that for every vertex $v\in V\br{T}$, $c'\br{v}\leq \br{1+\frac{1}{p}}\cdot c\br{v}+\frac{1}{p}n$ and therefore:
+        Let $D^*$ be an optimal strategy for $\br{T,c}$. By definition, we have that for every vertex $v\in V\br{T}$, $c'\br{v}\leq \br{1+\frac{1}{p}}\cdot c\br{v}+\frac{n}{p}n$ and therefore:
         \begin{align*}
             \OPT\br{T, c'}&\leq \COST_{D^*}\br{T,c'}=\max_{v\in V\br{T}}\brc{\sum_{q\in Q_{D^*}\br{T,v}}c'\br{q}}
             \\&
@@ -54,7 +54,7 @@ While calculating the decision tree, we will divide the time into boxes of durat
 
         We now construct $D$ as follows: If $v\in V\br{T}$ is heavy, we assign $t_v=\cl{t_v'}_k$ and $t_v=t_v'$ otherwise. For any two consecutive queries $v,u$ in $D$, such that $v$ is heavy we have:
         $$
-        t_u-\cl{t_v'}_k>t_u-t_v-k\geq \br{1+\frac{2}{p}}\cdot c\br{v}-k>w\br{v}+k>c'\br{v}
+        t_u-\cl{t_v'}_k>t_u-t_v-k\geq \br{1+\frac{2}{p}}\cdot c\br{v}-k>w\br{v}+k>c'\br{v}.
         $$
 
         So we conclude that no two queries overlap. To obtain the second part of the claim, we round up the starting time of each query to a light vertex in $D$ to an integer multiple of $\frac{1}{pn}$. We have:

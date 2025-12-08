@@ -1,21 +1,21 @@
 % Symbols in logical order
 \newglossaryentry{symG}{
     name=$G$,
-    description={A graph consisting of vertices and edges},
+    description={A graph},
     nonumberlist,
     sort=a01
 }
 
 \newglossaryentry{symV}{
     name=$V\br{G}$,
-    description={The set of vertices in a graph},
+    description={The set of vertices of a graph},
     nonumberlist,
     sort=a02
 }
 
 \newglossaryentry{symE}{
     name=$E\br{G}$,
-    description={The set of edges in a graph},
+    description={The set of edges of a graph},
     nonumberlist,
     sort=a03
 }
@@ -105,10 +105,17 @@
 }
 
 \newglossaryentry{symCost}{
-    name=$\COST\br{D}$,
-    description={Worst-case search cost of decision tree $D$, $\COST\br{D} = \max_{v \in V} \sum_{q \in Q_D\br{G,v}} c\br{q}$},
+    name=$\COST_G\br{D,c}$,
+    description={Worst-case search cost of decision tree $D$, $\COST_G\br{D,c} = \max_{v \in V} \sum_{q \in Q_D\br{G,v}} c\br{q}$},
     nonumberlist,
     sort=a16
+}
+
+\newglossaryentry{symOPT}{
+    name=$\OPT\br{G,c}$,
+    description={Optimal search cost, $\OPT\br{G,c} = \min_D \COST_G\br{D,c}$},
+    nonumberlist,
+    sort=a17
 }
 
 \newglossaryentry{symTR}{
@@ -130,13 +137,6 @@
     description={Bounded diameter tree with diameter at most $\diam$},
     nonumberlist,
     sort=a20
-}
-
-\newglossaryentry{symTbal}{
-    name=$T_{bal}$,
-    description={Balanced m-ary tree},
-    nonumberlist,
-    sort=a21
 }
 
 \newglossaryentry{symU}{
@@ -183,7 +183,7 @@
 
 \newglossaryentry{symThreeField}{
     name=$\alpha || \beta || \gamma$,
-    description={Three-field notation: $\alpha$ = tree type, $\beta$ = query characteristics, $\gamma$ = objective (e.g., $\COST_{max}$ for worst-case)},
+    description={Three-field notation: $\alpha$ = search space, $\beta$ = query characteristics, $\gamma$ = objective},
     nonumberlist,
     sort=a28
 }
@@ -275,7 +275,7 @@
 
 \newglossaryentry{qptas}{
     name=QPTAS,
-    description={Quasi-Polynomial-Time Approximation Scheme: $(1+\epsilon)$-approximation algorithm running in $n^{O\br{\text{polylog}\br{n}}}$ time},
+    description={Quasi-Polynomial-Time Approximation Scheme: $(1+\epsilon)$-approximation algorithm running in $n^{O\br{\text{poly}\br{\log n/\epsilon}}}$ time},
     nonumberlist
 }
 
