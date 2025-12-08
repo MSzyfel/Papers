@@ -64,27 +64,6 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
-    ylabel={Approximation ratio},
-    width=\textwidth,
-    height=7cm,
-    grid=major,
-    legend pos=north west,
-    mark size=2pt
-]
-\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/cic_insp/cic_insp_deg_3_cb_comparison.csv};
-\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/cic_insp/cic_insp_deg_3_cb_comparison.csv};
-\legend{Avg Ratio, Max Ratio}
-\end{axis}
-\end{tikzpicture}
-\caption{Random bounded degree trees with binomial costs - $O(\log n / \log \log n)$-approximation algorithm: approximation quality}
-\label{fig:bounded_degree_c_binomial_cic}
-\end{figure}
-
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}
-\begin{axis}[
-    xlabel={Tree size ($n$)},
     ylabel={Runtime (s)},
     ymode=log,
     width=\textwidth,
@@ -100,6 +79,27 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \end{tikzpicture}
 \caption{Random bounded degree trees with binomial costs - $O(\log n / \log \log n)$-approximation algorithm: runtime}
 \label{fig:bounded_degree_c_binomial_cic_time}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation ratio},
+    width=\textwidth,
+    height=7cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/cic_insp/cic_insp_deg_3_cb_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/cic_insp/cic_insp_deg_3_cb_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Random bounded degree trees with binomial costs - $O(\log n / \log \log n)$-approximation algorithm: approximation quality}
+\label{fig:bounded_degree_c_binomial_cic}
 \end{figure}
 
 \FloatBarrier
@@ -126,27 +126,6 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
-    ylabel={Approximation ratio},
-    width=\textwidth,
-    height=7cm,
-    grid=major,
-    legend pos=north west,
-    mark size=2pt
-]
-\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/der_insp/der_insp_deg_3_cb_comparison.csv};
-\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/der_insp/der_insp_deg_3_cb_comparison.csv};
-\legend{Avg Ratio, Max Ratio}
-\end{axis}
-\end{tikzpicture}
-\caption{Random bounded degree trees with binomial costs - $O(\sqrt{\log n})$-approximation algorithm: approximation quality}
-\label{fig:bounded_degree_c_binomial_der}
-\end{figure}
-
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}
-\begin{axis}[
-    xlabel={Tree size ($n$)},
     ylabel={Runtime (s)},
     ymode=log,
     width=\textwidth,
@@ -162,6 +141,27 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \end{tikzpicture}
 \caption{Random bounded degree trees with binomial costs - $O(\sqrt{\log n})$-approximation algorithm: runtime}
 \label{fig:bounded_degree_c_binomial_der_time}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation ratio},
+    width=\textwidth,
+    height=7cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/der_insp/der_insp_deg_3_cb_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/der_insp/der_insp_deg_3_cb_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Random bounded degree trees with binomial costs - $O(\sqrt{\log n})$-approximation algorithm: approximation quality}
+\label{fig:bounded_degree_c_binomial_der}
 \end{figure}
 
 \FloatBarrier
@@ -188,27 +188,6 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \begin{tikzpicture}
 \begin{axis}[
     xlabel={Tree size ($n$)},
-    ylabel={Approximation ratio},
-    width=\textwidth,
-    height=7cm,
-    grid=major,
-    legend pos=north west,
-    mark size=2pt
-]
-\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/k_up/k_up_deg_3_cb_comparison.csv};
-\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/k_up/k_up_deg_3_cb_comparison.csv};
-\legend{Avg Ratio, Max Ratio}
-\end{axis}
-\end{tikzpicture}
-\caption{Random bounded degree trees with binomial costs - $O(\log \log n)$-approximation algorithm: approximation quality}
-\label{fig:bounded_degree_c_binomial_kup}
-\end{figure}
-
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}
-\begin{axis}[
-    xlabel={Tree size ($n$)},
     ylabel={Runtime (s)},
     ymode=log,
     width=\textwidth,
@@ -224,5 +203,26 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 \end{tikzpicture}
 \caption{Random bounded degree trees with binomial costs - $O(\log \log n)$-approximation algorithm: runtime}
 \label{fig:bounded_degree_c_binomial_kup_time}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation ratio},
+    width=\textwidth,
+    height=7cm,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/k_up/k_up_deg_3_cb_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/k_up/k_up_deg_3_cb_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Random bounded degree trees with binomial costs - $O(\log \log n)$-approximation algorithm: approximation quality}
+\label{fig:bounded_degree_c_binomial_kup}
 \end{figure}
 
