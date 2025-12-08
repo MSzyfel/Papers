@@ -1,0 +1,638 @@
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{algorithm2e}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Custom commands
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\brc}[1]{\left\{#1\right\}}
+\newcommand{\OPT}{\text{OPT}}
+\newcommand{\COST}{\text{COST}}
+
+\title{Experimental Analysis of Binary Search Models in Trees}
+\author{Michał Szyfel}
+\institute{Gdańsk University of Technology}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+\section{Problem Definition}
+
+\begin{frame}{The Tree Search Problem}
+\begin{block}{Problem Statement}
+Given a tree $T = (V, E)$ with a hidden target vertex $x$:
+\begin{itemize}
+    \item Query a vertex $v$ with cost $c(v)$
+    \item If $v = x$: target found
+    \item Otherwise: receive the subtree containing $x$
+    \item Goal: Minimize worst-case total query cost
+\end{itemize}
+\end{block}
+
+\pause
+
+\begin{block}{Problem Variants}
+\begin{itemize}
+    \item \textbf{Uniform costs:} $T||V||\COST_{max}$ -- all queries have unit cost
+    \item \textbf{Non-uniform costs:} $T||V, c||\COST_{max}$ -- queries have arbitrary costs
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section{Experimental Setup}
+
+\begin{frame}{Hardware and Software}
+\begin{block}{Computing Environment}
+\begin{itemize}
+    \item \textbf{Processor:} Intel Core i7-8700K (6 cores, 12 threads, 3.7 GHz)
+    \item \textbf{RAM:} 32 GB DDR4
+    \item \textbf{OS:} Debian Linux
+    \item \textbf{Language:} Python 3.8+
+\end{itemize}
+\end{block}
+
+\vspace{0.3cm}
+All experiments ran single-threaded to ensure reproducible runtime measurements.
+\end{frame}
+
+\begin{frame}{Tree Classes and Generation Methods}
+\begin{columns}[T]
+\column{0.5\textwidth}
+\textbf{Random Trees ($T_R$):}
+\begin{itemize}
+    \item Generated via Prüfer sequences
+    \item Uniform distribution over all labeled trees
+\end{itemize}
+
+\pause
+
+\vspace{0.5cm}
+\textbf{Bounded Degree Trees ($T_\Delta$):}
+\begin{itemize}
+    \item Maximum degree $\Delta = 3$
+    \item Random generation with degree constraint
+\end{itemize}
+
+\column{0.5\textwidth}
+\textbf{Bounded Diameter Trees ($T_D$):}
+\begin{itemize}
+    \item Maximum diameter $D = 6$
+    \item Random generation with diameter constraint
+\end{itemize}
+
+\pause
+
+\vspace{0.5cm}
+\textbf{Instance Sizes:}
+\begin{itemize}
+    \item Uniform costs: $n \in \{10, 11, \ldots, 1000\}$
+    \item Non-uniform costs: $n \in \{10, 11, \ldots, 100\}$
+    \item 10 instances per size
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Cost Function Generation}
+\begin{block}{Cost Distributions Tested}
+\begin{enumerate}
+    \item \textbf{Uniform costs ($c \sim \mathcal{U}(0,1)$):}
+    \begin{itemize}
+        \item Continuous uniform distribution on $[0, 1]$
+        \item All costs equally likely in the interval
+    \end{itemize}
+    
+    \pause
+    
+    \item \textbf{Binomial costs ($c \sim \mathcal{B}(n=10, p=0.5)$):}
+    \begin{itemize}
+        \item Discrete distribution with $n=10$ trials, $p=0.5$
+        \item Costs concentrate around mean value
+    \end{itemize}
+    
+    \pause
+    
+    \item \textbf{Exponential costs ($c \sim \mathcal{E}(\lambda=1)$):}
+    \begin{itemize}
+        \item Continuous distribution with rate $\lambda = 1$
+        \item Many small costs, few large costs
+    \end{itemize}
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Measured Performance Metrics}
+\begin{block}{For All Algorithms}
+\begin{itemize}
+    \item \textbf{Average Runtime:} Mean execution time over all instances of size $n$
+    \item \textbf{Maximum Runtime:} Worst-case execution time for size $n$
+\end{itemize}
+\end{block}
+
+\pause
+
+\begin{block}{For Uniform Cost Algorithms}
+\begin{itemize}
+    \item \textbf{Average Depth:} Mean depth of decision trees produced
+    \item \textbf{Maximum Depth:} Maximum depth observed
+\end{itemize}
+\end{block}
+
+\pause
+
+\begin{block}{For Non-Uniform Cost Algorithms}
+\begin{itemize}
+    \item \textbf{Average Approximation Ratio:} Mean of $\frac{\text{ALG}}{\OPT}$
+    \item \textbf{Maximum Approximation Ratio:} Worst ratio observed
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section{Algorithms}
+
+\begin{frame}{Algorithm for Uniform Costs}
+\begin{block}{$T||V||\COST_{max}$ -- RankingBasedDT}
+\textbf{Optimal algorithm} in $O(n \log n)$ time
+\begin{itemize}
+    \item Based on vertex ranking coloring of trees
+    \item Guarantees optimal decision tree depth
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Random Trees: Runtime Performance}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (s)},
+    width=0.9\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west
+]
+\addplot[blue, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/analysis_basic_ranking_based_dt1000.csv};
+\addplot[red, thick] table[x=Size, y=MaxCPUTime_s, col sep=comma] {data/analysis_basic_ranking_based_dt1000.csv};
+\legend{Avg Time, Max Time}
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Random Trees: Decision Tree Depth}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Decision tree depth},
+    width=0.9\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    ymin=0
+]
+\addplot[blue, thick] table[x=Size, y=AvgCost, col sep=comma] {data/analysis_basic_ranking_based_dt1000.csv};
+\addplot[red, thick] table[x=Size, y=MaxCost, col sep=comma] {data/analysis_basic_ranking_based_dt1000.csv};
+\legend{Avg Depth, Max Depth}
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Bounded Degree Trees: Runtime Performance}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (s)},
+    width=0.9\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west
+]
+\addplot[blue, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/analysis_bounded_degree_ranking_based_dt_results.csv};
+\addplot[red, thick] table[x=Size, y=MaxCPUTime_s, col sep=comma] {data/analysis_bounded_degree_ranking_based_dt_results.csv};
+\legend{Avg Time, Max Time}
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Bounded Degree Trees: Decision Tree Depth}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Decision tree depth},
+    width=0.9\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    ymin=0
+]
+\addplot[blue, thick] table[x=Size, y=AvgCost, col sep=comma] {data/analysis_bounded_degree_ranking_based_dt_results.csv};
+\addplot[red, thick] table[x=Size, y=MaxCost, col sep=comma] {data/analysis_bounded_degree_ranking_based_dt_results.csv};
+\legend{Avg Depth, Max Depth}
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Bounded Diameter Trees: Runtime Performance}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (s)},
+    width=0.9\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west
+]
+\addplot[blue, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/analysis_bounded_diameter_6_ranking_based_dt_results.csv};
+\addplot[red, thick] table[x=Size, y=MaxCPUTime_s, col sep=comma] {data/analysis_bounded_diameter_6_ranking_based_dt_results.csv};
+\legend{Avg Time, Max Time}
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Bounded Diameter Trees: Decision Tree Depth}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Decision tree depth},
+    width=0.9\textwidth,
+    height=6cm,
+    grid=major,
+    legend pos=north west,
+    ymin=0,
+    ymax=5
+]
+\addplot[blue, thick] table[x=Size, y=AvgCost, col sep=comma] {data/analysis_bounded_diameter_6_ranking_based_dt_results.csv};
+\addplot[red, thick] table[x=Size, y=MaxCost, col sep=comma] {data/analysis_bounded_diameter_6_ranking_based_dt_results.csv};
+\legend{Avg Depth, Max Depth}
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}{RankingBasedDT Performance}
+\begin{columns}[T]
+\column{0.5\textwidth}
+\textbf{Key Findings:}
+\begin{itemize}
+    \item Runtime: Near-linear for random and bounded degree trees
+    \item Runtime: $O(n \log n)$ for bounded diameter
+    \item Depth: Logarithmic for random/bounded degree
+    \item Depth: Constant (≤4) for bounded diameter
+\end{itemize}
+
+\pause
+
+\column{0.5\textwidth}
+\textbf{Observations:}
+\begin{itemize}
+    \item Bounded diameter: trivial upper bound $\lceil \frac{\text{diam}(T)+1}{2} \rceil$
+    \item Bounded degree: trivial lower bound $\log_{\Delta}n$
+    \item Conjecture: For random trees: $\mathbb{E}[\text{rank}(T)] = \Theta(\log n)$ or w.h.p. $\text{rank}(T) = \Theta(\log n)$
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Algorithms for Non-Uniform Costs}
+\begin{block}{$T||V, c||\COST_{max}$}
+\begin{enumerate}
+    \item \textbf{Exact DP} -- $\OPT$ in $O(2^n \cdot n)$ time
+    \pause
+    \item \textbf{$O(\log n / \log \log n)$-approximation} -- polynomial time
+    \pause
+    \item \textbf{$O(\sqrt{\log n})$-approximation} -- based on QPTAS
+    \pause
+    \item \textbf{$O(\log \log n)$-approximation} -- based on QPTAS, $k^{O(\log k)} \cdot \text{poly}(n)$ time
+\end{enumerate}
+\end{block}
+\end{frame}
+
+\begin{frame}{Random Trees: Exact Algorithm Runtime}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (s)},
+    ymode=log,
+    width=\textwidth,
+    height=0.75\textheight,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/dp_tree/dp_tree_basic_cu_analysis.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxCPUTime_s, col sep=comma] {data/dp_tree/dp_tree_basic_cu_analysis.csv};
+\legend{Avg Time, Max Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Random trees with uniform costs - exact algorithm: runtime}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Random Trees: $O(\log n / \log \log n)$-Approximation Quality}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation ratio},
+    width=\textwidth,
+    height=0.75\textheight,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/cic_insp/cic_insp_basic_cu_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/cic_insp/cic_insp_basic_cu_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Random trees with uniform costs - $O(\log n / \log \log n)$-approximation algorithm: approximation quality}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Random Trees: $O(\log n / \log \log n)$-Approximation Runtime}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (s)},
+    ymode=log,
+    width=\textwidth,
+    height=0.75\textheight,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/cic_insp/cic_insp_basic_cu_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxCPUTime_s, col sep=comma] {data/cic_insp/cic_insp_basic_cu_comparison.csv};
+\legend{Avg Time, Max Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Random trees with uniform costs - $O(\log n / \log \log n)$-approximation algorithm: runtime}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Random Trees: $O(\sqrt{\log n})$-Approximation Quality}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation ratio},
+    width=\textwidth,
+    height=0.75\textheight,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/der_insp/der_insp_basic_cu_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/der_insp/der_insp_basic_cu_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Random trees with uniform costs - $O(\sqrt{\log n})$-approximation algorithm: approximation quality}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Random Trees: $O(\sqrt{\log n})$-Approximation Runtime}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (s)},
+    ymode=log,
+    width=\textwidth,
+    height=0.75\textheight,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/der_insp/der_insp_basic_cu_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxCPUTime_s, col sep=comma] {data/der_insp/der_insp_basic_cu_comparison.csv};
+\legend{Avg Time, Max Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Random trees with uniform costs - $O(\sqrt{\log n})$-approximation algorithm: runtime}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Random Trees: $O(\log \log n)$-Approximation Quality}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Approximation ratio},
+    width=\textwidth,
+    height=0.75\textheight,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgRatio, col sep=comma] {data/k_up/k_up_basic_cu_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxRatio, col sep=comma] {data/k_up/k_up_basic_cu_comparison.csv};
+\legend{Avg Ratio, Max Ratio}
+\end{axis}
+\end{tikzpicture}
+\caption{Random trees with uniform costs - $O(\log \log n)$-approximation algorithm: approximation quality}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Random Trees: $O(\log \log n)$-Approximation Runtime}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={Tree size ($n$)},
+    ylabel={Runtime (s)},
+    ymode=log,
+    width=\textwidth,
+    height=0.75\textheight,
+    grid=major,
+    legend pos=north west,
+    mark size=2pt
+]
+\addplot[blue, mark=*, thick] table[x=Size, y=AvgCPUTime_s, col sep=comma] {data/k_up/k_up_basic_cu_comparison.csv};
+\addplot[red, mark=square*, thick] table[x=Size, y=MaxCPUTime_s, col sep=comma] {data/k_up/k_up_basic_cu_comparison.csv};
+\legend{Avg Time, Max Time}
+\end{axis}
+\end{tikzpicture}
+\caption{Random trees with uniform costs - $O(\log \log n)$-approximation algorithm: runtime}
+\end{figure}
+\end{frame}
+
+\section{Experimental Setup}
+
+\section{Results: Uniform Costs}
+
+\section{Results: Non-Uniform Costs}
+
+\begin{frame}{Exact Algorithm Runtime Analysis}
+\begin{block}{Exponential function regression: $T(n) = b^n$}
+Fitted bases $b$ for different tree types:
+\begin{itemize}
+    \item Random trees: $b \approx 1.34 - 1.39$
+    \item Bounded degree: $b \approx 1.35 - 1.38$ 
+    \item Bounded diameter: $b \approx 1.51 - 1.61$
+\end{itemize}
+\end{block}
+
+\pause
+
+\textbf{Practical implications:}
+\begin{itemize}
+    \item Much better than worst-case $O(2^n)$
+    \item Solved instances up to $n \approx 33$ vertices
+    \item Matches theoretical bound $O(1.42^n)$ w.h.p. for random trees
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Approximation Algorithms: Quality}
+\begin{block}{Approximation Ratios}
+All algorithms achieved:
+\begin{itemize}
+    \item Average ratios: $< 2.0$ across all configurations
+    \item Maximum ratios: $< 3.0$ in worst cases
+    \item No significant difference between algorithms
+\end{itemize}
+\end{block}
+
+\pause
+
+\textbf{Surprising observation:}
+\begin{itemize}
+    \item $O(\log n / \log \log n)$-approximation often performed \textit{best}
+    \item More greedy approach works better on random instances
+    \item $O(\log \log n)$-approximation slightly worse due to multiple cost levels
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Approximation Algorithms: Runtime}
+\begin{block}{Practical Usability}
+\begin{itemize}
+    \item $O(\log n / \log \log n)$-approximation: practical for $n \leq 100$
+    \begin{itemize}
+        \item Stable runtime, no spikes
+        \item Recommended for practical use
+    \end{itemize}
+    \item $O(\sqrt{\log n})$ and $O(\log \log n)$: limited to small instances ($n \leq 50$)
+    \begin{itemize}
+        \item High variance in runtime
+        \item QPTAS bottleneck when $\text{rank}(T)$ is large
+    \end{itemize}
+\end{itemize}
+\end{block}
+
+\pause
+
+\textbf{QPTAS behavior:}
+\begin{itemize}
+    \item Runtime: $n^{O(\log \text{rank}(T) / \epsilon^2)}$
+    \item Path-like auxiliary trees cause slowdowns
+    \item For bounded diameter: becomes PTAS with $n^{O(D/\epsilon^2)}$ time
+\end{itemize}
+\end{frame}
+
+\section{Key Contributions}
+
+\begin{frame}{Main Results}
+\begin{enumerate}
+    \item \textbf{Experimental Validation:}
+    \begin{itemize}
+        \item Confirmed theoretical approximation ratios
+        \item Verified runtime complexities
+    \end{itemize}
+    
+    \pause
+    
+    \item \textbf{Practical Insights:}
+    \begin{itemize}
+        \item Simple greedy algorithms perform well on random instances
+        \item Exact algorithm practical for $n \leq 33$
+        \item $O(\log n / \log \log n)$ recommended for larger instances
+    \end{itemize}
+    
+    \pause
+    
+    \item \textbf{Structural Observations:}
+    \begin{itemize}
+        \item Random trees: $\text{rank}(T) = \Theta(\log n)$ (conjectured)
+        \item Exact algorithm: base $b \approx 1.42$ for random trees
+        \item QPTAS becomes PTAS for bounded diameter trees
+    \end{itemize}
+\end{enumerate}
+\end{frame}
+
+\section{Future Directions}
+
+\begin{frame}{Open Problems and Research Directions}
+\begin{block}{Algorithmic Improvements}
+\begin{itemize}
+    \item Design simpler QPTAS with smaller constants
+    \item Constant-factor approximation or PTAS?
+    \item Improve exact algorithms (similar to other combinatorial problems)
+\end{itemize}
+\end{block}
+
+\pause
+
+\begin{block}{Theoretical Questions}
+\begin{itemize}
+    \item Prove $\text{rank}(T) = \Theta(\log n)$ for random trees
+    \item Inapproximability results beyond trivial bounds
+    \item Close gap between $O(\sqrt{\log n})$ and lower bounds
+\end{itemize}
+\end{block}
+
+\pause
+
+\begin{block}{Structural Properties}
+\begin{itemize}
+    \item PTAS for bounded degree trees?
+    \item Better bounds on number of connected subtrees
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Conclusions}
+\begin{center}
+\Large
+\textbf{Thank you for your attention!}
+
+\vspace{1cm}
+
+Questions?
+\end{center}
+\end{frame}
+
+\end{document}

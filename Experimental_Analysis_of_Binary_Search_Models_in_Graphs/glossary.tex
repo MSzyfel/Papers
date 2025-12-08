@@ -191,19 +191,19 @@
 % Key Definitions
 \newglossaryentry{binarysearch}{
     name=Binary Search,
-    description={A search strategy that repeatedly divides the search space by querying intermediate vertices},
+    description={A search strategy that repeatedly divides the search space by repeatedly querying the median vertex},
     nonumberlist
 }
 
 \newglossaryentry{decisiontree}{
     name=Decision Tree,
-    description={A rooted binary tree where internal nodes represent queries and leaves represent target vertices},
+    description={A rooted tree whose nodes represent ordering of queries to be made depending on the previous responses},
     nonumberlist
 }
 
 \newglossaryentry{querycost}{
     name=Query Cost,
-    description={The cost $c\br{v}$ of querying vertex $v$ to determine the target's location relative to $v$},
+    description={The cost $c\br{v}$ of querying vertex $v$},
     nonumberlist
 }
 
@@ -257,13 +257,13 @@
 
 \newglossaryentry{alignedcost}{
     name=Aligned Cost,
-    description={A modified cost measure for aligned decision trees that penalizes light queries with down responses},
+    description={A modified cost measure for aligned decision trees that ignores light queries with down responses},
     nonumberlist
 }
 
 \newglossaryentry{ptas}{
     name=PTAS,
-    description={Polynomial-Time Approximation Scheme: produces $(1+\epsilon)$-approximation in polynomial time for fixed $\epsilon$},
+    description={Polynomial-Time Approximation Scheme: $(1+\epsilon)$-approximation algorithm running in polynomial time for fixed $\epsilon$},
     nonumberlist
 }
 
@@ -275,13 +275,13 @@
 
 \newglossaryentry{qptas}{
     name=QPTAS,
-    description={Quasi-Polynomial-Time Approximation Scheme: produces $(1+\epsilon)$-approximation in $n^{O\br{\text{polylog}\br{n}}}$ time},
+    description={Quasi-Polynomial-Time Approximation Scheme: $(1+\epsilon)$-approximation algorithm running in $n^{O\br{\text{polylog}\br{n}}}$ time},
     nonumberlist
 }
 
 \newglossaryentry{fptas}{
     name=FPTAS,
-    description={Fully Polynomial-Time Approximation Scheme: produces $(1+\epsilon)$-approximation in $O\br{\text{poly}\br{n, 1/\epsilon}}$ time},
+    description={Fully Polynomial-Time Approximation Scheme: PTAS with running time $O\br{\text{poly}\br{n, 1/\epsilon}}$ time},
     nonumberlist
 }
 
