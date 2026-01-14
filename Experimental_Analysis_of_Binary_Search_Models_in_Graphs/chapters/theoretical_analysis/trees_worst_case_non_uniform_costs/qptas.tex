@@ -167,7 +167,7 @@ Let $D$ be the decision tree returned by the \FMergeDTs procedure. Then, $
 
 \input{figures/box_dt.tex}
 
-To devise our dynamic programming procedure, we will need the following generalization of hierarchical decision trees. A \textit{boxed decision tree} $D=\br{V\br{D}, E\br{D}, u, l}$ for the tree $T$ is a tuple, in which $V\br{D}$ are the nodes of the decision trees, which we will call \textit{boxes}, $E\br{D}$ are edges of the decision tree, $u:V\br{T}\times V\br{D}\to \brc{0, 1/pn,2/pn,\dots,k}$ is the \textit{usage} function and $l:V\br{D}\to\brc{0, 1/pn,2/pn,\dots,k}$ is the \textit{load} function. Based on $u$, for every $b\in V\br{D}$ we will also define the \textit{query assignment} as following: $Q\br{b}=\brc{v\in V\br{T}|u\br{v,b}>0}$, these are the vertices of $T$, such that queries to them overlap with the box $b$.
+To devise our dynamic programming procedure, we will need the following generalization of the aligned decision tree. A \textit{boxed decision tree} $D=\br{V\br{D}, E\br{D}, u, l}$ for the tree $T$ is a tuple, in which $V\br{D}$ are the nodes of the decision trees, which we will call \textit{boxes}, $E\br{D}$ are edges of the decision tree, $u:V\br{T}\times V\br{D}\to \brc{0, 1/pn,2/pn,\dots,k}$ is the \textit{usage} function and $l:V\br{D}\to\brc{0, 1/pn,2/pn,\dots,k}$ is the \textit{load} function. Based on $u$, for every $b\in V\br{D}$ we will also define the \textit{query assignment} as following: $Q\br{b}=\brc{v\in V\br{T}|u\br{v,b}>0}$, these are the vertices of $T$, such that queries to them overlap with the box $b$.
 
 The boxed decision tree is defined analogously as ordinary decision tree, however, to each query in $b\in V\br{D}$ instead of one vertex of $V\br{T}$, we assign an arbitrary subset of $V\br{T}$, via the query assignment function $Q$. Let $b\in V\br{D}$, and let $T'$ be a candidate subtree of $T$ right before any vertex in $Q\br{b}$ was queried. A box $p$ is a left child of $b$, if either $b$ corresponds to a subtree $T''\in T-Q\br{b}$ such that $r\br{T'}\in V\br{T''}$ or $Q\br{b}\cup Q\br{p}\neq \emptyset$. If otherwise, then $p$ is a right child of $b$.
 
@@ -249,6 +249,13 @@ We now introduce the subproblems which our dynamic programming solves. A problem
         \item $T_{v,i}$ for $i>1$, we assume that we have already solved all the subproblems of $T_{v,i-1}$ and $T_{c_i}$. We consider all bipartitions $\br{B_1, B_2}$ of $B$. We retrieve the optimal decision tree $D_1$ for $\br{T_{v, {i-1}}, B_1}$. Let $h$ be the index of last box $q_h$ occupied by $v$ in $D_1$. We set the load of each next consecutive box in $B_2$ to be $0$ and we set all further boolean flags to false. Then, we retrieve the optimal decision tree $D_2$ for $\br{T_{c_{i}}, B_2}$, put query to $v$ in $D_2$ at the $s$-th slot of box $q'_b$, rotate $D_2$ around $v$ and align $D_1$ with $D_2$.
         Then, among all of such obtained decision trees we pick the one which minimizes the aligned cost.
     \end{enumerate}
+
+\begin{lemma}
+    The running time of the \FDPTimelinesCosts procedure is bounded by $\br{pn}^{O\br{d}}$.
+    \begin{proof}
+    The number of subtrees $T_{v,i}$ is $O\br{n}$. Each box in the boxline can have one of at most $O\br{n}$ values of load and at most 2 values of the boolean flag. Since each boxline is of length $d$, number of different boxlines for each $T_{v,i}$ is bounded by $\br{pn}^{O\br{d}}$. Additionally, the running time of each subproblem is bounded by $\br{pn}^{O\br{d}}$, since there at most this many bipartitions of available load and boolean flags among boxes. Therefore, the overall running time is bounded by $\br{pn}^{O\br{d}}$.
+    \end{proof}
+\end{lemma}
 
  
 

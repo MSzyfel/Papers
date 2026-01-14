@@ -99,21 +99,21 @@ We begin the description of our algorithm with the recursion base, which occurs 
 \begin{lemma}\label{baseOfRecursion}
     Let $D$ be a decision tree built, by calling \FRankingBasedDT$\br{\mathcal{T}}$ in line \ref{basecaseDT} of the \FCreateDecisionTree procedure. Then,  
 $$
-\COST_{D}\br{\mathcal{T}}\leq 2\cdot\OPT\br{T}.
+\COST_{\mathcal{T}}\br{D}\leq 2\cdot\OPT\br{T}.
 $$
 \begin{proof}
     There are two cases:
     \begin{enumerate}
         \item If $b\leq \frac{1}{\log n}$, then:
 $$
-\COST_{D}\br{\mathcal{T}}\leq\frac{\fl{\log n}+1}{\log n}\leq \frac{\log n+1}{\log n}\leq2\leq 2\cdot \OPT(\mathcal{T})\leq 2\cdot\OPT(T),
+\COST_{\mathcal{T}}\br{D}\leq\frac{\fl{\log n}+1}{\log n}\leq \frac{\log n+1}{\log n}\leq2\leq 2\cdot \OPT(\mathcal{T})\leq 2\cdot\OPT(T),
 $$
 
 where the first inequality is due to Corollary \ref{vertexRankingCorollary}, the fourth inequality follows from Observation \ref{basicBoundsOnCost}, and the last inequality is due to Observation \ref{subtreeOptLemma}.
 
-        \item If for every $v\in V\br{\mathcal{T}}$, we have $c\br{v}> a$, then, define $c'\br{v}=a$ for all $v\in V\br{\mathcal{T}}$ (note that any value could be chosen here, since we treat each query as unitary). As $2c'\br{v} = 2a\geq b \geq c\br{v}$, we obtain $2\cdot \COST_D\br{\mathcal{T}, c'}\geq \COST_D\br{\mathcal{T}, c}$. Additionally, using the fact that $c'\br{v} \leq c\br{v}$, we have $\OPT\br{\mathcal{T}, c'}\leq \OPT\br{\mathcal{T}, c}$. Therefore:
+        \item If for every $v\in V\br{\mathcal{T}}$, we have $c\br{v}> a$, then, define $c'\br{v}=a$ for all $v\in V\br{\mathcal{T}}$ (note that any value could be chosen here, since we treat each query as unitary). As $2c'\br{v} = 2a\geq b \geq c\br{v}$, we obtain $2\cdot \COST_{\mathcal{T}}\br{D, c'}\geq \COST_{\mathcal{T}}\br{D, c}$. Additionally, using the fact that $c'\br{v} \leq c\br{v}$, we have $\OPT\br{\mathcal{T}, c'}\leq \OPT\br{\mathcal{T}, c}$. Therefore:
 $$
-\COST_D\br{\mathcal{T}, c}\leq 2\cdot \COST_D\br{\mathcal{T}, c'}=2\cdot \OPT\br{\mathcal{T}, c'}\leq 2\cdot\OPT\br{\mathcal{T}, c}\leq 2\cdot\OPT\br{T, c},
+\COST_{\mathcal{T}}\br{D, c}\leq 2\cdot \COST_{\mathcal{T}}\br{D, c'}=2\cdot \OPT\br{\mathcal{T}, c'}\leq 2\cdot\OPT\br{\mathcal{T}, c}\leq 2\cdot\OPT\br{T, c},
 $$
 
 where the equality is due to Corollary \ref{vertexRankingCorollary} and the last inequality is due to Observation \ref{subtreeOptLemma}. The lemma follows.
@@ -136,7 +136,7 @@ $\mathcal{T}_{\mathcal{Z}}=\br{\mathcal{Z},\brc{uv | \mathcal{P}_{\mathcal{T}}\b
 
 
 \begin{observation}\label{CostDZinTObservation}
-    $\COST_{D_{\mathcal{Z}}}\br{\mathcal{T}_{\mathcal{Z}}}=\COST_{D_{\mathcal{Z}}}\br{\mathcal{T}}$.
+    $\COST_{\mathcal{T}_{\mathcal{Z}}}\br{D_{\mathcal{Z}}}=\COST_{\mathcal{T}}\br{D_{\mathcal{Z}}}$.
 \end{observation}
 
 
@@ -167,12 +167,12 @@ Now notice that for each $L\in \mathcal{T}'-H$, there is no $v\in V\br{L}$, such
         Let $u,v\in \mathcal{Y}$, such that $\mathcal{P}_{\mathcal{T}}\br{u, v}\neq\emptyset$ and $\mathcal{P}_{\mathcal{T}}\br{u, v}\cap \mathcal{Y}=\emptyset$. Let $q\in V\br{D^*}$ be the first query to a vertex among $\mathcal{P}_{\mathcal{T}}\br{u, v}$. Recall that we picked $v_{u,v}=\argmin_{z\in \mathcal{P}_{\mathcal{T}}\br{u, v}}\brc{c\br{z}}$, so $c\br{v_{u,v}}\leq c\br{q}$. 
         We replace $q$ in $D^*$ with the query to $v_{u,v}$ and delete all queries to vertices in $\mathcal{P}_{\mathcal{T}}\br{u, v}-v_{u,v}$. By construction, $D_{\mathcal{Z}}'$ is a valid decision tree for $\mathcal{T}_{\mathcal{Z}}$, and by choosing $v_{u,v}$ to minimize $c$, we did not increase the cost, so we have that: 
         $$
-        \COST_{D_{\mathcal{Z}}'}\br{\mathcal{T}_{\mathcal{Z}}} \leq \OPT\br{\mathcal{T}\angl{\mathcal{Z}}}.
+        \COST_{\mathcal{T}_{\mathcal{Z}}}\br{D_{\mathcal{Z}}'} \leq \OPT\br{\mathcal{T}\angl{\mathcal{Z}}}.
         $$
         
         Therefore, we have:
         $$
-        \OPT\br{\mathcal{T}_{\mathcal{Z}}}\leq \COST_{D_{\mathcal{Z}}'}\br{\mathcal{T}_{\mathcal{Z}}}\leq \OPT\br{\mathcal{T}\angl{\mathcal{Z}}}\leq \OPT\br{\mathcal{T}},
+        \OPT\br{\mathcal{T}_{\mathcal{Z}}}\leq \COST_{\mathcal{T}_{\mathcal{Z}}}\br{D_{\mathcal{Z}}'}\leq \OPT\br{\mathcal{T}\angl{\mathcal{Z}}}\leq \OPT\br{\mathcal{T}},
         $$
         
         where the first inequality is due to the definition of optimality and the last inequality follows by Lemma \ref{subtreeOptLemma}.
@@ -181,13 +181,13 @@ Now notice that for each $L\in \mathcal{T}'-H$, there is no $v\in V\br{L}$, such
 
 \begin{lemma}\label{heavygroupcostlemma}
     Let $H$ be the unique heavy module of $\mathcal{T}'\in \mathcal{T}-\mathcal{Z}$. Then, the decision tree $D_H$ is of cost at most:
-    $$\COST_{D_H}\br{\mathcal{T}'\angl{H}}\leq 2\cdot\OPT\br{\mathcal{T}}.$$
+    $$\COST_{\mathcal{T}'\angl{H}}\br{D_H}\leq 2\cdot\OPT\br{\mathcal{T}}.$$
     \begin{proof}
         
-    For every $v\in H$ let $c'\br{v}=a$. We have $2 c'\br{v}\geq b c'\br{v}/a =  b \geq c\br{v}$ so we get that $2\cdot\COST_{D_H}\br{\mathcal{T}'\angl{H}, c'}\geq \COST_{D_H}\br{\mathcal{T}'\angl{H}, c}$. Additionally, using the fact that $c'\br{v} \leq c\br{v}$ we have that $\OPT\br{\mathcal{T}'\angl{H}, c'}\leq \OPT\br{\mathcal{T}'\angl{H}, c}$. Hence:
+    For every $v\in H$ let $c'\br{v}=a$. We have $2 c'\br{v}\geq b c'\br{v}/a =  b \geq c\br{v}$ so we get that $2\cdot\COST_{\mathcal{T}'\angl{H}}\br{D_H, c'}\geq \COST_{\mathcal{T}'\angl{H}}\br{D_H, c}$. Additionally, using the fact that $c'\br{v} \leq c\br{v}$ we have that $\OPT\br{\mathcal{T}'\angl{H}, c'}\leq \OPT\br{\mathcal{T}'\angl{H}, c}$. Hence:
     
     \begin{align*}
-        \COST_{D_H}\br{\mathcal{T}'\angl{H}, c}&\leq 2\cdot\COST_{D_H}\br{\mathcal{T}'\angl{H}, c'}=2\cdot\OPT\br{\mathcal{T}'\angl{H}, c'} \\
+        \COST_{\mathcal{T}'\angl{H}}\br{D_H, c}&\leq 2\cdot\COST_{\mathcal{T}'\angl{H}}\br{D_H, c'}=2\cdot\OPT\br{\mathcal{T}'\angl{H}, c'} \\
         &\leq
         2\cdot\OPT\br{\mathcal{T}'\angl{H}, c}\leq 2\cdot\OPT\br{\mathcal{T}, c}
     \end{align*}
@@ -201,7 +201,7 @@ Now notice that for each $L\in \mathcal{T}'-H$, there is no $v\in V\br{L}$, such
 
 Let $d$ be the remaining depth of the recursion call performed in Line~\ref{recursion} of the algorithm, i.e., the number of recursive steps from the current call to the base case (for the base case, this value is equal to $d=0$). We show that at each level of the recursion we pay $O\br{\OPT\br{T}}$, so the approximation ratio of the algorithm is bounded by $O\br{d}$:
 \begin{lemma}\label{costofthesolution}
-$\COST_D\br{\mathcal{T}}\leq\br{4 d+2}\cdot\OPT\br{T}$.
+$\COST_{\mathcal{T}}\br{D}\leq\br{4 d+2}\cdot\OPT\br{T}$.
     \begin{proof}
         
     Let $Q_D\br{\mathcal{T},x}$ be the sequence of queries performed in order to find $x\in V\br{\mathcal{T}}$. By construction of Algorithm \ref{createDecisionTree}, $Q_D\br{\mathcal{T},x}$ consists of at most three distinct subsequences of queries (see Figure \ref{structure_of_dt}):
@@ -213,14 +213,14 @@ $\COST_D\br{\mathcal{T}}\leq\br{4 d+2}\cdot\OPT\br{T}$.
 
     Note that it sometimes may happen that some of the above sequences are empty.
     
-    We prove by induction that $\COST_{D}\br{\mathcal{T}}\leq \br{4d +2}\cdot \OPT\br{T}$. When $d=0$ (the base case), the induction hypothesis is true, due to the Lemma \ref{baseOfRecursion}. For $d>0$, assume by induction that the cost of the decision tree  built for each $L$, is at most $\COST_{D_L}\br{L}\leq \br{4\br{d-1} +2}\cdot \OPT\br{T}$. We have:
+    We prove by induction that $\COST_{\mathcal{T}}\br{D}\leq \br{4d +2}\cdot \OPT\br{T}$. When $d=0$ (the base case), the induction hypothesis is true, due to the Lemma \ref{baseOfRecursion}. For $d>0$, assume by induction that the cost of the decision tree  built for each $L$, is at most $\COST_{\mathcal{T}}\br{D_L}\leq \br{4\br{d-1} +2}\cdot \OPT\br{T}$. We have:
         \begin{align*}
-        \COST_D\br{\mathcal{T}}
+        \COST_{\mathcal{T}}\br{D}
         &\leq
-        \COST_{D_{\mathcal{Z}}}\br{\mathcal{T}}+\max_{\mathcal{T}'\in \mathcal{T}-\mathcal{Z}}\brc{\COST_{D_H}\br{\mathcal{T}'\angl{H}}+\max_{L\in \mathcal{T}'-H}\brc{\COST_{D_L}\br{L}}}
+        \COST_{\mathcal{T}}\br{D_{\mathcal{Z}}}+\max_{\mathcal{T}'\in \mathcal{T}-\mathcal{Z}}\brc{\COST_{\mathcal{T}'\angl{H}}\br{D_H}+\max_{L\in \mathcal{T}'-H}\brc{\COST_{L}\br{D_L}}}
          \\ 
         &\leq
-        \COST_{D_{\mathcal{Z}}}\br{\mathcal{T}_{\mathcal{Z}}}+\max_{\mathcal{T}'\in \mathcal{T}-\mathcal{Z}}\brc{2\cdot\OPT\br{\mathcal{T}}+\br{4\br{d-1} +2}\cdot \OPT\br{T}}
+        \COST_{\mathcal{T}_{\mathcal{Z}}}\br{D_{\mathcal{Z}}}+\max_{\mathcal{T}'\in \mathcal{T}-\mathcal{Z}}\brc{2\cdot\OPT\br{\mathcal{T}}+\br{4\br{d-1} +2}\cdot \OPT\br{T}}
         \\ 
         &\leq 
         2\cdot\OPT\br{\mathcal{T}_{\mathcal{Z}}}+2\cdot\OPT\br{T}+ \br{4\br{d-1} +2}\cdot \OPT\br{T} 
@@ -246,7 +246,7 @@ We are now ready to prove our main theorem:
         $.
         Hence, using Lemma \ref{costofthesolution} we get that:
         $$
-        \COST_{D}\br{T} \leq (4 \cdot \log\log n + 6) \cdot \OPT\br{T} = O\br{\log\log n \cdot \OPT\br{T}}.
+        \COST_{\mathcal{T}}\br{D} \leq (4 \cdot \log\log n + 6) \cdot \OPT\br{T} = O\br{\log\log n \cdot \OPT\br{T}}.
         $$
 
         By Observation \ref{subtreeKUpModularity}, for every subtree $\mathcal{T}$ of $T$, processed at some level of the recursion, we have $k\br{\mathcal{T}} \leq k\br{T}$. Using Lemma \ref{auxTreeSizeLemma}, at each such level the call to the QPTAS from Theorem \ref{QPTAS} (line \ref{QPTAScall} of the \textsc{CreateDecisionTree}) runs in time bounded by: 

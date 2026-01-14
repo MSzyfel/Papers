@@ -28,7 +28,7 @@ We will denote the above procedure as $\FExact$.
 Let $k=2^{\fl{\log\log n}+2}$.
 The basic idea of the Algorithm \ref{cicalese_inspired_pseudocode} is as follows: The algorithm is recursive. Let $\mathcal{T}$ be the tree currently processed by the algorithm. If $n\br{T}\leq k$ then we call $\FExact\br{\mathcal{T}, c}$ to find the optimal solution in time $2^kk=\text{poly}\br{n}$.
 
-If otherwise, to build a solution we will firstly define a set $\mathcal{X}\subseteq V\br{\mathcal{T}}$ which will be of size at most $k$. We build $\mathcal{X}$ iteratively. Starting with an empty set we pick the centroid $x_1$ of $T$ which we add to $\mathcal{X}$. Then we take the forest $F=T-x$, find the largest $H\in F$, pick its centroid $x_2$ and append it to $\mathcal{X}$. We continue this in $\br{F-H} \cup \br{H-x_2}$ until $\spr{\mathcal{X}}=k$.
+If otherwise, to build a solution we will firstly define a set $\mathcal{X}\subseteq V\br{\mathcal{T}}$ which will be of size at most $k$. We build $\mathcal{X}$ iteratively. Starting with an empty set we pick the centroid $x_1$ of $T$ which we add to $\mathcal{X}$. Then we take the forest $\mathcal{F}=T-x$, find the largest $H\in \mathcal{F}$, pick its centroid $x_2$ and append it to $\mathcal{X}$. We continue this in $\br{\mathcal{F}-H} \cup \br{H-x_2}$ until $\spr{\mathcal{X}}=k$.
 \begin{lemma}\label{lemma:componentSize}
     For every $H\in \mathcal{T}-\mathcal{X}$ we have that $n\br{H}\leq n\br{\mathcal{T}}/\log\br{n}$.
     \begin{proof}

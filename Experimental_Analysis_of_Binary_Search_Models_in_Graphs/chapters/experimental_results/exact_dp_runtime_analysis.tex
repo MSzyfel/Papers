@@ -1,18 +1,18 @@
 \FloatBarrier
-\subsection{Exponential Runtime Growth Analysis of Exact Algorithm}
+\subsection{Exponential Runtime Growth Analysis of the Exact Algorithm}
 \label{sec:exact_dp_runtime_analysis}
 
-During the execution of the exact dynamic programming algorithm from Section~\ref{sec:log_n_log_log_n_approx}, it could be noticed that often, the running time of the procedure behaved slightly better then $O\br{2^nn}$. We decided to find the value of $b$ such that the function $T(n) = b^n$ best approximates the running time of the procedure. 
+During the execution of the exact dynamic programming algorithm from Section~\ref{sec:log_n_log_log_n_approx}, it could be noticed that the running time of the procedure behaved better then $O\br{2^nn}$. We decided to find the value of $b$ such that the function $T(n) = b^n$ best approximates the running time of the procedure. 
 The coefficient of determination $R^2$ indicates the quality of the exponential fit. It is defined as:
 $$
 R^2 = 1 - \frac{\sum_{i=1}^{n}\br{y_i - \hat{y}_i}^2}{\sum_{i=1}^{n}\br{y_i - \bar{y}}^2}
 $$
-where $y_i$ are the observed runtime values, $\hat{y}_i$ are the predicted values from the model $T(n) = b^n$, and $\bar{y}$ is the mean of observed values. Values of $R^2$ close to 1 suggest that the exponential model accurately describes the runtime growth, while values close to 0 indicate poor fit. The base $b$ of the exponential represents the growth rate per additional vertex. We observe that:
+where $y_i$ are the observed runtime values, $\hat{y}_i$ are the predicted values from the model $T(n) = b^n$, and $\bar{y}$ is the mean of observed values. Values of $R^2$ close to 1 suggest that the exponential model accurately describes the runtime growth, while values close to 0 indicate poor fit.  We calculated the values of $b$ for which the value of $R^2$ is maximized:
 \FloatBarrier
 
 \begin{table}[H]
 \centering
-\caption{Exponential fit coefficient $b^n$ for exact DP algorithm runtime}
+\caption{Exponential fit for exact DP algorithm runtime}
 \label{tab:dp_exponential_fits}
 \small
 \begin{tabular}{|l|l|c|c|c|c|}
@@ -40,8 +40,8 @@ We observe that:
 \begin{itemize}
     \item The bases $b$ are all significantly smaller than 2, ranging from approximately 1.34 to 1.61, indicating that the algorithm performs better than the worst-case $O(2^n)$ growth in practice for these instances.
     \item Random trees with bounded diameter (Diameter 6) display the highest growth bases ($b \approx 1.51$-$1.61$).
-    \item Other tree classes exhibited value of $b$ oscilaating around $b \approx 1.34$-$1.39$ which is siginificantly better then the worst case $O\br{2^nn}$ running time.
-    \item For each class of trees the values of $b$ are relatively consistent across different cost distributions (Uniform, Binomial, Exponential), suggesting that the distribution of query costs has a limited impact on the exponential growth rate of the algorithm's runtime. Also it suggests that perhaps the values of $b$ might stablize for larger input sizes.
+    \item Other tree classes exhibited value of $b$ oscillating around $b \approx 1.34$-$1.39$ which is siginificantly better then the worst case $O\br{2^nn}$ running time.
+    \item For each class of trees the values of $b$ are relatively consistent across different cost distributions (Uniform, Binomial, Exponential), suggesting that the distribution of query costs has a limited impact on the exponential growth rate of the algorithm's runtime and that perhaps the values of $b$ might stabilize for larger input sizes.
 \end{itemize}
 
 \FloatBarrier

@@ -1,11 +1,10 @@
-
 \begin{algorithm}
 \caption{Main recursive procedure ($k$ is a global parameter)}\label{cicalese_inspired_pseudocode}
 \SetKwFunction{FDecisionTree}{DecisionTree}
 \SetKwProg{Fn}{Procedure}{:}{}
-\Fn{\FDecisionTree{$\mathcal{T},c$}}{
+\Fn{\FDecisionTree$\br{\mathcal{T},c}$}{
     \If{$n\br{\mathcal{T}}\leq k$}{
-    $D\gets$\FExact{$\mathcal{T},c$}.
+    $D\gets$\FExact$\br{\mathcal{T},c}$.
     
     \Return $D$
     }
@@ -24,7 +23,7 @@
         
         $\mathcal{X}\gets \mathcal{X}\cup\brc{x}$.
         
-        $\mathcal{F}\gets \mathcal{F} \cup H-x$.
+        $\mathcal{F}\gets \mathcal{F}\cup \br{H-x}$.
         }
     $\mathcal{Z}\gets\mathcal{Y}\gets\mathcal{X}\cup \brc{v\in \mathcal{T}\angl{\mathcal{X}}|\deg_{\mathcal{T}\angl{\mathcal{X}}}\br{v}\geq3}$.
     \tcp{Branching vertices in $\mathcal{T}\angl{X}$.}
@@ -37,11 +36,11 @@
     
     $\mathcal{T}_{\mathcal{Z}}=\br{\mathcal{Z}, \brc{uv|\mathcal{P}_{\mathcal{T}}\br{u, v}\cap \mathcal{Z}=\emptyset}}$.
     
-    $D\gets D_{\mathcal{Z}}\gets $\FExact{$\mathcal{T}_{\mathcal{Z}},c$}.
+    $D\gets D_{\mathcal{Z}}\gets$\FExact$\br{\mathcal{T}_{\mathcal{Z}},c}$.
 
     \ForEach{$H\in \mathcal{T}-\mathcal{Z}$}
     {
-        $D_H\gets$\FDecisionTree{$H,c$}.
+        $D_H\gets$\FDecisionTree$\br{H,c}$.
         
         Hang $D_H$ in $D$ below the last query to a vertex $v \in N_{\mathcal{T}}\br{H}$.
     }

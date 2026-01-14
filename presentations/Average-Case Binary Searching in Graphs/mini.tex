@@ -81,7 +81,7 @@
 \title{Approximating the Average-Case Graph Search Problem with Non-Uniform Costs}
 \author{Michał Szyfelbein}
 \institute{Faculty of Electronics, Telecommunications and Informatics\\Gdańsk University of Technology, Poland}
-\date{\today, University of Gdańsk}
+\date{\today}
 
 \begin{document}
 
@@ -98,7 +98,6 @@
 \begin{frame}
 \frametitle{Binary Search}
 \textbf{Binary Search} – a classical strategy used to efficiently locate a hidden \textbf{target} element $x$ in a linearly ordered set using $O\br{\log n}$ comparison operations.
-\pause
 \input{figures/binary_search}
 
 \end{frame}
@@ -123,11 +122,10 @@ A \textbf{query} to a vertex $v$ returns information whether $v$ is the target $
     \begin{itemize}
         \item 
     To each vertex $v$ we assign an arbitrary \textbf{cost} $c\br{v}$, which denotes a cost of performing a query to $v$.
-    \pause
     \item 
     Additionally, to each vertex $v$ we also assign an arbitrary \textbf{weight} $w\br{v}$, which denotes the importance of $v$.
-    \pause
-    \item For any $S\subseteq V\br{G}$, we denote $c\br{S}=\sum_{v\in S}c\br{v}$ and $w\br{S}=\sum_{v\in S}w\br{v}$.
+    % \pause
+    % \item For any $S\subseteq V\br{G}$, we denote $c\br{S}=\sum_{v\in S}c\br{v}$ and $w\br{S}=\sum_{v\in S}w\br{v}$.
     \end{itemize}
 
 \end{frame}
@@ -138,7 +136,6 @@ A \textbf{query} to a vertex $v$ returns information whether $v$ is the target $
 \begin{tcolorbox}[colback=white, title=Graph Search Problem (GSP), fonttitle=\bfseries, breakable]
 \textbf{Input:} Graph $G$, a query cost function $c\colon V\br{G}\to \mathbb{N}$ and a weight function $w\colon V\br{G}\to \mathbb{N}$.
 
-\pause
 \textbf{Output:} A decision tree $D$ minimizing the weighted average search cost: 
 $$c_G\br{D} = \sum_{x\in V\br{G}}w\br{x}\cdot c\br{Q_G\br{D, x}}$$
 where $Q_G\br{D,x}$ denotes the set of queries performed 
@@ -146,10 +143,10 @@ along the unique path in $D$ from the root $r\br{D}$ to $x$.
 \end{tcolorbox}
 \end{frame}
 
-\begin{frame}\frametitle{Decision Tree}
+% \begin{frame}\frametitle{Decision Tree}
 
-\input{figures/sample_decision_trees_for_graph.tex}
-\end{frame}
+% \input{figures/sample_decision_trees_for_graph.tex}
+% \end{frame}
 
 % \begin{frame}{Why do we care?}
 %     \textbf{Useful in:}
@@ -180,40 +177,40 @@ along the unique path in $D$ from the root $r\br{D}$ to $x$.
 % \end{frame}
 
 
-\begin{frame}
-\frametitle{Other variants}
-Notation: \textbf{search space $||$ query model $||$ objective function:}
-    \pause
-\begin{itemize}
-    \item $T||V||\sum w_iC_i$:
-    \begin{itemize}
-        \item $\br{1+\epsilon}$ in
-$O\br{\br{1/\epsilon}^{2/\log_23}\cdot n^{1+4/\log_23}\cdot \log^2\br{n/\epsilon}}$ time.
-    \item Every optimal decision tree has height at most $O\br{\log w\br{T}}$.
-    \item Weighted centroid decision tree is 2-approximate.
-    \end{itemize}
-    \pause
-    \item $T||V|| C_{max}$:
-    \begin{itemize}
-        \item Solvable in $O\br{n}$ time, $\fl{\log n}+1$ queries always suffice.
-    \end{itemize}
-    \pause
-    \item $G||V|| C_{max}$
-    \begin{itemize}
-        \item NP-hard, best known approximation is $O\br{\log^{3/2} n}$.
-    \end{itemize}
-    \pause
-    \item $T||V, c|| C_{max}$
-    \begin{itemize}
-        \item NP-hard, best known approximation is $O\br{\sqrt{\log n}}$.
-    \end{itemize}
-    \pause
-    \item $G||V, c|| C_{max}$
-    \begin{itemize}
-        \item Reducible to the uniform cost version.
-    \end{itemize}
-\end{itemize}
-\end{frame}
+% \begin{frame}
+% \frametitle{Other variants}
+% Notation: \textbf{search space $||$ query model $||$ objective function:}
+%     \pause
+% \begin{itemize}
+%     \item $T||V||\sum C_i$:
+%     \begin{itemize}
+%         \item $\br{1+\epsilon}$ in
+% $O\br{\br{1/\epsilon}^{2/\log_23}\cdot n^{1+4/\log_23}\cdot \log^2\br{n/\epsilon}}$ time.
+%     \item Every optimal decision tree has height at most $O\br{\log w\br{T}}$.
+%     \item Weighted centroid decision tree is 2-approximate.
+%     \end{itemize}
+%     \pause
+%     \item $T||V|| C_{max}$:
+%     \begin{itemize}
+%         \item Solvable in $O\br{n}$ time, $\fl{\log n}+1$ queries always suffice.
+%     \end{itemize}
+%     \pause
+%     \item $G||V|| C_{max}$
+%     \begin{itemize}
+%         \item NP-hard, best known approximation is $O\br{\log^{3/2} n}$.
+%     \end{itemize}
+%     \pause
+%     \item $T||V, c|| C_{max}$
+%     \begin{itemize}
+%         \item NP-hard, best known approximation is $O\br{\sqrt{\log n}}$.
+%     \end{itemize}
+%     \pause
+%     \item $G||V, c|| C_{max}$
+%     \begin{itemize}
+%         \item Reducible to the uniform cost version.
+%     \end{itemize}
+% \end{itemize}
+% \end{frame}
 
 % \begin{frame}{Many names}
 % \footnotesize
@@ -239,7 +236,6 @@ $O\br{\br{1/\epsilon}^{2/\log_23}\cdot n^{1+4/\log_23}\cdot \log^2\br{n/\epsilon
 \frametitle{How to tackle the problem}
 \textbf{Bad news:}
 The Graph Search Problem is \textbf{NP–hard} even when restricted to bounded degree trees and bounded diameter trees. 
-\pause
 
 We want to find an algorithm providing a good \textbf{approximation} for the problem:
 \begin{itemize}
@@ -253,7 +249,6 @@ We want to find an algorithm providing a good \textbf{approximation} for the pro
 \begin{tcolorbox}[colback=white, title=Weighted $\alpha$–Separator Problem, fonttitle=\bfseries, breakable]
 \textbf{Input:} Graph $G$, a cost function $c\colon V\to \mathbb{N}$, a weight function $w\colon V\to \mathbb{N}$ and a real number $\alpha$.
 
-\pause
 \textbf{Output:} A set $S\subseteq V\br{G}$ called \textbf{separator} such that for every $H\in G-S$, $w\br{H}\leq w\br{G}/\alpha$ and $c\br{S}$ is minimized.
 \end{tcolorbox}
 
@@ -265,17 +260,12 @@ We want to find an algorithm providing a good \textbf{approximation} for the pro
 
 \begin{frame}{How to find the separator}
 \textbf{Bad news again}: The Weighted $\alpha$–separator Problem is \textbf{NP–hard} as well.
-\pause
 But there exists a biciriteria \textbf{FPTAS} for trees:
-\pause
 \begin{theorem}
     Let $S$ be an optimal weighted $\alpha$–separator for $\br{T,c,w,\alpha}$. For any $\delta>0$ there exists an algorithm \FSeparatorFPTAS, which returns a separator $S'$, such that:
     \begin{enumerate}
-        \pause
         \item $c\br{S'}\leq c\br{S}$.
-        \pause
         \item $w\br{H}\leq \frac{\br{1+\delta}\cdot w\br{T}}{\alpha}$ for every $H\in T-S'$.
-        \pause
         \item The algorithm runs in $O\br{n^3/\delta^2}$ time.
     \end{enumerate}
 \end{theorem}
@@ -286,12 +276,9 @@ But there exists a biciriteria \textbf{FPTAS} for trees:
     \begin{itemize}
         \item $\mathcal{R}_D\br{G}$ – 
 the family of all candidate subsets of $D$ in $G$.
-        \pause
         \item $D^*$ – optimal decision tree.
-        \pause
         \item $\mathcal{L}_{k}^*$ – the $k$–th \textbf{level} of $\OPT\br{G}$: the subset of $\mathcal{R}_{D^*}\br{G}$
         consisting of all maximal elements $H$ of $\mathcal{R}_{D^*}\br{G}$ with $w\br{H} \leq k$.  
-        \pause
         \item $S_{k}^* = V\br{G} - \mathcal{L}_{k}^*$ – vertices belonging to the separator at the level~$\mathcal{L}_{k}^*$. $S_{k}^*$ forms a weighted $w\br{G}/k$–separator of $G$.
     \end{itemize}
 
@@ -311,11 +298,11 @@ $
     \pause
 \begin{lemma}
     $\OPT\br{G}=\sum_{k=0}^{w\br{G}-1}c\br{S_{k}^*}.$
-    \pause
-    \begin{proof}
-        Consider any vertex $v$. For every $0\leq k<w\br{G_{D^*,v}}$, $v\notin \bigcup_{H\in \mathcal{L}_{k}^*}H$, so $v\in S_{k}^*$ and the contribution of $v$ to the cost is $w\br{G_{D^*,v}}\cdot c\br{v}$:
-        $$\sum_{k=0}^{w\br{G}-1}c\br{S_{k}^*}=\sum_{v\in V\br{G}}\sum_{k=0}^{w\br{G_{D^*,v}}-1}c\br{v}=\OPT\br{G}.$$
-    \end{proof}
+    % \pause
+    % \begin{proof}
+    %     Consider any vertex $v$. For every $0\leq k<w\br{G_{D^*,v}}$, $v\notin \bigcup_{H\in \mathcal{L}_{k}^*}H$, so $v\in S_{k}^*$ and the contribution of $v$ to the cost is $w\br{G_{D^*,v}}\cdot c\br{v}$:
+    %     $$\sum_{k=0}^{w\br{G}-1}c\br{S_{k}^*}=\sum_{v\in V\br{G}}\sum_{k=0}^{w\br{G_{D^*,v}}-1}c\br{v}=\OPT\br{G}.$$
+    % \end{proof}
 \end{lemma}
 \end{frame}
 
@@ -357,7 +344,6 @@ $
 
 \begin{frame}{Searching in Trees}
 We will iteratively use the \textbf{FPTAS} for the Weighted $\alpha$–separator problem to create an $\br{4+\epsilon}$–approximation algorithm for the Tree Search Problem:
-\pause
 \begin{theorem}
     For any $\epsilon>0$ there exists an $\br{4+\epsilon}$–approximation algorithm for the Tree Search Problem running in $O\br{n^4/\epsilon^2}$ time.
 \end{theorem}
@@ -389,10 +375,8 @@ We will iteratively use the \textbf{FPTAS} for the Weighted $\alpha$–separator
 \begin{frame}{Sketch of the proof}
 \begin{itemize}
     \item $\mathcal{T}$ – subtree of $T$ for which the procedure was called.
-    \pause
     \item Let $S_{\mathcal{T}}^*=S_{\fl{w\br{\mathcal{T}}/2}}^*\cap\mathcal{T}$. We have $c\br{S_{\mathcal{T}}}\leq c\br{S_{\mathcal{T}}^*}$.
-    \pause
-    \item Let $\beta=\frac{1-\delta}{2}$. We have:We have that the contribution of the decision tree $D_{\mathcal{T}}$ is bounded by:
+    \item We have that the contribution of the decision tree $D_{\mathcal{T}}$ is bounded by:
     \pause
             \begin{align*}
                 w\br{\mathcal{T}}\cdot c\br{S_{\mathcal{T}}}
@@ -404,11 +388,12 @@ We will iteratively use the \textbf{FPTAS} for the Weighted $\alpha$–separator
 \end{frame}
 
 \begin{frame}{Sketch of the proof}
-    \begin{lemma}\label{up_trees}
-            $$\sum_{\mathcal{T}}\sum_{k=\frac{1+\delta}{2}\cdot w\br{\mathcal{T}}+1}^{w\br{\mathcal{T}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{T}}\leq \sum_{k=0}^{w\br{T}}c\br{S_{\fl{k/2}}^*}.$$
-            \end{lemma}
+    % \begin{lemma}\label{up_trees}
+    %         $$\sum_{\mathcal{T}}\sum_{k=\frac{1+\delta}{2}\cdot w\br{\mathcal{T}}+1}^{w\br{\mathcal{T}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{T}}\leq \sum_{k=0}^{w\br{T}}c\br{S_{\fl{k/2}}^*}.$$
+    %         \end{lemma}
+    % \pause
     \begin{itemize}
-    \item Let $D$ be the resulting decision tree. We have:
+        \item Let $\beta=\frac{1-\delta}{2}$. We have:
     \begin{align*}
             c_T\br{D} &\leq 
             \frac{2}{1-\delta}\cdot\sum_{\mathcal{T}}\sum_{k=\frac{1+\delta}{2}\cdot w\br{\mathcal{T}}+1}^{w\br{\mathcal{T}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{T}}\\
@@ -425,7 +410,6 @@ We will iteratively use the \textbf{FPTAS} for the Weighted $\alpha$–separator
 \begin{tcolorbox}[colback=white, title= Min–Ratio Vertex Cut Problem, fonttitle=\bfseries, breakable]
 \textbf{Input:} Graph $G=\br{V\br{G}, E\br{G}}$, the cost function $c\colon V\to \mathbb{N}$ and the weight function $w\colon V\to \mathbb{N}$.
 
-\pause
 \textbf{Output:} A partition $\br{A,S,B}$ of $V\br{G}$ called \textbf{vertex–cut}, such that there are no $u\in A$ and $v\in B$ for which $uv\in E\br{G}$, minimizing the ratio:
 $$
 \alpha_{c,w}\br{A,S,B}=\frac{c\br{S}}{w\br{A\cup S}\cdot w\br{B\cup S}}.
@@ -453,7 +437,6 @@ $$
 
 \begin{frame}{Searching in Graphs}
 We will iteratively use the $f_n$–approximation algorithm for the Min–Ratio Vertex Cut Problem to create an $O\br{f_n}$–approximation algorithm for the Graph Search Problem:
-\pause
 \begin{theorem}
     Let $f_n$ be the approximation ratio of any polynomial time algorithm for the Min–Ratio Vertex Cut Problem. Then, there exists an $O\br{f_n}$–approximation algorithm for the Graph Search Problem, running in polynomial time.
 \end{theorem}
@@ -478,7 +461,6 @@ We will iteratively use the $f_n$–approximation algorithm for the Min–Ratio 
 
     \begin{itemize}
         \item $\mathcal{G}$ – any subgraph of $G$, for which the procedure was called.
-        \pause
         \item Let $S_{\mathcal{G}}^*=S_{\fl{w\br{\mathcal{G}}/2}}^*\cap \mathcal{G}$.
     \end{itemize}
         \pause
@@ -486,7 +468,6 @@ We will iteratively use the $f_n$–approximation algorithm for the Min–Ratio 
             Let $\mathcal{H}=\mathcal{G}-S_{\mathcal{G}}^*$. Then, we can partition $\mathcal{H}$ into two sets, $\mathcal{A}$ and $\mathcal{B}$ such that for $A=\bigcup_{H\in\mathcal{A}}V\br{H}$ and $B=\bigcup_{H\in\mathcal{B}}V\br{H}$, we have:
             $$w\br{A\cup S_{\mathcal{G}}^*}\cdot w\br{B\cup S_{\mathcal{G}}^*}\geq w\br{\mathcal{G}}^2/11.$$
         \end{lemma}
-        \pause
         The partition $\br{A,S_{\mathcal{G}}^*,B}$ in the above lemma is a vertex cut of $\mathcal{G}$, so we have:
                 $$\alpha_{c,w}\br{\mathcal{G}}\leq \frac{c\br{S_{\mathcal{G}}^*}}{w\br{A\cup S_{\mathcal{G}}^*}\cdot w\br{B\cup S_{\mathcal{G}}^*}}\leq \frac{11 \cdot c\br{S_{\mathcal{G}}^*}}{w\br{\mathcal{G}}^2}.
                 $$
@@ -499,9 +480,8 @@ We will iteratively use the $f_n$–approximation algorithm for the Min–Ratio 
         $$
         \alpha_{c,w}\br{A_{\mathcal{G}},S_{\mathcal{G}}, B_{\mathcal{G}}}=\frac{c\br{S_{\mathcal{G}}}}{w\br{A_{\mathcal{G}}\cup S_{\mathcal{G}}}\cdot w\br{B_{\mathcal{G}}\cup S_{\mathcal{G}}}}\leq f_n \cdot \frac{11\cdot c\br{S_{\mathcal{G}}^*}} {w\br{\mathcal{G}}^2}.
         $$
-        \pause
+        % \pause
         \item Let $\beta=w\br{B_{\mathcal{G}}\cup S_{\mathcal{G}}}/w\br{\mathcal{G}}$, so that $\br{1-\beta}\cdot w\br{\mathcal{G}} = w\br{A_\mathcal{G}}$.
-        \pause
         \item Assume w. l. o. s. that $w\br{A_{\mathcal{G}}}\geq w\br{B_{\mathcal{G}}}$. 
         \pause
         \item The contribution of the decision tree $D_{\mathcal{G}}$ is bounded by:
@@ -525,17 +505,20 @@ We will iteratively use the $f_n$–approximation algorithm for the Min–Ratio 
             &\leq 22 \cdot f_n\cdot \OPT\br{G}
         \end{align*}
 \end{frame}
-\begin{frame}{
-    What's next?}
-\begin{itemize}
-    \item An FPTAS for graphs with bounded number of inner vertices based on a dynamic program for scheduling with rejection.
-    \pause
-    \item We are working on the case when the cost incurred by a query depends on the target vertex. This cannot be approximated to within $\br{2-\epsilon}$ even when the input is a star via a reduction from $1|prec| \sum w_iC_i$.
-    \pause
-    \item For trees, when the cost is monotone non-decreasing with respect to the target i. e. if $u \in P_{v,x}$ then $c\br{u,x} \leq c\br{v,x}$, we have found a $2$-approximation.
-    \pause
-    \end{itemize}
-\end{frame}
+% \begin{frame}{
+%     What's next?}
+% \begin{itemize}
+%     \item The results for the \textbf{average case} variant of the Graph Search Problem far \textbf{outperform} those for the \textbf{worst case} variant:
+%     \begin{itemize}
+%     \item For trees: $\br{4+\epsilon}$ vs. $O\br{\sqrt{\log n}}$,
+%     \item For general graphs: $O\br{\sqrt{\log n}}$ vs  $O\br{\log^{3/2}n}$.
+%     \end{itemize}
+%     \pause
+%     \item \textbf{Greedy} algorithms do not work well in the \textbf{worst case} setup. However we think there is a different way of connecting searching and separating which may yield a constant factor approximation for trees.
+%     \pause
+%     \item For general graphs we are working on an $O\br{\log n}$ approximation.
+%     \end{itemize}
+% \end{frame}
 \begin{frame}
 \centering
 \huge

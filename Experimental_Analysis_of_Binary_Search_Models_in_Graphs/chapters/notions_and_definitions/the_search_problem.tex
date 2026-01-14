@@ -14,7 +14,7 @@ to be located. During the \textit{search process} the searcher is allowed to ite
 \subsection{Additional input parameters}
 \label{subsec:additional_input_parameters}
 As a part of the input we will also allow the cost function. Let $\mathcal{Q}$ be the space of possible queries (either vertex or edge queries). The \textit{cost} of query $q\in\mathcal{Q}$ is then denoted
-as $c:\mathcal{Q}\to \mathbb{R}^+$. 
+as $c:\mathcal{Q}\to \mathbb{R}^+$. When all queries have unit cost, i.e., $c\br{q}=1$ for all $q\in\mathcal{Q}$, we sometimes denote this by writing $\COST\br{D,1}$ to emphasize that the cost function assigns unit costs.
 
 Note, that it is also sometimes allowed for each vertex to have a \textit{weight function} $c:V\br{G}\to \mathbb{R}^+$ on vertices. However, this is only sensible notion for the average case version of the problem which is not considered in this work.
 \subsection{Decision trees, optimization criteria and the Graph Search Problem}

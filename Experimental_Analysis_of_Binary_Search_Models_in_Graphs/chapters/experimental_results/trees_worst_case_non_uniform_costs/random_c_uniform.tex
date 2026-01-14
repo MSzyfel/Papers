@@ -230,9 +230,8 @@ $n$ & Avg Time (s) & Max Time (s) & Avg Ratio & Max Ratio \\
 We have the following observations:
 \begin{itemize}
     \item We see that the running time of the exact procedure plotted on the logarithmic scale behaves as a linear function. This matches our expectation since it means that the running time is exponential in $n$. Notably, this running time is lower then the worst case running time of $O\br{2^nn}$, suggesting that for our instances the base of the exponential function representing the running time of the algorithm is smaller than 2.
-    \item Among the approximation algorothm the best running time was always achieved by the $O\br{\log n/\log \log n}$-approximation algorithm. 
     \item The approximation algorithms show a polynomial growth in running time, with the $O(\log n / \log \log n)$-approximation algorithm being the fastest among them, followed by the $O(\sqrt{\log n})$-approximation algorithm, and finally the $O(\log \log n)$-approximation algorithm being the slowest.
-    \item The approximation ratios achieved by all approximation algorithms are significantly better than their theoretical worst-case guarantees. All of the approximation ratios were below 2. We also see that no algorithm consistently outperformed the other.
+    \item The approximation ratios achieved by all approximation algorithms are significantly better than their theoretical worst-case guarantees. All of the approximation ratios were below 2. We also see that no algorithm consistently outperformed the others.
     \item  All of the above observations will also be prevalent among further experiments except when noted.
 \end{itemize}
 
