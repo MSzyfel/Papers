@@ -233,14 +233,15 @@ along the unique path in $D$ from the root $r\br{D}$ to $x$.
 
 
 \begin{frame}
-\frametitle{How to tackle the problem}
-\textbf{Bad news:}
-The Graph Search Problem is \textbf{NP–hard} even when restricted to bounded degree trees and bounded diameter trees. 
-
-We want to find an algorithm providing a good \textbf{approximation} for the problem:
+\frametitle{Our results}
+We give \textbf{approximation} algorithms for the problem:
 \begin{itemize}
     \item $\br{4+\epsilon}$–approximation for \textbf{trees}.
-    \item $O\br{\sqrt{\log n}}$–approximation for \textbf{general graphs}.
+    \item $O\br{f_n}$-approximation algorithm, where $f_n$ is the approximation ratio of any polynomial time algorithm for the Min–Ratio Vertex Cut Problem. In particular, this yields:
+    \begin{itemize}
+        \item $O\br{\sqrt{\log n}}$–approximation for \textbf{general graphs}.
+        \item $O\br{\spr{V\br{H}}^2}$-approximation for graphs excluding $H$ as a minor which yields $O\br{1}$-approximation for many important graph classes, such as planar graphs, graphs of bounded treewidth, etc.
+    \end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -259,7 +260,7 @@ We want to find an algorithm providing a good \textbf{approximation} for the pro
 \end{frame}
 
 \begin{frame}{How to find the separator}
-\textbf{Bad news again}: The Weighted $\alpha$–separator Problem is \textbf{NP–hard} as well.
+\textbf{Bad news}: The Weighted $\alpha$–separator Problem is \textbf{NP–hard} even fot stars.
 But there exists a biciriteria \textbf{FPTAS} for trees:
 \begin{theorem}
     Let $S$ be an optimal weighted $\alpha$–separator for $\br{T,c,w,\alpha}$. For any $\delta>0$ there exists an algorithm \FSeparatorFPTAS, which returns a separator $S'$, such that:
@@ -423,9 +424,9 @@ $$
 \end{frame}
 
 \begin{frame}{How to find the cut}
-Min–Ratio Vertex Cut Problem is also \textbf{NP–hard}. However, we use the following result of \cite{Improvedapproximationalgorithmsvertexseparators}:
+We use the following result of \cite{Improvedapproximationalgorithmsvertexseparators}:
 \begin{theorem}\label{approxmrvc}
-    Given a graph $G=\br{V\br{G}, E\br{G}}$, the cost function $c:V\to\mathbb{N}$ and the weight function $w:V\to \mathbb{N}$, there exists a
+    Given a graph $G=\br{V\br{G}, E\br{G}}$, the cost function $c\colon V\to\mathbb{N}$ and the weight function $w\colon V\to \mathbb{N}$, there exists a
 polynomial–time algorithm, which computes a partition $(A, S, B)$, such that:
 $$
 \alpha_{c,w}\br{A,S,B}=O\br{\sqrt{\log n
