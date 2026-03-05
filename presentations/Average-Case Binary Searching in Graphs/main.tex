@@ -29,6 +29,7 @@
 \usepackage{xcolor}
 \tcbuselibrary{breakable}
 \usetikzlibrary{shadows}
+\usetikzlibrary{fit}
 
 \usetikzlibrary{decorations.pathreplacing,calligraphy}
 
@@ -536,12 +537,12 @@ We will iteratively use the $f_n$–approximation algorithm for the Min–Ratio 
     \pause
     \end{itemize}
 \end{frame}
-\begin{frame}
-\centering
-\huge
-Thank you for your attention!
-
-Questions?
+\begin{frame}{Summary}
+\begin{itemize}
+    \item The key idea behind our lower bounds is to decompose the optimal decision tree into series of separators
+    \item This connection immediately yields approximation algorithms for the Graph Search Problem based on approximation algorithms for the Weighted $\alpha$–Separator Problem and the Min–Ratio Vertex Cut Problem.
+    \item The approximation ratio is $\br{4+\epsilon}$, and $O\br{\sqrt{\log n}}$ for general graphs.
+\end{itemize}
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Bibliography}

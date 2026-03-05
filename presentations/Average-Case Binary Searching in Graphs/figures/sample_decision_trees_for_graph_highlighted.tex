@@ -1,0 +1,67 @@
+
+\begin{figure}[htbp]
+    \centering
+    \scalebox{0.9}{
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \tikz [node distance = 16mm, rotate=-90]
+        \graph [spring layout]
+{
+  a -- { b, c, d, e};
+  b -- {c};
+  e -- {j, h};
+  d -- {i, f};
+  j -- {g[> orient=right]};
+  i -- {j, e, k[draw=red, circle, thick]};
+  g -- {l};
+  h --  a;
+  l -- {k};
+};
+        \label{fig:graph_highlighted}
+    \end{minipage}
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}[
+          grow=-90,
+          level 1/.style={sibling distance=44mm, level distance=14.5mm},
+          level 2/.style={sibling distance=22mm, level distance=14.5mm},
+          level 3/.style={sibling distance=11mm, level distance=14.5mm},
+          every node/.style={circle, inner sep=2pt}
+        ]
+          \node (e) {$e$}
+            child {node (i) {$i$}
+              child {node (a) {$a$}
+                child {node {$c$}
+                  child {node {$b$}}
+                }
+                child {node {$h$}}
+                child {node {$f$}
+                  child {node {$d$}}
+                }
+              }
+              child {node (g) {$g$}
+                child {node {$j$}}
+                child {node (k) {$k$}
+                  child {node {$l$}}
+                }
+              }
+            };
+          % Krzywa wokół e, i, g, k
+          \draw[red, very thick] plot[smooth cycle, tension=0.8] coordinates {
+            ([yshift=5pt]e.north)
+            ([shift={(5pt,0pt)}]e.east)
+            ([shift={(5pt,0pt)}]i.east)
+            ([shift={(5pt,0pt)}]g.east)
+            ([shift={(5pt,0pt)}]k.east)
+            ([yshift=-5pt]k.south)
+            ([shift={(-5pt,0pt)}]k.west)
+            ([shift={(-5pt,0pt)}]g.west)
+            ([shift={(-5pt,0pt)}]i.west)
+            ([shift={(-5pt,0pt)}]e.west)
+          };
+        \end{tikzpicture}
+        \label{fig:dt_g_v_highlighted}
+    \end{minipage}
+    }
+        \caption[Graph and decision tree with highlighted region]{Vertices contributing their cost to the search time of $k$.}
+\end{figure}

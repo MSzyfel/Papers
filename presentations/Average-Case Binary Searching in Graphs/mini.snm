@@ -1,9 +1,11 @@
 \beamer@slide {fig:binary-search-subarrays}{2}
 \beamer@slide {fig:graph}{8}
 \beamer@slide {fig:dt_g_v}{8}
-\beamer@slide {contributionLemma}{19}
-\beamer@slide {lb_opt}{21}
-\beamer@slide {splitting}{21}
-\beamer@slide {fig:placeholder}{25}
-\beamer@slide {approxmrvc}{31}
-\beamer@slide {lambda_lemma}{34}
+\beamer@slide {fig:graph_highlighted}{11}
+\beamer@slide {fig:dt_g_v_highlighted}{11}
+\beamer@slide {contributionLemma}{22}
+\beamer@slide {lb_opt}{24}
+\beamer@slide {splitting}{24}
+\beamer@slide {fig:placeholder}{28}
+\beamer@slide {approxmrvc}{35}
+\beamer@slide {lambda_lemma}{38}

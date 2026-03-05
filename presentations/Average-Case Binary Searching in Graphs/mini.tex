@@ -29,6 +29,7 @@
 \usepackage{xcolor}
 \tcbuselibrary{breakable}
 \usetikzlibrary{shadows}
+\usetikzlibrary{fit}
 
 \usetikzlibrary{decorations.pathreplacing,calligraphy}
 
@@ -80,8 +81,8 @@
 %Information to be included in the title page:
 \title{Approximating the Average-Case Graph Search Problem with Non-Uniform Costs}
 \author{Michał Szyfelbein}
-\institute{Faculty of Electronics, Telecommunications and Informatics\\Gdańsk University of Technology, Poland}
-\date{\today}
+\institute{Gdańsk University of Technology, Poland}
+\date{March 5, WALCOM 2026}
 
 \begin{document}
 
@@ -231,16 +232,22 @@ along the unique path in $D$ from the root $r\br{D}$ to $x$.
 % \end{itemize}
 % \end{frame}
 
+\begin{frame}
+\frametitle{Cost of searching}
+\input{figures/sample_decision_trees_for_graph_highlighted.tex}
+\end{frame}
 
 \begin{frame}
 \frametitle{Our results}
-We give \textbf{approximation} algorithms for the problem:
+This problem is \textbf{NP–hard} already for trees. We give the following \textbf{approximation} algorithms:
 \begin{itemize}
     \item $\br{4+\epsilon}$–approximation for \textbf{trees}.
+    \pause
     \item $O\br{f_n}$-approximation algorithm, where $f_n$ is the approximation ratio of any polynomial time algorithm for the Min–Ratio Vertex Cut Problem. In particular, this yields:
     \begin{itemize}
+        \pause
         \item $O\br{\sqrt{\log n}}$–approximation for \textbf{general graphs}.
-        \item $O\br{\spr{V\br{H}}^2}$-approximation for graphs excluding $H$ as a minor which yields $O\br{1}$-approximation for many important graph classes, such as planar graphs, graphs of bounded treewidth, etc.
+        \item $O\br{\spr{V\br{H}}^2}$-approximation for graphs excluding $H$ as a minor which yields constant factor approximation for many important graph classes, such as planar graphs, graphs of bounded treewidth, etc.
     \end{itemize}
 \end{itemize}
 \end{frame}
@@ -260,7 +267,7 @@ We give \textbf{approximation} algorithms for the problem:
 \end{frame}
 
 \begin{frame}{How to find the separator}
-\textbf{Bad news}: The Weighted $\alpha$–separator Problem is \textbf{NP–hard} even fot stars.
+\textbf{Bad news}: The Weighted $\alpha$–separator Problem is \textbf{NP–hard} even for stars.
 But there exists a biciriteria \textbf{FPTAS} for trees:
 \begin{theorem}
     Let $S$ be an optimal weighted $\alpha$–separator for $\br{T,c,w,\alpha}$. For any $\delta>0$ there exists an algorithm \FSeparatorFPTAS, which returns a separator $S'$, such that:
@@ -400,6 +407,7 @@ We will iteratively use the \textbf{FPTAS} for the Weighted $\alpha$–separator
             \frac{2}{1-\delta}\cdot\sum_{\mathcal{T}}\sum_{k=\frac{1+\delta}{2}\cdot w\br{\mathcal{T}}+1}^{w\br{\mathcal{T}}}c\br{S_{\fl{k/2}}^*\cap \mathcal{T}}\\
             &\leq \frac{2}{1-\delta}\cdot\sum_{k=0}^{w\br{T}}c\br{S_{\fl{k/2}}^*}\leq  \br{4+\epsilon}\cdot\OPT\br{T}.
     \end{align*}
+    \pause
     \item As $1/\delta=\frac{4+\epsilon}{\epsilon}=1+4/\epsilon$, the running time is $O\br{n^4/\epsilon^2}$.
     \end{itemize}
 \end{frame}
@@ -520,12 +528,14 @@ We will iteratively use the $f_n$–approximation algorithm for the Min–Ratio 
 %     \item For general graphs we are working on an $O\br{\log n}$ approximation.
 %     \end{itemize}
 % \end{frame}
-\begin{frame}
-\centering
-\huge
-Thank you for your attention!
-
-Questions?
+\begin{frame}{Summary}
+\begin{itemize}
+    \item The key idea behind our lower bounds is to decompose the optimal decision tree (and its cost) into a series of separators.
+    \pause
+    \item This immediately yields approximation algorithms for the Graph Search Problem:  $\br{4+\epsilon}$ for trees and $O\br{\sqrt{\log n}}$ for general graphs.
+    \pause
+    \item Currently, we are working on an FPTAS parametrized by the number of non-leaf vertices of the graph as well as a more general model in which the cost of a query depends on the target vertex.
+\end{itemize}
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Bibliography}
